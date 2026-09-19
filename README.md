@@ -12,6 +12,8 @@ I built the **multi-provider-research** skill to help an assistant work with tho
 
 **[Explore the skill](https://github.com/goolamabbas/multi-provider-research)** · **[See how to get started](#start-with-one-skill-and-one-provider)** · **[Read the full guide](https://app.notion.com/p/Public-Choosing-External-Research-Tools-for-AI-Agents-3d083c2ae3038021af87df733a424ffc?pvs=21)**
 
+![Intelligence and search are separate choices. The multi-provider-research skill helps your assistant use connected tools.](assets/intelligence-and-search.png)
+
 ## The pieces, in plain language
 
 You do not need to know these terms beforehand:
