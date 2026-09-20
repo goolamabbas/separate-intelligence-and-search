@@ -1,6 +1,6 @@
 # Educational website
 
-The public introduction is published at https://goolamabbas.github.io/separate-intelligence-and-search/ . The main guide is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/ . Its maintained source remains `docs/README.md`. The research prompt cookbook is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/ . Choosing providers is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/ . Connecting providers still opens its GitHub Markdown edition.
+The public introduction is published at https://goolamabbas.github.io/separate-intelligence-and-search/ . The main guide is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/ . Its maintained source remains `docs/README.md`. The research prompt cookbook is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/ . Choosing providers is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/ . Connecting providers is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/ . All educational navigation stays on GitHub Pages; explicitly labelled source links open the repository.
 
 ## Content and design
 
@@ -8,7 +8,7 @@ The public introduction is published at https://goolamabbas.github.io/separate-i
 
 The September 2026 source qualifications remain in the page. Publishing the website is not a new pricing or provider audit.
 
-`build-guide.cjs` renders the main guide with `guide.css` and `guide.js`, preserving its prompts and diagrams. `build-cookbook.cjs` renders `docs/research-prompts.md`, preserving complete code blocks and explanatory text, with search, group filters, expandable examples, and direct links. It shares the guide styles and copy behavior and adds `cookbook.css` and `cookbook.js`. The main build clears generated output and rebuilds all four pages. `build-choosing.cjs` renders the provider reference from `docs/choosing-providers.md` with shared guide styles and `choosing.css`.
+`build-guide.cjs` renders the main guide with `guide.css` and `guide.js`, preserving its prompts and diagrams. `build-cookbook.cjs` renders `docs/research-prompts.md`, preserving complete code blocks and explanatory text, with search, group filters, expandable examples, and direct links. It shares the guide styles and copy behavior and adds `cookbook.css` and `cookbook.js`. The main build clears generated output and rebuilds all five pages. `build-choosing.cjs` renders the provider reference from `docs/choosing-providers.md` with shared guide styles and `choosing.css`.
 
 ## Build and preview
 
@@ -29,3 +29,5 @@ The Pages workflow builds on relevant pushes to `main`, or can be run manually. 
 To revise the design, edit the website source and publish a new commit. To retire the website, disable its deployment workflow and unpublish it in the repository's Pages settings. The original README and detailed guide remain available on GitHub. Revert a design commit to restore an earlier version; review the deployment result after any rollback.
 
 Social preview metadata uses the existing infographic. Messaging applications may cache previews independently of the current website.
+
+`build-connecting.cjs` renders `docs/connecting-providers.md` with the shared guide layout, numbered checklist, and copy controls for prompts, endpoints, configuration, and project instructions.

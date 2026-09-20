@@ -28,7 +28,7 @@ markdown.use({renderer: {
     if (href === 'README.md') href = introduction + 'guide/';
     else if (href === '../README.md') href = introduction;
     else if (/^research-prompts\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/research-prompts/' + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
-    else if (/^(choosing-providers|connecting-providers)\.md(?:#.*)?$/.test(href)) href = github + href;
+    else if (/^(choosing-providers|connecting-providers)\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/' + href.replace('.md', '/');
     return `<a href="${escape(href)}"${title ? ` title="${escape(title)}"` : ''}>${this.parser.parseInline(tokens)}</a>`;
   }
 }});
@@ -47,11 +47,11 @@ html = `<div class="opening">${sections.shift()}</div>` + sections.map(s => {
   const id = s.match(/id="([^"]+)"/)[1];
   return `<section class="guide-section ${id}">${s}</section>`;
 }).join('\n');
-const guideNav = `<a href="${introduction}guide/">Overview</a><a href="#main" class="selected" aria-current="page">Choosing providers <span>Reading now</span></a><a href="${github}connecting-providers.md">Connecting providers ↗</a><a href="${introduction}guide/research-prompts/">Research prompts</a>`;
+const guideNav = `<a href="${introduction}guide/">Overview</a><a href="#main" class="selected" aria-current="page">Choosing providers <span>Reading now</span></a><a href="${introduction}guide/connecting-providers/">Connecting providers ↗</a><a href="${introduction}guide/research-prompts/">Research prompts</a>`;
 const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escape(subtitle)}"><link rel="canonical" href="${introduction}guide/choosing-providers/"><meta property="og:type" content="website"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(subtitle)}"><meta property="og:url" content="${introduction}guide/choosing-providers/"><meta property="og:image" content="${introduction}assets/intelligence-and-search.png"><meta name="twitter:card" content="summary_large_image"><meta name="color-scheme" content="light"><title>${title}</title><link rel="stylesheet" href="guide.css"><link rel="stylesheet" href="choosing.css"></head><body>
 <a href="#main" class="skip">Skip to guide</a>
 
-<header class="header"><div class="header-inner"><a class="brand" href="${introduction}"><span class="mark" aria-hidden="true">↗</span> Separate intelligence & search</a><nav aria-label="Site navigation"><a href="${introduction}">Introduction</a><a href="${github}choosing-providers.md">Read on GitHub ↗</a></nav></div></header>
+<header class="header"><div class="header-inner"><a class="brand" href="${introduction}"><span class="mark" aria-hidden="true">↗</span> Separate intelligence & search</a><nav aria-label="Site navigation"><a href="${introduction}">Introduction</a><a href="${github}choosing-providers.md">View source on GitHub ↗</a></nav></div></header>
 <div class="layout"><aside class="sidebar"><nav class="guide-nav" aria-label="Guide pages"><p class="nav-label">THE RESEARCH GUIDE</p>${guideNav}</nav><nav class="toc" aria-label="On this page"><p class="nav-label">ON THIS PAGE</p>${toc}</nav><a class="sidebar-bottom" href="#main">Back to top ↑</a></aside>
 <main id="main"><div class="page-heading"><div class="breadcrumb"><a href="${introduction}">Introduction</a><span aria-hidden="true">/</span><a href="${introduction}guide/">Guide</a><span aria-hidden="true">/</span><span>Choosing providers</span></div><p class="eyebrow">THE PROVIDER REFERENCE</p><h1>${escape(title)}</h1><p class="subtitle">${escape(subtitle)}</p><div class="page-meta"><span>By Yusuf Goolamabbas</span><span>Choosing providers</span></div></div>
 <details class="mobile-navigation"><summary>Explore the guide & this page <span aria-hidden="true">+</span></summary><nav aria-label="Mobile guide pages">${guideNav}</nav><nav class="toc" aria-label="Mobile table of contents">${toc}</nav></details>
