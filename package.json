@@ -1,0 +1,7 @@
+{
+  "name": "separate-intelligence-and-search-site",
+  "private": true,
+  "scripts": { "build": "node site/build.cjs" },
+  "engines": { "node": ">=22" },
+  "devDependencies": { "marked": "17.0.5" }
+}

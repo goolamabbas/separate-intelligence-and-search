@@ -5,3 +5,7 @@
 .env
 .env.*
 !.env.example
+
+# Website dependencies and generated output
+node_modules/
+_site/
