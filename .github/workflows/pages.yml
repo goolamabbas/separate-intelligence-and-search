@@ -1,9 +1,11 @@
-name: Publish introduction
+name: Publish educational site
 on:
   push:
     branches: [main]
     paths:
       - README.md
+      - docs/README.md
+      - docs/assets/**
       - site/**
       - assets/intelligence-and-search.png
       - package.json

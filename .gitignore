@@ -9,3 +9,6 @@
 # Website dependencies and generated output
 node_modules/
 _site/
+
+# Local main-guide design preview
+.guide-preview/

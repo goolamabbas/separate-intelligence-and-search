@@ -1,12 +1,14 @@
-# Introduction website
+# Educational website
 
-The public introduction is published at https://goolamabbas.github.io/separate-intelligence-and-search/ . The detailed guide remains in `docs/` and website links open its GitHub edition.
+The public introduction is published at https://goolamabbas.github.io/separate-intelligence-and-search/ . The main guide is published at https://goolamabbas.github.io/separate-intelligence-and-search/guide/ . Its maintained source remains `docs/README.md`. The three subpages still open their GitHub Markdown editions.
 
 ## Content and design
 
 `../README.md` supplies the explanatory copy, glossary, setup details, dated pricing examples, and research prompt. `build.cjs` supplies the landing-page structure and short presentation copy; `style.css` controls its appearance and `script.js` supplies prompt copying. Edit the Markdown source for substantive content updates; do not edit generated HTML.
 
 The September 2026 source qualifications remain in the page. Publishing the website is not a new pricing or provider audit.
+
+`build-guide.cjs` renders the main guide with `guide.css` and `guide.js`, preserving its prompts and diagrams. The main build clears generated output and rebuilds both pages.
 
 ## Build and preview
 

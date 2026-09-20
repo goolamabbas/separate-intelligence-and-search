@@ -3,9 +3,10 @@
 const fs=require('node:fs');const path=require('node:path');
 const {marked}=require('marked');
 const root=path.resolve(__dirname,'..');const source=fs.readFileSync(path.join(root,'README.md'),'utf8');
-const guide='https://github.com/goolamabbas/separate-intelligence-and-search/blob/main/docs/README.md';
+const guide='https://goolamabbas.github.io/separate-intelligence-and-search/guide/';
 const skill='https://github.com/goolamabbas/multi-provider-research';
 const out=path.join(root,'_site');
+fs.rmSync(out,{recursive:true,force:true});
 fs.mkdirSync(path.join(out,'assets'),{recursive:true});
 const sections={};for(const part of source.split(/^## /m).slice(1)){const [title,...body]=part.split('\n');sections[title]=body.join('\n').trim();}
 const render=s=>marked.parse(s.replaceAll('(#start-with-one-skill-and-one-provider)', '(#start)').replaceAll('(docs/README.md)',`(${guide})`).replaceAll('(assets/','(assets/'));
@@ -33,3 +34,5 @@ fs.writeFileSync(path.join(out,'index.html'),html);
 for (const name of ['style.css','script.js']) fs.copyFileSync(path.join(__dirname,name),path.join(out,name));
 fs.copyFileSync(path.join(root,'assets/intelligence-and-search.png'),path.join(out,'assets/intelligence-and-search.png'));
 console.log('Built _site/ from README.md');
+
+require('./build-guide.cjs');
