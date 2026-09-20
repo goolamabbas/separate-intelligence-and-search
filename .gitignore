@@ -15,3 +15,6 @@ _site/
 
 # Local cookbook design preview
 .cookbook-preview/
+
+# Local choosing-providers design preview
+.choosing-preview/

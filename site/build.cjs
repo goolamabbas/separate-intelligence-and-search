@@ -38,3 +38,5 @@ console.log('Built _site/ from README.md');
 require('./build-guide.cjs');
 
 require('./build-cookbook.cjs');
+
+require('./build-choosing.cjs');

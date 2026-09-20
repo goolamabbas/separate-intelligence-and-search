@@ -6,6 +6,7 @@ on:
       - README.md
       - docs/README.md
       - docs/research-prompts.md
+      - docs/choosing-providers.md
       - docs/assets/**
       - site/**
       - assets/intelligence-and-search.png

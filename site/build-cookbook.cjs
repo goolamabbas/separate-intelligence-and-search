@@ -12,7 +12,7 @@ let count = 0, group = '';
 const md = new Marked();
 md.use({renderer:{
  heading({depth,text,tokens}) {return `<h${depth} id="${slug(text)}">${this.parser.parseInline(tokens)}<a class="heading-anchor" href="#${slug(text)}" aria-label="Link to ${esc(text)}">#</a></h${depth}>`;},
- link({href,tokens}) {if(href==='README.md') href=base+'guide/'; else if(/^(choosing-providers|connecting-providers)\.md/.test(href)) href=github+href; return `<a href="${esc(href)}">${this.parser.parseInline(tokens)}</a>`;},
+ link({href,tokens}) {if(href==='README.md') href=base+'guide/'; else if(/^choosing-providers\.md(?:#.*)?$/.test(href)) href=base+'guide/choosing-providers/'+(href.includes('#')?href.slice(href.indexOf('#')):''); else if(/^(connecting-providers)\.md/.test(href)) href=github+href; return `<a href="${esc(href)}">${this.parser.parseInline(tokens)}</a>`;},
  code({text}) {const n=++count; const clause=['Before copying a prompt','Useful control clauses'].includes(group); const label=clause?'clause':'prompt'; return `<div class="prompt-block"><div class="prompt-bar"><span>${clause?'OPTIONAL CONTROL CLAUSE':'RESEARCH PROMPT'}</span><button type="button" data-copy="prompt-${n}">Copy ${label} ⧉</button></div><pre id="prompt-${n}"><code>${esc(text)}</code></pre><p class="copy-status" role="status" aria-live="polite"></p></div>`;}
 }});
 const cleaned=source.replace(/^# .+\n/,'').replace(/^## On this page\n[\s\S]*?(?=^## )/m,'');
@@ -30,7 +30,7 @@ const sections=parts.map(part=>{
  }
  return `<section class="guide-section ${id}">${html}</section>`;
 }).join('\n');
-const nav=`<a href="${base}guide/">Overview</a><a href="${github}choosing-providers.md">Choosing providers ↗</a><a href="${github}connecting-providers.md">Connecting providers ↗</a><a class="selected" href="#main" aria-current="page">Research prompts <span>Reading now</span></a>`;
+const nav=`<a href="${base}guide/">Overview</a><a href="${base}guide/choosing-providers/">Choosing providers ↗</a><a href="${github}connecting-providers.md">Connecting providers ↗</a><a class="selected" href="#main" aria-current="page">Research prompts <span>Reading now</span></a>`;
 const tocHtml=toc.map(x=>`<a href="#${x.id}">${esc(x.title)}</a>`).join('');
 const options=[...new Set(index.map(x=>x.group))].map(g=>`<option>${esc(g)}</option>`).join('');
 const cards=index.map(x=>`<a class="pattern" href="#${x.id}" data-group="${esc(x.group)}" data-search="${esc(x.text.toLowerCase())}"><span>${esc(x.title)}</span><small>${esc(x.group)}</small></a>`).join('');
