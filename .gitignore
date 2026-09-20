@@ -12,3 +12,6 @@ _site/
 
 # Local main-guide design preview
 .guide-preview/
+
+# Local cookbook design preview
+.cookbook-preview/

@@ -5,6 +5,7 @@ on:
     paths:
       - README.md
       - docs/README.md
+      - docs/research-prompts.md
       - docs/assets/**
       - site/**
       - assets/intelligence-and-search.png

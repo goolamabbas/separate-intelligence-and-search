@@ -24,7 +24,8 @@ markdown.use({renderer: {
   },
   link({href,title,tokens}) {
     if (href === '../README.md') href = introduction;
-    else if (/^(choosing-providers|connecting-providers|research-prompts)\.md(?:#.*)?$/.test(href)) href = github + href;
+    else if (/^research-prompts\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/research-prompts/' + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
+    else if (/^(choosing-providers|connecting-providers)\.md(?:#.*)?$/.test(href)) href = github + href;
     return `<a href="${escape(href)}"${title ? ` title="${escape(title)}"` : ''}>${this.parser.parseInline(tokens)}</a>`;
   }
 }});
@@ -42,7 +43,7 @@ html = `<div class="opening">${sections.shift()}</div>` + sections.map(s => {
   const id = s.match(/id="([^"]+)"/)[1];
   return `<section class="guide-section ${id}">${s}</section>`;
 }).join('\n');
-const guideNav = `<a href="#main" class="selected" aria-current="page">Overview <span>Reading now</span></a><a href="${github}choosing-providers.md">Choosing providers <span aria-hidden="true">↗</span></a><a href="${github}connecting-providers.md">Connecting providers <span aria-hidden="true">↗</span></a><a href="${github}research-prompts.md">Research prompts <span aria-hidden="true">↗</span></a>`;
+const guideNav = `<a href="#main" class="selected" aria-current="page">Overview <span>Reading now</span></a><a href="${github}choosing-providers.md">Choosing providers <span aria-hidden="true">↗</span></a><a href="${github}connecting-providers.md">Connecting providers <span aria-hidden="true">↗</span></a><a href="${introduction}guide/research-prompts/">Research prompts <span aria-hidden="true">↗</span></a>`;
 const document = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${escape(subtitle)}"><link rel="canonical" href="${introduction}guide/"><meta property="og:type" content="website"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${escape(subtitle)}"><meta property="og:url" content="${introduction}guide/"><meta property="og:image" content="${introduction}assets/intelligence-and-search.png"><meta name="twitter:card" content="summary_large_image"><meta name="color-scheme" content="light"><title>${title}</title><link rel="stylesheet" href="guide.css"></head><body>
 <a href="#main" class="skip">Skip to guide</a>
 

@@ -36,3 +36,5 @@ fs.copyFileSync(path.join(root,'assets/intelligence-and-search.png'),path.join(o
 console.log('Built _site/ from README.md');
 
 require('./build-guide.cjs');
+
+require('./build-cookbook.cjs');
