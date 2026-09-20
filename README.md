@@ -10,7 +10,7 @@ That gives you more freedom to choose where your assistant gets its evidence. It
 
 I built the **multi-provider-research** skill to help an assistant work with those connected tools. You can start with one provider; you do not need a collection of subscriptions.
 
-**[Explore the skill](https://github.com/goolamabbas/multi-provider-research)** · **[See how to get started](#start-with-one-skill-and-one-provider)** · **[Read the full guide](https://app.notion.com/p/Public-Choosing-External-Research-Tools-for-AI-Agents-3d083c2ae3038021af87df733a424ffc?pvs=21)**
+**[Explore the skill](https://github.com/goolamabbas/multi-provider-research)** · **[See how to get started](#start-with-one-skill-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
 ![Intelligence and search are separate choices. The multi-provider-research skill helps your assistant use connected tools.](assets/intelligence-and-search.png)
 
@@ -100,7 +100,7 @@ published prices from any estimated local-currency costs.
 
 MCP is one way to connect an application to external tools. Your application may offer a plugin, connector, or another supported route instead. Complete setup and authentication, then test the connection from your application. Installing the research-routing skill is a separate step.
 
-The [full guide](https://app.notion.com/p/Public-Choosing-External-Research-Tools-for-AI-Agents-3d083c2ae3038021af87df733a424ffc?pvs=21) covers more providers and includes copyable prompts. Add another provider when a task gives you a reason—for example, website extraction with Firecrawl or a different discovery approach with Exa or Parallel.
+The [full guide](docs/README.md) covers more providers and includes copyable prompts. Add another provider when a task gives you a reason—for example, website extraction with Firecrawl or a different discovery approach with Exa or Parallel.
 
 ### 3. Try a real question
 
@@ -141,7 +141,7 @@ If you already pay for a compatible application, start by exploring its supporte
 ## Go deeper
 
 - **[Multi-provider-research on GitHub](https://github.com/goolamabbas/multi-provider-research):** the skill package, installation instructions, and routing rules.
-- **[Choosing External Research Tools for AI Agents](https://app.notion.com/p/Public-Choosing-External-Research-Tools-for-AI-Agents-3d083c2ae3038021af87df733a424ffc?pvs=21):** the detailed guide and copyable prompts, including examples that combine providers.
+- **[Choosing External Research Tools for AI Agents](docs/README.md):** the detailed guide and copyable prompts, including examples that combine providers.
 - **[My newsletter introduction](https://paragraph.com/@yusufg-ai-web3-curated-topics/a-practical-guide-to-choosing-external-research-tools-for-ai-agents):** more context on the approach.
 - **[Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api):** a benchmark resource to explore alongside your own task-based testing.
 
