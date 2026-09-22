@@ -3,3 +3,6 @@
 /* Reserve diagram proportions so loading never shifts section anchors. */
 img[src$="research-workflow.svg"]{aspect-ratio:1200 / 990}
 img[src$="source-processing-and-answer-generation.svg"]{aspect-ratio:1200 / 866}
+
+/* Distinguish supporting explanations within the guide’s three main decisions. */
+.guide-section h4{font-size:16px;line-height:1.5;margin:26px 0 12px;color:var(--ink)}

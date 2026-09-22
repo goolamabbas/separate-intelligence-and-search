@@ -60,19 +60,11 @@ It is an instruction package, so its use depends on your application's support f
 
 ## Start with one skill and one provider
 
-### 1. Check your application, then install the skill
+### 1. Check your application, then connect one provider
 
 If you have only used ordinary chats so far, start by checking whether your application supports both external tools and installable skills. These are separate capabilities: being able to connect a provider does not automatically mean the application can load this skill. Availability and setup depend on the application and your account.
 
 You can use a supported provider connection on its own. To follow the complete setup described here, choose an application that supports both the skill package and the provider connection.
-
-Follow the [installation instructions in the skill repository](https://github.com/goolamabbas/multi-provider-research#install).
-
-In brief: download the files from the skill repository (the project page on GitHub), then copy the complete `skills/multi-provider-research/` folder into the skills directory supported by your application. Keep its supporting folders intact and reload skills or start a fresh task as your application requires.
-
-The correct location depends on your application. Use its current instructions rather than assuming that one directory works everywhere.
-
-### 2. Connect your first provider
 
 Start with a research task you actually want to complete. Then choose one provider that fits that task and has an integration supported by your application.
 
@@ -86,7 +78,25 @@ Create an account, then use a supported integration to connect TinyFish to your 
 
 **Octen: explore Broad Search when your question has several angles.** Broad Search takes one question, breaks it into related subqueries, and searches them concurrently. That makes it an option for comparisons and surveys—for example, researching a tool's features, limitations, integrations, and pricing together. Octen also offers focused Search and page extraction. Follow the [official Octen setup guide](https://docs.octen.ai/integrations/octen-mcp-server), which includes hosted MCP instructions for several applications. Check current usage charges before enabling it.
 
-For example, after connecting Octen:
+**Perplexity is another option to explore.** See its [official setup guide](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) if its available capabilities suit your work. There is no need to connect all four providers before starting.
+
+MCP is one way to connect an application to external tools. Your application may offer a plugin, connector, or another supported route instead. Complete setup and authentication, then test the connection from your application. Installing the research-routing skill is a separate step.
+
+The [full guide](docs/README.md) covers more providers and includes copyable prompts. Add another provider when a task gives you a reason—for example, website extraction with Firecrawl or a different discovery approach with Exa or Parallel.
+
+Before continuing, ask your assistant to use the connected provider for a small search or page read. Confirm that it returns useful source content; an installed connection alone does not prove that access works.
+
+### 2. Add the routing skill
+
+Once the provider works, add the instructions that help your assistant use it well. The skill can coordinate one provider; you do not need to connect several first.
+
+Follow the [installation instructions in the skill repository](https://github.com/goolamabbas/multi-provider-research#install).
+
+In brief: download the files from the skill repository (the project page on GitHub), then copy the complete `skills/multi-provider-research/` folder into the skills directory supported by your application. Keep its supporting folders intact and reload skills or start a fresh task as your application requires.
+
+The correct location depends on your application. Use its current instructions rather than assuming that one directory works everywhere.
+
+If you chose Octen, this is one way to use the connected provider with the skill:
 
 ```text
 Use the multi-provider-research skill and Octen Broad Search.
@@ -95,12 +105,6 @@ Compare [tool A] and [tool B] for [my use case] in [my country]. Cover features,
 Prioritize official sources, link to the evidence, and distinguish
 published prices from any estimated local-currency costs.
 ```
-
-**Perplexity is another option to explore.** See its [official setup guide](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) if its available capabilities suit your work. There is no need to connect all four providers before starting.
-
-MCP is one way to connect an application to external tools. Your application may offer a plugin, connector, or another supported route instead. Complete setup and authentication, then test the connection from your application. Installing the research-routing skill is a separate step.
-
-The [full guide](docs/README.md) covers more providers and includes copyable prompts. Add another provider when a task gives you a reason—for example, website extraction with Firecrawl or a different discovery approach with Exa or Parallel.
 
 ### 3. Try a real question
 
