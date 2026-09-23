@@ -39,7 +39,7 @@ These services overlap, but they are not interchangeable. Choose according to th
 | Answer-oriented web results with paired search and fetch sessions | **Parallel Search** |
 | One substantial provider-generated research report | **Parallel Deep Research** |
 | The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
-| Structured list-building or specialized provider-backed fields | **Exa Agent and relevant Connect providers** |
+| Structured list-building or specialized provider-backed fields | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
 | Prediction-market odds, history, order books, or public position data | **Exa Agent with Polymarket Connect**, when exposed |
 | Reading a page found by Octen | Reuse sufficient excerpts or full text returned by Search or Broad Search; use **Octen Extract** for supplied URLs or missing, incomplete, unusable, or stale content |
 | Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or when returned search content is insufficient |
@@ -239,12 +239,13 @@ These are asynchronous provider-side jobs. Follow the selected interface’s lif
 
 ### Best fit
 
-Use Firecrawl when the task is organized around a website or known URL: discovering site structure, extracting one page, collecting a bounded set of related pages, parsing a document, or returning structured fields from webpage content.
+Use Firecrawl to search for sources, discover site structure, extract a page, collect a bounded set of related pages, or parse a document. Alexandria adds optional access to structured provider data when the task calls for suitable structured provider fields.
 
 | Firecrawl operation | Distinct role |
 | --- | --- |
-| **Search** | Web, news, or image discovery with optional extraction of returned pages |
-| **Scrape** | Content or schema-constrained fields from one supplied URL |
+| **Search** | Web, news, or image discovery; supported connections can also return Alexandria capability matches |
+| **Scrape** | Content or schema-constrained fields from one supplied URL; a separate Alexandria mode executes a discovered provider capability |
+| **Alexandria discovery** | Find relevant data capabilities and inspect their inputs, coverage, response fields, and published credit prices |
 | **Map** | A relevant URL inventory for a site; it returns links, not page bodies |
 | **Crawl** | Recursive, bounded collection across related pages on one site |
 | **Parse** | Text and structure from supported document formats |
@@ -254,6 +255,18 @@ Use Firecrawl when the task is organized around a website or known URL: discover
 Map first when the important pages are not yet known. Scrape a known page when one document is enough. Crawl only when several related pages are genuinely required, and set conservative path, depth, and page limits. For JSON output, provide a precise field schema and preserve source URLs; for narrative reading, Markdown is usually simpler.
 
 Firecrawl and TinyFish overlap at the browser boundary but have different default roles. In this workflow, Firecrawl handles site-scale extraction; TinyFish page extraction is for a focused rendered-page read, and TinyFish browser automation is for a user-directed stateful interaction. Use only one for the same page unless a failed extraction creates a clear escalation reason.
+
+### Alexandria: optional data with a visible cost
+
+[Alexandria](https://docs.firecrawl.dev/features/alexandria) is Firecrawl's catalog of data providers and capabilities. It can help when a question needs the same fields across several entities, dated records, or a collection of structured data. The assistant discovers a matching capability, checks what it returns and what it costs, then decides whether it adds useful evidence.
+
+**Reuse sufficient search or page content.** Finding a capability does not mean it must be executed. A simple search answer or a supplied page can complete the task without extra provider retrieval. Before collecting repeated fields from many pages, a targeted catalog lookup may reveal a better route; there is no need to browse the whole catalog for every question. A suitable discovered capability can also be the first retrieval step; you do not need to buy web results merely to rule them out.
+
+**Discovery is free; data execution uses the capability's published credit price.** Including web results in the same search still incurs ordinary web-search charges, and page scraping retains its normal charges. Free discovery also uses some assistant time and model context. Compare coverage and expected total cost, including additional pages, before execution; do not assume a provider call is cheaper than page extraction. Existing budgets apply, and material unapproved spend should be discussed before proceeding. Report per-call credits and distinguish quoted prices from usage actually returned by the service.
+
+A website match is only a suggestion. Check geographic and time coverage, required inputs, source information, and any access conditions. Keep analysis with your selected model when that is your requirement: some capabilities or output modes may generate analysis rather than return source records. If a provider requires terms acceptance, an organization admin must review them; the assistant needs explicit authorization to accept the reviewed terms.
+
+You can describe the fields you need without knowing a provider's name. Start with the [generic Firecrawl prompt](research-prompts.md#firecrawl-with-optional-alexandria-data); it allows the assistant to finish with search or page extraction when those are sufficient. The catalog changes, so discover current capabilities instead of relying on a fixed provider list. Developer and Research indexes retain their native methods and endpoints.
 
 ### Authorization and lifecycle boundaries
 

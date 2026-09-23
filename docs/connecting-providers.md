@@ -80,6 +80,12 @@ Choose the route officially supported by both the provider and the harness that 
 
 A configuration entry proves only that the setup was recorded. It does not prove that the provider is reachable, authenticated, callable in the current task, or returning useful evidence.
 
+### Check Alexandria separately when you need it
+
+A Firecrawl connection may expose ordinary search and page extraction without Alexandria. Inspect the callable tools before assuming support. For the MCP workflow, look for `firecrawl_find_tools`, an Alexandria source on `firecrawl_search`, and an `alexandria` execution argument on `firecrawl_scrape`. Other supported integrations may use different names or argument shapes; follow the [official Alexandria guide](https://docs.firecrawl.dev/features/alexandria).
+
+When you need structured provider data, a free targeted catalog query can confirm discovery access. A successful catalog response proves discovery works; a listed provider may still require account access or reviewed terms. Do not execute a paid capability merely to prove installation. Check the selected capability's contract and price when a real task calls for it.
+
 ## Installation does not authorize every task
 
 Connecting a provider makes it available; your task instructions determine whether to use it. For native-only work, explicitly exclude external tools and specify what to do if native retrieval fails.

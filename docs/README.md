@@ -78,7 +78,7 @@ Start with the result you need, then choose among available tools that can suppl
 | Need | Useful starting point |
 | --- | --- |
 | Find sources or read a page | Native tools may suffice; external options include Octen, Exa, Perplexity Search, Parallel Search, Firecrawl Search/Scrape and TinyFish |
-| Obtain specialized or comparable fields | Relevant Exa Connect datasets; use ordinary document retrieval when a supplied source already answers the question |
+| Obtain specialized or comparable fields | A suitable Exa Connect dataset or discovered Firecrawl Alexandria capability; reuse sufficient search or document evidence and check costs before additional retrieval |
 | Apply the same research fields across a list | Parallel Task Group or a suitable Exa Agent workflow |
 | Inventory or collect a website section | Firecrawl Map, selected Scrapes, or a bounded Crawl |
 | Read a dynamic page | Browser-rendered extraction, such as TinyFish page extraction |

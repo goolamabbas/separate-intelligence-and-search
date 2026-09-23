@@ -47,7 +47,7 @@ Use the minimum sufficient set of available providers. Select providers accordin
 
 Apply constraints in this order: explicit inclusions and exclusions, a named-provider request, a specialized-data match within the permitted scope, then a generic default.
 
-Inspect the relevant callable tools and the selected operations' schemas before use. Check specialized datasets, including Exa Connect when relevant, if they materially supply the requested fields—even when I have not named a provider. Reuse schema knowledge unless the tool surface changes or validation fails. The first useful research read can also establish live usability; do not add a separate probe solely to demonstrate availability. Assign each selected provider a distinct role and avoid repeating successful searches or page reads without a material verification reason.
+Inspect the relevant callable tools and the selected operations' schemas before use. Check specialized datasets, including Exa Connect or Firecrawl Alexandria when relevant, if they materially supply the requested fields—even when I have not named a provider. Reuse schema knowledge unless the tool surface changes or validation fails. The first useful research read can also establish live usability; do not add a separate probe solely to demonstrate availability. Assign each selected provider a distinct role and avoid repeating successful searches or page reads without a material verification reason. Reuse sufficient evidence; a catalog match does not justify extra paid retrieval. Check coverage and published prices against my scope and budget before executing provider data calls.
 
 Default ordinary lookups to retrieval and analysis by the model selected in this application. Use provider-side synthesis only when the requested outcome warrants it and my restrictions permit it. Complete independent permitted work if one evidence lane is blocked.
 
@@ -388,6 +388,25 @@ Use source-content or faithful extraction modes. Do not request provider-generat
 If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research task: Map [DOCUMENTATION SITE], then extract only the pages describing authentication, rate limits, and pricing.
+```
+
+### Firecrawl with optional Alexandria data
+
+Use this when the task needs comparable fields or structured records. Alexandria is optional: sufficient search or page evidence can complete the task. Catalog discovery is free, while data execution uses the selected capability's listed price. Ordinary web search and page extraction have their own charges. See [Alexandria coverage and costs](choosing-providers.md#firecrawl).
+
+```text
+Use the multi-provider-research skill and Firecrawl.
+
+Research question: [QUESTION]
+Entities or scope: [ENTITIES, LOCATION, AND PERIOD]
+Required fields: [FIELDS AND SOURCE OR DATE REQUIREMENTS]
+Total Firecrawl credit budget for this task: [MAXIMUM CREDITS, OR ASK ME BEFORE PAID CALLS]
+
+Use sufficient search results or page content when they answer the question. Do not add paid enrichment merely because a provider capability is available.
+
+If structured provider data would fill a remaining evidence gap or avoid repeated page collection, discover relevant Alexandria capabilities. Inspect the selected capability's inputs, response fields, coverage, and published price. Execute only a discovered fit within my budget; include additional result pages in the cost estimate. Ask before paid execution if the price or budget is unresolved. Do not accept provider terms without my explicit approval.
+
+Use source records or faithful extraction and have the model selected in this application perform the analysis. Preserve sources and observation dates. Report the underlying provider, material gaps, and credits per call, distinguishing published prices from confirmed usage. If no capability fits, use sufficient permitted web evidence or explain the gap.
 ```
 
 ### TinyFish discovery, page extraction, or browser automation
