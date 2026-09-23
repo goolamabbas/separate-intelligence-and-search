@@ -404,7 +404,7 @@ Total Firecrawl credit budget for this task: [MAXIMUM CREDITS, OR ASK ME BEFORE 
 
 Use sufficient search results or page content when they answer the question. Do not add paid enrichment merely because a provider capability is available.
 
-If structured provider data would fill a remaining evidence gap or avoid repeated page collection, discover relevant Alexandria capabilities. Inspect the selected capability's inputs, response fields, coverage, and published price. Execute only a discovered fit within my budget; include additional result pages in the cost estimate. Ask before paid execution if the price or budget is unresolved. Do not accept provider terms without my explicit approval.
+If structured provider data would fill a remaining evidence gap or avoid repeated page collection, discover relevant Alexandria capabilities. Inspect the selected capability's inputs, response fields, coverage, published price, and billing unit, including any stated rounding or special-mode rates. Some capabilities may list zero execution credits. Execute only a discovered fit within my budget; include additional result pages in the cost estimate. Ask before paid execution if the price or budget is unresolved. Do not accept provider terms without my explicit approval.
 
 Use source records or faithful extraction and have the model selected in this application perform the analysis. Preserve sources and observation dates. Report the underlying provider, material gaps, and credits per call, distinguishing published prices from confirmed usage. If no capability fits, use sufficient permitted web evidence or explain the gap.
 ```
