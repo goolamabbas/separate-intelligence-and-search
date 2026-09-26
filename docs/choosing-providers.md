@@ -145,7 +145,7 @@ An integration may expose Ultra without these controls. A spending limit written
 
 Check why the run ended as well as its status. A completed run may have hit its spending or time limit, or been stopped early. Report those findings with the remaining coverage gaps. Even `schema_satisfied` does not independently establish that every qualifying entity has been found. Define the scope, require evidence for each qualification, and allow unknown fields. [Run schema and stop reasons](https://exa.ai/docs/reference/agent-api/create-a-run.md)
 
-Exa's [launch benchmarks](https://exa.ai/blog/exa-agent-ultra) are vendor-reported comparisons. This guide has not independently benchmarked Ultra or executed an Ultra trial; it describes an optional capability rather than a measured recommendation that it is better. Try the [comprehensive discovery](research-prompts.md#exa-agent-ultra-for-comprehensive-discovery) or [list expansion](research-prompts.md#exa-agent-ultra-to-expand-an-existing-list) pattern when the task and budget justify it.
+Exa's [launch benchmarks](https://exa.ai/blog/exa-agent-ultra) are vendor-reported comparisons. A [worked example of one Ultra run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) shows the assignment, Exa’s findings, and the assistant’s assessment separately. That trial was not independently audited or compared against another research method; it does not establish that Ultra is better. Try the [comprehensive discovery](research-prompts.md#exa-agent-ultra-for-comprehensive-discovery) or [list expansion](research-prompts.md#exa-agent-ultra-to-expand-an-existing-list) pattern when the task and budget justify it.
 
 ### Connect datasets within Agent
 

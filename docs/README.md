@@ -214,6 +214,10 @@ A useful answer identifies its sources, separates facts from inference, and brie
 
 Expand the report when coverage, provenance, reproducibility, or an audit request requires it. Relevant details may include filters, observation dates, confirmed dataset contributions, pending jobs, and failed verification. A simple X lookup or two-provider task does not automatically need a full ledger.
 
+### Worked example: inspect one delegated investigation
+
+[Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) separates the assistant-designed assignment, Exa-generated findings, and assistant interpretation. Read the short explanation or inspect the complete catalogue and original files. It is an unaudited case study, not a comparative benchmark.
+
 ### Three rules that prevent most problems
 
 Before relying on the result, check: **did the relevant tools work, did each provider have a useful role, and do the sources support the answer?** More tools and longer reports are not substitutes for those checks.

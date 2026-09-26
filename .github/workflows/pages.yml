@@ -8,6 +8,8 @@ on:
       - docs/research-prompts.md
       - docs/choosing-providers.md
       - docs/connecting-providers.md
+      - docs/exa-ultra-case-study.md
+      - docs/case-studies/**
       - docs/assets/**
       - site/**
       - assets/intelligence-and-search.png

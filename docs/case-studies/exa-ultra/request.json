@@ -1,0 +1,121 @@
+{
+  "effort": "ultra",
+  "dataSources": [],
+  "query": "Conduct a standalone evidence-backed catalogue of public benchmarks and evaluation frameworks testing AI agents on web research, comprehensive list-building, or evidence-supported entity enrichment. Include projects with a public release or substantive update between January 1, 2025 and September 26, 2026. Seek broad coverage of this defined scope, not an arbitrary top ten. Distinguish research/discovery evaluations from adjacent browser-action or generic QA benchmarks; put adjacent or uncertain cases separately. For each qualifying project identify canonical name, primary project/paper/repository URLs, what ability it measures, dated evidence of eligibility, public availability of task data, evaluation code and judging criteria, and practical reproducibility barriers (dependencies, unavailable components, changing web state). Distinguish benchmark-author, vendor, and independent reported results without inventing independence. Support material field claims with primary-source URLs and short evidence notes. Unknown is acceptable; avoid inferring released code from a paper's promise. Deduplicate renamed projects and distinguish benchmarks from reports of running them. Return concise structured records and a short synthesis of coverage, limitations, and major exclusions. Do not run benchmark code or claim reproduced evaluations. Use only public web research; do not enable or use Exa Connect, premium connected datasets, contact enrichment, or purchases. This is one Ultra run under the documented default US$20 run cap; do not create follow-up runs. Keep the assessment neutral across vendors. No personal or private project information is relevant.",
+  "systemPrompt": "Research using public web sources only. No connected datasets or contact enrichment. Prioritize primary papers, repositories, official benchmark sites and documented artifacts. Be concise and evidence-specific. Distinguish observed source facts from your judgments. Do not equate broad search with proven exhaustive coverage. Provide factual findings without promotional framing.",
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "scope": {
+        "type": "string"
+      },
+      "benchmarks": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "canonical_url": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "eligibility_date_and_evidence": {
+              "type": "string"
+            },
+            "measures": {
+              "type": "string"
+            },
+            "task_data": {
+              "type": "string"
+            },
+            "evaluation_code": {
+              "type": "string"
+            },
+            "judging_criteria": {
+              "type": "string"
+            },
+            "reproducibility_and_barriers": {
+              "type": "string"
+            },
+            "reported_results_provenance": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "supports": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "url",
+                  "supports"
+                ]
+              }
+            }
+          },
+          "required": [
+            "name",
+            "canonical_url",
+            "category",
+            "eligibility_date_and_evidence",
+            "measures",
+            "task_data",
+            "evaluation_code",
+            "judging_criteria",
+            "reproducibility_and_barriers",
+            "reported_results_provenance",
+            "evidence"
+          ]
+        }
+      },
+      "adjacent_or_uncertain": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "url",
+            "reason"
+          ]
+        }
+      },
+      "summary": {
+        "type": "string"
+      },
+      "coverage_gaps": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "scope",
+      "benchmarks",
+      "adjacent_or_uncertain",
+      "summary",
+      "coverage_gaps"
+    ]
+  }
+}

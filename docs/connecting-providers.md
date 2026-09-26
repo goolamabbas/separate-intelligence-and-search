@@ -163,7 +163,7 @@ After changing an MCP configuration, fully restart the client or start a fresh t
 
 An Agent connection can expose `effort: "ultra"` without exposing every direct API control. Inspect the current effort enum, spending and duration fields, and run lifecycle operations. Do not infer access from a provider's documentation or from a successful Search call.
 
-In the MCP schema inspected on September 26, 2026, `agent_run` accepted `ultra`, `runId`, `previousRunId`, `input.data`, and `input.exclusion`, but exposed neither `budget` nor a stop operation. This is a dated observation about that interface, not a permanent limitation of Exa or all integrations. Ultra execution was not tested.
+In the MCP schema inspected on September 26, 2026, `agent_run` accepted `ultra`, `runId`, `previousRunId`, `input.data`, and `input.exclusion`, but exposed neither `budget` nor a stop operation. This is a dated observation about that interface, not a permanent limitation of Exa or all integrations. A subsequent [single Ultra run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) completed through that interface using the documented default cap; custom budget and stop controls were not tested.
 
 The [direct API](https://exa.ai/docs/reference/agent-api/create-a-run.md) documents `budget.maxCostDollars` and Ultra's soft `budget.maxDurationSeconds` limit; [Ultra's guide](https://exa.ai/docs/agent/agent-ultra.md) also documents graceful stopping. If your required limit cannot be expressed in the available interface, resolve the access or budget choice before starting. Do not silently use the default $20 Ultra cap, invent unsupported arguments, or treat a prompt as an enforced limit.
 

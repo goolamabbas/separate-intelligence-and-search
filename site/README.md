@@ -31,3 +31,7 @@ To revise the design, edit the website source and publish a new commit. To retir
 Social preview metadata uses the existing infographic. Messaging applications may cache previews independently of the current website.
 
 `build-connecting.cjs` renders `docs/connecting-providers.md` with the shared guide layout, numbered checklist, and copy controls for prompts, endpoints, configuration, and project instructions.
+
+## Ultra case study
+
+`build-ultra-case.cjs` renders `docs/exa-ultra-case-study.md` and the preserved request/response files in `docs/case-studies/exa-ultra/` at `/guide/exa-ultra-case-study/`. Edit narrative separately from provider output. Preserve the original research fields; label later corrections separately. The public response omits only its operational run identifier. `case-study.js` provides local catalogue search and expands direct-linked records.

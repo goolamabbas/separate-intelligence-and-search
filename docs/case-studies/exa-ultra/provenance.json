@@ -1,0 +1,11 @@
+{
+  "research_date": "2026-09-26",
+  "request": "Exact submitted request; preserved from local record",
+  "response": "Parsed provider response; only top-level operational id removed; indentation may differ",
+  "presentation": "Assistant-authored narrative and examples; provider fields rendered from response.json without editorial rewriting",
+  "verification": "Counts, rendering fidelity, site behavior and publication privacy checks only; no independent source audit, benchmark execution or comparison run",
+  "sha256": {
+    "request.json": "59186d9f64924e25f411d97533541281bb00455acc75a061da8bda49d65e246a",
+    "response.json": "4372fea8cb1861125bc031d80b81f996bb8be20925422366bfd911f1f62736f2"
+  }
+}
