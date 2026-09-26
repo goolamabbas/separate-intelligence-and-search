@@ -22,11 +22,11 @@ You do not need to know these terms beforehand:
 | --- | --- |
 | **Model** | The AI that interprets your request and generates a response. It can work with information supplied by external tools. |
 | **Harness** | The application or workspace around the model. It manages your conversation and the tools the model can use. Think of it as the place where you work with AI. |
-| **Provider** | In this guide, an external service that offers search or retrieval tools, such as Octen, TinyFish, Exa, or Perplexity. |
+| **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Octen, TinyFish, Exa, or Perplexity. |
 | **Connector or plugin** | A way for your application to access an external service. The name and setup process vary by application. You may also encounter **MCP**, a standard for connecting AI applications to tools. |
 | **Skill** | A reusable package of instructions that an assistant can follow for a particular kind of task. The multi-provider-research skill gives guidance on using research tools. |
 
-**Search** finds potentially useful sources. **Retrieval** brings back their contents so the assistant can use the evidence in its answer.
+**Search** finds potentially useful sources. **Retrieval** brings back their contents so the assistant can use the evidence in its answer. Some providers also perform research and analysis using their own models. Choosing an Agent service such as Exa Agent Ultra delegates some reasoning to that service; it does not inherit your selected model.
 
 In this guide, your **intelligence stack** means your application and models. Your **search and retrieval stack** means the tools you connect to find and read sources. The skill helps the assistant decide how to use those tools.
 
@@ -70,7 +70,7 @@ Start with a research task you actually want to complete. Then choose one provid
 
 **Both Exa and TinyFish offer a way to get started without paying for retrieval immediately.** Exa provides a credit allowance; TinyFish offers free Search and Fetch within rate limits. Choose based on the work you want to do and the connection your application supports.
 
-**Exa: explore search with a free credit allowance.** Its [Starter Free plan](https://exa.ai/pricing) currently includes **$20 in credits on sign-up and $10 in credits each month**, with no payment method required. The page lists access to all endpoints and MCP server access. Usage consumes credits at the applicable rates, so how far the allowance goes depends on the operations you choose. Follow the [official Exa setup guide](https://exa.ai/docs/get-started/exa-mcp) to connect it, then try a question within your free allowance.
+**Exa: explore search with a free credit allowance.** Its [official pricing documentation](https://exa.ai/docs/reference/pricing.md), checked September 26, 2026, describes **$10 in free credits on signup, with the free balance resetting to $10 on the first of each month**. Completing dashboard onboarding earns the first team a **one-time $10 bonus**. No payment method is required for the free tier. Usage consumes credits at the applicable rates, so how far the allowance goes depends on the operations you choose. Follow the [official Exa setup guide](https://exa.ai/docs/get-started/exa-mcp) to connect it, then try a question within your free allowance.
 
 **TinyFish: start here if avoiding extra retrieval costs is your priority.** Its Search and Fetch services are free within published limits: up to **30 Search requests per minute** and **150 fetched URLs per minute** on the wallet-based tier, even with a zero balance. The announcement says no credit card is required to start. This free offer covers Search and Fetch; do not assume it includes browser automation or every other TinyFish service. [Official free-tier terms and setup options](https://www.tinyfish.ai/blog/search-and-fetch-are-now-free-for-every-agent-everywhere).
 

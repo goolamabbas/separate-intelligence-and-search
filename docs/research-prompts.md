@@ -322,6 +322,50 @@ If a required provider or reader is unavailable, report the gap without substitu
 Research question: [YOUR PEOPLE, COMPANY, CODE, OR NEWS QUESTION]
 ```
 
+### Exa Agent Ultra for comprehensive discovery
+
+Use this when broad coverage and difficult qualification criteria justify provider-generated research. This is an illustrative, unexecuted prompt. The $10 and 30-minute settings are example limits: adjust them before use. The duration control is a soft ceiling. See [when Ultra is worth it](choosing-providers.md#when-agent-ultra-is-worth-it).
+
+```text
+Use the multi-provider-research skill.
+
+Use Exa Agent Ultra for comprehensive discovery within this scope:
+- Entity type and topic: [WHAT TO FIND]
+- Geography and date window: [SCOPE]
+- Required qualification criteria: [CRITERIA]
+
+Provider-side Agent research is permitted. Use Exa's web research only; do not enable Connect datasets, another provider, or a native page reader.
+
+Before starting, inspect the callable schema for Ultra and budget controls. Set effort to ultra, maxCostDollars to 10, and maxDurationSeconds to 1800 through the supported budget fields. If this interface cannot express those limits, explain the gap and do not start the run. Do not substitute a spending instruction in the query for a budget control.
+
+Return structured records with entity name, canonical URL, evidence URL and supporting detail for each criterion, relevant source dates, and unresolved fields. Allow unknown values and separate verified matches from uncertain candidates. Match output limits to the requested scope; do not silently cap the list at an arbitrary small sample.
+
+Retain and resume the same run ID until a terminal state. Report actual returned cost, effort, stop reason, verified-match count, and coverage gaps. A completed run or satisfied schema is not proof of exhaustive coverage. Do not start additional runs beyond this one-run budget.
+```
+
+### Exa Agent Ultra to expand an existing list
+
+Use this for a new, budgeted follow-up to a completed run, not for resuming an active one. `input.exclusion` avoids previously found entities; `input.data` supplies rows for processing or enrichment. This example has not been executed.
+
+```text
+Use the multi-provider-research skill.
+
+Expand this completed Exa Agent list with additional qualifying entities:
+- Completed run ID: [RUN ID]
+- Existing entities, including canonical identifiers: [ROWS]
+- Original scope and qualification criteria: [SCOPE AND CRITERIA]
+
+Provider-side Agent research is permitted. Use only Exa Agent's web research, without Connect datasets, another provider, or a native page reader.
+
+This authorizes one new Ultra run with maxCostDollars 10 and the soft maxDurationSeconds limit 1800. Inspect the live interface and set both supported budget controls before starting. If either control is unavailable, explain the gap and do not start or silently switch interfaces.
+
+Use previousRunId for the completed run's context and input.exclusion for the existing entities. Do not use previousRunId to poll an active run. If the earlier run is still active, report that state instead of starting this follow-up. Use input.data only if rows also need processing or enrichment.
+
+Preserve the original criteria, require evidence for each new match, allow unknown fields, and deduplicate against the supplied list and within the new results. Report new verified matches separately from uncertain candidates. Do not fill gaps with invented records or silently return only an arbitrary small sample.
+
+Resume the new run by its own run ID. Report its actual returned cost, effort, stop reason, remaining gaps, and the combined unique count supported by the supplied list and new results. Do not claim exhaustive coverage or start another run automatically.
+```
+
 ### Parallel Search and Fetch
 
 ```text

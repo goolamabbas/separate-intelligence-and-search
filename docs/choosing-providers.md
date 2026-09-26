@@ -40,6 +40,7 @@ These services overlap, but they are not interchangeable. Choose according to th
 | One substantial provider-generated research report | **Parallel Deep Research** |
 | The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
 | Structured list-building or specialized provider-backed fields | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
+| Large lists or difficult qualification criteria where completeness outweighs latency and cost | **Exa Agent Ultra**, when provider-generated research is permitted and suitable budget controls are available |
 | Prediction-market odds, history, order books, or public position data | **Exa Agent with Polymarket Connect**, when exposed |
 | Reading a page found by Octen | Reuse sufficient excerpts or full text returned by Search or Broad Search; use **Octen Extract** for supplied URLs or missing, incomplete, unusable, or stale content |
 | Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or when returned search content is insufficient |
@@ -123,6 +124,30 @@ Inspect the strongest returned sources before making material claims. Excerpts o
 ### Agent and Connect
 
 Exa Agent is a different layer from ordinary search. Use it for multi-step research, enrichment, structured list-building, or repeatable output schemas.
+
+<a id="when-agent-ultra-is-worth-it"></a>
+
+### When Agent Ultra is worth it
+
+**Consider Ultra when finding more verified matches matters enough to justify a longer, metered research run.** It is Exa Agent's highest effort setting (`effort: "ultra"`), useful for large lists, deep multi-source research, and hard-to-verify criteria. For example, find papers and repositories implementing a defined technique, then verify which provide runnable evaluation code. A short factual lookup or reading one supplied page usually needs Search or Fetch instead.
+
+Ultra delegates research and inference to Exa's own workflow and models. It does not inherit the model selected in your application. It is an Agent effort, separate from the choice of Connect datasets.
+
+**Terms checked September 26, 2026:** Exa documents a default $20 per-run cap with actual usage billing; a run finishing early can cost less. It describes complex runs as typically about 30 minutes, potentially three hours. These are provider descriptions, not timings or quality results measured for this guide. Fixed Agent efforts offer predictable per-request prices when they meet the task. Check applicable Connect charges if adding a dataset. [Ultra documentation](https://exa.ai/docs/agent/agent-ultra.md) · [Current pricing](https://exa.ai/docs/reference/pricing.md)
+
+| Control in the direct API | What it means |
+| --- | --- |
+| `budget.maxCostDollars` | $1–$100; available for `auto` and `ultra`; Ultra defaults to $20 |
+| `budget.maxDurationSeconds` | 300–10,800 seconds; a soft duration ceiling for Ultra, not an exact finish-time guarantee |
+| Graceful stop | Ends an Ultra run while retaining findings and billing usage so far |
+
+An integration may expose Ultra without these controls. A spending limit written into a prompt is not an enforced API limit. Check the [connection guidance](connecting-providers.md#verify-ultra-controls-before-starting) before starting a run with a required budget.
+
+Check why the run ended as well as its status. A completed run may have hit its spending or time limit, or been stopped early. Report those findings with the remaining coverage gaps. Even `schema_satisfied` does not independently establish that every qualifying entity has been found. Define the scope, require evidence for each qualification, and allow unknown fields. [Run schema and stop reasons](https://exa.ai/docs/reference/agent-api/create-a-run.md)
+
+Exa's [launch benchmarks](https://exa.ai/blog/exa-agent-ultra) are vendor-reported comparisons. This guide has not independently benchmarked Ultra or executed an Ultra trial; it describes an optional capability rather than a measured recommendation that it is better. Try the [comprehensive discovery](research-prompts.md#exa-agent-ultra-for-comprehensive-discovery) or [list expansion](research-prompts.md#exa-agent-ultra-to-expand-an-existing-list) pattern when the task and budget justify it.
+
+### Connect datasets within Agent
 
 Exa Connect can expose specialized data providers inside an Agent run. Select only the Connect providers needed for the output fields, even when the user has not named a provider. Inspect the current interface’s supported data sources and respect provider and synthesis restrictions. Name the provider-backed fields in the query and `outputSchema`, then inspect the completed run to confirm which provider contributed.
 

@@ -157,6 +157,20 @@ env_http_headers = {"x-api-key" = "EXA_API_KEY" }
 
 After changing an MCP configuration, fully restart the client or start a fresh task. Verify that every requested tool is visible and callable.
 
+<a id="verify-ultra-controls-before-starting"></a>
+
+### Verify Ultra controls before starting
+
+An Agent connection can expose `effort: "ultra"` without exposing every direct API control. Inspect the current effort enum, spending and duration fields, and run lifecycle operations. Do not infer access from a provider's documentation or from a successful Search call.
+
+In the MCP schema inspected on September 26, 2026, `agent_run` accepted `ultra`, `runId`, `previousRunId`, `input.data`, and `input.exclusion`, but exposed neither `budget` nor a stop operation. This is a dated observation about that interface, not a permanent limitation of Exa or all integrations. Ultra execution was not tested.
+
+The [direct API](https://exa.ai/docs/reference/agent-api/create-a-run.md) documents `budget.maxCostDollars` and Ultra's soft `budget.maxDurationSeconds` limit; [Ultra's guide](https://exa.ai/docs/agent/agent-ultra.md) also documents graceful stopping. If your required limit cannot be expressed in the available interface, resolve the access or budget choice before starting. Do not silently use the default $20 Ultra cap, invent unsupported arguments, or treat a prompt as an enforced limit.
+
+Retain the run ID and resume that run after an interrupted wait. A client polling timeout does not cancel provider work. Exa's SDK polling helpers default to one hour, which can be shorter than an Ultra run; use supported longer polling or streaming when appropriate. `previousRunId` starts a new follow-up from a completed run and can incur additional charges. It does not resume polling. Check the returned stop reason and actual cost separately from the run's status.
+
+No costly Agent run is necessary merely to check whether these controls are visible. Use the [Ultra decision guide](choosing-providers.md#when-agent-ultra-is-worth-it) before choosing this route.
+
 ## Parallel and Firecrawl verification notes
 
 Parallel’s Search MCP and Task MCP are separate services. A harmless installation check should call Search with a narrow objective and short query, then confirm that the completed result contains usable sources. Creating a Deep Research or Task Group run is a substantive asynchronous operation, so tool visibility and schema inspection are usually sufficient until the user asks for that work. Reuse the Search session identifier if Fetch is needed.

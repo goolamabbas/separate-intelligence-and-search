@@ -104,7 +104,9 @@ The useful distinction is between **preparing source material** and **generating
 
 For example, Firecrawl describes using a relevance model to select excerpts, while Exa’s Dynamic Highlights selects relevant text across retrieved documents. These are examples of model-assisted source preparation; they do not by themselves mean the provider writes the research answer. Availability depends on the integration and options used. [Firecrawl’s explanation](https://www.firecrawl.dev/blog/introducing-our-most-accurate-search-yet) · [Exa’s explanation](https://exa.ai/blog/dynamic-highlights)
 
-Provider-generated analysis includes workflows such as Perplexity Ask, Reason, and Research; Exa Agent, including runs using Connect datasets; Parallel Deep Research and Task Group; and Firecrawl Agent. These workflows may combine retrieval, extraction, and inference, so distinguish returned source data from generated conclusions.
+Provider-generated analysis includes workflows such as Perplexity Ask, Reason, and Research; Exa Agent, including Ultra effort and runs using Connect datasets; Parallel Deep Research and Task Group; and Firecrawl Agent. These workflows may combine retrieval, extraction, and inference, so distinguish returned source data from generated conclusions.
+
+For large lists and difficult qualification criteria, [Exa Agent Ultra](choosing-providers.md#when-agent-ultra-is-worth-it) is an optional escalation with material time and cost trade-offs. Check available budget controls and report why the run ended; completed status alone does not establish exhaustive coverage.
 
 Check the **selected operation and output options**, not just the provider or tool name. A fetch or scrape tool may offer both source content and generated answers.
 
