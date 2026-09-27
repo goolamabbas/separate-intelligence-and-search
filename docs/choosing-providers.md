@@ -192,6 +192,25 @@ Use Perplexity when you need filtered source discovery or web-grounded synthesis
 
 Search is usually the right choice when the objective is source discovery. Ask, Reason, and Research generate synthesis and should not all receive the same subquestion by default.
 
+<a id="fast-or-standard-search"></a>
+
+### Fast or standard Search?
+
+Choose Perplexity for its fit to the task first, then select its search type. Both types return ranked sources without an AI-written answer; the harness performs later synthesis.
+
+| Search type | Suggested use | Search API price per 1,000 requests |
+| --- | --- | --- |
+| `fast` | Routine lookups, repeated agent searches, high-volume or latency-sensitive retrieval | $1 |
+| `web` | Rare, difficult, or ambiguous questions | $5 |
+
+Prices checked on **27 September 2026**; consult the [official Fast Search documentation](https://docs.perplexity.ai/docs/search/fast-search) for current terms. These are published API prices, not measured charges from our connector test.
+
+**The API default remains `web` when `search_type` is omitted.** The multi-provider-research skill explicitly prefers `fast` for suitable routine Perplexity searches when the interface exposes it. That preference does not make Perplexity the default across providers, and an explicit user choice takes precedence.
+
+Choose standard search directly for a difficult question. If Fast Search leaves an important evidence gap, use standard search for that unresolved question rather than routinely running both types. Inspect your interface's schema and disclose when an explicitly requested type is unavailable.
+
+Fast Search (`search_type: "fast"`) is different from **Ask's Agent API `fast` preset**, which generates an answer. See the [Fast Search prompt](research-prompts.md#perplexity-fast-search) and [standard-search follow-up](research-prompts.md#perplexity-standard-search-follow-up) for explicit control examples.
+
 ### Model boundary
 
 The Perplexity MCP integration described here distinguishes retrieval from provider-side synthesis as follows. Other interfaces may expose different controls or configurations; inspect the selected operation before use:

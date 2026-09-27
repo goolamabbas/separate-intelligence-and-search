@@ -157,6 +157,14 @@ env_http_headers = {"x-api-key" = "EXA_API_KEY" }
 
 After changing an MCP configuration, fully restart the client or start a fresh task. Verify that every requested tool is visible and callable.
 
+### Verify Perplexity Search types
+
+API support and connector support can differ. Inspect the live `perplexity_search` schema for `search_type` before requesting `"fast"` or `"web"`; do not assume every client exposes it.
+
+On **27 September 2026**, our Perplexity MCP connection exposed both values. A call with `query: "opus 5.5 release"`, `search_type: "fast"`, and `max_results: 3` succeeded and returned three results, including Claude platform documentation and Reuters. This verifies an accepted explicit Fast Search request and useful retrieval through that connection. The result did not expose backend or billing telemetry, so this was not an independent latency or billing audit.
+
+Omitting the parameter retains standard `web` search. Fast Search is a Search API retrieval option, not Ask's Agent API `fast` preset. Read the [selection guidance](choosing-providers.md#fast-or-standard-search) and [official documentation](https://docs.perplexity.ai/docs/search/fast-search), then try the [Fast Search example](research-prompts.md#perplexity-fast-search) if your interface supports it.
+
 <a id="verify-ultra-controls-before-starting"></a>
 
 ### Verify Ultra controls before starting
