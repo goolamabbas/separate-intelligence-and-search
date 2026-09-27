@@ -38,23 +38,24 @@ Use the section links below to jump to a pattern.
 
 ## Minimum sufficient provider set
 
-This is the recommended general default.
+With the current routing skill installed, start with this everyday prompt:
 
 ```text
 Use the multi-provider-research skill.
 
-Use the minimum sufficient set of available providers. Select providers according to the evidence required by the research question; do not call every provider automatically.
-
-Apply constraints in this order: explicit inclusions and exclusions, a named-provider request, a specialized-data match within the permitted scope, then a generic default.
-
-Inspect the relevant callable tools and the selected operations' schemas before use. Check specialized datasets, including Exa Connect or Firecrawl Alexandria when relevant, if they materially supply the requested fields—even when I have not named a provider. Reuse schema knowledge unless the tool surface changes or validation fails. The first useful research read can also establish live usability; do not add a separate probe solely to demonstrate availability. Assign each selected provider a distinct role and avoid repeating successful searches or page reads without a material verification reason. Reuse sufficient evidence; a catalog match does not justify extra paid retrieval. Check coverage and published prices against my scope and budget before executing provider data calls.
-
-Default ordinary lookups to retrieval and analysis by the model selected in this application. Use provider-side synthesis only when the requested outcome warrants it and my restrictions permit it. Complete independent permitted work if one evidence lane is blocked.
-
-Report unavailable task-matched providers, provider contributions, failures, substitutions, and material evidence gaps.
-
 Research question: [YOUR QUESTION]
 ```
+
+The skill handles tool discovery, source checks, avoiding duplicate work, and reporting gaps. Add only the choices specific to your task: providers, who writes the analysis, fallback permission, scope, and budget. The [control clauses](#useful-control-clauses) below cover those choices.
+
+**Defaults at a glance**
+
+- Use the smallest useful set of available providers; ordinary lookups use source retrieval and analysis by the current assistant.
+- Native search and page reading may help when your restrictions allow them. They cannot replace a required provider or bypass an exclusive tool set.
+- If a required provider or reader is unavailable, report the gap and complete other permitted work. Do not substitute unless a fallback is already permitted. For unrestricted tasks, another suitable tool may be used with disclosure.
+- Reuse sufficient source text. Reading the same page again is unnecessary unless important context is missing or needs checking.
+
+The examples below rely on these skill defaults rather than repeating them. Each copied block retains its task-specific restrictions. Use the current [skill package](https://github.com/goolamabbas/multi-provider-research#install); the prose around a prompt is not a substitute for loading the skill.
 
 ## When not to invoke the skill
 
@@ -86,7 +87,7 @@ If a prompt explicitly requires an unavailable provider, the agent should follow
 
 ### Make the page-reading boundary explicit
 
-Each copied prompt should state whether a native page reader is permitted. Do not rely on a convention outside the copied block to weaken “only.” To restrict external discovery while permitting native verification, write:
+Native page reading is allowed by default when it fits your restrictions. “Use only Exa Search and Fetch” excludes it. A restriction on external discovery can still permit native page reading; say so explicitly in a copied prompt to make that distinction clear. For example:
 
 ```text
 Use Perplexity Search as the only external discovery provider. You may use the harness-native page reader to open selected result URLs, but do not call another external search or fetch provider.
@@ -235,8 +236,6 @@ Avoid repeating successful queries or page reads without a material reason. Repo
 
 Briefly report the operations used, whether highlights were sufficient, and any fuller-text retrieval or unread sources. Do not claim actual billing savings unless billing was checked.
 
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
-
 Research question: [YOUR QUESTION]
 ```
 
@@ -261,8 +260,6 @@ Avoid repeating successful queries. If a material coverage gap remains, use a ta
 
 Briefly report the operations used, important count/sub-query/token settings, whether returned page text was sufficient, and any extraction fallbacks or unread sources. Do not claim actual billing savings unless billing was checked.
 
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
-
 Research question: What are the strongest arguments for and against open-weight AI regulation?
 ```
 
@@ -276,8 +273,7 @@ Use only regular Exa Search and Exa Fetch as external research tools. Do not use
 Find authoritative and recent sources. Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: What regulatory requirements currently apply to foundation-model providers in the European Union?
 ```
@@ -292,8 +288,7 @@ Use Exa Advanced Search as the only external discovery provider because precise 
 Use Exa Fetch for selected result URLs if page content is required. Do not use Exa Agent, Connect, or another external provider.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: Find newly published official guidance concerning AI model evaluations.
 ```
@@ -316,8 +311,7 @@ Inspect returned source content before citing it. Reuse sufficient excerpts or f
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
 Use Exa Fetch when selected result excerpts lack necessary context.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: [YOUR PEOPLE, COMPANY, CODE, OR NEWS QUESTION]
 ```
@@ -376,8 +370,7 @@ Use only Parallel Search and Fetch as external research tools. Give Search a con
 Do not launch Parallel Deep Research, Task Group, or another external provider.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: What official evidence explains the current reporting obligations for general-purpose AI model providers in the European Union?
 ```
@@ -392,7 +385,6 @@ Use only Parallel Deep Research because this task requires one substantial provi
 Do not launch a duplicate Search workflow while the task is active. When the result is later retrieved, distinguish provider-generated synthesis from underlying sources and report the exposed processor or model, if any.
 
 Do not use another provider or a native page reader. Report missing source evidence as a gap when completed results can be inspected.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Produce a comprehensive report on frontier-model incident-reporting regimes in the United States, European Union, and United Kingdom.
 ```
@@ -407,7 +399,6 @@ Use only Parallel Task Group because the same structured output contract must be
 Do not poll or duplicate the batch unless I explicitly ask you to monitor it.
 
 Do not use another provider or a native page reader. Report missing source evidence as a gap when completed results can be inspected.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Inputs: [COMPANY OR PRODUCT 1], [2], [3]
 Required fields: official name, primary domain, current product category, latest dated launch evidence, and source URLs.
@@ -428,8 +419,7 @@ Use only Firecrawl as the external provider. Inspect its live schema and choose 
 Do not use Agent, Interact, or Monitor. Preserve source URLs and report excluded, failed, or inaccessible pages.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research task: Map [DOCUMENTATION SITE], then extract only the pages describing authentication, rate limits, and pricing.
 ```
@@ -469,8 +459,7 @@ Inspect the following JavaScript-heavy websites and extract their current produc
 
 Report any pages, interactions, or fields that could not be accessed.
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 ```
 
@@ -512,8 +501,6 @@ Return no more than six bullets. If searches return only adjacent or outdated ma
 
 Treat the generated answer as synthesis. Preserve its cited URLs and use the harness-native page reader to open the underlying sources supporting material claims before final citation.
 
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
-
 Research question: What are the principal obligations imposed by the EU AI Act on general-purpose AI model providers?
 ```
 
@@ -525,8 +512,6 @@ Use the multi-provider-research skill.
 Use Perplexity Reason as the only external research mode. You may use the harness-native page reader to verify cited sources; do not use another external provider. Use it because the task requires evaluating alternatives against explicit criteria using current web evidence. Inspect the live schema and apply only the domain, recency, or context controls it supports.
 
 Separate sourced facts from comparative reasoning. Preserve cited URLs and open the underlying sources supporting material claims before final citation.
-
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Compare the compliance trade-offs of releasing a frontier model through an API versus publishing its weights under the current EU regulatory framework.
 ```
@@ -541,8 +526,6 @@ Use the multi-provider-research skill.
 Use Perplexity Research as the only external research mode. You may use the harness-native page reader to verify cited sources; do not use another external provider. Use it for a deep multi-source investigation. Inspect and follow the live Research schema rather than assuming that filters available to other Perplexity tools are supported.
 
 Treat the generated report as synthesis. Retain its cited URLs, open the underlying sources for material claims, and report citations that cannot be verified.
-
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Produce a literature-style review of empirical methods used to evaluate frontier-model cyber capabilities since 2024.
 ```
@@ -568,8 +551,6 @@ Use only the authenticated X API integration available in the current environmen
 
 Do not use xurl, web search, browser fetching, or scraping. Report query operators, date range, archive coverage, pagination, and access limitations.
 
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
-
 Research question: Find posts by major AI laboratory leaders discussing model regulation during 2025.
 ```
 
@@ -593,7 +574,6 @@ Request provider-backed fields for [FIELDS] in the `outputSchema`. Include sourc
 Retain the run identifier and follow the selected interface’s lifecycle, resuming the same run when it remains active. Inspect completed results for actual provider contribution, field provenance, errors, and partial coverage. Requested data sources alone do not prove contribution. Do not replace unavailable provider-backed fields with generic web inference.
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: [YOUR QUESTION]
 ```
@@ -611,7 +591,6 @@ Inspect the completed run to confirm that Fiber contributed. Do not replace unav
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Identify U.S. AI infrastructure companies with 50–500 employees and recent senior engineering hires.
 ```
@@ -629,7 +608,6 @@ Inspect the completed run to confirm that Similarweb contributed. Do not replace
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Compare the recent digital reach of ten AI developer-tool companies.
 ```
@@ -647,7 +625,6 @@ Inspect the completed run to confirm that Financial Datasets contributed. Do not
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Compare the latest reported revenue growth, operating margin, and free cash flow of five publicly traded U.S. data-center infrastructure companies.
 ```
@@ -665,7 +642,6 @@ Inspect the completed run to confirm that Baselayer contributed. Do not replace 
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Verify the legal registration and current business status of the following U.S. companies: [COMPANY LIST].
 ```
@@ -683,7 +659,6 @@ Inspect the completed run to confirm that Affiliate.com contributed. Do not repl
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Find current offers for laptops with at least 32 GB of RAM, a discrete GPU, and a price below [BUDGET] in [COUNTRY].
 ```
@@ -701,7 +676,6 @@ Inspect the completed run to confirm that Particle contributed. Do not replace u
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: What have prominent podcast hosts and guests said about AI regulation during 2025?
 ```
@@ -719,7 +693,6 @@ Inspect the completed run to confirm that Jinko contributed. Do not replace unav
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Identify five destinations reachable from Hong Kong for [DATES] with return economy fares below [BUDGET].
 ```
@@ -737,7 +710,6 @@ Inspect the completed run to confirm that Polymarket contributed. Do not replace
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Compare current prediction-market probabilities for [EVENT] and explain how they changed during [DATE RANGE].
 ```
@@ -778,8 +750,7 @@ Use Exa as the required external provider. You may use TinyFish only for the dis
 Report which pages or evidence required TinyFish and why.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: Compare the current enterprise plans and security claims of [Company A] and [Company B].
 ```
@@ -818,7 +789,6 @@ Use regular Exa Search and Fetch plus Perplexity Reason.
 Treat Perplexity's response as synthesis. Preserve cited URLs and open any cited sources supporting material claims that Exa has not already retrieved.
 
 Use only Exa Search and Fetch plus Perplexity Reason; do not add another provider or a native page reader. Use Exa Fetch for cited sources that need more context.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Compare mandatory frontier-model licensing with post-deployment incident reporting.
 ```
@@ -836,7 +806,6 @@ Use Perplexity Research as the required research mode. You may use TinyFish only
 Do not send every citation to TinyFish. Report citations that remain inaccessible.
 
 You may use the harness-native page reader to verify citations before escalating to TinyFish. Treat Perplexity output as provider-generated synthesis and inspect supporting source content for material claims.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Produce an evidence-backed review of public frontier-model transparency reporting practices.
 ```
@@ -853,8 +822,7 @@ Use exactly Firecrawl and Parallel Search.
 - Do not use Firecrawl Crawl unless the map shows that a bounded multi-page collection is necessary. Do not use Parallel Task tools.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: Compare the documented enterprise security controls of [PRODUCT A] and [PRODUCT B].
 ```
@@ -887,7 +855,6 @@ Inspect the completed run to confirm which provider contributed to each field. D
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Identify U.S. AI infrastructure vendors with 50–500 employees, then verify their legal registration and current business status.
 ```
@@ -908,7 +875,6 @@ Inspect the completed run to confirm which provider contributed to each field.
 
 Use only the named Connect data sources through Exa Agent. Do not add generic web search, another provider, or a native page reader. Provider-side Agent processing is permitted; distinguish returned provider-backed fields from generated conclusions.
 Retain the run identifier and follow the selected interface’s lifecycle. Resume the same active run rather than starting a duplicate; report pending work separately from inspected completed results.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
 
 Research question: Identify ten AI developer-tool companies with 50–500 employees and meaningful recent website traffic.
 ```
@@ -943,8 +909,7 @@ Use exactly Octen, Exa, and authenticated X evidence.
 Keep web evidence and X-native evidence in separate sections. Do not send the same X query through both interfaces.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
 Research question: How did researchers and developers react to the announcement of [MODEL OR PRODUCT]?
 ```
@@ -1026,40 +991,27 @@ Research question: What are prominent podcast hosts, guests, journalists, and X 
 
 ## General-purpose fill-in template
 
+Use this when the short everyday prompt needs more control. Fill in the relevant fields and delete the rest; the skill supplies the shared research rules.
+
 ```text
 Use the multi-provider-research skill.
 
-Provider scope:
-- Required: [PROVIDERS THAT MUST BE ATTEMPTED]
-- Allowed when materially helpful: [OPTIONAL PROVIDERS]
-- Excluded: [PROVIDERS OR INTERFACES NOT TO USE]
-
-Routing:
-- Assign each selected provider a distinct evidence role.
-- Do not duplicate successful searches or page reads unless verification requires it.
-- Use one Perplexity mode per subproblem by default.
-- Use Parallel Search or one Task workflow for a subproblem; do not duplicate an active Task.
-- Choose the smallest Firecrawl operation and keep crawl scope bounded.
-- Use one authenticated X-native interface for each X query, not multiple routes without a material reason.
-- Inspect the tools, connectors, integrations, and relevant schemas currently available before assuming access.
-
-Fallback policy:
-- [REPORT THE GAP AND STOP THAT EVIDENCE LANE / ASK BEFORE SUBSTITUTING / DISCLOSE AND USE A PERMITTED SUBSTITUTE]
-- Complete independent permitted work. Follow each selected tool’s asynchronous lifecycle, retain active identifiers, and label pending jobs separately from completed research.
-- If substitution is permitted, label the fallback's evidence class accurately. Do not present generic web corroboration as connected-provider-backed or X-native evidence.
-
-Evidence requirements:
-- Cite inspected source content or confirmed provider-backed evidence. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications.
-- Treat generated prose as synthesis and inspect the underlying source content for material claims; reuse sufficient content already retrieved.
-- Preserve relevant dates, speakers, timestamps, entities, query operators, and field-level provenance. For changing facts, inspect cache controls and distinguish retrieval time from observation or reporting dates; disclose material freshness uncertainty.
-- Separate retrieved facts from inference.
-- Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask only when an unresolved boundary materially affects scope, cost, or data handling.
-
-Reporting:
-- Report exact tools, contributions, and material limitations. Expand requested, attempted, and confirmed providers; query and date controls; identifiers; and provenance when coverage, reproducibility, or an audit request warrants it.
-
 Research question: [YOUR QUESTION]
+Scope and desired output: [DATES, GEOGRAPHY, COMPARISON CRITERIA, FORMAT]
+
+Providers:
+- Required: [PROVIDERS AND THEIR ROLES]
+- Optional: [OTHER PROVIDERS ALLOWED WHEN USEFUL]
+- Excluded: [PROVIDERS OR OPERATIONS NOT TO USE]
+- Is this an exclusive list? [YES / NO]
+
+Native tools: [ALLOW SEARCH AND PAGE READING / PAGE READING ONLY / NEITHER]
+Analysis: [SOURCE RETRIEVAL ONLY; THIS ASSISTANT DOES ALL ANALYSIS / PROVIDER-GENERATED ANALYSIS ALLOWED WITH DISCLOSURE]
+If a required tool is unavailable: [REPORT THE GAP WITHOUT SUBSTITUTION / ASK BEFORE SUBSTITUTING / USE THIS PERMITTED FALLBACK: ...]
+Budget: [SPENDING LIMIT AND ANY CALL, PAGE, OR TIME LIMITS]
 ```
+
+Native-tool permission does not waive a required provider's role. If you make the provider list exclusive, the native-tools field states any exception. Spending limits need supported controls; text in a prompt is not an enforced provider-side cap. Ask for a fuller provider ledger only when you need an audit.
 
 ## Portability note
 

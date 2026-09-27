@@ -113,15 +113,8 @@ Replace the brackets below with your own details:
 ```text
 Use the multi-provider-research skill.
 
-Compare [tool A] and [tool B] for [my use case].
-Use [my connected provider] to find current official documentation
-and retrieve the relevant sources.
-
-Have this assistant write the comparison from the retrieved evidence.
-Include source links, explain the tradeoffs that matter for my use case,
-and identify anything you could not verify.
-
-If the provider is unavailable, tell me before substituting another one.
+Use [my connected provider] to compare [tool A] and [tool B] for [my use case], using current official sources.
+Keep all analysis and writing in this assistant. Explain the relevant tradeoffs and link to the evidence.
 ```
 
 Look for a useful answer with supporting sources, a clear account of which tools contributed, and an honest explanation of missing evidence. If that setup meets your needs, you can keep it simple. Add another provider when you have a specific reason.

@@ -175,6 +175,8 @@ Research question: [YOUR QUESTION]
 
 The natural-language invocation is portable; skill installation and discovery depend on the application. The skill does not install, authenticate, or pay for providers.
 
+For provider restrictions, native-tool permissions, or fallback choices, add only the relevant [control clauses](research-prompts.md#useful-control-clauses). The [everyday prompt and defaults](research-prompts.md#minimum-sufficient-provider-set) explain what the skill handles for you.
+
 #### GitHub repository for multi-provider-research skill
 
 - [Public GitHub repository](https://github.com/goolamabbas/multi-provider-research)
