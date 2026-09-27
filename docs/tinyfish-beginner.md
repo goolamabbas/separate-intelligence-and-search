@@ -26,16 +26,16 @@ The TinyFish plugin supplies tools. The separate `multi-provider-research` skill
 In a ChatGPT desktop task with local file access, you can ask:
 
 ```text
-Install the multi-provider-research skill from https://github.com/goolamabbas/multi-provider-research, release v0.4.1, using its skills/multi-provider-research folder. Install the complete folder in my personal skills location, preserve its supporting files, and back up any existing version before replacing it. Confirm the installed files match the release.
+Install the current release of multi-provider-research using the release ZIP and the instructions at https://github.com/goolamabbas/multi-provider-research#install. On this macOS desktop setup, install it at ~/.agents/skills/multi-provider-research. Back up any existing version before replacing the complete folder, and confirm the installed files match the release.
 ```
 
-This is an installation request, not a research prompt. Version v0.4.1 is the version used here. For later releases, consult the [skill repository’s installation instructions](https://github.com/goolamabbas/multi-provider-research#install).
+This is an installation request, not a research prompt. The recorded research run used v0.4.1; v0.4.2 changed packaging and maintenance documentation with no intended routing-policy change. See the [changelog](https://github.com/goolamabbas/multi-provider-research/blob/main/CHANGELOG.md).
 
-For manual installation on the macOS setup used here: download and unpack the release, then copy the inner `skills/multi-provider-research` folder to `~/.agents/skills/multi-provider-research`. Keep `SKILL.md`, `references/`, and `agents/` together. Back up and replace an older folder instead of merging files into it. This personal path was verified in our ChatGPT desktop setup; it is not a browser upload path or a universal installation path for every ChatGPT surface.
+For manual installation, follow the [current skill installation instructions](https://github.com/goolamabbas/multi-provider-research#install). On the macOS desktop setup used here, the destination is `~/.agents/skills/multi-provider-research`. This personal path was verified in our ChatGPT desktop setup; it is not a browser upload path or a universal installation path for every ChatGPT surface.
 
 Open **Skills** in the desktop sidebar to look for the skill, or ask ChatGPT to confirm that it can load `multi-provider-research`. Start a fresh task if necessary. OpenAI documents desktop standalone skills and skill selection through `@`; the natural-language invocation in this guide avoids dependence on a particular mention syntax. [OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills)
 
-Before this research run, the installed folder’s 11 files were verified against the published v0.4.1 package after backing up the previous installation. If your ChatGPT environment cannot load a local skill, do not assume that pasting its name installs it: use a supported desktop setup for this walkthrough.
+Before this research run, the installed folder’s 11 files were verified against the v0.4.1 release source archive after backing up the previous installation. If your ChatGPT environment cannot load a local skill, do not assume that pasting its name installs it: use a supported desktop setup for this walkthrough.
 
 ## 3. Ask a useful question
 

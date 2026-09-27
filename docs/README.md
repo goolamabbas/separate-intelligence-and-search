@@ -140,7 +140,7 @@ For a complete first task, [try ChatGPT with TinyFish](https://goolamabbas.githu
 The `multi-provider-research` skill packages the detailed routing rules so your prompt can stay short. It works with any available subset of supported providers, including one.
 
 1. Connect and test at least one provider.
-2. Follow the [current installation instructions](https://github.com/goolamabbas/multi-provider-research#install). Keep the complete inner `skills/multi-provider-research/` folder and its supporting files intact. When updating, back up and replace the complete folder rather than overlay-merging; the archive wrapper is not the installable folder.
+2. Follow the [current installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install) for the complete skill package.
 3. Start a fresh task so the application can discover it.
 4. Try:
 

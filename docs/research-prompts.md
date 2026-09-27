@@ -1,6 +1,6 @@
 # Harness-neutral research prompt examples
 
-These examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on a application-specific `$` command, slash command, mention syntax, or rules-file format.
+These examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on an application-specific `$` command, slash command, mention syntax, or rules-file format.
 
 Paste an example into the instruction or chat interface of an AI application, then replace its placeholders. The application may use a different internal mechanism to locate an installed skill, but the natural-language instruction preserves the portable intent.
 
@@ -224,21 +224,11 @@ Choose **Highlights first** for focused research or **Full content when needed**
 ```text
 Use the multi-provider-research skill.
 
-Use only Octen as the external research provider and page reader. Do not use another external provider or a native page reader. Use retrieval and source-content modes; have the model selected in this application perform the analysis and final answer. Do not request provider-generated summaries, answers, research reports, or agent analysis.
+Use only Octen for search and page reading; exclude native tools. Keep analysis and writing in this assistant, using retrieval and source-content modes only.
 
-Inspect the available Octen interface and its live parameters. Use Search for a focused question. Use Broad Search only when several distinct angles justify it. Give it one self-contained question that preserves my intent and constraints, resolves references from the conversation, and fits the current input limit. Let Octen expand it into subqueries.
+Start with query-relevant highlights: enable highlights and disable full content using the available controls. Start with at most 5 results per search (including each Broad Search sub-query) and at most 3 Broad Search sub-queries. Choose a suitable highlight token cap. Expand these starting budgets only to address a material evidence gap.
 
-Start with query-relevant highlights. Explicitly enable highlights and disable full content using the current interface's controls. Adapt to the actual schema rather than assuming identical argument names across interfaces.
-
-Start with at most 5 results per search, including each Broad Search sub-query, and at most 3 Broad Search sub-queries. Choose a highlight token cap suited to the question. These are starting budgets; expand them only to address a material evidence gap.
-
-Inspect the highlights. Use them when they provide enough source context to support the relevant claim. Do not assume a selected passage preserves every qualification or adequately represents an entire page.
-
-You may retrieve fuller source text through Octen when highlights are missing, ambiguous, insufficiently fresh, or omit context needed for a material claim. For a page already identified, prefer Octen Extract rather than repeating the search. Inspect supplied URLs directly with Extract. Read only the pages needed and reuse adequately inspected content.
-
-Avoid repeating successful queries or page reads without a material reason. Report unresolved gaps rather than presenting limited evidence as comprehensive.
-
-Briefly report the operations used, whether highlights were sufficient, and any fuller-text retrieval or unread sources. Do not claim actual billing savings unless billing was checked.
+Use Octen Extract when highlights lack sufficient context or freshness. Briefly report whether highlights were sufficient, any fuller-text retrieval, and unread sources. Do not claim billing savings without billing evidence.
 
 Research question: [YOUR QUESTION]
 ```
@@ -250,19 +240,11 @@ Octen’s pricing page, checked on 13 September 2026, includes full content for 
 ```text
 Use the multi-provider-research skill.
 
-Use only Octen as the external research provider and page reader. Do not use another external provider or a native page reader. Use retrieval and source-content modes; have the model selected in this application perform the analysis and final answer. Do not request provider-generated summaries, answers, research reports, or agent analysis.
+Use only Octen for search and page reading; exclude native tools. Keep analysis and writing in this assistant, using retrieval and source-content modes only.
 
-Inspect the available Octen interface and its live parameters. Start with one focused Search for a bounded question. Use Broad Search only when several distinct angles justify it. Give it one self-contained question that preserves my intent and constraints, resolves references from the conversation, and fits the current input limit. Let Octen expand it into subqueries.
+Enable full content when additional source context is needed. Start with at most 10 results per search (including each Broad Search sub-query) and at most 5 Broad Search sub-queries. Choose a suitable per-result token cap; 2048 is a possible starting point. These limits do not guarantee complete text or coverage. Expand them only to address a material evidence gap and explain why.
 
-When additional source context is needed, explicitly enable full content using the current interface’s controls. Inspect the returned text: enablement does not guarantee that every page was retrieved or that its text is complete. Reuse sufficient excerpts or full text without another fetch.
-
-Start with at most 10 results per search, including each Broad Search sub-query, and at most 5 Broad Search sub-queries. These are starting budgets, not proof of adequate coverage. Choose a per-result token cap suited to the sources; 2048 is a possible starting point, not a guarantee of completeness. Do not add results solely to obtain more text from a page already found.
-
-Inspect returned source text. Reuse it when it supports the relevant claim with enough context. Use Octen Extract for supplied URLs or selected results whose text is missing, truncated, unusable, or insufficiently fresh. Prefer a small batch of necessary pages. Do not re-read an adequately inspected URL without a material reason. When the full page body is needed, leave Extract’s relevance-query option unset if the interface uses it to return highlights instead. Use an appropriate supported cache age when freshness matters.
-
-Avoid repeating successful queries. If a material coverage gap remains, use a targeted follow-up or adjust the relevant budget, and explain why. Report unresolved gaps rather than presenting a budget-limited result as comprehensive.
-
-Briefly report the operations used, important count/sub-query/token settings, whether returned page text was sufficient, and any extraction fallbacks or unread sources. Do not claim actual billing savings unless billing was checked.
+Briefly report the operations and important count/sub-query/token settings, whether the text was sufficient, and extraction fallbacks or unread sources. Do not claim billing savings without billing evidence.
 
 Research question: What are the strongest arguments for and against open-weight AI regulation?
 ```
