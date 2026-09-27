@@ -211,6 +211,8 @@ Finish with a concise provider ledger covering requested providers, providers ac
 
 ## Common one-provider patterns
 
+**Tested beginner example:** [Compare free Google Meet and Zoom with ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/#3-ask-a-useful-question). Read the prompt, actual answer, and verification limits before adapting it.
+
 ### Octen Search, Broad Search, and Extract
 
 Choose **Highlights first** for focused research or **Full content when needed** for closer reading. Both patterns inspect returned evidence and allow fuller retrieval when necessary. They work through the supported Octen interface available in your application.

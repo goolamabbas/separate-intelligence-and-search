@@ -1,0 +1,210 @@
+{
+  "date": "2026-09-27",
+  "environment": "ChatGPT desktop on macOS; existing conversation and preconnected TinyFish plugin",
+  "skill_version": "v0.4.1",
+  "comparison": {
+    "search_calls": 3,
+    "fetch_calls": 2,
+    "fetched_urls": 6
+  },
+  "setup": {
+    "search_calls": 1,
+    "fetch_calls": 2,
+    "fetched_urls": 6
+  },
+  "billing": "No billing metadata returned. Published free-tier terms are not a measured charge.",
+  "calls": [
+    {
+      "id": "google-search",
+      "scope": "comparison",
+      "tool": "tinyfish_search",
+      "request": {
+        "query": "Google Meet free personal account group meeting 60 minutes browser join screen sharing",
+        "include_domains": "support.google.com,workspace.google.com",
+        "purpose": "Compare free Google Meet and Zoom for a weekly one-hour six-person community discussion; official meeting limits, browser guest access, screen sharing."
+      },
+      "returned_urls": [
+        "https://workspace.google.com/products/meet/",
+        "https://support.google.com/calendar/answer/10729749?hl=en",
+        "https://workspace.google.com/individual/",
+        "https://workspace.google.com/marketplace/app/zoom_for_google_workspace/364750910244",
+        "https://workspace.google.com/products/calendar/",
+        "https://knowledge.workspace.google.com/admin/meet-hardware/known-issues-with-meet-hardware",
+        "https://workspace.google.com/faq/",
+        "https://knowledge.workspace.google.com/admin/meet-hardware/in-room-bookings-with-google-meet-hardware",
+        "https://knowledge.workspace.google.com/admin/gmail/gmail-sending-limits-in-google-workspace",
+        "https://knowledge.workspace.google.com/admin/getting-started/editions/compare-enterprise-editions"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "zoom-search",
+      "scope": "comparison",
+      "tool": "tinyfish_search",
+      "request": {
+        "query": "Zoom Basic free 40 minutes join browser screen sharing",
+        "include_domains": "support.zoom.com,zoom.com",
+        "purpose": "Compare free Google Meet and Zoom for a weekly one-hour six-person community discussion; official meeting limits, browser guest access, screen sharing."
+      },
+      "returned_urls": [
+        "https://www.zoom.com/en/products/virtual-meetings/features/free-video-conferencing/",
+        "https://www.zoom.com/pricing",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067966",
+        "https://community.zoom.com/meetings-2/meeting-participant-with-free-account-time-limit-49116",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063407",
+        "https://www.zoom.com/en/small-business/meetings/",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060700",
+        "https://community.zoom.com/meetings-2/40-minute-free-meeting-40593",
+        "https://community.zoom.com/meetings-2/40-minute-limit-on-meeting-with-two-participants-24661",
+        "https://community.zoom.com/meetings-2/meeting-duration-time-37835"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "comparison-fetch",
+      "scope": "comparison",
+      "tool": "tinyfish_fetch_content",
+      "request": {
+        "urls": [
+          "https://workspace.google.com/products/meet/",
+          "https://www.zoom.com/en/products/virtual-meetings/features/free-video-conferencing/",
+          "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063407"
+        ],
+        "format": "markdown",
+        "links": true,
+        "image_links": false,
+        "page_metadata": false,
+        "ttl": 0
+      },
+      "returned_urls": [
+        "https://workspace.google.com/products/meet/",
+        "https://www.zoom.com/en/products/virtual-meetings/features/free-video-conferencing/",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0063407"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "details-search",
+      "scope": "comparison",
+      "tool": "tinyfish_search",
+      "request": {
+        "query": "Google Meet present screen computer Zoom join browser host show join browser",
+        "include_domains": "support.google.com,support.zoom.com",
+        "purpose": "Find missing official instructions for Google Meet screen sharing and Zoom browser joining; no need to repeat meeting-limit searches."
+      },
+      "returned_urls": [
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060596",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0060732",
+        "https://support.google.com/meet/answer/9308856?hl=en&co=GENIE.Platform%3DDesktop",
+        "https://support.google.com/meet/thread/310377289/cannot-present-screen-from-small-screen?hl=en",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067293",
+        "https://support.google.com/meet/thread/139921988/i-cannot-share-my-screen-in-google-meet-i-am-using-chrome-in-windows-11?hl=en",
+        "https://support.google.com/meet/thread/41072160/unable-to-join-meeting-using-hosts-google-meet-link-url?hl=en",
+        "https://support.google.com/meet/thread/222159502/camera-won-t-work-on-google-meet-with-chrome?hl=en",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064261",
+        "https://support.google.com/meet/thread/462749271"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "details-fetch",
+      "scope": "comparison",
+      "tool": "tinyfish_fetch_content",
+      "request": {
+        "urls": [
+          "https://support.google.com/meet/answer/9308856?hl=en&co=GENIE.Platform%3DDesktop",
+          "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067293",
+          "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064261"
+        ],
+        "format": "markdown",
+        "links": false,
+        "image_links": false,
+        "page_metadata": false,
+        "ttl": 0
+      },
+      "returned_urls": [
+        "https://support.google.com/meet/answer/9308856?hl=en&co=GENIE.Platform%3DDesktop",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0067293",
+        "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0064261"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "setup-search",
+      "scope": "setup documentation",
+      "tool": "tinyfish_search",
+      "request": {
+        "query": "ChatGPT Work install skills",
+        "include_domains": "learn.chatgpt.com,developers.openai.com",
+        "purpose": "Find official skill installation instructions for the ChatGPT Work interface, distinguish ordinary chat."
+      },
+      "returned_urls": [
+        "https://learn.chatgpt.com/docs/build-skills",
+        "https://learn.chatgpt.com/docs/skills-and-plugins",
+        "https://learn.chatgpt.com/docs/get-started-with-work",
+        "https://developers.openai.com/api/docs/guides/tools-skills",
+        "https://learn.chatgpt.com/docs/codex/cli",
+        "https://learn.chatgpt.com/docs/whats-new",
+        "https://learn.chatgpt.com/docs/changelog",
+        "https://learn.chatgpt.com/docs/app",
+        "https://learn.chatgpt.com/docs/windows/windows-sandbox",
+        "https://learn.chatgpt.com/docs/import"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "setup-fetch",
+      "scope": "setup documentation",
+      "tool": "tinyfish_fetch_content",
+      "request": {
+        "urls": [
+          "https://learn.chatgpt.com/docs/build-skills",
+          "https://learn.chatgpt.com/docs/skills-and-plugins",
+          "https://docs.tinyfish.ai/plugins",
+          "https://docs.tinyfish.ai/search-api",
+          "https://docs.tinyfish.ai/fetch-api"
+        ],
+        "format": "markdown",
+        "links": true,
+        "image_links": false,
+        "page_metadata": false,
+        "ttl": 0
+      },
+      "returned_urls": [
+        "https://learn.chatgpt.com/docs/build-skills",
+        "https://learn.chatgpt.com/docs/skills-and-plugins",
+        "https://docs.tinyfish.ai/plugins",
+        "https://docs.tinyfish.ai/search-api",
+        "https://docs.tinyfish.ai/fetch-api"
+      ],
+      "errors": [],
+      "actual_cost": null
+    },
+    {
+      "id": "terms-fetch",
+      "scope": "setup documentation",
+      "tool": "tinyfish_fetch_content",
+      "request": {
+        "urls": [
+          "https://www.tinyfish.ai/blog/search-and-fetch-are-now-free-for-every-agent-everywhere"
+        ],
+        "format": "markdown",
+        "links": false,
+        "image_links": false,
+        "page_metadata": false,
+        "ttl": 0
+      },
+      "returned_urls": [
+        "https://www.tinyfish.ai/blog/search-and-fetch-are-now-free-for-every-agent-everywhere"
+      ],
+      "errors": [],
+      "actual_cost": null
+    }
+  ]
+}

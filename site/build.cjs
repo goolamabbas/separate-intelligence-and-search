@@ -45,4 +45,6 @@ require('./build-connecting.cjs');
 
 require("./build-ultra-case.cjs");
 
+require("./build-beginner.cjs");
+
 require("./external-links.cjs");

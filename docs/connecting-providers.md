@@ -23,6 +23,8 @@ The skill is a routing layer. It tells an agent which provider to use and how to
 
 ## Install only what you need
 
+**Start with a worked example:** [ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) covers the documented plugin setup, the verified personal skill installation, and a successful Search/Fetch comparison.
+
 The skill works with any available subset of supported providers, including one. Connect a provider that fits your first task, verify it, and add others only when a distinct need arises.
 
 Use providers that are callable, permitted, and relevant. A required provider must be attempted for its assigned role; “only” or “exactly” restricts the permitted set. If a required provider is unavailable, report the gap and follow the stated fallback policy.

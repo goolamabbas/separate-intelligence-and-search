@@ -62,6 +62,8 @@ It is an instruction package, so its use depends on your application's support f
 
 ### 1. Check your application, then connect one provider
 
+**Want a worked example?** [Follow the ChatGPT + TinyFish beginner walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) to connect one provider, add the skill, and inspect a real comparison of free video-meeting tools.
+
 If you have only used ordinary chats so far, start by checking whether your application supports both external tools and installable skills. These are separate capabilities: being able to connect a provider does not automatically mean the application can load this skill. Availability and setup depend on the application and your account.
 
 You can use a supported provider connection on its own. To follow the complete setup described here, choose an application that supports both the skill package and the provider connection.

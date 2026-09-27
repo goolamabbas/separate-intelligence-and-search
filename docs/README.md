@@ -160,6 +160,8 @@ Add provider or synthesis restrictions when they matter. The prompt library cont
 
 ### Use the reusable routing skill
 
+For a complete first task, [try ChatGPT with TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The walkthrough includes setup instructions, the actual comparison, and what was verified.
+
 The `multi-provider-research` skill packages the detailed routing rules so your prompt can stay short. It works with any available subset of supported providers, including one.
 
 1. Connect and test at least one provider.
