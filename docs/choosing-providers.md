@@ -209,7 +209,7 @@ Prices checked on **27 September 2026**; consult the [official Fast Search docum
 
 Choose standard search directly for a difficult question. If Fast Search leaves an important evidence gap, use standard search for that unresolved question rather than routinely running both types. Inspect your interface's schema and disclose when an explicitly requested type is unavailable.
 
-Fast Search (`search_type: "fast"`) is different from **Ask's Agent API `fast` preset**, which generates an answer. See the [Fast Search prompt](research-prompts.md#perplexity-fast-search) and [standard-search follow-up](research-prompts.md#perplexity-standard-search-follow-up) for explicit control examples.
+Fast Search (`search_type: "fast"`) is different from **Ask's Agent API `fast` preset**, which generates an answer. Use the [Perplexity Search prompt](research-prompts.md#perplexity-search) to let your assistant select the search type and follow up on important evidence gaps.
 
 ### Model boundary
 

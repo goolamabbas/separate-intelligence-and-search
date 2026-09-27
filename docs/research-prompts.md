@@ -476,47 +476,29 @@ If a required provider or reader is unavailable, report the gap without substitu
 
 ### Perplexity Search
 
-Use Search when you want ranked sources rather than an AI-generated answer.
+<a id="perplexity-fast-search"></a>
+<a id="perplexity-standard-search-follow-up"></a>
+
+Start here to find sources with Perplexity and have your own assistant turn the evidence into an answer. Copy the prompt and add your question; the assistant chooses the search type for you, using Fast Search for routine lookups and standard search for harder questions or important evidence gaps.
+
+For the details, see [Fast or standard Search?](choosing-providers.md#fast-or-standard-search). Ask, Reason, and Research below are optional alternatives when you want Perplexity itself to generate an answer or analysis.
 
 ```text
 Use the multi-provider-research skill.
 
-Use Perplexity Search as the only external discovery provider. Inspect its live schema, then apply a one-month recency filter and restrict results to official government or regulatory domains where supported.
+Use Perplexity Search as the only external discovery provider. Inspect its live schema. Prefer Fast Search (search_type: "fast") for routine questions; choose standard search (search_type: "web") directly for rare, difficult, or ambiguous questions. Apply supported domain, date, or country controls when relevant.
 
-Do not use Perplexity Ask, Reason, or Research. Inspect returned source excerpts and reuse them when they sufficiently support the claim. You may use the harness-native page reader to retrieve selected sources when necessary context, qualifications, or freshness evidence is missing.
+Reuse sufficient source excerpts. You may use the harness-native page reader to inspect selected sources. If a relevant source already found could resolve a gap and its excerpts are insufficient, read it before making another search request.
 
-Use source-content or faithful extraction modes. Do not request provider-generated summaries, answers, reports, or agent analysis. Have the model selected in this application perform the analysis and final answer.
-If a required provider or reader is unavailable, report the gap without substitution and complete independent permitted work.
+If a successful Fast Search leaves a material evidence gap, use targeted standard-search follow-ups for the missing or conflicting evidence. Do not repeat parts already answered or automatically run both search types. Stop when the evidence is sufficient and say when standard search was used.
 
-Research question: What official AI safety guidance has been published during the past month?
-```
+Keep synthesis in this assistant. Do not use Perplexity Ask, Reason, or Research, or another external provider.
 
-### Perplexity Fast Search
+Use only supported controls. If Fast Search is unavailable but standard Perplexity Search is supported, disclose this and use standard search. Report failed requests separately from evidence gaps; do not silently switch providers or answer-generation modes.
 
-Use this for a routine lookup when you want to select Fast Search explicitly. The API defaults to standard `web` search if the parameter is omitted; the updated skill prefers `fast` for suitable routine Perplexity lookups. You do not need to specify a type in every prompt when using the skill. See [Fast or standard Search?](choosing-providers.md#fast-or-standard-search).
+Cite the sources supporting the answer and report any unresolved evidence gaps.
 
-```text
-Use the multi-provider-research skill.
-
-Use Perplexity Search with Fast Search (search_type: "fast") to find the latest stable Python release. Prefer official Python sources and return the version, release date, and source links.
-
-Use Perplexity Search as the only external discovery provider. Reuse sufficient source excerpts; you may use the harness-native page reader to inspect selected official sources when needed. Keep synthesis in this assistant; do not use Perplexity Ask, Reason, or Research.
-
-If this interface does not expose Fast Search, say so rather than silently substituting another mode. Report any unresolved evidence gaps.
-```
-
-### Perplexity standard search follow-up
-
-Choose standard search directly for rare, difficult, or ambiguous questions. This follow-up is useful when a previous search leaves an important gap; do not run it automatically after every Fast Search request. It assumes the unresolved questions are already identified in the conversation.
-
-```text
-Use the multi-provider-research skill.
-
-Use Perplexity Search with standard web search (search_type: "web") to investigate the unresolved questions from the previous search. Focus on missing or conflicting evidence, inspect the relevant primary sources, and explain what remains uncertain. Reuse evidence that already answers the other questions.
-
-Use Perplexity Search as the only external discovery provider. You may use the harness-native page reader to inspect selected sources. Keep synthesis in this assistant; do not use Perplexity Ask, Reason, or Research.
-
-Inspect the live schema and use only supported controls. If you cannot explicitly select standard search, disclose that limitation before substituting a mode.
+Research question: [YOUR QUESTION]
 ```
 
 ### Perplexity Ask

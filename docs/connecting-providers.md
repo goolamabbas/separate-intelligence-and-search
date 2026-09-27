@@ -163,7 +163,7 @@ API support and connector support can differ. Inspect the live `perplexity_searc
 
 On **27 September 2026**, our Perplexity MCP connection exposed both values. A call with `query: "opus 5.5 release"`, `search_type: "fast"`, and `max_results: 3` succeeded and returned three results, including Claude platform documentation and Reuters. This verifies an accepted explicit Fast Search request and useful retrieval through that connection. The result did not expose backend or billing telemetry, so this was not an independent latency or billing audit.
 
-Omitting the parameter retains standard `web` search. Fast Search is a Search API retrieval option, not Ask's Agent API `fast` preset. Read the [selection guidance](choosing-providers.md#fast-or-standard-search) and [official documentation](https://docs.perplexity.ai/docs/search/fast-search), then try the [Fast Search example](research-prompts.md#perplexity-fast-search) if your interface supports it.
+Omitting the parameter retains standard `web` search. Fast Search is a Search API retrieval option, not Ask's Agent API `fast` preset. Read the [selection guidance](choosing-providers.md#fast-or-standard-search) and [official documentation](https://docs.perplexity.ai/docs/search/fast-search), then try the [Perplexity Search prompt](research-prompts.md#perplexity-search), which selects supported search types and discloses availability limits.
 
 <a id="verify-ultra-controls-before-starting"></a>
 
