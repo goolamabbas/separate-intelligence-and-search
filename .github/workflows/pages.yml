@@ -10,6 +10,7 @@ on:
       - docs/connecting-providers.md
       - docs/exa-ultra-case-study.md
       - docs/tinyfish-beginner.md
+      - docs/costs.md
       - docs/case-studies/**
       - docs/assets/**
       - site/**

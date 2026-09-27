@@ -37,13 +37,13 @@ Already know what you need? Use the [provider reference](choosing-providers.md),
 
 | Term | Meaning here |
 | --- | --- |
-| **AI harness** | The application or agent environment that plans the task, calls tools, and presents the result |
+| **Application (sometimes called a harness)** | The application or agent environment that plans the task, calls tools, and presents the result |
 | **Provider** | An external service supplying search, extraction, structured data, synthesis, or platform-native evidence |
-| **MCP server or connector** | A supported way for the harness to call provider tools |
-| **Skill** | Reusable instructions that tell the harness how to route work; a skill does not create provider access by itself |
-| **Retrieval** | Finding or reading sources for the harness-selected model to analyze |
+| **MCP server or connector** | A supported way for the application to call provider tools |
+| **Skill** | Reusable instructions that tell the application how to route work; a skill does not create provider access by itself |
+| **Retrieval** | Finding or reading sources for the model selected in your application to analyze |
 | **Provider-generated synthesis** | An answer, comparison, research report, or agent result produced by a model or workflow inside the provider |
-| **Evidence lane** | A distinct source type or dataset assigned a clear role in the research |
+| **Evidence role** | A distinct source type or dataset assigned a clear role in the research |
 
 ## Choose tools for the evidence you need
 
@@ -73,19 +73,7 @@ The [prompt library](research-prompts.md) includes complete native-only and rest
 
 ### Choose by desired outcome
 
-Start with the result you need, then choose among available tools that can supply it. These are examples, not exclusive matches or rankings.
-
-| Need | Useful starting point |
-| --- | --- |
-| Find sources or read a page | Native tools may suffice; external options include Octen, Exa, Perplexity Search, Parallel Search, Firecrawl Search/Scrape and TinyFish |
-| Obtain specialized or comparable fields | A suitable Exa Connect dataset or discovered Firecrawl Alexandria capability; reuse sufficient search or document evidence and check costs before additional retrieval |
-| Apply the same research fields across a list | Parallel Task Group or a suitable Exa Agent workflow |
-| Inventory or collect a website section | Firecrawl Map, selected Scrapes, or a bounded Crawl |
-| Read a dynamic page | Browser-rendered extraction, such as TinyFish page extraction |
-| Request provider-generated analysis | A suitable Perplexity synthesis mode, Parallel Task, or Exa Agent workflow |
-| Retrieve authenticated X content | One authenticated X-native interface |
-
-For tool-level distinctions, see [Choosing an external research provider](choosing-providers.md).
+Use the [provider quick chooser](choosing-providers.md#quick-chooser) to match your question to a capability: finding sources, collecting a website, obtaining structured data, or requesting provider-generated analysis. The chooser is the maintained comparison table; these are possible starting points, not rankings.
 
 ![Research workflow: choose permitted tools, retrieve evidence, then report contributions and gaps.](assets/research-workflow.svg)
 
@@ -93,22 +81,9 @@ Choose the permitted tools, retrieve the evidence, and report what matters.
 
 ### Source processing and answer generation
 
-Search and extraction tools may use provider-side models to rank results, select relevant passages, or compress the material returned to your agent. Some output modes also generate summaries. Retrieval therefore does not mean “no AI processing outside your selected model.”
+**Retrieval supplies source material; provider-generated analysis supplies conclusions.** Your selected model can write the answer from retrieved sources, or incorporate analysis produced by a provider when you permit it. Retrieval may still use internal models for ranking or extraction.
 
-The useful distinction is between **preparing source material** and **generating an answer or analysis**.
-
-| Operation | What normally happens |
-| --- | --- |
-| **Source retrieval and preparation** | The provider finds, ranks, or selects source material. The model selected in your application develops the answer from that evidence. |
-| **Provider-generated answers or analysis** | A provider-side model or workflow produces an answer, comparison, research report, or inferred findings. Your selected model may then verify and incorporate that output into its final response. |
-
-For example, Firecrawl describes using a relevance model to select excerpts, while Exa’s Dynamic Highlights selects relevant text across retrieved documents. These are examples of model-assisted source preparation; they do not by themselves mean the provider writes the research answer. Availability depends on the integration and options used. [Firecrawl’s explanation](https://www.firecrawl.dev/blog/introducing-our-most-accurate-search-yet) · [Exa’s explanation](https://exa.ai/blog/dynamic-highlights)
-
-Provider-generated analysis includes workflows such as Perplexity Ask, Reason, and Research; Exa Agent, including Ultra effort and runs using Connect datasets; Parallel Deep Research and Task Group; and Firecrawl Agent. These workflows may combine retrieval, extraction, and inference, so distinguish returned source data from generated conclusions.
-
-For large lists and difficult qualification criteria, [Exa Agent Ultra](choosing-providers.md#when-agent-ultra-is-worth-it) is an optional escalation with material time and cost trade-offs. Check available budget controls and report why the run ended; completed status alone does not establish exhaustive coverage.
-
-Check the **selected operation and output options**, not just the provider or tool name. A fetch or scrape tool may offer both source content and generated answers.
+Read [retrieval and provider-side synthesis](choosing-providers.md#retrieval-and-provider-side-synthesis) for the full distinction and operation examples. Check output options as well as tool names: a fetch tool can also offer generated summaries.
 
 #### Keeping analysis in your selected model
 
@@ -214,7 +189,7 @@ When provider-generated analysis contributes to the answer, identify the operati
 
 ### What a good research answer should report
 
-A useful answer identifies its sources, separates facts from inference, and briefly names the tools used, their contributions, and material limitations.
+A useful answer identifies its sources, separates facts from inference, and briefly names the tools used, their contributions, and important limitations.
 
 Expand the report when coverage, provenance, reproducibility, or an audit request requires it. Relevant details may include filters, observation dates, confirmed dataset contributions, pending jobs, and failed verification. A simple X lookup or two-provider task does not automatically need a full ledger.
 

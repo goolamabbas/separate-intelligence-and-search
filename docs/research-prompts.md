@@ -1,10 +1,10 @@
 # Harness-neutral research prompt examples
 
-These examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on a harness-specific `$` command, slash command, mention syntax, or rules-file format.
+These examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on a application-specific `$` command, slash command, mention syntax, or rules-file format.
 
-Paste an example into the instruction or chat interface of an agent harness, then replace its placeholders. The harness may use a different internal mechanism to locate an installed skill, but the natural-language instruction preserves the portable intent.
+Paste an example into the instruction or chat interface of an AI application, then replace its placeholders. The application may use a different internal mechanism to locate an installed skill, but the natural-language instruction preserves the portable intent.
 
-The harness must still have access to the providers named in a prompt. A provider mentioned in an instruction is not necessarily installed, connected, authenticated, or callable.
+The application must still have access to the providers named in a prompt. A provider mentioned in an instruction is not necessarily installed, connected, authenticated, or callable.
 
 Provider and operation names describe the intended capabilities, not a required integration method. Use the supported provider skill, MCP server, plugin, connector, command-line client, or direct API available in the application. Adapt parameters to that interface while preserving each prompt’s provider, evidence, and synthesis restrictions.
 
@@ -36,6 +36,8 @@ Start with **Minimum sufficient provider set** for everyday research. Use **Comm
 
 Use the section links below to jump to a pattern.
 
+**Testing status:** Library blocks are reusable templates, not verified end-to-end runs unless a linked run record says otherwise. For an executed product comparison, see the [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) records a separate advanced run; it does not validate every Ultra prompt here.
+
 ## Minimum sufficient provider set
 
 With the current routing skill installed, start with this everyday prompt:
@@ -59,7 +61,7 @@ The examples below rely on these skill defaults rather than repeating them. Each
 
 ## When not to invoke the skill
 
-Installing the skill does not authorize it for every task. A mention of a provider in a copyediting task or a general browser task does not by itself call for research routing. Use this prompt when only the current harness’s built-in search and page-reading tools are permitted:
+Installing the skill does not authorize it for every task. A mention of a provider in a copyediting task or a general browser task does not by itself call for research routing. Use this prompt when only the current application’s built-in search and page-reading tools are permitted:
 
 ```text
 Use only the web search and page-fetching tools provided natively by this harness.
@@ -71,7 +73,7 @@ If a native tool is unavailable or cannot access a required source, report the g
 In the final response, list the exact search and fetch tools used.
 ```
 
-“Native” describes the tool surface presented by the harness. It does not prove that the harness vendor uses no external infrastructure.
+“Native” describes the tool surface presented by the application. It does not prove that the application vendor uses no external infrastructure.
 
 For a hard technical guarantee, disable external tools and automatic skill loading or use a clean profile, then review the tool-call record.
 
@@ -95,9 +97,9 @@ Use Perplexity Search as the only external discovery provider. You may use the h
 
 ### Model boundary
 
-The harness-selected model normally orchestrates the task and writes the final response. Provider-side answer, reasoning, research, or agent tools may run their own model or preset.
+The model selected in your application normally orchestrates the task and writes the final response. Provider-side answer, reasoning, research, or agent tools may run their own model or preset.
 
-Use this clause when external retrieval is allowed but the harness-selected model must perform all visible reasoning and writing:
+Use this clause when external retrieval is allowed but the model selected in your application must perform all visible reasoning and writing:
 
 ```text
 Use external providers only for search, retrieval, extraction, and page reading.
@@ -181,7 +183,7 @@ Approval-based:
 If a required provider is unavailable, do not substitute it without asking me first.
 ```
 
-Apply the selected fallback policy to the blocked evidence lane. Complete independent permitted work rather than stopping the entire task. Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask for clarification only when an unresolved boundary materially affects scope, cost, or data handling.
+Apply the selected fallback policy to the blocked evidence role. Complete independent permitted work rather than stopping the entire task. Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask for clarification only when an unresolved boundary materially affects scope, cost, or data handling.
 
 ### Control duplication
 
@@ -203,7 +205,7 @@ Do not launch an equivalent duplicate workflow while an asynchronous run remains
 
 ### Require an auditable report
 
-For ordinary work, report tools, contributions, and material limitations briefly. Use the fuller ledger below when provenance, coverage, reproducibility, or an explicit audit request warrants it; a simple X lookup or two-provider task does not automatically need one.
+For ordinary work, report tools, contributions, and important limitations briefly. Use the fuller ledger below when provenance, coverage, reproducibility, or an explicit audit request warrants it; a simple X lookup or two-provider task does not automatically need one.
 
 ```text
 Finish with a concise provider ledger covering requested providers, providers actually used, exact interfaces, query transformations, operators, date ranges, contributions, failures, substitutions, and evidence gaps.
@@ -277,7 +279,7 @@ Find authoritative and recent sources. Inspect returned source content before ci
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
 Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
-Research question: What regulatory requirements currently apply to foundation-model providers in the European Union?
+Research question: Compare the documented export formats and offline access of Notion and Obsidian for a personal research notebook.
 ```
 
 ### Exa Advanced Search
@@ -374,7 +376,7 @@ Do not launch Parallel Deep Research, Task Group, or another external provider.
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
 Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
-Research question: What official evidence explains the current reporting obligations for general-purpose AI model providers in the European Union?
+Research question: What are the official installation requirements for the latest stable Python release on Windows and macOS?
 ```
 
 ### Parallel Deep Research
@@ -447,7 +449,7 @@ Use source records or faithful extraction and have the model selected in this ap
 
 ### TinyFish discovery, page extraction, or browser automation
 
-TinyFish-only requests work best when you know whether the task needs discovery, rendered page content, or browser interaction. Exact tool names vary by harness.
+TinyFish-only requests work best when you know whether the task needs discovery, rendered page content, or browser interaction. Exact tool names vary by application.
 
 ```text
 Use the multi-provider-research skill.
@@ -503,7 +505,7 @@ Return no more than six bullets. If searches return only adjacent or outdated ma
 
 Treat the generated answer as synthesis. Preserve its cited URLs and use the harness-native page reader to open the underlying sources supporting material claims before final citation.
 
-Research question: What are the principal obligations imposed by the EU AI Act on general-purpose AI model providers?
+Research question: How does Zotero help a student collect sources and create a bibliography? Use its official documentation.
 ```
 
 ### Perplexity Reason
@@ -558,7 +560,7 @@ Research question: Find posts by major AI laboratory leaders discussing model re
 
 ## Exa Connect patterns
 
-On September 3, 2026, the live Exa `dataSources` schema inspected while preparing this guide exposed eight self-serve Connect providers: Fiber, Financial Datasets, Similarweb, Baselayer, Affiliate.com, Particle, Jinko, and Polymarket. Treat this dated list as a routing hint rather than a permanent specification.
+On 3 September 2026, the live Exa `dataSources` schema inspected while preparing this guide exposed eight self-serve Connect providers: Fiber, Financial Datasets, Similarweb, Baselayer, Affiliate.com, Particle, Jinko, and Polymarket. Treat this dated list as a routing hint rather than a permanent specification.
 
 Exa also documents [additional partners](https://exa.ai/docs/reference/agent-api/connect/additional-partners) requiring account enablement.
 
@@ -1017,6 +1019,6 @@ Native-tool permission does not waive a required provider's role. If you make th
 
 ## Portability note
 
-These prompts are portable at the language level, but provider access is not. Each harness may expose integrations through built-in tools, MCP servers, command-line utilities, plugins, extensions, or none at all.
+These prompts are portable at the language level, but provider access is not. Each application may expose integrations through built-in tools, MCP servers, command-line utilities, plugins, extensions, or none at all.
 
 The prompt requires the agent to discover and disclose the tools available in the current session rather than pretend that a named provider is accessible.

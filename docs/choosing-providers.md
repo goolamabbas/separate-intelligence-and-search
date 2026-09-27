@@ -4,7 +4,7 @@ This reference compares practical roles for [Octen](https://octen.ai/), [Exa](ht
 
 These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
 
-**Last substantively reviewed:** September 2026. Provider tools, schemas, availability, and commercial terms can change. Inspect the tools exposed in the current harness before relying on a capability described here.
+**Last substantively reviewed:** September 2026. Provider tools, schemas, availability, and commercial terms can change. Inspect the tools exposed in the current application before relying on a capability described here.
 
 [Choosing External Research Tools for AI Agents](README.md)
 
@@ -56,20 +56,24 @@ Apply provider constraints in this order: explicit inclusions or exclusions, nam
 
 ## Retrieval and provider-side synthesis
 
-A supported provider connection lets the harness-selected model call a provider. It does not automatically make that model the one used inside every provider operation.
+A supported provider connection lets the model selected in your application call a provider. It does not automatically make that model the one used inside every provider operation.
 
 | Operation | Typical boundary |
 | --- | --- |
-| **Search, fetch, or extraction** | The provider returns ranked results or page content. The harness-selected model interprets the evidence and normally writes the final response. |
-| **Answer, reasoning, research, or agent run** | A model or workflow inside the provider may generate prose or structured output before returning it to the harness. |
+| **Search, fetch, or extraction** | The provider returns ranked results or page content. The model selected in your application interprets the evidence and normally writes the final response. |
+| **Answer, reasoning, research, or agent run** | A model or workflow inside the provider may generate prose or structured output before returning it to the application. |
 
 Search and extraction providers may still use machine-learning systems for ranking, rendering, extraction, or classification. The distinction is about who produces the visible analysis or narrative answer.
 
-When the harness-selected model must perform all visible reasoning and synthesis, allow source retrieval and faithful extraction but exclude provider-generated answers. Inspect the selected output mode as well as the tool name: a scrape or fetch tool may also offer generated summaries or freeform answers. Ordinary lookups can default to retrieval and harness synthesis unless the user requests a different approach.
+When the model selected in your application must perform all visible reasoning and synthesis, allow source retrieval and faithful extraction but exclude provider-generated answers. Inspect the selected output mode as well as the tool name: a scrape or fetch tool may also offer generated summaries or freeform answers. Ordinary lookups can default to retrieval and assistant analysis unless the user requests a different approach.
 
-For changing facts, check available cache controls and retain the source’s observation or reporting date. Fetching a page today does not establish that its contents are current. Disclose material freshness uncertainty.
+For changing facts, check available cache controls and retain the source’s observation or reporting date. Fetching a page today does not establish that its contents are current. Disclose important uncertainty about freshness.
 
-When provider-generated synthesis is allowed, require the final response to identify the provider tool and any model or preset exposed in the completed result.
+When provider-generated synthesis is allowed, require the final response to identify the provider tool and any model or preset exposed in the completed result. Check what a parameter actually means: a field named `model_name` can be analytics metadata rather than a model selector.
+
+For example, Firecrawl’s relevance model and Exa’s Dynamic Highlights help select source text. That is different from asking a provider to write the research answer. [Firecrawl’s explanation](https://www.firecrawl.dev/blog/introducing-our-most-accurate-search-yet) · [Exa’s explanation](https://exa.ai/blog/dynamic-highlights)
+
+Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel Deep Research and Task Group; and Firecrawl Agent. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
 
 ## Octen
 
@@ -79,7 +83,7 @@ Use Octen for focused web or news discovery, multi-angle expansion from a self-c
 
 Octen can be accessed through supported integrations such as official provider skills, hosted or local MCP servers, or direct API access. Available capabilities and parameter names can differ by interface. Choose the operation needed, then inspect how the available integration exposes it.
 
-- **Search** handles focused web lookup. Use its news topic when current news is the evidence lane. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
+- **Search** handles focused web lookup. Use its news topic when current news is the evidence role. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
 - **Broad Search** expands one self-contained question into several discovery angles. Preserve the user’s intent and constraints, resolve conversational references using the available context, and fit the question within the current interface’s input limit. Let the provider generate the subqueries. Use targeted follow-ups for remaining gaps; a simple comparison may need only focused searches.
 - **Extract** reads supplied URLs or selected results whose returned text is missing, incomplete, unusable, or stale. Reuse sufficient excerpts or full text before requesting another read. When the full page body is needed, leave the relevance-query option unset if that option returns highlights instead. Use an appropriate supported cache age when freshness matters.
 - **Image Search** and **Video Search** are separate capabilities. Check current access before relying on them.
@@ -133,7 +137,7 @@ Exa Agent is a different layer from ordinary search. Use it for multi-step resea
 
 Ultra delegates research and inference to Exa's own workflow and models. It does not inherit the model selected in your application. It is an Agent effort, separate from the choice of Connect datasets.
 
-**Terms checked September 26, 2026:** Exa documents a default $20 per-run cap with actual usage billing; a run finishing early can cost less. It describes complex runs as typically about 30 minutes, potentially three hours. These are provider descriptions, not timings or quality results measured for this guide. Fixed Agent efforts offer predictable per-request prices when they meet the task. Check applicable Connect charges if adding a dataset. [Ultra documentation](https://exa.ai/docs/agent/agent-ultra.md) · [Current pricing](https://exa.ai/docs/reference/pricing.md)
+**Terms checked 26 September 2026:** Exa documents a default $20 per-run cap with actual usage billing; a run finishing early can cost less. It describes complex runs as typically about 30 minutes, potentially three hours. These are provider descriptions, not timings or quality results measured for this guide. Fixed Agent efforts offer predictable per-request prices when they meet the task. Check applicable Connect charges if adding a dataset. [Ultra documentation](https://exa.ai/docs/agent/agent-ultra.md) · [Current pricing](https://exa.ai/docs/reference/pricing.md)
 
 | Control in the direct API | What it means |
 | --- | --- |
@@ -151,7 +155,7 @@ Exa's [launch benchmarks](https://exa.ai/blog/exa-agent-ultra) are vendor-report
 
 Exa Connect can expose specialized data providers inside an Agent run. Select only the Connect providers needed for the output fields, even when the user has not named a provider. Inspect the current interface’s supported data sources and respect provider and synthesis restrictions. Name the provider-backed fields in the query and `outputSchema`, then inspect the completed run to confirm which provider contributed.
 
-On September 3, 2026, Exa’s self-serve Connect documentation and the live `dataSources` schema inspected for this guide exposed eight providers:
+On 3 September 2026, Exa’s self-serve Connect documentation and the live `dataSources` schema inspected for this guide exposed eight providers:
 
 | Self-serve Connect provider | Use it when you need | Useful fields to request |
 | --- | --- | --- |
@@ -175,7 +179,7 @@ Requesting a Connect provider does not prove that it contributed. Check complete
 - Do not use Agent merely as a more elaborate version of ordinary Search.
 - Do not infer Connect availability from documentation alone.
 - Do not silently replace unavailable provider-backed fields with generic web inference.
-- Do not imply that Exa Agent output was generated by the harness-selected model.
+- Do not imply that Exa Agent output was generated by the model selected in your application.
 
 ## Perplexity
 
@@ -196,7 +200,7 @@ Search is usually the right choice when the objective is source discovery. Ask, 
 
 ### Fast or standard Search?
 
-Choose Perplexity for its fit to the task first, then select its search type. Both types return ranked sources without an AI-written answer; the harness performs later synthesis.
+Choose Perplexity for its fit to the task first, then select its search type. Both types return ranked sources without an AI-written answer; the application performs later synthesis.
 
 | Search type | Suggested use | Search API price per 1,000 requests |
 | --- | --- | --- |
@@ -217,14 +221,14 @@ The Perplexity MCP integration described here distinguishes retrieval from provi
 
 | Tool | What happens |
 | --- | --- |
-| **Search** | The Search API returns ranked results without an AI-written answer; the harness performs any later synthesis |
+| **Search** | The Search API returns ranked results without an AI-written answer; the application performs any later synthesis |
 | **Ask** | The Agent API generates an answer using its `fast` preset |
 | **Reason** | The Agent API performs the comparison or reasoning using its `medium` preset |
 | **Research** | The Agent API produces the investigation using its `high` preset |
 
 Agent API presets contain their own model, instructions, search configuration, tools, and reasoning budget. Dynamic presets can change their underlying model.
 
-A direct Agent API request containing a `model`, `models`, or `preset` field selects a provider-side configuration; it does not inherit the model selected in the harness.
+A direct Agent API request containing a `model`, `models`, or `preset` field selects a provider-side configuration; it does not inherit the model selected in the application.
 
 If the completed result exposes only the preset and not the exact underlying model, report that visibility gap rather than guessing.
 
@@ -246,13 +250,13 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 - Do not call multiple Perplexity modes for the same subquestion without a material reason.
 - Do not treat generated prose as a primary source.
 - Do not copy citations from generated prose without inspecting the underlying source content supporting important claims. Reuse sufficient content already retrieved.
-- Do not imply that Ask, Reason, or Research used the model selected in the harness.
+- Do not imply that Ask, Reason, or Research used the model selected in the application.
 
 ## Parallel
 
 ### Best fit
 
-Parallel currently provides separate **Search** and **Task** capabilities. Use Search for answer-oriented web discovery and retrieval. Use Task when Parallel should perform provider-side research or enrichment rather than merely return sources. The exact integration and tool names vary by harness.
+Parallel currently provides separate **Search** and **Task** capabilities. Use Search for answer-oriented web discovery and retrieval. Use Task when Parallel should perform provider-side research or enrichment rather than merely return sources. The exact integration and tool names vary by application.
 
 ### Search
 
@@ -261,7 +265,7 @@ Parallel currently provides separate **Search** and **Task** capabilities. Use S
 - Reuse the returned session identifier across related Search and Fetch calls so Parallel can preserve context and avoid redundant work.
 - Treat the objective as the question the evidence must answer and the search queries as compact retrieval terms. They serve different purposes.
 
-Parallel Search is useful when the harness needs evidence shaped closely around an explicit objective. It can complement a different provider’s discovery only when the queries or verification role are materially distinct.
+Parallel Search is useful when the application needs evidence shaped closely around an explicit objective. It can complement a different provider’s discovery only when the queries or verification role are materially distinct.
 
 ### Task
 
@@ -277,7 +281,7 @@ These are asynchronous provider-side jobs. Follow the selected interface’s lif
 - Do not treat Search and Task as interchangeable merely because both can research the web.
 - Do not use Task Group for one topic or Deep Research for a batch of independent inputs.
 - Do not invent a `model_name` or processor slug. Supply analytics model metadata only when the exact active model is known from trusted runtime information; change a task processor only as allowed by the live tool instructions and the user’s request.
-- Do not claim that the harness-selected model produced provider-side Task output.
+- Do not claim that the model selected in your application produced provider-side Task output.
 
 ## Firecrawl
 
@@ -349,7 +353,7 @@ Web search is not a substitute for authenticated X data. When a task requires po
 - When broader evidence is permitted, generic web or browser material may be labeled as non-X corroboration; it cannot replace unavailable X-native data.
 - Keep research read-only unless the user separately authorizes posting, replying, following, messaging, or bookmark changes.
 
-X is included here as an optional platform-native evidence lane, not as a general web-research provider.
+X is included here as an optional platform-native evidence role, not as a general web-research provider.
 
 ## Combining providers without duplicating work
 
@@ -365,11 +369,11 @@ Examples of complementary roles include:
 - Firecrawl Map to identify the relevant section of a site, then a bounded Crawl or selected Scrapes;
 - Exa Agent with Fiber for firmographics and Similarweb for traffic fields;
 - Exa Agent with Polymarket for prediction-market odds or price history;
-- web evidence through Exa or Octen and a separate authenticated X evidence lane.
+- web evidence through Exa or Octen and a separate authenticated X evidence role.
 
 Avoid sending the same query or URL through several providers unless independent verification would materially strengthen the result.
 
-If one evidence lane is blocked, disclose the gap, follow the permitted fallback policy, and complete independent permitted work. Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask for clarification only when an unresolved boundary materially affects scope, cost, or data handling. Report contributions and limitations proportionally.
+If one evidence role is blocked, disclose the gap, follow the permitted fallback policy, and complete independent permitted work. Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask for clarification only when an unresolved boundary materially affects scope, cost, or data handling. Report contributions and limitations proportionally.
 
 ## Continue reading
 

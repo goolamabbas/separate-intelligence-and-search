@@ -1,10 +1,10 @@
 # Installing and testing external research providers
 
-This guide explains how to make an external research provider callable inside an AI harness and verify that it returns useful results before installing the `multi-provider-research` routing skill.
+This guide explains how to make an external research provider callable inside an AI application and verify that it returns useful results before installing the `multi-provider-research` routing skill.
 
 The skill is a routing layer. It tells an agent which provider to use and how to preserve evidence, but it does not create provider access.
 
-**Last substantively reviewed:** September 2026. Provider endpoints, authentication methods, and harness configuration formats can change.
+**Last substantively reviewed:** September 2026. Provider endpoints, authentication methods, and application configuration formats can change.
 
 [Choosing External Research Tools for AI Agents](README.md)
 
@@ -52,7 +52,7 @@ A remote MCP server normally requires a server URL and authentication. The provi
 Use a local MCP server when:
 
 - the provider does not offer a suitable remote endpoint;
-- the harness supports only local MCP processes;
+- the application supports only local MCP processes;
 - a pinned local version or direct local control is important.
 
 ### Provider skill
@@ -67,14 +67,14 @@ A marketplace plugin or connector can be the simplest option when it bundles the
 
 Use a supported API or command-line client when the application can call it securely and it supplies the required capability. Inspect its own parameters and authentication requirements; do not copy MCP arguments into a direct API request without checking their shape. Keep credentials out of prompts, public pages, and logs.
 
-Choose the route officially supported by both the provider and the harness that exposes the tools required for the task.
+Choose the route officially supported by both the provider and the application that exposes the tools required for the task.
 
 ## Installation and verification checklist
 
-1. Choose an official plugin, remote MCP, local MCP, provider skill, or command-line integration supported by the harness.
+1. Choose an official plugin, remote MCP, local MCP, provider skill, or command-line integration supported by the application.
 2. Create the required provider account and credential.
-3. Store the credential using the harness’s secret, environment-variable, or credential-management mechanism.
-4. Restart the harness or begin a fresh task when required.
+3. Store the credential using the application’s secret, environment-variable, or credential-management mechanism.
+4. Restart the application or begin a fresh task when required.
 5. Inspect the live tool list and the schemas of the tools you intend to use.
 6. Run one harmless search, fetch, or read-only lookup. A useful first research read can serve as this check; do not add a duplicate probe when access is already established.
 7. Distinguish configuration, reachability, authentication, successful execution, and useful evidence.
@@ -96,16 +96,9 @@ The [prompt library](research-prompts.md) contains a complete native-only prompt
 
 ## A connected tool may use a different model
 
-A supported provider connection lets the harness-selected model call a provider tool. It does not automatically pass the harness’s model selection into that provider.
+Connecting a provider does not pass your selected model into that provider’s own analysis tools. Use the [full explanation and examples](choosing-providers.md#retrieval-and-provider-side-synthesis) to distinguish source retrieval from provider-generated analysis.
 
-| Tool type | Model boundary |
-| --- | --- |
-| **Search, fetch, or extraction** | The provider returns ranked results or page content. The harness-selected model interprets the result and normally writes the answer. The provider may still use internal ranking or extraction models. |
-| **Answer, reasoning, research, or agent** | The provider may run its own model or preset and return generated prose or structured output. The harness-selected model remains the outer orchestrator but is not the only model involved. |
-
-The official Perplexity MCP makes this distinction explicit: Search uses the Search API, while Ask, Reason, and Research use provider-side Agent API presets. Parallel similarly separates its Search MCP from provider-side Task jobs, and Firecrawl exposes retrieval operations separately from its asynchronous Agent. A provider-side model or preset does not inherit the harness model. Inspect the parameter’s purpose: a field named `model_name` may instead be analytics metadata.
-
-If your policy requires the harness-selected model to perform all visible reasoning and synthesis, inspect output modes as well as endpoint names. A retrieval tool can also offer generated summaries or answers. Use:
+If your policy requires the model selected in your application to perform all visible reasoning and synthesis, inspect output modes as well as endpoint names. A retrieval tool can also offer generated summaries or answers. Use:
 
 ```
 Use provider tools only for search, retrieval, extraction, and page reading.
@@ -173,7 +166,7 @@ Omitting the parameter retains standard `web` search. Fast Search is a Search AP
 
 An Agent connection can expose `effort: "ultra"` without exposing every direct API control. Inspect the current effort enum, spending and duration fields, and run lifecycle operations. Do not infer access from a provider's documentation or from a successful Search call.
 
-In the MCP schema inspected on September 26, 2026, `agent_run` accepted `ultra`, `runId`, `previousRunId`, `input.data`, and `input.exclusion`, but exposed neither `budget` nor a stop operation. This is a dated observation about that interface, not a permanent limitation of Exa or all integrations. A subsequent [single Ultra run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) completed through that interface using the documented default cap; custom budget and stop controls were not tested.
+In the MCP schema inspected on 26 September 2026, `agent_run` accepted `ultra`, `runId`, `previousRunId`, `input.data`, and `input.exclusion`, but exposed neither `budget` nor a stop operation. This is a dated observation about that interface, not a permanent limitation of Exa or all integrations. A subsequent [single Ultra run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) completed through that interface using the documented default cap; custom budget and stop controls were not tested.
 
 The [direct API](https://exa.ai/docs/reference/agent-api/create-a-run.md) documents `budget.maxCostDollars` and Ultra's soft `budget.maxDurationSeconds` limit; [Ultra's guide](https://exa.ai/docs/agent/agent-ultra.md) also documents graceful stopping. If your required limit cannot be expressed in the available interface, resolve the access or budget choice before starting. Do not silently use the default $20 Ultra cap, invent unsupported arguments, or treat a prompt as an enforced limit.
 
@@ -195,7 +188,7 @@ These snippets are optional. Merge one into the appropriate section of your exis
 
 ### Portable snippet
 
-Use this version in `AGENTS.md`, `CLAUDE.md`, or an equivalent file when you want harness-neutral wording.
+Use this version in `AGENTS.md`, `CLAUDE.md`, or an equivalent file when you want application-neutral wording.
 
 ```markdown
 ## Provider-aware research
