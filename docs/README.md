@@ -171,6 +171,10 @@ Use regular Exa Search and Fetch as the only research tools and page readers. Do
 
 For specialized datasets, provider-generated research, and complementary-provider workflows, use the [prompt library](research-prompts.md).
 
+#### See a documented research workflow
+
+The [Glamsterdam worked example](https://goolamabbas.github.io/understanding-glamsterdam/method.html) follows two assistants researching an Ethereum upgrade and a third synthesizing their reports. Inspect the recorded provider contributions, recovery from incomplete retrievals, and decisions about conflicting or qualified findings. The case study includes the reports and publication copies of the prompts, and explains their limits; it does not establish that four providers were necessary or independently audit the original tool calls.
+
 ## Judge the answer by its evidence
 
 Successful tool calls do not establish that an answer is correct. Check whether inspected sources support the important claims, whether their dates fit the question, and whether missing evidence could change the conclusion.

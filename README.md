@@ -93,6 +93,14 @@ Start with the application you already use and add a research service when it fi
 
 [Explore free retrieval allowances and regional pricing examples](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each example retains its own source-check date.
 
+## See the approach in practice
+
+Two AI assistants researched Ethereum’s Glamsterdam upgrade using connected evidence providers. A third combined their reports. Explore where the tools filled gaps, where their contributions overlapped, and how the synthesis handled differences.
+
+**[Explore the Glamsterdam worked example ↗](https://goolamabbas.github.io/understanding-glamsterdam/method.html)**
+
+You do not need to reproduce this setup: start with one provider and add another when it fills a specific gap. This is a documented workflow, not a controlled comparison proving that more providers produce better results.
+
 ## Go deeper
 
 - **[Multi-provider-research on GitHub](https://github.com/goolamabbas/multi-provider-research):** the skill package, installation instructions, and routing rules.
