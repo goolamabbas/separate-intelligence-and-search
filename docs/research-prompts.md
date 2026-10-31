@@ -290,7 +290,7 @@ Use Exa Search as the only external discovery provider and select the specialize
 
 - professional profiles: `category:people` in regular Search, or the `people` category in Advanced Search when exposed;
 - companies: `category:company` in regular Search, or the `company` category in Advanced Search when exposed;
-- working code examples: a code-specific semantic query and the Advanced Search `github` category when exposed;
+- working code examples: a code-specific semantic query, optionally restricted to relevant repository or documentation domains; do not rely on the deprecated `github` category;
 - current news: a news-specific query with the Advanced Search `news` category and date controls when exposed.
 
 Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. Keep profile, company, code, and news evidence separate from inference.
@@ -650,6 +650,8 @@ Research question: Find current offers for laptops with at least 32 GB of RAM, a
 ```
 
 ### Particle
+
+Use this pattern when Particle’s additional analytics or structured fields are required, or when you specifically want Particle-backed evidence. For ordinary episode discovery, transcript summaries, or quotations, use [Exa Search and Fetch](#exa-search-and-exa-fetch); see [podcast retrieval guidance](choosing-providers.md#podcast-transcripts-through-search).
 
 ```text
 Use the multi-provider-research skill.

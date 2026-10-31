@@ -27,11 +27,12 @@ These services overlap, but they are not interchangeable. Choose according to th
 
 | If you need… | Start with… |
 | --- | --- |
+| Finding an official site, documentation page, or familiar destination URL | **Octen Pulse** |
 | A focused web or news lookup | **Octen Search** |
 | Several distinct research angles requiring broader discovery | **Octen Broad Search** |
 | Web images or relevant moments in videos | **Octen Image Search or Video Search**, when callable |
 | Semantically precise web discovery | **Exa Search** |
-| Exact domains, dates, categories, text, or subpage controls | **Exa Advanced Search** |
+| Publication-date, domain, category, or content controls | **Exa Advanced Search** |
 | Ranked URLs or recent-news leads without a generated answer | **Perplexity Search** |
 | A quick, focused factual answer or concise cited explanation | **Perplexity Ask** |
 | A comparison or decision analysis against explicit criteria using current web evidence | **Perplexity Reason** |
@@ -71,7 +72,7 @@ For changing facts, check available cache controls and retain the source’s obs
 
 When provider-generated synthesis is allowed, require the final response to identify the provider tool and any model or preset exposed in the completed result. Check what a parameter actually means: a field named `model_name` can be analytics metadata rather than a model selector.
 
-For example, Firecrawl’s relevance model and Exa’s Dynamic Highlights help select source text. That is different from asking a provider to write the research answer. [Firecrawl’s explanation](https://www.firecrawl.dev/blog/introducing-our-most-accurate-search-yet) · [Exa’s explanation](https://exa.ai/blog/dynamic-highlights)
+For example, search relevance models help select source text. That is different from asking a provider to write the research answer.
 
 Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel Deep Research and Task Group; and Firecrawl Agent. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
 
@@ -83,6 +84,7 @@ Use Octen for focused web or news discovery, multi-angle expansion from a self-c
 
 Octen can be accessed through supported integrations such as official provider skills, hosted or local MCP servers, or direct API access. Available capabilities and parameter names can differ by interface. Choose the operation needed, then inspect how the available integration exposes it.
 
+- **Pulse** finds likely destination URLs, such as official sites, documentation, and help pages. Lite returns URLs and titles; Standard can add highlights and page content. Use ordinary Search for fresh pages, news, filtered queries, or broader discovery. A candidate URL alone is not evidence of what the page says. [Pulse documentation](https://docs.octen.ai/capabilities/pulse-search)
 - **Search** handles focused web lookup. Use its news topic when current news is the evidence role. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
 - **Broad Search** expands one self-contained question into several discovery angles. Preserve the user’s intent and constraints, resolve conversational references using the available context, and fit the question within the current interface’s input limit. Let the provider generate the subqueries. Use targeted follow-ups for remaining gaps; a simple comparison may need only focused searches.
 - **Extract** reads supplied URLs or selected results whose returned text is missing, incomplete, unusable, or stale. Reuse sufficient excerpts or full text before requesting another read. When the full page body is needed, leave the relevance-query option unset if that option returns highlights instead. Use an appropriate supported cache age when freshness matters.
@@ -90,7 +92,9 @@ Octen can be accessed through supported integrations such as official provider s
 
 ### What it contributes
 
-Plain Search is useful for a bounded lookup; Broad Search is useful when several discovery angles are needed. Requesting page text alongside search can reduce separate extraction calls. As checked on 13 September 2026, Octen’s pricing page includes full content for the first ten results per search at no additional content charge; results beyond ten cost $0.50 per 1,000. Search calls remain chargeable, and Broad Search may execute several of them. Start with only as many results and sub-queries as the evidence needs. [Current pricing](https://docs.octen.ai/overview/pricing.md)
+Plain Search is useful for a bounded lookup; Broad Search is useful when several discovery angles are needed. Requesting page text alongside search can reduce separate extraction calls. For Web Search and Broad Search, Octen’s pricing page includes full content for the first ten results per search at no additional content charge; results beyond ten cost $0.50 per 1,000. Search calls remain chargeable, and Broad Search may execute several of them. Start with only as many results and sub-queries as the evidence needs. [Current pricing](https://docs.octen.ai/overview/pricing.md)
+
+**Pulse pricing checked 31 October 2026:** Lite costs $0.10 per 1,000 calls and Standard $0.20. Standard includes full content for the first result; additional full-content results cost $0.50 per 1,000. Pulse shares Web Search’s throughput limit. These allowances differ from Web Search and Broad Search.
 
 When additional source context is needed, explicitly request full content using the available interface’s controls rather than relying on defaults. Inspect what actually returned: a full-content request does not guarantee that every page was retrieved, that its text is complete, or that it is fresh. Reuse sufficient excerpts or full text without another read. [Octen documentation](https://docs.octen.ai/)
 
@@ -107,10 +111,23 @@ Use Exa when the task benefits from semantic source discovery, precise search co
 ### Search, Advanced Search, and Fetch
 
 - **Regular Search** is the normal starting point for semantic discovery and independent cross-checking. Convert a terse request into a richer description of the ideal sources without changing the user’s intent or constraints.
-- **Advanced Search** is appropriate when exact domains, publication or crawl dates, categories, freshness, text requirements, geographic controls, or subpage limits materially affect the result.
+- **Advanced Search** is appropriate when supported domain, publication-date, category, freshness, geographic, or subpage controls materially affect the result.
 - **Fetch** reads known URLs or selected Exa results when search highlights are insufficient.
 
 Regular Search should remain the default. Advanced Search is not inherently better; use it when its additional controls solve a specific retrieval need.
+
+### Auto or Lite?
+
+**Checked 31 October 2026:** Auto is the general-purpose default. Lite is a lower-cost option when cached page content and its smaller set of controls meet the task.
+
+| Search mode | Use when | Price per 1,000 requests |
+| --- | --- | --- |
+| `auto` | You need the general-purpose search path or controls unavailable in Lite | $7 |
+| `lite` | Cost or latency matters and cached content is sufficient | $4 |
+
+Both prices include up to ten results; additional results cost $1 per 1,000. Lite never fetches pages live and rejects unsupported options, including content-freshness controls. If fresh page content is required, use Auto with supported freshness controls or retrieve the source separately. `fast` and `instant` are legacy choices; use Lite for new requests where it fits. Search mode and the regular/Advanced tool interface are separate choices; available controls depend on the integration.
+
+Do not use `startCrawlDate` or `endCrawlDate` to enforce freshness: Exa no longer applies them. Publication-date filters constrain publication dates, not when content was last retrieved. Inspect response warnings and notices for ignored options or relaxed search constraints, and verify that the returned sources still meet the task. [Search documentation](https://exa.ai/docs/search/quickstart) · [Changelog](https://exa.ai/docs/changelog)
 
 ### Specialized search indexes
 
@@ -120,10 +137,16 @@ Exa documents task-specific verticals for different evidence types. These are se
 | --- | --- | --- |
 | [**People Search**](https://exa.ai/docs/reference/verticals/people) | Professional profiles by role, skills, company, location, or seniority | Use `category:people` in regular Search, or the `people` category in Advanced Search when exposed |
 | [**Company Search**](https://exa.ai/docs/reference/verticals/company) | Company discovery by industry, funding stage, headcount, geography, or technology | Use `category:company` in regular Search, or the `company` category in Advanced Search when exposed |
-| [**Code Search**](https://exa.ai/docs/reference/verticals/code) | Working examples across GitHub, documentation, and developer discussions | Use a code-specific semantic query and the Advanced Search `github` category when appropriate |
+| [**Code Search**](https://exa.ai/docs/reference/verticals/code) | Working examples across GitHub, documentation, and developer discussions | Use a code-specific semantic query, optionally restricted to relevant repository or documentation domains; the `github` category is deprecated |
 | [**News Search**](https://exa.ai/docs/reference/verticals/news) | Current news with semantic and date-aware filtering | Use a news-specific query with the `news` category and date controls when exposed |
 
 Inspect the strongest returned sources before making material claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. A search category helps discovery; it does not by itself prove that a profile, company, code example, or news report is current or authoritative.
+
+### Podcast transcripts through Search
+
+Exa’s ordinary search index now includes podcast episodes with full transcripts, speaker labels, and timestamps, with no additional data surcharge. Use Search and Fetch for episode discovery, transcript summaries, or quotations. To restrict discovery to this collection, use `includeDomains: ["exa.ai/library/podcast"]` where supported; this is a domain filter, not a new category.
+
+Check the episode date, speaker, and transcript passage before quoting. Use Particle through Agent only when its additional analytics or structured fields are needed, or when explicitly requested. Ordinary transcript retrieval does not require an Agent run. [Podcast search and API example](https://exa.ai/library/podcast) · [29 October announcement](https://exa.ai/blog/podcast-search)
 
 ### Agent and Connect
 
