@@ -70,7 +70,15 @@ For other choices, use the [provider reference](https://goolamabbas.github.io/se
 
 ### 2. Add the routing skill
 
-Add the complete `multi-provider-research` skill folder using the [installation instructions](https://github.com/goolamabbas/multi-provider-research#install). The [beginner walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/#2-add-the-research-routing-skill) includes a copyable installation request and the verified macOS setup.
+Ask your coding agent with local file access:
+
+```text
+Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
+```
+
+Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. Provider connections are separate.
+
+Prefer to install it yourself? Follow the [manual installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
 
 The skill supplies instructions; it does not install or pay for the provider.
 

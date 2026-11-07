@@ -26,8 +26,12 @@ The TinyFish plugin supplies tools. The separate `multi-provider-research` skill
 In a ChatGPT desktop task with local file access, you can ask:
 
 ```text
-Install the current release of multi-provider-research using the release ZIP and the instructions at https://github.com/goolamabbas/multi-provider-research#install. On this macOS desktop setup, install it at ~/.agents/skills/multi-provider-research. Back up any existing version before replacing the complete folder, and confirm the installed files match the release.
+Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
+
+Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. Provider connections are separate.
+
+For the personal desktop setup described here, add “for all my projects” to the request.
 
 This is an installation request, not a research prompt. The recorded research run used v0.4.1; v0.4.2 changed packaging and maintenance documentation with no intended routing-policy change. See the [changelog](https://github.com/goolamabbas/multi-provider-research/blob/main/CHANGELOG.md).
 

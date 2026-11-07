@@ -78,7 +78,7 @@ Choose the route officially supported by both the provider and the application t
 5. Inspect the live tool list and the schemas of the tools you intend to use.
 6. Run one harmless search, fetch, or read-only lookup. A useful first research read can serve as this check; do not add a duplicate probe when access is already established.
 7. Distinguish configuration, reachability, authentication, successful execution, and useful evidence.
-8. Once provider access is working, follow the [current skill installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install).
+8. Once provider access is working, follow the [current skill installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install). These now include a one-line request your coding agent can follow to install the skill, plus a manual alternative.
 
 A configuration entry proves only that the setup was recorded. It does not prove that the provider is reachable, authenticated, callable in the current task, or returning useful evidence.
 

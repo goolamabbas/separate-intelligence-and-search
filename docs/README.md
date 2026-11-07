@@ -139,6 +139,14 @@ For a complete first task, [try ChatGPT with TinyFish](https://goolamabbas.githu
 
 The `multi-provider-research` skill packages the detailed routing rules so your prompt can stay short. It works with any available subset of supported providers, including one.
 
+To install, paste this into your coding agent with local file access:
+
+```text
+Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
+```
+
+Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. Provider connections are separate. For manual setup, use the [installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
+
 1. Connect and test at least one provider.
 2. Follow the [current installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install) for the complete skill package.
 3. Start a fresh task so the application can discover it.
