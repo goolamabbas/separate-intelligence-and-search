@@ -1,18 +1,16 @@
 # Choose Your AI. Choose How It Searches.
 
-A practical guide to choosing your AI assistant and its search tools separately—with the multi-provider-research skill to help them work together.
+A practical guide to choosing useful sources for the AI assistant you already use.
 
-You may already use ChatGPT or Claude to think through a problem, write something, or find information. When an assistant searches for you, it is easy to think of the model and the search tool as one thing.
+**You’ve invested in an AI assistant. It’s worth investing a little in the information it can access.** That can begin with time spent connecting a useful provider and learning to inspect its sources; it need not mean another paid subscription.
 
-But **the intelligence that works with information and the tools that find that information are separate parts of the setup**. In an application that supports external tools, you can choose them separately: use the models and workspace you like, then connect search and retrieval services that suit your needs.
+When we use an AI assistant, the model and its search tools can feel like one service. But they perform different jobs. The model interprets your question, reasons with the information it receives and writes the answer. Search and retrieval tools find sources and bring back their contents.
 
-That gives you more freedom to choose where your assistant gets its evidence. It can also open up useful combinations at different price points.
+Your application is the workspace around these parts. In a compatible application, you can choose a model you like and connect providers that suit your needs. The application determines which models and connections are available; choosing a model does not automatically unlock every tool.
 
-I built the **multi-provider-research** skill to help an assistant work with those connected tools. You can start with one provider; you do not need a collection of subscriptions.
+Start with one question and one suitable provider. Try the sources it returns before deciding whether you need anything more.
 
-**[Explore the skill](https://github.com/goolamabbas/multi-provider-research)** · **[See how to get started](#start-with-one-skill-and-one-provider)** · **[Read the full guide](docs/README.md)**
-
-![Intelligence and search are separate choices. The multi-provider-research skill helps your assistant use connected tools.](assets/intelligence-and-search.png)
+**[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
 ## The pieces, in plain language
 
@@ -34,15 +32,73 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 You might like your assistant's writing and reasoning but want another way to find technical documentation, explore a topic from several angles, or read a webpage. A connected provider gives it another route to the information it needs, within the same workspace.
 
-For example, when comparing two products, a search provider can find their official documentation, a retrieval tool can bring back the relevant pages, and your chosen assistant can use that evidence to explain the tradeoffs. Some providers also offer their own generated analysis; the skill helps distinguish that from retrieving sources for your assistant to interpret.
+For example, when comparing two products, a search provider can find their official documentation, a retrieval tool can bring back the relevant pages, and your chosen assistant can use that evidence to explain the tradeoffs. Some providers also offer their own generated analysis. That is different from retrieving sources for your assistant to interpret.
 
 You can keep a setup that works for you and add a capability when you need it. You can also try a different research provider without choosing a new model solely for its bundled search. Better results still depend on the task, the sources, and how the assistant uses them.
 
 This is useful for more than recent news. Research also means finding older documents, checking an original source, and distinguishing what the evidence supports from what remains uncertain.
 
-## What the skill adds
+## Three questions to try
 
-Connecting tools gives your assistant access to them. The **multi-provider-research** skill supplies instructions for deciding how to use them in a research task.
+These are suggested uses adapted for everyday work, not searches performed for this guide. Replace the brackets with your details. Each starts with a connected search provider; specialist data is an optional extension.
+
+### Research a company before investing
+
+Bring together results, filings and management commentary to examine a thesis. **Requires:** search and page retrieval that can reach original company or regulatory sources. Exa documents financial material in its [data index](https://exa.ai/docs/search/data/overview); other providers may also find the public documents you need.
+
+```text
+Use [my connected search provider] to research [company and ticker] against this thesis: [my thesis]. Compare its latest results with the same period last year: revenue, margins, cash flow and management outlook. Prefer company filings and original announcements. Link sources, label reporting periods, separate reported facts from interpretation, and identify evidence for and against the thesis. Flag missing or incomparable data.
+```
+
+### Understand consumers and messages to test
+
+Explore consumer needs and how competing brands present themselves. **Requires:** public-web search and page retrieval. Public comments can suggest motivations; they do not establish how common a view is or who a brand’s customers are.
+
+```text
+Use [my connected search provider] to explore consumer needs for [product category] in [market] and compare how [two brands] describe their products. Find recurring motivations, frustrations and buying occasions in accessible public sources. Link and date the evidence, distinguish brand claims from consumer comments, and note sampling gaps. Suggest three audience and message hypotheses to validate through customer research or campaign tests. Do not infer audience demographics or purchase intent from web mentions.
+```
+
+For audience estimates beyond public web sources, a separate data service may help. [Similarweb through Exa Connect](https://exa.ai/docs/agent/connect/similarweb) offers **estimated** website demographics, audience overlap and traffic sources. Connect is accessed through **Exa Agent**, which researches and synthesises results for your assistant to review; ordinary Exa Search alone does not supply this partner data. Check [Connect access and additive charges](https://exa.ai/docs/agent/connect/overview) before requesting it.
+
+### Find businesses that could become customers
+
+Build an initial list of accounts worth investigating. **Requires:** company and public professional-source search, such as [Exa’s company and people search](https://exa.ai/docs/search/data/companies-people). A relevant role is not evidence that someone is currently buying.
+
+```text
+Use [my connected search provider] to find five businesses in [market] that match [customer criteria] for [our product]. For each, link evidence of fit and any relevant recent development, with dates. Suggest likely buying roles and explain your reasoning. Separate verified facts from inferred fit and roles; do not claim purchase intent or name a contact without supporting public evidence. Flag gaps and suggest what to validate next.
+```
+
+Prefer a technical question or an interview? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
+
+## Start with a question and one provider
+
+### 1. Choose a question and check compatibility
+
+Pick a question you care about, perhaps one of the examples above. Choose a relevant provider that your AI application can connect to. Check the supported connection and the tools it exposes before creating a paid account. You do not need local skill support to use a provider.
+
+Use the [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/) to match the question to a capability. Start with tools you already have if they are sufficient.
+
+### 2. Connect the provider
+
+Follow the provider’s official instructions for your application. A connector, plugin or MCP server gives the application access to external tools; the available routes depend on the application and plan.
+
+The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. For a concrete example, [try ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The walkthrough includes a suggested first prompt and a separately labelled recorded run.
+
+### 3. Ask a question and inspect the sources
+
+Replace the brackets below with your details, or use one of the examples above:
+
+```text
+Use [my connected provider] to answer [my question]. Retrieve original sources and have this assistant analyse them. Link the evidence, give relevant dates, distinguish facts from inference, and flag anything you cannot verify. If the provider is unavailable, explain the gap.
+```
+
+Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.
+
+If this meets your needs, keep the setup simple. Add another provider when a specific gap calls for it.
+
+## What the optional skill adds
+
+After trying a provider, you may want reusable guidance for future research. Connecting tools gives your assistant access to them. The **multi-provider-research** skill supplies instructions for deciding how to use them in a research task.
 
 I built it to help an assistant:
 
@@ -58,17 +114,9 @@ It is an instruction package, so its use depends on your application's support f
 
 **[Get multi-provider-research on GitHub →](https://github.com/goolamabbas/multi-provider-research)**
 
-## Start with one skill and one provider
+### Add it when useful
 
-### 1. Check your application, then connect one provider
-
-**Want a worked example?** [Follow the ChatGPT + TinyFish beginner walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) to connect one provider, add the skill, and inspect a real comparison of free video-meeting tools.
-
-Choose an application that supports both connected tools and local skills. Connect one provider that fits your first question, then confirm it can return useful sources. The [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) shows one complete path.
-
-For other choices, use the [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/) and [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/). You do not need to connect every provider.
-
-### 2. Add the routing skill
+A skill is a reusable package of instructions. Installing this optional skill requires an application that supports it and the appropriate file access; those are separate from the requirements for connecting a provider.
 
 Ask your coding agent with local file access:
 
@@ -76,28 +124,13 @@ Ask your coding agent with local file access:
 Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
 
-Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. Provider connections are separate.
+Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. For manual setup, follow the [installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
 
-Prefer to install it yourself? Follow the [manual installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
-
-The skill supplies instructions; it does not install or pay for the provider.
-
-### 3. Try a real question
-
-Replace the brackets below with your own details:
-
-```text
-Use the multi-provider-research skill.
-
-Use [my connected provider] to compare [tool A] and [tool B] for [my use case], using current official sources.
-Keep all analysis and writing in this assistant. Explain the relevant tradeoffs and link to the evidence.
-```
-
-Look for a useful answer with supporting sources, a clear account of which tools contributed, and an honest explanation of missing evidence. If that setup meets your needs, you can keep it simple. Add another provider when you have a specific reason.
+Once the application can load it, ask the assistant to use `multi-provider-research` with your question. The skill does not install provider connections or supply paid access, and it is not supported by every AI application.
 
 ## This freedom of choice can also help with cost
 
-Start with the application you already use and add a research service when it fills a useful gap.
+Start with the application you already use. Provider charges are separate from your AI subscription. A free allowance or small credit balance may support initial basic searches, depending on the provider and tool. Premium datasets and deeper research can cost more. Check the provider’s current pricing before adding funds or requesting paid data.
 
 [Explore free retrieval allowances and regional pricing examples](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each example retains its own source-check date.
 
@@ -116,4 +149,4 @@ You do not need to reproduce this setup: start with one provider and add another
 - **[My newsletter introduction](https://paragraph.com/@yusufg-ai-web3-curated-topics/a-practical-guide-to-choosing-external-research-tools-for-ai-agents):** more context on the approach.
 - **[Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api):** a benchmark resource to explore alongside your own task-based testing.
 
-**Start with [the skill](https://github.com/goolamabbas/multi-provider-research#install), connect one provider, and try a question you care about.**
+**Start with a question, connect one suitable provider, and inspect the evidence. Add the optional skill when reusable guidance would help.**

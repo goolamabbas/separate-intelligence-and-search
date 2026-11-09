@@ -8,7 +8,7 @@ External providers can add precise discovery controls, specialized datasets, bat
 
 This guide takes you through three decisions: **what evidence to obtain, how to obtain it reliably, and whether it supports the answer.** The provider reference, connection instructions, and prompt cookbook supply the details when you need them.
 
-**Last substantively reviewed:** September 2026. Provider tools, schemas, availability, and commercial terms can change.
+**Starting path revised:** 9 November 2026. Provider reference material retains its September 2026 review scope. Provider tools, schemas, availability, and commercial terms can change.
 
 [← Start with the introduction](../README.md)
 
@@ -23,11 +23,16 @@ This guide takes you through three decisions: **what evidence to obtain, how to 
 
 ## Choose your path
 
+Your application is the workspace, the model interprets your question and writes the answer, and a connected provider supplies sources or other research capabilities. Check which connections your application supports before choosing or paying for a provider.
+
 For a first setup, follow the guide in order:
 
-1. **Choose:** decide what your question needs and which tools are permitted.
-2. **Connect:** test one suitable provider, then use a prompt or add the routing skill.
-3. **Evaluate:** check the supporting sources and any important gaps before relying on the answer.
+1. **Choose:** start with a question you care about and a relevant provider compatible with your application.
+2. **Connect and try:** connect that provider and ask it a useful question. No routing skill is required.
+3. **Evaluate:** open supporting sources and check dates, claims and important gaps.
+4. **Optionally add guidance:** install the routing skill if your application supports it and you want reusable research instructions.
+
+For a starting question, try the introduction’s [company research, consumer marketing and B2B examples](https://goolamabbas.github.io/separate-intelligence-and-search/#examples). They are suggested uses with copyable prompts, not recorded searches.
 
 Already connected? Try the [compact prompt](#try-it-first-a-compact-prompt-prefix) or [add the routing skill](#use-the-reusable-routing-skill).
 
@@ -136,6 +141,8 @@ Add provider or synthesis restrictions when they matter. The prompt library cont
 ### Use the reusable routing skill
 
 For a complete first task, [try ChatGPT with TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The walkthrough includes setup instructions, the actual comparison, and what was verified.
+
+This step is optional. Provider connections work independently of the skill. Installation requires an application with compatible skill support and appropriate file access; the skill supplies neither connections nor paid provider access.
 
 The `multi-provider-research` skill packages the detailed routing rules so your prompt can stay short. It works with any available subset of supported providers, including one.
 

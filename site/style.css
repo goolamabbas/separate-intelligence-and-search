@@ -7,3 +7,13 @@
 /* Optional case study follows setup without interrupting the beginner path. */
 .worked-example{border:1px solid var(--line);border-radius:5px;padding:32px;margin-bottom:40px}.worked-example h2{font:36px/1.2 Georgia,serif;margin:12px 0 20px}.worked-example .prose{max-width:780px}.worked-example .prose p:last-child{font-size:13px;color:var(--muted)}
 @media(max-width:480px){.worked-example{padding:24px}.worked-example h2{font-size:30px}}
+
+/* Starting path: retain the existing palette and readable, single-column examples. */
+.idea-text{display:block;max-width:850px}.idea-text .prose{max-width:760px}
+.terms-grid{grid-template-columns:repeat(4,1fr)}
+.examples>.prose{max-width:850px}.examples h2{max-width:700px}
+.examples h3{border-top:1px solid var(--line);padding-top:28px;margin-top:32px;font:28px/1.3 Georgia,serif}
+.copy-example{background:var(--green);color:white;border:0;border-radius:3px;padding:8px 14px;cursor:pointer;font-size:12px}
+.example-copy-status{font-size:12px;min-height:20px}
+@media(max-width:800px){.terms-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.masthead{flex-wrap:wrap}.masthead nav{flex-wrap:wrap}.masthead nav a:first-child{display:block}}

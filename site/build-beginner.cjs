@@ -38,7 +38,7 @@ let html = markdown.parse(body);
 let promptCount = 0;
 html = html.replace(/<pre><code(?: class="[^"]*")?>([\s\S]*?)<\/code><\/pre>/g, (_, code) => {
   const i = ++promptCount;
-  const label = ['installation request', 'research prompt'][i-1] || 'example';
+  const label = ['suggested research prompt', 'recorded research prompt', 'installation request'][i-1] || 'example';
   return `<div class="prompt-block"><div class="prompt-bar"><span>COPYABLE ${label.toUpperCase()}</span><button type="button" data-copy="prompt-${i}" aria-label="Copy ${label} ${i}">Copy ${label} <span aria-hidden="true">⧉</span></button></div><pre id="prompt-${i}"><code>${code}</code></pre><p class="copy-status" role="status" aria-live="polite"></p></div>`;
 });
 let tableCount = 0;

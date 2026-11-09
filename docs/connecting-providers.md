@@ -1,8 +1,10 @@
 # Installing and testing external research providers
 
-This guide explains how to make an external research provider callable inside an AI application and verify that it returns useful results before installing the `multi-provider-research` routing skill.
+This guide explains how to make an external research provider callable inside an AI application and verify that it returns useful results without requiring the optional `multi-provider-research` routing skill.
 
-The skill is a routing layer. It tells an agent which provider to use and how to preserve evidence, but it does not create provider access.
+Choose a provider for one useful question, then check that your application supports the required connection and tools before paying. Provider charges are separate from your AI subscription; check current pricing for the operation you intend to use.
+
+The optional skill is a routing layer. It tells an agent which provider to use and how to preserve evidence, but it does not create provider access.
 
 **Last substantively reviewed:** September 2026. Provider endpoints, authentication methods, and application configuration formats can change.
 
@@ -25,7 +27,7 @@ The skill is a routing layer. It tells an agent which provider to use and how to
 
 **Start with a worked example:** [ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) covers the documented plugin setup, the verified personal skill installation, and a successful Search/Fetch comparison.
 
-The skill works with any available subset of supported providers, including one. Connect a provider that fits your first task, verify it, and add others only when a distinct need arises.
+You can try a provider without installing the routing skill. Connect a provider that fits your first task, verify it, and add others only when a distinct need arises.
 
 Use providers that are callable, permitted, and relevant. A required provider must be attempted for its assigned role; “only” or “exactly” restricts the permitted set. If a required provider is unavailable, report the gap and follow the stated fallback policy.
 
@@ -78,7 +80,7 @@ Choose the route officially supported by both the provider and the application t
 5. Inspect the live tool list and the schemas of the tools you intend to use.
 6. Run one harmless search, fetch, or read-only lookup. A useful first research read can serve as this check; do not add a duplicate probe when access is already established.
 7. Distinguish configuration, reachability, authentication, successful execution, and useful evidence.
-8. Once provider access is working, follow the [current skill installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install). These now include a one-line request your coding agent can follow to install the skill, plus a manual alternative.
+8. **Optional:** once provider access is working and you have inspected its sources, follow the [current skill installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install). Installing the skill requires compatible skill support and file access, not just a provider connection. The instructions include a one-line request your coding agent can follow to install the skill, plus a manual alternative.
 
 A configuration entry proves only that the setup was recorded. It does not prove that the provider is reachable, authenticated, callable in the current task, or returning useful evidence.
 

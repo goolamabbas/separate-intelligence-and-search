@@ -142,6 +142,8 @@ Exa documents task-specific verticals for different evidence types. These are se
 
 Inspect the strongest returned sources before making material claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. A search category helps discovery; it does not by itself prove that a profile, company, code example, or news report is current or authoritative.
 
+<a id="podcast-transcripts-through-search"></a>
+
 ### Podcast transcripts through Search
 
 Exa’s ordinary search index now includes podcast episodes with full transcripts, speaker labels, and timestamps, with no additional data surcharge. Use Search and Fetch for episode discovery, transcript summaries, or quotations. To restrict discovery to this collection, use `includeDomains: ["exa.ai/library/podcast"]` where supported; this is a domain filter, not a new category.

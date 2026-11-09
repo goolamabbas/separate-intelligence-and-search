@@ -6,7 +6,7 @@ const out = path.join(__dirname, '..', '_site');
 const base = new URL('https://goolamabbas.github.io/separate-intelligence-and-search/');
 const pages = [
   ['guide/', 'Guide overview'],
-  ['guide/tinyfish-beginner/', 'Start: ChatGPT + TinyFish'],
+  ['guide/tinyfish-beginner/', 'Example: ChatGPT + TinyFish'],
   ['guide/choosing-providers/', 'Provider reference'],
   ['guide/connecting-providers/', 'Connect & install'],
   ['guide/research-prompts/', 'Prompt library'],
@@ -42,7 +42,7 @@ function visit(dir) {
       html = html.replace('<article>', `<details class="mobile-navigation"><summary>Explore the guide <span>+</span></summary><nav aria-label="Guide pages">${nav}</nav></details><article>`);
     }
     if (current === 'index.html') {
-      html = html.replace('<a href="#idea">The idea</a>', `<a href="${base.href}guide/tinyfish-beginner/">Start here</a><a href="${base.href}guide/costs/">Costs</a>`);
+      html = html.replace('<a href="#idea">The idea</a>', `<a href="#start">Start here</a><a href="${base.href}guide/costs/">Costs</a>`);
     }
     // All internal navigation stays inside this build, including a localhost preview.
     html = html.replace(/<a\b([^>]*\bhref="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g, (whole,attrs,href,content) => {
