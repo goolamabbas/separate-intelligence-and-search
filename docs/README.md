@@ -32,7 +32,7 @@ For a first setup, follow the guide in order:
 3. **Evaluate:** open supporting sources and check dates, claims and important gaps.
 4. **Optionally add guidance:** install the routing skill if your application supports it and you want reusable research instructions.
 
-For a starting question, try the introduction’s [company research, consumer marketing and B2B examples](https://goolamabbas.github.io/separate-intelligence-and-search/#examples). They are suggested uses with copyable prompts, not recorded searches.
+For a starting question, try the introduction’s [creative-project, company research, consumer marketing and B2B examples](https://goolamabbas.github.io/separate-intelligence-and-search/#examples). They are suggested uses with copyable prompts, not recorded searches.
 
 Already connected? Try the [compact prompt](#try-it-first-a-compact-prompt-prefix) or [add the routing skill](#use-the-reusable-routing-skill).
 

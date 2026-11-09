@@ -38,9 +38,17 @@ You can keep a setup that works for you and add a capability when you need it. Y
 
 This is useful for more than recent news. Research also means finding older documents, checking an original source, and distinguishing what the evidence supports from what remains uncertain.
 
-## Three questions to try
+## Four questions to try
 
-These are suggested uses adapted for everyday work, not searches performed for this guide. Replace the brackets with your details. Each starts with a connected search provider; specialist data is an optional extension.
+These are suggested uses for creative interests, personal learning and work, not searches performed for this guide. Replace the brackets with your details. Each starts with a connected search provider; specialist data is an optional extension.
+
+### Explore ideas for a creative project
+
+Developing a short film or essay? Interviews with people who have tackled a similar theme or creative challenge can reveal different approaches and the choices behind them. **Requires:** search and page retrieval. Ordinary web search can find published interviews; a provider with [searchable podcast transcripts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/#podcast-transcripts-through-search) may also find relevant passages within episodes. Coverage and timestamps vary by provider and source.
+
+```text
+Use [my connected search provider] to find firsthand interviews with people who have worked on [theme or creative challenge], to help me develop [my project]. Find three different perspectives and explain the creative choices, motivations or lessons each person describes. Prefer original interviews or transcripts. Include names, source links and dates, plus timestamps where available. Distinguish what the interviewees actually said from your suggestions for my project, and flag anything you cannot verify.
+```
 
 ### Research a company before investing
 
@@ -68,7 +76,7 @@ Build an initial list of accounts worth investigating. **Requires:** company and
 Use [my connected search provider] to find five businesses in [market] that match [customer criteria] for [our product]. For each, link evidence of fit and any relevant recent development, with dates. Suggest likely buying roles and explain your reasoning. Separate verified facts from inferred fit and roles; do not claim purchase intent or name a contact without supporting public evidence. Flag gaps and suggest what to validate next.
 ```
 
-Prefer a technical question or an interview? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
+Want to go further? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
 
 ## Start with a question and one provider
 

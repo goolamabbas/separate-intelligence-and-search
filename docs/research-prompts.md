@@ -30,6 +30,8 @@ Provider and operation names describe the intended capabilities, not a required 
 
 ## Start here: choose a pattern
 
+For a creative starting point without the optional skill, [explore ideas for a creative project through firsthand interviews](https://goolamabbas.github.io/separate-intelligence-and-search/#creative-project). The introduction has a copyable prompt for comparing practitioners’ perspectives and tracing them back to original sources.
+
 Start with **Minimum sufficient provider set** for everyday research. Use **Common one-provider patterns** for a restricted provider, **Exa Connect patterns** for specialized datasets, or **Complementary-provider patterns** for distinct roles.
 
 **Flexible routing and provider audits** contains advanced patterns. The **General-purpose fill-in template** lets you specify required, optional, and excluded providers.
