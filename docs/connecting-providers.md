@@ -154,6 +154,12 @@ env_http_headers = {"x-api-key" = "EXA_API_KEY" }
 
 After changing an MCP configuration, fully restart the client or start a fresh task. Verify that every requested tool is visible and callable.
 
+### Check Exa Library content controls
+
+Ordinary Exa Search can retrieve Library records; accessing a collection does not itself require Agent or Connect. Check whether your current interface exposes domain/category filters, search-time text and structured response fields. Direct API examples are not connector schemas.
+
+For Places, request text during Search because later Fetch is unreliable. The direct API uses `contents.text`; the Advanced Search interface inspected on 10 November 2026 exposes `textMaxCharacters`, while regular Search exposes no explicit content option. Use the supported control and inspect the returned text. If the required content is unavailable, report the gap rather than inventing an argument. A schema check does not establish that every Library collection works through that interface. [Places documentation](https://exa.ai/library/place) · [Library and retrieval guidance](choosing-providers.md#request-places-content-during-search)
+
 ### Verify Perplexity Search types
 
 API support and connector support can differ. Inspect the live `perplexity_search` schema for `search_type` before requesting `"fast"` or `"web"`; do not assume every client exposes it.

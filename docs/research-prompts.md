@@ -258,7 +258,7 @@ Use the multi-provider-research skill.
 
 Use only regular Exa Search and Exa Fetch as external research tools. Do not use Exa Agent, Exa Connect, or another external provider.
 
-Find authoritative and recent sources. Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications.
+Find authoritative sources with dates appropriate to the question. Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications.
 
 Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
 Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
@@ -283,7 +283,7 @@ Research question: Find newly published official guidance concerning AI model ev
 
 ### Exa specialized search verticals
 
-Exa’s people, company, code, and news verticals are search indexes, not Connect providers.
+Exa Library collections, API categories and Connect partners are distinct. Existing structured records can be retrieved through Search; use a supported category or documented domain filter only when it fits. See [Library guidance](choosing-providers.md#specialized-search-indexes).
 
 ```text
 Use the multi-provider-research skill.
@@ -293,7 +293,8 @@ Use Exa Search as the only external discovery provider and select the specialize
 - professional profiles: `category:people` in regular Search, or the `people` category in Advanced Search when exposed;
 - companies: `category:company` in regular Search, or the `company` category in Advanced Search when exposed;
 - working code examples: a code-specific semantic query, optionally restricted to relevant repository or documentation domains; do not rely on the deprecated `github` category;
-- current news: a news-specific query with the Advanced Search `news` category and date controls when exposed.
+- current news: a news-specific query with the Advanced Search `news` category and date controls when exposed;
+- filings or papers: describe the disclosure, method or finding, and use `financial report` or `publication` when exposed. Do not invent a category for another Library collection.
 
 Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. Keep profile, company, code, and news evidence separate from inference.
 
@@ -301,7 +302,31 @@ Use only the providers and operations named above for discovery and page reading
 Use Exa Fetch when selected result excerpts lack necessary context.
 Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
 
-Research question: [YOUR PEOPLE, COMPANY, CODE, OR NEWS QUESTION]
+Research question: [YOUR SOURCE OR RECORD QUESTION]
+```
+
+### Exa podcast passages for a creative project
+
+Suggested use, not a recorded end-to-end project. Search can find Library transcripts without Agent or Particle. Use the [coverage and attribution guidance](choosing-providers.md#podcast-transcripts-through-search); a collection match is not proof that a result is an interview. This self-contained prompt does not require the optional skill.
+
+```text
+Use only Exa Search (including Advanced Search where available) and Exa Fetch. Keep analysis in this assistant; do not use Agent, Connect, other providers or native search/readers.
+
+Find firsthand interviews with practitioners about [creative challenge] to help develop [my project]. Describe the interview format, practitioner and theme in the query. For an initial podcast-focused search, use includeDomains: ["exa.ai/library/podcast"] if the interface supports it; do not invent a podcast category. If the control is unavailable, say so and use a descriptive query within the permitted tools.
+
+Find three distinct perspectives. Check that each result is an interview, retrieve enough surrounding transcript to support the interpretation, and include speaker, show, episode date, URL and timestamps where returned. Distinguish what was said from your suggestions. Report missing coverage rather than assuming the collection is a complete archive.
+```
+
+### Exa filings and earnings-call passages
+
+Suggested use for examining original disclosures and management commentary. Existing Search records may suffice; this does not request partner-backed screening or investment advice. [Financial collection guidance](choosing-providers.md#describe-the-evidence-you-want).
+
+```text
+Use only Exa Search (including Advanced Search where available) and Exa Fetch. Keep analysis in this assistant; do not use Agent, Connect, other providers or native search/readers.
+
+Find [company/ticker]'s [fiscal period] filing and earnings-call transcript about [issue]. Describe the specific disclosure or commentary sought. Where supported, use financial report for filings/reports or a sec.gov domain restriction for original SEC documents. Name the company and fiscal period when searching for the call. Do not assume the collection landing URL is the appropriate filter, or that a domain filter proves document type.
+
+Return supporting passages with speaker or filing section, reporting period, publication/filing date and source links. Distinguish management statements, filed figures and your interpretation. Verify company identity and periods before comparison; report missing or incomparable evidence. Reuse sufficient returned content and fetch additional context only when needed.
 ```
 
 ### Exa Agent Ultra for comprehensive discovery

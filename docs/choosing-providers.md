@@ -31,7 +31,7 @@ These services overlap, but they are not interchangeable. Choose according to th
 | A focused web or news lookup | **Octen Search** |
 | Several distinct research angles requiring broader discovery | **Octen Broad Search** |
 | Web images or relevant moments in videos | **Octen Image Search or Video Search**, when callable |
-| Semantically precise web discovery | **Exa Search** |
+| Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
 | Publication-date, domain, category, or content controls | **Exa Advanced Search** |
 | Ranked URLs or recent-news leads without a generated answer | **Perplexity Search** |
 | A quick, focused factual answer or concise cited explanation | **Perplexity Ask** |
@@ -40,11 +40,11 @@ These services overlap, but they are not interchangeable. Choose according to th
 | Answer-oriented web results with paired search and fetch sessions | **Parallel Search** |
 | One substantial provider-generated research report | **Parallel Deep Research** |
 | The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
-| Structured list-building or specialized provider-backed fields | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
+| Multi-source enrichment or partner-specific fields not supplied by sufficient source records | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
 | Large lists or difficult qualification criteria where completeness outweighs latency and cost | **Exa Agent Ultra**, when provider-generated research is permitted and suitable budget controls are available |
 | Prediction-market odds, history, order books, or public position data | **Exa Agent with Polymarket Connect**, when exposed |
 | Reading a page found by Octen | Reuse sufficient excerpts or full text returned by Search or Broad Search; use **Octen Extract** for supplied URLs or missing, incomplete, unusable, or stale content |
-| Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or when returned search content is insufficient |
+| Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or insufficient search content; for Places, request text during Search |
 | Discovering a site’s relevant URL inventory before extraction | **Firecrawl Map** |
 | Reading or structurally extracting one known webpage | **Firecrawl Scrape** |
 | Collecting a bounded set of related pages from one site | **Firecrawl Crawl** |
@@ -129,18 +129,55 @@ Both prices include up to ten results; additional results cost $1 per 1,000. Lit
 
 Do not use `startCrawlDate` or `endCrawlDate` to enforce freshness: Exa no longer applies them. Publication-date filters constrain publication dates, not when content was last retrieved. Inspect response warnings and notices for ignored options or relaxed search constraints, and verify that the returned sources still meet the task. [Search documentation](https://exa.ai/docs/search/quickstart) · [Changelog](https://exa.ai/docs/changelog)
 
+<a id="specialized-search-indexes"></a>
+
 ### Specialized search indexes
 
-Exa documents task-specific verticals for different evidence types. These are search categories, not Exa Connect providers.
+**Library guidance checked 10 November 2026.** Exa Search can return web pages and structured pages from [Exa Library](https://exa.ai/library), including company profiles, papers, filings and podcast transcripts. Library collections, API search categories and Connect providers are different things. Not every collection has a category; use a descriptive query and supported filters when they help.
+
+Search can already supply structured records. Choose Agent for research or enrichment that requires it, and Connect when a partner's particular fields, coverage or provenance are needed. There is no mandatory Search-first step when a specialist dataset is clearly required or explicitly requested. Library fields are not automatically equivalent to a named partner's data.
 
 | Exa vertical | Useful for | Invocation cue |
 | --- | --- | --- |
 | [**People Search**](https://exa.ai/docs/reference/verticals/people) | Professional profiles by role, skills, company, location, or seniority | Use `category:people` in regular Search, or the `people` category in Advanced Search when exposed |
 | [**Company Search**](https://exa.ai/docs/reference/verticals/company) | Company discovery by industry, funding stage, headcount, geography, or technology | Use `category:company` in regular Search, or the `company` category in Advanced Search when exposed |
 | [**Code Search**](https://exa.ai/docs/reference/verticals/code) | Working examples across GitHub, documentation, and developer discussions | Use a code-specific semantic query, optionally restricted to relevant repository or documentation domains; the `github` category is deprecated |
+| **Financial reports** | Filings and financial disclosures | Specify the company, form and disclosure; use `financial report` when exposed, or `sec.gov` for original SEC filings |
+| **Research papers** | Methods, findings and supporting literature | Describe the method or question; use `publication` when exposed and check whether full text is available |
 | [**News Search**](https://exa.ai/docs/reference/verticals/news) | Current news with semantic and date-aware filtering | Use a news-specific query with the `news` category and date controls when exposed |
 
 Inspect the strongest returned sources before making material claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. A search category helps discovery; it does not by itself prove that a profile, company, code example, or news report is current or authoritative.
+
+<a id="describe-the-evidence-you-want"></a>
+
+### Describe the evidence you want
+
+Add the details that distinguish a useful source; a longer query is not automatically better. Dates should fit the question, including historical or creative research.
+
+| Task | Useful query details |
+| --- | --- |
+| Creative interviews | Practitioner or creative challenge, and the interview format you want |
+| Earnings-call research | Company or ticker, fiscal quarter/year, and the issue management discussed |
+| Company or buying-role research | What the company sells, whom it serves, location, and the person's relationship to it |
+| Personal learning through papers | Research question, method or finding; relevant publication period if needed |
+
+For example, ask for “[company] [quarter/year] earnings call transcript about [issue]”, rather than simply “[company] outlook”. For filings, describe the disclosure sought, not just “10-K”. [Financial search guidance](https://exa.ai/docs/search/data/financial) · [Company and people queries](https://exa.ai/docs/search/data/companies-people)
+
+Domain filters are collection-specific. SEC guidance uses `sec.gov`; earnings-call guidance uses `exa.ai/library/markets/stocks`, not the collection's landing-page URL. A filter still does not establish the returned document's identity, type or reporting period. [SEC collection](https://exa.ai/library/sec-filing) · [Earnings-call collection](https://exa.ai/library/earnings-call)
+
+<a id="request-places-content-during-search"></a>
+
+### Request Places content during search
+
+[Exa Places](https://exa.ai/library/place) appears automatically for relevant Auto or Lite searches, with no extra Places parameter. Name the location and practical constraints. **Request the result text during search:** Exa says later Fetch is unreliable for these listings. The direct API uses `contents.text`; use the equivalent supported control in your integration, not an argument copied into an incompatible tool. A listing with up to ten places is not an exhaustive inventory.
+
+Lite's web-page fetching restrictions do not by themselves establish how every structured record is refreshed. Check the dates and provenance of returned data.
+
+### Check collection coverage and provenance
+
+[Paper full text](https://exa.ai/library/publication) is supplied where available; distinguish it from an abstract. [Product listing prices](https://exa.ai/library/product) are not live: check the merchant for current price and availability. Preserve dates and original sources for company roles, financial periods and other changing fields. Exa-hosted structured pages may aggregate public or licensed records; do not present them as independently verified primary sources.
+
+For traffic comparisons, choose according to the metric, period, provenance and comparability needed. A sufficient [Library company record](https://exa.ai/library/organization) can answer a bounded question; use Similarweb Connect when its specific data is needed or requested. Do not attribute Library fields to Similarweb without evidence.
 
 <a id="podcast-transcripts-through-search"></a>
 
@@ -148,7 +185,7 @@ Inspect the strongest returned sources before making material claims. Excerpts o
 
 Exa’s ordinary search index now includes podcast episodes with full transcripts, speaker labels, and timestamps, with no additional data surcharge. Use Search and Fetch for episode discovery, transcript summaries, or quotations. To restrict discovery to this collection, use `includeDomains: ["exa.ai/library/podcast"]` where supported; this is a domain filter, not a new category.
 
-Check the episode date, speaker, and transcript passage before quoting. Use Particle through Agent only when its additional analytics or structured fields are needed, or when explicitly requested. Ordinary transcript retrieval does not require an Agent run. [Podcast search and API example](https://exa.ai/library/podcast) · [29 October announcement](https://exa.ai/blog/podcast-search)
+The [podcast collection](https://exa.ai/library/podcast) currently describes the 30 most recent episodes per show; do not assume a complete archive or treat a missing result as proof an interview does not exist. Check that a result is an interview if that is what you requested. Check the episode date, speaker, and surrounding transcript passage before quoting. Use Particle through Agent only when its additional analytics or structured fields are needed, or when explicitly requested. Ordinary transcript retrieval does not require an Agent run. [Podcast search and API example](https://exa.ai/library/podcast) · [29 October announcement](https://exa.ai/blog/podcast-search)
 
 ### Agent and Connect
 
