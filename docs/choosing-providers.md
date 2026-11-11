@@ -37,7 +37,9 @@ These services overlap, but they are not interchangeable. Choose according to th
 | A quick, focused factual answer or concise cited explanation | **Perplexity Ask** |
 | A comparison or decision analysis against explicit criteria using current web evidence | **Perplexity Reason** |
 | A deep multi-source investigation | **Perplexity Research** |
-| Answer-oriented web results with paired search and fetch sessions | **Parallel Search** |
+| Objective-shaped web excerpts, financial filings or primary legal sources | **Parallel Search** |
+| Specialized registry or dataset records | **Parallel vertical discovery and retrieval**, when the returned coverage and fields fit |
+| A cited answer returned by Parallel in one call | **Parallel web_research**, when provider synthesis is permitted |
 | One substantial provider-generated research report | **Parallel Deep Research** |
 | The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
 | Multi-source enrichment or partner-specific fields not supplied by sufficient source records | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
@@ -74,7 +76,7 @@ When provider-generated synthesis is allowed, require the final response to iden
 
 For example, search relevance models help select source text. That is different from asking a provider to write the research answer.
 
-Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel Deep Research and Task Group; and Firecrawl Agent. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
+Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Deep Research and Task Group; and Firecrawl Agent. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
 
 ## Octen
 
@@ -318,32 +320,80 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 
 ### Best fit
 
-Parallel currently provides separate **Search** and **Task** capabilities. Use Search for answer-oriented web discovery and retrieval. Use Task when Parallel should perform provider-side research or enrichment rather than merely return sources. The exact integration and tool names vary by application.
+**Parallel guidance checked 11 November 2026.**
+
+Use Parallel to find source evidence, query relevant specialized records, or commission provider-generated research when that suits the task. A user should be able to ask a question without knowing the dataset catalogue: the agent should consider the relevant accessible sources and choose the smallest useful combination.
+
+The [unified MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) exposes web retrieval and specialized-source discovery together, with authenticated research available on the same connection. Other integrations can expose a different subset. Start with the [connection readiness checks](connecting-providers.md#parallel-connection-readiness), then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
+
+| Research need | Route | Access and output |
+| --- | --- | --- |
+| Find public sources and supporting passages | `web_search`, then `web_fetch` when needed | Core MCP retrieval; returns source evidence for your assistant |
+| Retrieve specialized records | `find_verticals`, then `search_vertical` | Discover a matching operation, input schema and price; check the returned records and citations |
+| Get a cited answer to one research question | `web_research` | Authenticated MCP; provider-generated answer returned in the same call |
+| Benefit from included Index Partner evidence | An eligible Task or Responses research operation | Automatic relevance-based retrieval; partner and processor coverage varies |
+| Add selected free or paid connectors to research | Authenticated research configuration or a supported Task/Responses interface | Requires exposed configuration and account access; selection does not guarantee a call |
+| Research with an existing licensed/private source | Supported BYOL Task/Responses integration | Requires the source's license, credentials and supported interface |
+| Produce a substantial asynchronous report or enrich a list | Task MCP, Task API or Parallel CLI | Separate advanced workflow with its own lifecycle and processor costs |
+
+These routes are alternatives and can complement one another when they fill distinct evidence gaps. A successful web search does not establish access to every dataset or research operation.
 
 ### Search
 
-- **Web Search** accepts a concise research objective plus short search queries and returns ranked results with answer-oriented excerpts.
-- **Web Fetch** retrieves selected URLs when the excerpts are insufficient. Request full content only when the task needs it.
-- Reuse the returned session identifier across related Search and Fetch calls so Parallel can preserve context and avoid redundant work.
-- Treat the objective as the question the evidence must answer and the search queries as compact retrieval terms. They serve different purposes.
+Give `web_search` one goal-style objective and short related keyword queries. The objective explains what evidence is needed; the queries supply retrieval terms. Reuse sufficient excerpts. Use `web_fetch` for a supplied URL, exact wording, full-document analysis or missing context; request full content only where necessary.
 
-Parallel Search is useful when the application needs evidence shaped closely around an explicit objective. It can complement a different provider’s discovery only when the queries or verification role are materially distinct.
+Inspect supported freshness controls when currentness matters. A fetch can still return cached material. Keep publication, reporting-period, effective and retrieval dates distinct. Reuse session IDs only if the callable schema accepts them: they correlate calls and do not establish conversational memory or deduplication. Supply optional model metadata only when both the field and the exact model identity are known.
+
+### Financial and legal sources
+
+Parallel describes its [29 October 2026 Finance release](https://parallel.ai/blog/parallel-for-finance) and [6 November 2026 Legal release](https://parallel.ai/blog/parallel-for-legal) as index and ranking upgrades across its existing APIs, with no new plan or subscription. They are useful reasons to consider Parallel for filings, registers, company announcements, court opinions, legislation and regulatory material. They do not create new Finance or Legal tool names or guarantee complete coverage. Normal usage charges and access limits still apply.
+
+For financial work, retain entity identifiers, reporting periods, currency and units, filing/publication dates, source tables and amendments or restatements. Distinguish a reported value from a calculation, forecast or market observation. Use a specialized dataset when comparable fields or coverage require it; do not assume a web filing supplies a licensed feed.
+
+For legal work, retain jurisdiction, court or issuer, document identifiers, decision/enactment/effective dates and supporting sections or pages. Check the proposition against the passage. Distinguish holdings from syllabuses, dissents and submissions, and enacted rules from proposals or guidance. Search metadata can differ from dates printed in the source. Older authority may remain applicable; finding a case does not establish that it remains good law or that a citator check occurred. Customer-specific private indexes are not a promise of the same coverage for every account.
+
+The announcements' benchmarks are dated vendor evaluations, not independent guarantees or routing rules. Their reported end-to-end costs include answer-model tokens and search/fetch usage. This guide has not reproduced those benchmarks.
+
+### Discover specialized records
+
+When a question materially benefits from a specialized dataset, use `find_verticals` with the evidence needed, rather than defaulting to generic web search. Examples include trial registrations, biomedical literature, compounds, Medicare coverage and places. Discovery returns candidate IDs, prices and full input schemas for the best matches. If the desired match lacks a schema, refine discovery before executing it.
+
+Inspect the selected operation's fields, coverage, output type and price, then call `search_vertical` with that returned ID and its accepted arguments. Some operations analyze records rather than simply retrieving them: assistant-only synthesis restrictions apply to the operation, even inside a retrieval-oriented tool. Preserve record identifiers and citations; report truncation, missing fields and coverage gaps. A catalogue entry proves discovery, not successful retrieval.
+
+**Executed check, 11 November 2026:** discovery returned `clinical_trials.get_trial_details` with a required `nct_id` and a $0 call price. One lookup of `NCT04280705` returned a trial identifier, title, completed status and an official ClinicalTrials.gov citation; the result reported `cost_usd: 0`. The returned record was truncated, so its last-update field was not verified. This checks one lookup, not every vertical or the completeness of the registry.
+
+### Included partners, selected connectors and licensed sources
+
+[Data Connectors](https://docs.parallel.ai/resources/data-connectors) describes three access models. Keep them distinct:
+
+- **Index Partners** are included on eligible research runs. When their data could help, describe the required records, entities, fields, dates and geography clearly. Parallel decides what to retrieve; do not put an Index Partner into `data_sources`, which rejects those names. Availability varies by partner and processor. The Responses API does not report Index Partner calls, so do not infer contribution from catalogue membership alone.
+- **Selected connectors** use `data_sources.free` or `data_sources.pay_per_use` through the appropriate research interface. Free connectors such as PubMed and ClinicalTrials.gov have no connector charge; the research operation may still be billed. Paid connector calls are additional charges, may occur more than once, and depend on organization access. Responses connector selection requires medium or high effort. Inspect returned call records and citations to distinguish enabled, invoked and contributing sources.
+- **Bring your own license (BYOL)** adds a licensed or private remote MCP source through a supported Task/Responses integration. A funded Parallel account does not itself grant that license. Sources in one research run may receive information obtained from another source, so preserve the user's data-sharing constraints. Keep credentials in secure client configuration, outside prompts and shared examples.
+
+The [connector directory](https://parallel.ai/data-connectors), checked 11 November 2026, describes Pensa Systems as retail shelf intelligence and Particle as news coverage across perspectives, but labels both “Coming soon.” These are evidence-matching examples, not verified access: a shelf-availability question could benefit from Pensa-type observations, while a news-coverage comparison could benefit from Particle-type records. Check current availability and returned evidence; do not assume a similarly named partner supplies the same dataset through another provider.
+
+Use relevant included evidence within an already-permitted research operation; do not launch provider-generated research merely to reach a partner when the user allows retrieval only. Direct vertical access and research connector access can reach related datasets, but their parameters and billing are different. See [current configuration guidance](connecting-providers.md#parallel-connection-readiness).
+
+### Provider-generated research
+
+`web_research` returns a cited answer in the same call. Check the returned status, answer and sources, retaining the response ID and exposed effort/usage. A supported `previous_response_id` continues earlier research; it is a new follow-up request, not polling. Treat the answer as provider synthesis and verify material claims against sufficient evidence. Do not apply an asynchronous creation-and-stop rule to a completed response.
 
 ### Task
 
+Use Task workflows when asynchronous depth or repeated structured enrichment is the actual need. The [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), [Task API](https://docs.parallel.ai/task-api/task-quickstart) and [CLI](https://docs.parallel.ai/integrations/cli) are advanced access routes; the unified MCP's same-call research does not replace every batch workflow.
+
 | Task operation | Use it when |
 | --- | --- |
-| **Deep Research** | One topic requires a substantial provider-generated report or structured result |
-| **Task Group** | The same output contract must be applied independently to several inputs, such as a small batch of companies or products |
+| Deep Research | One topic requires a substantial provider-generated report |
+| Task Group | The same output contract must be applied independently to several inputs |
 
-These are asynchronous provider-side jobs. Follow the selected interface’s lifecycle. The Task MCP creation tools direct the agent to share the task URL and stop unless the user has requested monitoring or continuation. Such a response is a pending handoff, not completed research. Do not launch an equivalent search workflow while the task remains active. Retain identifiers and inspect results when continuation is permitted. If the completed result exposes a processor or model, report it; otherwise state that the exact provider-side model was not visible.
+Inspect the selected interface and follow its lifecycle. If it directs a progress-link handoff and the user has not requested monitoring, return the link with pending status. When continuation is permitted, use retained identifiers and the relevant result tools; do not duplicate active work. Test a small batch before scaling. Report exposed processor, cost and evidence gaps without attributing provider output to your assistant's selected model.
 
 ### What to avoid
 
-- Do not treat Search and Task as interchangeable merely because both can research the web.
-- Do not use Task Group for one topic or Deep Research for a batch of independent inputs.
-- Do not invent a `model_name` or processor slug. Supply analytics model metadata only when the exact active model is known from trusted runtime information; change a task processor only as allowed by the live tool instructions and the user’s request.
-- Do not claim that the model selected in your application produced provider-side Task output.
+Do not equate a configured connection with entitlement to all sources, put unsupported API settings into MCP arguments, or claim an enabled connector supplied evidence without a returned contribution. If a capability is missing, identify whether the gap is tool exposure, authentication, configuration, entitlement or interface support, and explain the appropriate next step.
+
+Parallel also exposes Decisions for typed judgments. It is outside this guide's search-and-retrieval workflows and must not be invoked under retrieval-only instructions.
 
 ## Firecrawl
 
@@ -451,7 +501,7 @@ If one evidence role is blocked, disclose the gap, follow the permitted fallback
 - [Exa Connect](https://exa.ai/docs/reference/agent-api/connect/overview)
 - [Perplexity documentation](https://docs.perplexity.ai/docs/getting-started/overview)
 - [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
-- [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp)
+- [Parallel unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
 - [Parallel Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp)
 - [Firecrawl Map](https://docs.firecrawl.dev/features/map)
 - [Firecrawl Scrape](https://docs.firecrawl.dev/features/scrape)

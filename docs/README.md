@@ -226,6 +226,10 @@ Before relying on the result, check: **did the relevant tools work, did each pro
 - **Make it available:** [Connecting and testing providers](connecting-providers.md).
 - **Apply it to a task:** [Research prompt examples](research-prompts.md).
 
+### Making fuller use of a Parallel connection
+
+Parallel can supply web evidence, specialized records and optional provider-generated research. The [Parallel capability guide](choosing-providers.md#parallel) explains how the agent discovers relevant sources; [connection readiness](connecting-providers.md#parallel-connection-readiness) distinguishes tools, configuration and entitlements. Try the [accessible-data prompt](research-prompts.md#parallel-use-relevant-accessible-data) or choose a retrieval-only example.
+
 ### Final rule of thumb
 
 Choose tools for the evidence you need. Require a provider when its contribution matters, restrict the permitted set when that boundary matters, and otherwise let the agent choose the smallest useful set.

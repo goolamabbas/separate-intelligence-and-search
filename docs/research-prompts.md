@@ -106,7 +106,7 @@ Use this clause when external retrieval is allowed but the model selected in you
 ```text
 Use external providers only for search, retrieval, extraction, and page reading.
 
-Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel Deep Research or Task Group; or Firecrawl Agent. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool.
+Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or Firecrawl Agent. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool.
 
 Have the harness-selected model perform all analysis and final synthesis from the retrieved evidence.
 ```
@@ -148,7 +148,7 @@ You may use Firecrawl Map to discover relevant URLs on a site, then Scrape selec
 ```
 
 ```text
-You may use Parallel Search and Fetch for one evidence lane. Use Parallel Deep Research or Task Group only if provider-side synthesis is permitted and materially useful.
+You may use Parallel Search and Fetch for one evidence lane. Consider relevant Parallel specialized retrieval when useful. Use web_research or Task workflows only if provider-side synthesis is permitted and materially useful.
 ```
 
 ### Exclude providers or interfaces
@@ -373,49 +373,126 @@ Preserve the original criteria, require evidence for each new match, allow unkno
 Resume the new run by its own run ID. Report its actual returned cost, effort, stop reason, remaining gaps, and the combined unique count supported by the supplied list and new results. Do not claim exhaustive coverage or start another run automatically.
 ```
 
-### Parallel Search and Fetch
+### Parallel: use relevant accessible data
+
+Template: let the evidence need determine the route. This permits provider research but does not authorize configuration changes or new paid dataset purchases.
 
 ```text
 Use the multi-provider-research skill.
 
-Use only Parallel Search and Fetch as external research tools. Give Search a concise objective plus short retrieval queries. Reuse the returned session identifier for any related Fetch calls, and request full content only for selected URLs whose excerpts are insufficient.
+Research question: [QUESTION]
+Scope, geography and as-of date: [DETAILS]
+Provider spending limit: [LIMIT]
 
-Do not launch Parallel Deep Research, Task Group, or another external provider.
+Use only Parallel for external research, with no native search or readers. Inspect its current tools and consider relevant indexed sources, specialized datasets and eligible research sources; I should not need to name each dataset. Reuse sufficient evidence and choose the smallest useful combination.
 
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
+Use find_verticals when structured records would materially help. Inspect the selected operation's schema, coverage and price before executing it. Provider-generated web_research is permitted when useful within the budget; do not use Decisions or start asynchronous Tasks for this request.
 
-Research question: What are the official installation requirements for the latest stable Python release on Windows and macOS?
+For eligible research, describe the needed records and fields so relevant included Index Partner evidence can contribute. Use already-enabled connectors only within my budget and access; do not assume inclusion proves use. Do not change configuration, buy access or add licensed/private sources. If a necessary control or entitlement is missing, explain the specific gap and next step. Do not treat a prompt as an enforced spending limit.
+
+Return a concise answer with sources, dates and missing evidence. Distinguish retrieved records from provider synthesis, and sources available, enabled, invoked and actually contributing. Report exact tools, exposed usage and any unverified cost.
+```
+
+### Parallel Search and Fetch
+
+Template: retrieval only, with all analysis in the current assistant.
+
+```text
+Use the multi-provider-research skill.
+
+Use only Parallel web_search and web_fetch. Research question: What are the official installation requirements for the latest stable Python release on Windows and macOS?
+
+Give Search one focused objective and short related keyword queries. Reuse sufficient excerpts; fetch supplied URLs, exact wording or missing context as needed. Request full content only when necessary. Use only arguments in the current schema; reuse session IDs only if accepted.
+
+Do not use web_research, Decisions, verticals, Deep Research, Task Group, another provider or native search/readers. Retrieve source content or faithful extracts only; keep analysis and final writing in this assistant. Report source dates, exact tools and material evidence or freshness gaps.
+```
+
+### Parallel financial-source research
+
+Template: public financial evidence with comparable periods and units.
+
+```text
+Use the multi-provider-research skill.
+
+Compare [METRIC] for [COMPANIES] over [REPORTING PERIODS], as known on [DATE]. Use only Parallel retrieval operations; no native tools or other providers. Keep synthesis and calculations in this assistant; do not use web_research, Decisions or Task workflows.
+
+Find primary filings, exchange/regulator records and issuer reports. If specialized records would materially improve field comparability, discover a matching vertical, inspect its schema and price, and use it only within [PROVIDER BUDGET]. Do not use an analysis operation under this retrieval-only instruction. If the budget or required control is unresolved, explain the gap before paid execution.
+
+Return entity identifiers, reported values, reporting period, currency, units, filing date, source table/page and URL. Check amendments or restatements and explain differences in definitions. Label calculations and forecasts separately. Do not substitute a current value for a historical one or claim access to a licensed feed from web evidence alone. Report missing fields and actual dataset contributions.
+```
+
+### Parallel legal-source research
+
+Template: primary legal evidence; also usable for a small jurisdiction comparison. This is an original prompt template, not a verified vendor cookbook.
+
+```text
+Use the multi-provider-research skill.
+
+Question or rule to compare: [QUESTION]
+Jurisdiction(s), court/agency and fact pattern: [SCOPE]
+Law or policy as of: [DATE]
+
+Use only Parallel web_search and web_fetch; no other providers or native tools. Keep synthesis here. Do not use web_research, Decisions or Tasks.
+
+Prefer original courts, legislation and regulators. For each jurisdiction, report rule, scope, exceptions, issuer, identifier, decision/enactment/effective date, supporting passage, section/page and URL. Check source dates rather than relying on search metadata. Distinguish holdings from summaries, dissents and submissions, and rules from proposals or guidance. Preserve translation uncertainty and conflicts. Do not exclude older applicable authority solely because it is old.
+
+Official-source preference is not a technical allowlist. If I require only specified domains to be queried, verify supported enforcement before that retrieval; otherwise explain the gap. Do not claim exhaustive coverage, current validity or a citator check without evidence. Report exact tools and unresolved source/status checks.
+```
+
+### Parallel specialized dataset lookup
+
+Template based on a bounded lookup executed on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
+
+```text
+Use the multi-provider-research skill.
+
+Find the official title, status and last-update date for trial NCT04280705. Use only Parallel specialized-source discovery and retrieval; keep analysis here. No web_research, Decisions, Tasks, other providers or native tools.
+
+Use find_verticals to identify the appropriate ClinicalTrials.gov lookup. Inspect its returned ID, input schema and price; execute one matching record lookup only if the quoted call price is zero. If a needed schema is absent, refine discovery rather than guessing arguments.
+
+Return the fields with the registry identifier and official citation. If the response is truncated or a field is missing, label it unverified and use a narrower supported retrieval only if available within these restrictions. Do not fill missing dates from memory. Report the selected operation and returned cost separately from the discovery quote.
+```
+
+### Parallel same-call research
+
+Template: explicitly allows Parallel to research and synthesize. Connector selection must be supported by the current interface or existing configuration.
+
+```text
+Use the multi-provider-research skill.
+
+Use only Parallel web_research to investigate [QUESTION] for [SCOPE AND DATE]. Provider-side research and synthesis are permitted within [PROVIDER BUDGET]. No Decisions, asynchronous Tasks, other providers or native tools.
+
+Inspect the schema and select supported effort. Request primary evidence, exact records and reporting periods, useful included partner evidence, citations and unresolved gaps. Use existing permitted connector configuration; do not invent data_sources arguments or change configuration. If required connector selection or budget control is unavailable, explain the gap before proceeding with dependent work.
+
+Inspect the returned status, answer and citations in the same call; no polling or duplicate run. Separate generated conclusions from underlying source evidence. Report the response ID, exposed effort/usage, actual connector contributions and any unverified Index Partner attribution. Do not call a cited answer independently verified when supporting content is unavailable.
 ```
 
 ### Parallel Deep Research
 
+Advanced template: requires an accessible Task workflow, not just the unified MCP's web_research.
+
 ```text
 Use the multi-provider-research skill.
 
-Use only Parallel Deep Research because this task requires one substantial provider-generated report. Preserve its task URL or identifier and stop after creation unless I explicitly ask you to monitor it.
+Use only Parallel Deep Research to produce a substantial provider-generated report on [QUESTION], scoped to [DATES AND GEOGRAPHY], within [PROVIDER BUDGET]. Inspect the selected Task interface and resolve missing cost controls before creation. No other providers or native tools.
 
-Do not launch a duplicate Search workflow while the task is active. When the result is later retrieved, distinguish provider-generated synthesis from underlying sources and report the exposed processor or model, if any.
-
-Do not use another provider or a native page reader. Report missing source evidence as a gap when completed results can be inspected.
-
-Research question: Produce a comprehensive report on frontier-model incident-reporting regimes in the United States, European Union, and United Kingdom.
+Retain the task URL or identifier and stop after creation; I will request monitoring separately. Label the report pending. Do not launch a duplicate Search workflow. When I request the result, retrieve the same task and distinguish provider synthesis from source evidence, reporting exposed processor, cost and gaps.
 ```
 
 ### Parallel Task Group
 
+Advanced template: repeated enrichment with a shared output contract.
+
 ```text
 Use the multi-provider-research skill.
 
-Use only Parallel Task Group because the same structured output contract must be applied independently to several inputs. Begin with three to five inputs, use one shared output schema, and preserve the task-group URL or identifier.
+Use only Parallel Task Group for these inputs: [THREE TO FIVE COMPANIES OR PRODUCTS]. Required fields: official name, primary domain, current product category, latest dated launch evidence and source URLs. Provider budget: [LIMIT]. Provider-side enrichment is permitted; no other providers or native tools.
 
-Do not poll or duplicate the batch unless I explicitly ask you to monitor it.
+Inspect the current Task schema, access and cost controls. Use one shared output schema. Do not expand the input set or change configuration. Preserve the task-group URL or identifier and return pending status after creation. Do not poll unless I request monitoring, and do not duplicate the batch.
 
-Do not use another provider or a native page reader. Report missing source evidence as a gap when completed results can be inspected.
-
-Inputs: [COMPANY OR PRODUCT 1], [2], [3]
-Required fields: official name, primary domain, current product category, latest dated launch evidence, and source URLs.
+When results are requested, retrieve the same group, inspect field-level evidence and missing rows, and report exposed processor and usage separately from any connector charges. Distinguish enabled connectors from actual source contributions.
 ```
+
 
 ### Firecrawl Map, Scrape, Crawl, or Parse
 
@@ -936,12 +1013,12 @@ This pattern is for a comprehensive task that needs several distinct evidence fa
 ```text
 Use the multi-provider-research skill.
 
-You may use any supported provider family only when it has a distinct role: Octen, Exa, exactly one Perplexity mode, Parallel Search or Task, Firecrawl, TinyFish, and authenticated X data.
+You may use any supported provider family only when it has a distinct role: Octen, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, Firecrawl, TinyFish, and authenticated X data.
 
 - Octen: broad, multi-angle discovery.
 - Exa: semantic cross-checking, controlled search, page reading, or relevant Connect data.
 - Perplexity: choose one mode according to the required output.
-- Parallel: objective-shaped Search and Fetch, or one provider-side Task workflow—not both for duplicate work.
+- Parallel: objective-shaped Search/Fetch, relevant specialized records, or permitted provider research; avoid duplicate work.
 - Firecrawl: site mapping, selected-page scraping, bounded crawling, document parsing, or an explicitly justified Agent.
 - TinyFish: distinct discovery, browser-rendered page extraction, or necessary browser automation.
 - X: one authenticated X-native interface; use a dedicated structured interface only when its operation fits better.

@@ -40,7 +40,7 @@ Choose according to the capabilities your task needs and the interfaces your app
 | **Exa** | Official plugin where available, or the hosted remote MCP server | The base MCP endpoint exposes Search and Fetch by default; Advanced Search and Agent are opt-in tools |
 | **Octen** | Official Octen skills, the hosted MCP endpoint, or the local `octen-mcp` server | Choose a supported interface and authenticate it. Inspect its live options and run a small read; availability and parameter shapes can differ |
 | **Perplexity** | Hosted remote MCP server, or its optional local MCP package | Perplexity recommends the remote server when the client supports remote MCP |
-| **Parallel** | Separate hosted Search MCP and Task MCP servers | Search/Fetch and asynchronous provider-side tasks have different schemas and lifecycle rules |
+| **Parallel** | Unified hosted MCP; supported Task/API/CLI routes for advanced workflows | Inspect web retrieval, specialized datasets and authenticated research separately |
 | **Firecrawl** | Official hosted or local MCP server | Inspect the live surface: it may expose search, scraping, mapping, crawling, parsing, agent, browser, developer, research, and monitoring tools |
 | **TinyFish** | Curated plugin where available, or its hosted remote MCP server | Inspect whether the integration exposes Search, Fetch Content, Web Automation, or a subset; visibility does not establish useful results |
 | **X** | xurl with its skill, or an authenticated X API MCP integration | These are alternative X-native interfaces; ordinary web evidence may corroborate, but it is not X-native evidence |
@@ -105,7 +105,7 @@ If your policy requires the model selected in your application to perform all vi
 ```
 Use provider tools only for search, retrieval, extraction, and page reading.
 
-Do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel Deep Research or Task Group; Firecrawl Agent; or another provider-side answer or agent endpoint.
+Do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; Firecrawl Agent; or another provider-side answer or agent endpoint.
 
 Choose source-content or faithful extraction modes. Do not request generated summaries or freeform answers through a fetch or scrape tool.
 
@@ -184,7 +184,53 @@ No costly Agent run is necessary merely to check whether these controls are visi
 
 ## Parallel and Firecrawl verification notes
 
-Parallel’s Search MCP and Task MCP are separate services. A harmless installation check should call Search with a narrow objective and short query, then confirm that the completed result contains usable sources. Creating a Deep Research or Task Group run is a substantive asynchronous operation, so tool visibility and schema inspection are usually sufficient until the user asks for that work. Reuse the Search session identifier if Fetch is needed.
+<a id="parallel-connection-readiness"></a>
+
+### Parallel connection readiness
+
+**Parallel guidance checked 11 November 2026.** Start with the [unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp`, or a supported integration exposing the capabilities your task needs. The [installation page](https://parallel.ai/mcp) links client-specific setup. The documentation-only MCP is a different service and does not provide general Parallel research access.
+
+1. **Connect and authenticate as needed.** Basic Search/Fetch works without a key at lower rate limits. For authenticated research and higher limits, use OAuth at `https://mcp.parallel.ai/mcp?login`, or a securely stored API key in a supported client header. Authenticated calls are billed to your Parallel account after applicable free usage. Account funds do not replace dataset entitlements.
+2. **Inspect the tools actually exposed.** The documented default includes `web_search`, `web_fetch`, `web_decisions`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
+3. **Check the control you need.** Per-call MCP arguments, authenticated connection settings and direct API request fields are different surfaces. The `x-parallel-mcp-config` JSON header supports `override` values enforced for every call and `model_choice` paths exposed to the agent. Overrides apply last. Custom-header support is required; reconnect and inspect the resulting schema after a configuration change.
+4. **Verify relevant data access.** For structured records, use `find_verticals` to inspect a matching operation's schema and price, then run one bounded lookup when useful. For research connectors, check supported selection, effort and organization access. If access fails, report the precise missing capability and available setup route rather than assuming the dataset does not exist.
+5. **Inspect the result.** Confirm usable evidence and actual source contribution, not just tool visibility. Preserve returned usage and limitations. Some client wrappers omit billing metadata; do not interpret missing cost as zero.
+
+A connection that needs web retrieval and specialized records can use this tool list:
+
+```text
+https://mcp.parallel.ai/mcp?tools=web_search,web_fetch,find_verticals,search_vertical
+```
+
+For authenticated same-call research, include `web_research` and use the authenticated connection. Do not change a user's configuration merely because a broader list is possible.
+
+#### Enable research connectors deliberately
+
+The following is an illustrative value for `x-parallel-mcp-config`, for an authenticated client that supports custom headers. It enables two documented free research connectors and fixes compatible medium effort:
+
+```json
+{
+  "web_research": {
+    "override": {
+      "reasoning": { "effort": "medium" },
+      "data_sources": { "free": ["clinical_trials", "pubmed"] }
+    }
+  }
+```
+
+This is connection configuration, not an argument to the default `web_research` tool. The connectors have no connector fee, but research still has its own usage charge. Account rollout and access rules still apply. If users want the agent to select supported connectors per call, `model_choice` can expose `data_sources`; inspect the resulting argument schema rather than guessing its shape. Do not add Index Partner names to this field. For licensed/private sources, use the supported Task/Responses BYOL interface; the MCP configuration header rejects research tool overrides containing credentials. [Connector access and restrictions](https://docs.parallel.ai/resources/data-connectors)
+
+#### Preferences and enforced controls
+
+“Prefer official sources” belongs in a search objective. A requirement to retrieve only from particular domains needs a supported source-policy control or verified connection override. A `site:` query or filtering citations afterward is not equivalent enforcement. If the required restriction cannot be enforced, stop that restricted retrieval and explain the configuration gap. Source-policy date filters can exclude older but still-applicable legal authority. [Source Policy](https://docs.parallel.ai/resources/source-policy)
+
+The current MCP defaults Search to `fast`; configuration can select another supported mode. Session IDs and optional client-model metadata should be supplied only when the current schema accepts them. Session IDs correlate calls, not guaranteed memory or duplicate suppression.
+
+**Observed in this connection, 11 November 2026:** Search accepted only `objective` and `search_queries`; Fetch accepted URLs and retrieval options, but neither accepted session or model metadata. Research exposed input, effort and previous response ID, with no `data_sources` argument. Specialized discovery and one ClinicalTrials.gov lookup succeeded; the record was truncated. We did not change configuration, validate connector overrides, run paid research or test licensed sources. See the [capability guide](choosing-providers.md#parallel).
+
+For asynchronous reports and list enrichment, use the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), Task API or CLI when that workflow is needed. Inspect their schemas separately; do not launch a report merely to prove installation.
+
+### Firecrawl verification
 
 Firecrawl’s broad surface makes tool-level verification especially important. A small Map call is a low-cost way to prove that the server is reachable and can return useful official-site URLs without crawling page bodies. Scrape tests one known page; Crawl should be tested only with explicit, conservative path, depth, and page limits. Do not test Interact or Monitor merely to prove installation because those tools can change external state or create recurring work.
 
@@ -244,7 +290,7 @@ Report tools used, contributions, and material limitations proportionally.
 - [Octen MCP](https://docs.octen.ai/integrations/octen-mcp-server)
 - [Octen skills](https://docs.octen.ai/integrations/octen-skills)
 - [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
-- [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp)
+- [Parallel unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
 - [Parallel Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp)
 - [Firecrawl MCP server](https://github.com/firecrawl/firecrawl-mcp-server)
 - [Firecrawl Map](https://docs.firecrawl.dev/features/map)
