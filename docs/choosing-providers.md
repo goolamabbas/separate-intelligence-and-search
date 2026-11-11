@@ -324,6 +324,8 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 
 Use Parallel to find source evidence, query relevant specialized records, or commission provider-generated research when that suits the task. A user should be able to ask a question without knowing the dataset catalogue: the agent should consider the relevant accessible sources and choose the smallest useful combination.
 
+**Two distinct routes:** Parallel’s financial and legal improvements help its existing web search find relevant source documents. Specialized dataset access is a separate route: discover an available operation, then query its records. The Finance and Legal releases do not establish that a corresponding dataset operation is available.
+
 The [unified MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) exposes web retrieval and specialized-source discovery together, with authenticated research available on the same connection. Other integrations can expose a different subset. Start with the [connection readiness checks](connecting-providers.md#parallel-connection-readiness), then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
 
 | Research need | Route | Access and output |
@@ -344,7 +346,9 @@ Give `web_search` one goal-style objective and short related keyword queries. Th
 
 Inspect supported freshness controls when currentness matters. A fetch can still return cached material. Keep publication, reporting-period, effective and retrieval dates distinct. Reuse session IDs only if the callable schema accepts them: they correlate calls and do not establish conversational memory or deduplication. Supply optional model metadata only when both the field and the exact model identity are known.
 
-### Financial and legal sources
+<a id="financial-and-legal-sources"></a>
+
+### Financial and legal web search
 
 Parallel describes its [29 October 2026 Finance release](https://parallel.ai/blog/parallel-for-finance) and [6 November 2026 Legal release](https://parallel.ai/blog/parallel-for-legal) as index and ranking upgrades across its existing APIs, with no new plan or subscription. They are useful reasons to consider Parallel for filings, registers, company announcements, court opinions, legislation and regulatory material. They do not create new Finance or Legal tool names or guarantee complete coverage. Normal usage charges and access limits still apply.
 
@@ -354,11 +358,15 @@ For legal work, retain jurisdiction, court or issuer, document identifiers, deci
 
 The announcements' benchmarks are dated vendor evaluations, not independent guarantees or routing rules. Their reported end-to-end costs include answer-model tokens and search/fetch usage. This guide has not reproduced those benchmarks.
 
-### Discover specialized records
+<a id="discover-specialized-records"></a>
+
+### Specialized dataset operations: discover, then query
 
 When a question materially benefits from a specialized dataset, use `find_verticals` with the evidence needed, rather than defaulting to generic web search. Examples include trial registrations, biomedical literature, compounds, Medicare coverage and places. Discovery returns candidate IDs, prices and full input schemas for the best matches. If the desired match lacks a schema, refine discovery before executing it.
 
 Inspect the selected operation's fields, coverage, output type and price, then call `search_vertical` with that returned ID and its accepted arguments. Some operations analyze records rather than simply retrieving them: assistant-only synthesis restrictions apply to the operation, even inside a retrieval-oriented tool. Preserve record identifiers and citations; report truncation, missing fields and coverage gaps. A catalogue entry proves discovery, not successful retrieval.
+
+A separate discovery check on 11 November 2026 requested financial filings and court rulings but returned no dedicated finance or legal operation. This describes that response, not proof that such datasets are unavailable through every connection or access route.
 
 **Executed check, 11 November 2026:** discovery returned `clinical_trials.get_trial_details` with a required `nct_id` and a $0 call price. One lookup of `NCT04280705` returned a trial identifier, title, completed status and an official ClinicalTrials.gov citation; the result reported `cost_usd: 0`. The returned record was truncated, so its last-update field was not verified. This checks one lookup, not every vertical or the completeness of the registry.
 

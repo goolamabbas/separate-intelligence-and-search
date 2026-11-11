@@ -446,7 +446,7 @@ Use the multi-provider-research skill.
 
 Compare [METRIC] for [COMPANIES] over [REPORTING PERIODS], as known on [DATE]. Use only Parallel retrieval operations; no native tools or other providers. Keep synthesis and calculations in this assistant; do not use web_research, Decisions or Task workflows.
 
-Find primary filings, exchange/regulator records and issuer reports. If specialized records would materially improve field comparability, discover a matching vertical, inspect its schema and price, and use it only within [PROVIDER BUDGET]. Do not use an analysis operation under this retrieval-only instruction. If the budget or required control is unresolved, explain the gap before paid execution.
+Find primary filings, exchange/regulator records and issuer reports. If specialized records would materially improve field comparability, discover a matching vertical, inspect its schema and price, and use it only within [PROVIDER BUDGET]. Do not assume a finance-specific operation exists; use one only if live discovery returns a suitable match. Do not use an analysis operation under this retrieval-only instruction. If the budget or required control is unresolved, explain the gap before paid execution.
 
 Return entity identifiers, reported values, reporting period, currency, units, filing date, source table/page and URL. Check amendments or restatements and explain differences in definitions. Label calculations and forecasts separately. Do not substitute a current value for a historical one or claim access to a licensed feed from web evidence alone. Report missing fields and actual dataset contributions.
 ```
