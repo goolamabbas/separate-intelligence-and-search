@@ -1,6 +1,6 @@
 # Choosing an external research provider
 
-This reference compares practical roles for [Octen](https://octen.ai/), [Exa](https://exa.ai/), [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview), [Parallel](https://parallel.ai/), [Firecrawl](https://www.firecrawl.dev/), and [TinyFish](https://www.tinyfish.ai/). It also explains when authenticated X-native evidence belongs in a research workflow.
+This reference compares practical roles for [Octen](https://octen.ai/), [Exa](https://exa.ai/), [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview), and [Parallel](https://parallel.ai/). It also explains when authenticated X-native evidence belongs in a research workflow.
 
 These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
 
@@ -10,14 +10,14 @@ These services overlap, but they are not interchangeable. Choose according to th
 
 ## On this page
 
+- [Other tools to explore](#other-tools-to-explore)
+
 - [Quick chooser](#quick-chooser)
 - [Retrieval and provider-side synthesis](#retrieval-and-provider-side-synthesis)
 - [Octen](#octen)
 - [Exa](#exa)
 - [Perplexity](#perplexity)
 - [Parallel](#parallel)
-- [Firecrawl](#firecrawl)
-- [TinyFish](#tinyfish)
 - [Optional: authenticated X-native evidence](#optional-authenticated-x-native-evidence)
 - [Combining providers without duplicating work](#combining-providers-without-duplicating-work)
 - [Continue reading](#continue-reading)
@@ -42,17 +42,11 @@ These services overlap, but they are not interchangeable. Choose according to th
 | A cited answer returned by Parallel in one call | **Parallel web_research**, when provider synthesis is permitted |
 | One substantial provider-generated research report | **Parallel Deep Research** |
 | The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
-| Multi-source enrichment or partner-specific fields not supplied by sufficient source records | **Exa Agent and relevant Connect providers**, or a suitable **Firecrawl Alexandria** capability after checking coverage and price |
+| Multi-source enrichment or partner-specific fields not supplied by sufficient source records | **Exa Agent and relevant Connect providers** |
 | Large lists or difficult qualification criteria where completeness outweighs latency and cost | **Exa Agent Ultra**, when provider-generated research is permitted and suitable budget controls are available |
 | Prediction-market odds, history, order books, or public position data | **Exa Agent with Polymarket Connect**, when exposed |
 | Reading a page found by Octen | Reuse sufficient excerpts or full text returned by Search or Broad Search; use **Octen Extract** for supplied URLs or missing, incomplete, unusable, or stale content |
 | Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or insufficient search content; for Places, request text during Search |
-| Discovering a site’s relevant URL inventory before extraction | **Firecrawl Map** |
-| Reading or structurally extracting one known webpage | **Firecrawl Scrape** |
-| Collecting a bounded set of related pages from one site | **Firecrawl Crawl** |
-| Parsing a supported document | **Firecrawl Parse** |
-| Compact web, news, or research-paper discovery | **TinyFish Search** |
-| Browser-rendered extraction or interactive website work | **TinyFish page extraction or browser automation** |
 | Authenticated posts, users, trends, counts, or bookmarks from X | **An authenticated X-native interface** |
 
 Apply provider constraints in this order: explicit inclusions or exclusions, named-provider requests, materially matched specialized data, then a generic discovery default. A named provider is required for its requested role; “only” or “exactly” makes the permitted set exclusive. Add a complementary provider only within the authorized scope.
@@ -76,7 +70,7 @@ When provider-generated synthesis is allowed, require the final response to iden
 
 For example, search relevance models help select source text. That is different from asking a provider to write the research answer.
 
-Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Deep Research and Task Group; and Firecrawl Agent. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
+Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Deep Research and Task Group. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
 
 ## Octen
 
@@ -403,66 +397,6 @@ Do not equate a configured connection with entitlement to all sources, put unsup
 
 Parallel also exposes Decisions for typed judgments. It is outside this guide's search-and-retrieval workflows and must not be invoked under retrieval-only instructions.
 
-## Firecrawl
-
-### Best fit
-
-Use Firecrawl to search for sources, discover site structure, extract a page, collect a bounded set of related pages, or parse a document. Alexandria adds optional access to structured provider data when the task calls for suitable structured provider fields.
-
-| Firecrawl operation | Distinct role |
-| --- | --- |
-| **Search** | Web, news, or image discovery; supported connections can also return Alexandria capability matches |
-| **Scrape** | Content or schema-constrained fields from one supplied URL; a separate Alexandria mode executes a discovered provider capability |
-| **Alexandria discovery** | Find relevant data capabilities and inspect their inputs, coverage, response fields, and published credit prices |
-| **Map** | A relevant URL inventory for a site; it returns links, not page bodies |
-| **Crawl** | Recursive, bounded collection across related pages on one site |
-| **Parse** | Text and structure from supported document formats |
-| **Agent** | Asynchronous provider-side multi-source research or extraction |
-| **Developer or research indexes** | Code/documentation discovery or scholarly-paper workflows when those tools are exposed |
-
-Map first when the important pages are not yet known. Scrape a known page when one document is enough. Crawl only when several related pages are genuinely required, and set conservative path, depth, and page limits. For JSON output, provide a precise field schema and preserve source URLs; for narrative reading, Markdown is usually simpler.
-
-Firecrawl and TinyFish overlap at the browser boundary but have different default roles. In this workflow, Firecrawl handles site-scale extraction; TinyFish page extraction is for a focused rendered-page read, and TinyFish browser automation is for a user-directed stateful interaction. Use only one for the same page unless a failed extraction creates a clear escalation reason.
-
-### Alexandria: optional data with a visible cost
-
-[Alexandria](https://docs.firecrawl.dev/features/alexandria) is Firecrawl's catalog of data providers and capabilities. It can help when a question needs the same fields across several entities, dated records, or a collection of structured data—for example, public records, software packages, scientific papers, or podcast transcripts. The assistant discovers a matching capability, checks what it returns and what it costs, then decides whether it adds useful evidence.
-
-**Reuse sufficient search or page content.** Finding a capability does not mean it must be executed. A simple search answer or a supplied page can complete the task without extra provider retrieval. Before collecting repeated fields from many pages, a targeted catalog lookup may reveal a better route; there is no need to browse the whole catalog for every question. A suitable discovered capability can also be the first retrieval step; you do not need to buy web results merely to rule them out.
-
-**Discovery is free; data execution uses the capability's published credit price and billing unit.** Some capabilities list zero execution credits. Check whether a rate applies per call, record, or group of records, including any stated rounding and special-mode rates; a listed price is not always the total for your request. Including web results in the same search still incurs ordinary web-search charges, and page scraping retains its normal charges. Free discovery also uses some assistant time and model context. Compare coverage and expected total cost, including additional pages, before execution; do not assume a provider call is cheaper than page extraction. Existing budgets apply, and material unapproved spend should be discussed before proceeding. Report per-call credits and distinguish quoted prices from usage actually returned by the service.
-
-A website match is only a suggestion. Check geographic and time coverage, required inputs, source information, and any access conditions. Keep analysis with your selected model when that is your requirement: some capabilities or output modes may generate analysis rather than return source records. If a provider requires terms acceptance, an organization admin must review them; the assistant needs explicit authorization to accept the reviewed terms.
-
-You can describe the fields you need without knowing a provider's name. Start with the [generic Firecrawl prompt](research-prompts.md#firecrawl-with-optional-alexandria-data); it allows the assistant to finish with search or page extraction when those are sufficient. The catalog changes, so discover current capabilities instead of relying on a fixed provider list. Developer and Research indexes may be available through dedicated tools or discovered Alexandria capabilities. Choose the available route with suitable controls and pricing, and avoid retrieving the same evidence through both. The general web-search research filter remains distinct from the paper index.
-
-### Authorization and lifecycle boundaries
-
-- Firecrawl Agent is provider-side and asynchronous. Retain its run identifier and follow the live status-tool instructions to retrieve completion; do not start a duplicate run.
-- Interactive browser actions can change site state. Installation alone does not authorize submissions, purchases, account changes, or destructive actions.
-- Monitor tools create recurring checks or notifications and require an explicit monitoring request; ordinary research does not authorize them.
-- Respect access controls, terms, rate limits, and privacy constraints. Keep crawl scope proportional to the question.
-
-## TinyFish
-
-### Best fit
-
-TinyFish capability names and availability vary by integration. Inspect the current tools to determine whether discovery, rendered-page extraction, and browser automation are available separately. The roles below describe what to select when the corresponding capability is exposed.
-
-- **Search** provides compact web, news, or research-paper discovery.
-- **Page extraction** renders known pages and returns clean content, including JavaScript-heavy pages and batched URLs.
-- **Browser automation** is for a user-directed task requiring navigation, clicks, forms, login, or interactive page state.
-
-### What it contributes
-
-TinyFish can be a discovery provider in its own right. Its page-extraction capability is also a useful escalation path after another provider discovers an important page that ordinary extraction cannot read. Prefer page extraction over browser automation when reading alone is sufficient.
-
-In a mixed workflow, assign it a clear role—for example, verifying a dynamic pricing page, inspecting an interactive product flow, or retrieving a rendered primary source that another fetcher could not access.
-
-### What to avoid
-
-Do not send every query or page through TinyFish merely because its tools are available. Use it when it contributes distinct discovery, rendered content, interaction, or verification, and do not duplicate an automation run that may still be active.
-
 ## Optional: authenticated X-native evidence
 
 Web search is not a substitute for authenticated X data. When a task requires posts, users, counts, geographic trends, bookmark folders, news search, or archive coverage, use an authenticated X-native interface.
@@ -482,11 +416,9 @@ A combined workflow should explain why each provider is present.
 Examples of complementary roles include:
 
 - Octen Broad Search for multi-angle discovery, then Exa Search for a semantic cross-check;
-- Exa Search and Fetch for ordinary web evidence, then TinyFish page extraction for an important browser-rendered page or browser automation for a required interaction;
 - Exa Search for underlying sources, then Perplexity Reason once for a grounded comparison;
 - Parallel Search for objective-shaped excerpts, then Parallel Fetch only for selected results that need fuller evidence;
 - Parallel Task Group for a repeated enrichment contract across a small input set, without running duplicate searches for each input;
-- Firecrawl Map to identify the relevant section of a site, then a bounded Crawl or selected Scrapes;
 - Exa Agent with Fiber for firmographics and Similarweb for traffic fields;
 - Exa Agent with Polymarket for prediction-market odds or price history;
 - web evidence through Exa or Octen and a separate authenticated X evidence role.
@@ -511,10 +443,17 @@ If one evidence role is blocked, disclose the gap, follow the permitted fallback
 - [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
 - [Parallel unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
 - [Parallel Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp)
-- [Firecrawl Map](https://docs.firecrawl.dev/features/map)
-- [Firecrawl Scrape](https://docs.firecrawl.dev/features/scrape)
-- [Firecrawl Crawl](https://docs.firecrawl.dev/features/crawl)
-- [Firecrawl MCP server](https://github.com/firecrawl/firecrawl-mcp-server)
-- [TinyFish documentation](https://docs.tinyfish.ai/)
 - [xurl](https://github.com/xdevplatform/xurl)
 - [X API documentation](https://docs.x.com/x-api)
+
+## Other tools to explore
+
+This guide focuses on a smaller selection of providers. These services offer additional approaches worth exploring; follow their official sites for current capabilities, access and pricing.
+
+<a id="firecrawl"></a>
+
+**[Firecrawl](https://www.firecrawl.dev/)** helps AI assistants collect and extract information from websites. Its Alexandria catalogue also provides access to specialist data sources, including company filings and scientific literature. Explore it if your work involves collecting information across many pages or obtaining particular types of records.
+
+<a id="tinyfish"></a>
+
+**[TinyFish](https://www.tinyfish.ai/)** offers web search, page reading and browser automation, alongside tools for producing research reports and building datasets from public webpages. Explore it if your task involves interacting with websites or assembling information across many sources.

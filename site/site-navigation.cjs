@@ -6,7 +6,6 @@ const out = path.join(__dirname, '..', '_site');
 const base = new URL('https://goolamabbas.github.io/separate-intelligence-and-search/');
 const pages = [
   ['guide/', 'Guide overview'],
-  ['guide/tinyfish-beginner/', 'Example: ChatGPT + TinyFish'],
   ['guide/choosing-providers/', 'Provider reference'],
   ['guide/connecting-providers/', 'Connect & install'],
   ['guide/research-prompts/', 'Prompt library'],

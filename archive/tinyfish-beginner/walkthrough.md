@@ -1,3 +1,5 @@
+> Archived historical example. Retired from the maintained guide; setup and pricing are not maintained.
+
 # Your first research task with ChatGPT and TinyFish
 
 **Choose a free video-meeting tool for a small community group.** Connect one research provider, try a question, and inspect its sources. The recorded example below used the optional routing skill; you can try the suggested prompt without installing it.
@@ -74,7 +76,7 @@ TinyFish found and retrieved the sources. ChatGPT wrote the comparison and recom
 
 The tool identifiers were `tinyfish_search` and `tinyfish_fetch_content`. A documented tool name or installed plugin alone would not establish success; completed results did.
 
-The separate work to verify this walkthrough’s installation and pricing instructions used **1 additional Search call and 2 Fetch calls covering 6 documentation URLs**. Those are excluded from the comparison counts above. No failed provider calls or substitutions occurred in either set. [Download the call ledger](case-studies/tinyfish-beginner/call-ledger.json).
+The separate work to verify this walkthrough’s installation and pricing instructions used **1 additional Search call and 2 Fetch calls covering 6 documentation URLs**. Those are excluded from the comparison counts above. No failed provider calls or substitutions occurred in either set. [Download the call ledger](evidence/call-ledger.json).
 
 This was one worked example in an existing ChatGPT conversation, not a fresh-session benchmark or a comparison against another research provider. Another run may select different sources or require more calls. The installation and usage evidence establish different things: release-file verification confirms the installed package; this research run confirms useful Search and Fetch results.
 

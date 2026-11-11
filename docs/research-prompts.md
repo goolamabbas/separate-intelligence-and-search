@@ -39,7 +39,7 @@ Start with **Minimum sufficient provider set** for everyday research. Use **Comm
 
 Use the section links below to jump to a pattern.
 
-**Testing status:** Library blocks are reusable templates, not verified end-to-end runs unless a linked run record says otherwise. For an executed product comparison, see the [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) records a separate advanced run; it does not validate every Ultra prompt here.
+**Testing status:** Library blocks are reusable templates, not verified end-to-end runs unless a linked run record says otherwise. The [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) records a separate advanced run; it does not validate every Ultra prompt here.
 
 ## Four starters
 
@@ -49,10 +49,9 @@ Choose one task. The first prompt below works without the optional skill; the ot
 | --- | --- | --- |
 | [One everyday question](#one-question-without-the-skill) | A sourced answer from a suitable connected external provider | [Choose a provider](connecting-providers.md#choose-an-access-route) |
 | [Find original sources with Exa](#exa-search-and-exa-fetch) — Uses the optional skill | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
-| [Read a supplied page with TinyFish](#tinyfish-read-one-page) — Uses the optional skill | Evidence for your question from a page you choose | [Connect TinyFish](tinyfish-beginner.md) |
+| [Read a supplied page with Octen](#octen-read-one-page) — Uses the optional skill | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
 | [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) — Uses the optional skill | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
 
-These are templates. For a recorded run and its limitations, see the [TinyFish comparison](tinyfish-beginner.md#3-ask-a-useful-question).
 
 ### One question without the skill
 
@@ -60,12 +59,12 @@ These are templates. For a recorded run and its limitations, see the [TinyFish c
 Choose a suitable connected external search provider to answer [MY QUESTION], and identify which one you use. Retrieve original sources and have this assistant analyse them. Cite the evidence, include relevant dates, distinguish facts from inference, and flag gaps. If no suitable external provider is callable, explain what connection is missing before proceeding.
 ```
 
-### TinyFish: read one page
+### Octen: read one page
 
 ```text
 Use the multi-provider-research skill.
 
-Use only TinyFish Fetch Content to read [URL] and answer [MY QUESTION]. Retrieve source content, not a provider-generated answer. Keep analysis in this assistant; cite supporting passages and distinguish the page's claims from your interpretation. If the page or relevant content is inaccessible, report the gap without switching providers or using browser automation.
+Use only Octen Extract to read [URL] and answer [MY QUESTION]. Retrieve source content and keep analysis in this assistant. Cite supporting passages and distinguish the page's claims from your interpretation. If the page or relevant content is inaccessible, report the gap without switching providers.
 ```
 
 ## Minimum sufficient provider set
@@ -134,7 +133,7 @@ Use this clause when external retrieval is allowed but the model selected in you
 ```text
 Use external providers only for search, retrieval, extraction, and page reading.
 
-Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or Firecrawl Agent. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool.
+Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool.
 
 Have the harness-selected model perform all analysis and final synthesis from the retrieved evidence.
 ```
@@ -164,15 +163,7 @@ Use exactly Exa and Octen as external providers. Both must contribute a distinct
 ```
 
 ```text
-You may use TinyFish if a material primary source cannot be read adequately with the normal page reader.
-```
-
-```text
 You may use exactly one task-appropriate Perplexity mode if it contributes a distinct discovery or synthesis role.
-```
-
-```text
-You may use Firecrawl Map to discover relevant URLs on a site, then Scrape selected pages or run one conservatively bounded Crawl. Do not use all three when one operation is sufficient.
 ```
 
 ```text
@@ -243,7 +234,6 @@ Finish with a concise provider ledger covering requested providers, providers ac
 
 ## Common one-provider patterns
 
-**Tested beginner example:** [Compare free Google Meet and Zoom with ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/#3-ask-a-useful-question). Read the prompt, actual answer, and verification limits before adapting it.
 
 ### Octen Search, Broad Search, and Extract
 
@@ -526,65 +516,6 @@ When results are requested, retrieve the same group, inspect field-level evidenc
 ```
 
 
-### Firecrawl Map, Scrape, Crawl, or Parse
-
-```text
-Use the multi-provider-research skill.
-
-Use only Firecrawl as the external provider. Inspect its live schema and choose the smallest operation that fits:
-
-- Map to identify relevant URLs on one site without reading their bodies;
-- Scrape for one known webpage or schema-constrained fields;
-- Crawl for a bounded collection of related pages, with explicit path, depth, and page limits;
-- Parse for a supported document.
-
-Do not use Agent, Interact, or Monitor. Preserve source URLs and report excluded, failed, or inaccessible pages.
-
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
-
-Research task: Map [DOCUMENTATION SITE], then extract only the pages describing authentication, rate limits, and pricing.
-```
-
-### Firecrawl with optional Alexandria data
-
-Use this when the task needs comparable fields or structured records. Alexandria is optional: sufficient search or page evidence can complete the task. Catalog discovery is free, while data execution uses the selected capability's listed price. Ordinary web search and page extraction have their own charges. See [Alexandria coverage and costs](choosing-providers.md#firecrawl).
-
-```text
-Use the multi-provider-research skill and Firecrawl.
-
-Research question: [QUESTION]
-Entities or scope: [ENTITIES, LOCATION, AND PERIOD]
-Required fields: [FIELDS AND SOURCE OR DATE REQUIREMENTS]
-Total Firecrawl credit budget for this task: [MAXIMUM CREDITS, OR ASK ME BEFORE PAID CALLS]
-
-Use sufficient search results or page content when they answer the question. Do not add paid enrichment merely because a provider capability is available.
-
-If structured provider data would fill a remaining evidence gap or avoid repeated page collection, discover relevant Alexandria capabilities. Inspect the selected capability's inputs, response fields, coverage, published price, and billing unit, including any stated rounding or special-mode rates. Some capabilities may list zero execution credits. Execute only a discovered fit within my budget; include additional result pages in the cost estimate. Ask before paid execution if the price or budget is unresolved. Do not accept provider terms without my explicit approval.
-
-Use source records or faithful extraction and have the model selected in this application perform the analysis. Preserve sources and observation dates. Report the underlying provider, material gaps, and credits per call, distinguishing published prices from confirmed usage. If no capability fits, use sufficient permitted web evidence or explain the gap.
-```
-
-### TinyFish discovery, page extraction, or browser automation
-
-TinyFish-only requests work best when you know whether the task needs discovery, rendered page content, or browser interaction. Exact tool names vary by application.
-
-```text
-Use the multi-provider-research skill.
-
-Use only TinyFish as the external provider. Inspect its live tools, then choose its discovery capability for web, news, or research-paper discovery; page extraction for browser-rendered content; or browser automation when navigation, form filling, or another stateful interaction is necessary.
-
-Inspect the following JavaScript-heavy websites and extract their current product features, pricing, and stated limitations:
-
-- [URL 1]
-- [URL 2]
-
-Report any pages, interactions, or fields that could not be accessed.
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
-
-```
-
 ### Perplexity Search
 
 <a id="perplexity-fast-search"></a>
@@ -855,24 +786,6 @@ Briefly report each provider’s contribution and material evidence limitations.
 Research question: Compare the major arguments surrounding mandatory AI incident reporting.
 ```
 
-### Exa with optional TinyFish escalation
-
-```text
-Use the multi-provider-research skill.
-
-Use Exa as the required external provider. You may use TinyFish only for the distinct roles described below. Do not use another external provider.
-
-- Use Exa Search for discovery and Exa Fetch for accessible sources.
-- Use TinyFish only for page extraction when Exa cannot adequately retrieve an important source, or browser automation when that source requires interaction that simpler readers cannot perform.
-
-Report which pages or evidence required TinyFish and why.
-
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
-
-Research question: Compare the current enterprise plans and security claims of [Company A] and [Company B].
-```
-
 ### Octen and Perplexity Search
 
 ```text
@@ -909,40 +822,6 @@ Treat Perplexity's response as synthesis. Preserve cited URLs and open any cited
 Use only Exa Search and Fetch plus Perplexity Reason; do not add another provider or a native page reader. Use Exa Fetch for cited sources that need more context.
 
 Research question: Compare mandatory frontier-model licensing with post-deployment incident reporting.
-```
-
-### Perplexity Research with optional TinyFish verification
-
-```text
-Use the multi-provider-research skill.
-
-Use Perplexity Research as the required research mode. You may use TinyFish only for the verification role described below. Do not use another external provider.
-
-- Use Perplexity Research for one comprehensive investigation.
-- Use TinyFish only to verify a cited primary source supporting a material claim when that source is dynamic, interactive, or inaccessible through ordinary page reading.
-
-Do not send every citation to TinyFish. Report citations that remain inaccessible.
-
-You may use the harness-native page reader to verify citations before escalating to TinyFish. Treat Perplexity output as provider-generated synthesis and inspect supporting source content for material claims.
-
-Research question: Produce an evidence-backed review of public frontier-model transparency reporting practices.
-```
-
-### Firecrawl extraction with Parallel source verification
-
-```text
-Use the multi-provider-research skill.
-
-Use exactly Firecrawl and Parallel Search.
-
-- Use Firecrawl Map to identify the relevant documentation pages, then Scrape only the selected pages needed for direct evidence.
-- Use Parallel Search for a distinct objective: find independent official or primary sources that verify the documented claims.
-- Do not use Firecrawl Crawl unless the map shows that a bounded multi-page collection is necessary. Do not use Parallel Task tools.
-
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
-
-Research question: Compare the documented enterprise security controls of [PRODUCT A] and [PRODUCT B].
 ```
 
 ### Parallel Task Group after focused discovery
@@ -1039,14 +918,12 @@ This pattern is for a comprehensive task that needs several distinct evidence fa
 ```text
 Use the multi-provider-research skill.
 
-You may use any supported provider family only when it has a distinct role: Octen, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, Firecrawl, TinyFish, and authenticated X data.
+You may use any supported provider family only when it has a distinct role: Octen, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, and authenticated X data.
 
 - Octen: broad, multi-angle discovery.
 - Exa: semantic cross-checking, controlled search, page reading, or relevant Connect data.
 - Perplexity: choose one mode according to the required output.
 - Parallel: objective-shaped Search/Fetch, relevant specialized records, or permitted provider research; avoid duplicate work.
-- Firecrawl: site mapping, selected-page scraping, bounded crawling, document parsing, or an explicitly justified Agent.
-- TinyFish: distinct discovery, browser-rendered page extraction, or necessary browser automation.
 - X: one authenticated X-native interface; use a dedicated structured interface only when its operation fits better.
 
 Do not automatically duplicate queries or page reads. Use a provider only when it contributes a distinct evidence lane. Report all providers attempted, their contributions, failures, date ranges, and material gaps.
@@ -1061,7 +938,7 @@ Research question: Produce a comprehensive evidence-backed analysis of reactions
 ```text
 Use the multi-provider-research skill.
 
-You may use Octen, Exa Search and Fetch, relevant Exa Connect providers, one task-appropriate Perplexity mode, Parallel, Firecrawl, TinyFish, and authenticated X interfaces. Use only those that make a material contribution.
+You may use Octen, Exa Search and Fetch, relevant Exa Connect providers, one task-appropriate Perplexity mode, Parallel, and authenticated X interfaces. Use only those that make a material contribution.
 
 Do not repeat successful searches or page reads merely for provider coverage. Report tools used, distinct contributions, and material limitations. Expand query, date-range, and provenance details when they affect interpretation or reproducibility.
 
@@ -1096,8 +973,6 @@ Required providers:
 - Exa Agent with Particle
 - Perplexity Search
 - Parallel Search
-- Firecrawl Map and selected Scrapes
-- TinyFish
 - authenticated X data through xurl or one X API integration
 
 Attempt each required provider only for its distinct assigned role. Do not silently replace an unavailable provider.

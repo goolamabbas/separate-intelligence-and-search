@@ -140,7 +140,7 @@ Add provider or synthesis restrictions when they matter. The prompt library cont
 
 ### Use the reusable routing skill
 
-For a complete first task, [try ChatGPT with TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The walkthrough includes setup instructions, the actual comparison, and what was verified.
+For a first task, choose a [starter prompt](research-prompts.md#four-starters) and inspect the sources returned. These are templates, not recorded runs.
 
 This step is optional. Provider connections work independently of the skill. Installation requires an application with compatible skill support and appropriate file access; the skill supplies neither connections nor paid provider access.
 

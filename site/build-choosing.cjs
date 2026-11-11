@@ -38,7 +38,7 @@ html = html.replace(/<pre><code(?: class="[^"]*")?>([\s\S]*?)<\/code><\/pre>/g, 
   const i = ++promptCount;
   return `<div class="prompt-block"><div class="prompt-bar"><span>COPYABLE PROMPT</span><button type="button" data-copy="prompt-${i}" aria-label="Copy prompt ${i}">Copy prompt <span aria-hidden="true">⧉</span></button></div><pre id="prompt-${i}"><code>${code}</code></pre><p class="copy-status" role="status" aria-live="polite"></p></div>`;
 });
-html = html.replace(/(<h2 id="quick-chooser"[\s\S]*?)(?=<h2 )/, section => section.replace(/<strong>(Octen|Exa|Perplexity|Parallel|Firecrawl|TinyFish)([\s\S]*?)<\/strong>/g, (_, provider, rest) => `<a href="#${provider.toLowerCase()}"><strong>${provider}${rest}</strong></a>`));
+html = html.replace(/(<h2 id="quick-chooser"[\s\S]*?)(?=<h2 )/, section => section.replace(/<strong>(Octen|Exa|Perplexity|Parallel)([\s\S]*?)<\/strong>/g, (_, provider, rest) => `<a href="#${provider.toLowerCase()}"><strong>${provider}${rest}</strong></a>`));
 let tableCount = 0;
 html = html.replace(/<table>/g, () => `<div class="table-scroll" tabindex="0" role="region" aria-label="Reference table ${++tableCount}"><table>`).replaceAll('</table>', '</table></div>');
 html = html.replace(/<p><img ([\s\S]*?)><\/p>/g, '<figure><img $1 loading="lazy"></figure>');

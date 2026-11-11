@@ -20,7 +20,7 @@ You do not need to know these terms beforehand:
 | --- | --- |
 | **Model** | The AI that interprets your request and generates a response. It can work with information supplied by external tools. |
 | **Application** | The workspace around the model, sometimes called a harness. It manages your conversation and the tools the model can use. Think of it as the place where you work with AI. |
-| **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Octen, TinyFish, Exa, or Perplexity. |
+| **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Octen, Exa, Parallel, or Perplexity. |
 | **Connector or plugin** | A way for your application to access an external service. The name and setup process vary by application. You may also encounter **MCP**, a standard for connecting AI applications to tools. |
 | **Skill** | A reusable package of instructions that an assistant can follow for a particular kind of task. The multi-provider-research skill gives guidance on using research tools. |
 
@@ -92,7 +92,7 @@ Use the [provider reference](https://goolamabbas.github.io/separate-intelligence
 
 Follow the provider’s official instructions for your application. A connector, plugin or MCP server gives the application access to external tools; the available routes depend on the application and plan.
 
-The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. For a concrete example, [try ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The walkthrough includes a suggested first prompt and a separately labelled recorded run.
+The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. Try a [starter prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a suitable connected provider. These are templates, not recorded runs.
 
 ### 3. Ask a question and inspect the sources
 
@@ -120,7 +120,7 @@ I built it to help an assistant:
 - Check source evidence and explain material gaps or failed retrievals.
 - Distinguish retrieving sources from asking a provider to generate its own analysis.
 
-The skill covers Octen, Exa, Perplexity, Parallel, Firecrawl, TinyFish, and authenticated X tools. You do not need all of them installed.
+The skill covers Octen, Exa, Perplexity, Parallel, and authenticated X tools. You do not need all of them installed.
 
 It is an instruction package, so its use depends on your application's support for skills and connected tools. It does not install providers, supply API keys, or include paid access to their services.
 

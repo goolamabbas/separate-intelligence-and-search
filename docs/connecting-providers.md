@@ -18,14 +18,13 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 - [Installation does not authorize every task](#installation-does-not-authorize-every-task)
 - [A connected tool may use a different model](#a-connected-tool-may-use-a-different-model)
 - [Worked example: enabling all Exa MCP tools in Codex](#worked-example-enabling-all-exa-mcp-tools-in-codex)
-- [Parallel and Firecrawl verification notes](#parallel-and-firecrawl-verification-notes)
+- [Parallel verification notes](#parallel-verification-notes)
 - [Optional project-instruction snippets](#optional-project-instruction-snippets)
 - [Continue reading](#continue-reading)
 - [Official setup documentation](#official-setup-documentation)
 
 ## Install only what you need
 
-**Start with a worked example:** [ChatGPT + TinyFish](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) covers the documented plugin setup, the verified personal skill installation, and a successful Search/Fetch comparison.
 
 You can try a provider without installing the routing skill. Connect a provider that fits your first task, verify it, and add others only when a distinct need arises.
 
@@ -43,8 +42,6 @@ Start with an official plugin or connector when your application offers one. Oth
 | **Octen** | [Hosted MCP](https://docs.octen.ai/integrations/octen-mcp-server) at `https://mcp.octen.ai/mcp` | Follow the documented sign-in or API-key route for your client. An account and API usage balance apply. |
 | **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. The local package is an alternative for clients needing it. |
 | **Parallel** | [Unified hosted MCP](#parallel-connection-readiness) at `https://mcp.parallel.ai/mcp` | Keyless Search/Fetch at lower limits; OAuth (`?login`) or an API key for research and higher limits. Check dataset access separately. |
-| **Firecrawl** | [Native connector or browser sign-in](https://docs.firecrawl.dev/mcp-server/oauth); supported MCP clients can [try keyless](https://docs.firecrawl.dev/mcp-server/keyless) at `https://mcp.firecrawl.dev/v2/mcp` | Keyless access exposes Search, Scrape and Parse within limits. OAuth uses `https://mcp.firecrawl.dev/v2/mcp-oauth`; sign-in or an API key accesses the team's plan. |
-| **TinyFish** | [Curated plugin](https://docs.tinyfish.ai/plugins) where available; otherwise [hosted MCP](https://docs.tinyfish.ai/mcp-integration) at `https://agent.tinyfish.ai/mcp` | Account sign-in is required. Search/Fetch have a free daily allowance; automation and other services have separate charges. [Beginner walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) |
 | **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or a supported authenticated X API integration | Inspect account access, query scope and billing for the selected route; ordinary web evidence is not X-native evidence. This route was not re-tested for the setup refresh. |
 
 See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
@@ -88,12 +85,6 @@ Choose the route officially supported by both the provider and the application t
 
 A configuration entry proves only that the setup was recorded. It does not prove that the provider is reachable, authenticated, callable in the current task, or returning useful evidence.
 
-### Check Alexandria separately when you need it
-
-A Firecrawl connection may expose ordinary search and page extraction without Alexandria. Inspect the callable tools before assuming support. For the MCP workflow, look for `firecrawl_find_tools`, an Alexandria source on `firecrawl_search`, and an `alexandria` execution argument on `firecrawl_scrape`. Other supported integrations may use different names or argument shapes; follow the [official Alexandria guide](https://docs.firecrawl.dev/features/alexandria).
-
-When you need structured provider data, a free targeted catalog query can confirm discovery access. A successful catalog response proves discovery works; a listed provider may still require account access or reviewed terms. Do not execute a paid capability merely to prove installation. Check the selected capability's contract and price when a real task calls for it.
-
 ## Installation does not authorize every task
 
 Connecting a provider makes it available; your task instructions determine whether to use it. For native-only work, explicitly exclude external tools and specify what to do if native retrieval fails.
@@ -109,7 +100,7 @@ If your policy requires the model selected in your application to perform all vi
 ```
 Use provider tools only for search, retrieval, extraction, and page reading.
 
-Do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; Firecrawl Agent; or another provider-side answer or agent endpoint.
+Do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or another provider-side answer or agent endpoint.
 
 Choose source-content or faithful extraction modes. Do not request generated summaries or freeform answers through a fetch or scrape tool.
 
@@ -178,7 +169,7 @@ Retain the run ID and resume that run after an interrupted wait. A client pollin
 
 No costly Agent run is necessary merely to check whether these controls are visible. Use the [Ultra decision guide](choosing-providers.md#when-agent-ultra-is-worth-it) before choosing this route.
 
-## Parallel and Firecrawl verification notes
+## Parallel verification notes
 
 <a id="parallel-connection-readiness"></a>
 
@@ -226,12 +217,6 @@ The current MCP defaults Search to `fast`; configuration can select another supp
 **Observed in this connection, 11 November 2026:** Search accepted only `objective` and `search_queries`; Fetch accepted URLs and retrieval options, but neither accepted session or model metadata. Research exposed input, effort and previous response ID, with no `data_sources` argument. Specialized discovery and one ClinicalTrials.gov lookup succeeded; the record was truncated. We did not change configuration, validate connector overrides, run paid research or test licensed sources. See the [capability guide](choosing-providers.md#parallel).
 
 For asynchronous reports and list enrichment, use the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), Task API or CLI when that workflow is needed. Inspect their schemas separately; do not launch a report merely to prove installation.
-
-### Firecrawl verification
-
-Firecrawl’s broad surface makes tool-level verification especially important. A small Map call is a low-cost way to prove that the server is reachable and can return useful official-site URLs without crawling page bodies. Scrape tests one known page; Crawl should be tested only with explicit, conservative path, depth, and page limits. Do not test Interact or Monitor merely to prove installation because those tools can change external state or create recurring work.
-
-These verification choices prove different things. A successful Search or Map confirms current reachability and execution for that operation; it does not prove that every costly, asynchronous, interactive, or recurring tool is authorized or operational.
 
 ## Optional project-instruction snippets
 
@@ -289,11 +274,6 @@ Report tools used, contributions, and material limitations proportionally.
 - [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
 - [Parallel unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
 - [Parallel Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp)
-- [Firecrawl MCP server](https://github.com/firecrawl/firecrawl-mcp-server)
-- [Firecrawl Map](https://docs.firecrawl.dev/features/map)
-- [Firecrawl Scrape](https://docs.firecrawl.dev/features/scrape)
-- [Firecrawl Crawl](https://docs.firecrawl.dev/features/crawl)
-- [TinyFish MCP](https://docs.tinyfish.ai/mcp-integration)
 - [xurl](https://github.com/xdevplatform/xurl)
 - [Codex MCP configuration](https://developers.openai.com/codex/mcp)
 - [Codex skills](https://developers.openai.com/codex/skills)
