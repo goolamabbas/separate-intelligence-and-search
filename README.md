@@ -12,12 +12,6 @@ Start with one question and one suitable provider. Try the sources it returns be
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
-## See one useful result
-
-The [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) shows a recorded comparison of Google Meet and Zoom: the question, answer, source checks and actual tool calls. It also explains how to connect TinyFish and try your own question without installing the optional skill. The recorded answer is a September example, not a current product comparison.
-
-Already connected? Explore the [starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters)—one works without the optional skill.
-
 ## The pieces, in plain language
 
 You do not need to know these terms beforehand:
@@ -111,6 +105,8 @@ Choose a suitable connected external search provider to answer [my question], an
 Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.
 
 If this meets your needs, keep the setup simple. Add another provider when a specific gap calls for it.
+
+Explore the [starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters)—one works without the optional skill.
 
 ## What the optional skill adds
 

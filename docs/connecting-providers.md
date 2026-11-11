@@ -212,6 +212,7 @@ The following is an illustrative value for `x-parallel-mcp-config`, for an authe
       "data_sources": { "free": ["clinical_trials", "pubmed"] }
     }
   }
+}
 ```
 
 This is connection configuration, not an argument to the default `web_research` tool. The connectors have no connector fee, but research still has its own usage charge. Account rollout and access rules still apply. If users want the agent to select supported connectors per call, `model_choice` can expose `data_sources`; inspect the resulting argument schema rather than guessing its shape. Do not add Index Partner names to this field. For licensed/private sources, use the supported Task/Responses BYOL interface; the MCP configuration header rejects research tool overrides containing credentials. [Connector access and restrictions](https://docs.parallel.ai/resources/data-connectors)

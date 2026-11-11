@@ -4,7 +4,7 @@ const patterns = [...document.querySelectorAll('.pattern')];
 function filterPatterns(){
  const terms=search.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
  let count=0;
- for(const item of patterns){item.hidden=!(terms.every(t=>item.dataset.search.includes(t))&&(!group.value||item.dataset.group===group.value));if(!item.hidden)count++;}
+ for(const item of patterns){item.hidden=!(terms.every(t=>item.dataset.search.includes(t))&&(!group.value||JSON.parse(item.dataset.groups).includes(group.value)));if(!item.hidden)count++;}
  document.querySelector('#result-count').textContent=`${count} of ${patterns.length} patterns`;
  document.querySelector('#empty').hidden=count!==0;
 }

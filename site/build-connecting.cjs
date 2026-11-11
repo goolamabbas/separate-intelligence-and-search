@@ -34,10 +34,14 @@ markdown.use({renderer: {
   }
 }});
 let html = markdown.parse(body);
+const copyLabels = ['prompt', 'endpoint', 'configuration', 'endpoint', 'configuration', 'instructions', 'instructions'];
+const sourceBlocks = [...source.matchAll(/```([^\n]*)\n([\s\S]*?)```/g)];
+if (sourceBlocks.length !== copyLabels.length) throw new Error('Review connection copy labels after changing code blocks');
+for (const block of sourceBlocks) if (block[1].trim() === 'json') JSON.parse(block[2]);
 let promptCount = 0;
 html = html.replace(/<pre><code(?: class="[^"]*")?>([\s\S]*?)<\/code><\/pre>/g, (_, code) => {
   const i = ++promptCount;
-  const label = ['prompt', 'endpoint', 'configuration', 'instructions', 'instructions'][i-1] || 'example';
+  const label = copyLabels[i-1];
   return `<div class="prompt-block"><div class="prompt-bar"><span>COPYABLE ${label.toUpperCase()}</span><button type="button" data-copy="prompt-${i}" aria-label="Copy ${label} ${i}">Copy ${label} <span aria-hidden="true">⧉</span></button></div><pre id="prompt-${i}"><code>${code}</code></pre><p class="copy-status" role="status" aria-live="polite"></p></div>`;
 });
 let tableCount = 0;
