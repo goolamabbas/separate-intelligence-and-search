@@ -29,11 +29,15 @@ These services overlap, but they are not interchangeable. Choose according to th
 | If you need… | Start with… |
 | --- | --- |
 | Finding an official site, documentation page, or familiar destination URL | **Octen Pulse** |
-| A focused web or news lookup | **Octen Search** |
+| A focused general-web lookup | **Octen Search** |
+| Current reporting on one topic | **Octen News Search**, with storylines disabled for assistant-only synthesis |
+| Company or professional-person profiles and comparisons | **Octen Business Search**, checking card provenance and source filters |
+| Local places, reported hours and review evidence | **Octen Place Search** |
 | Query-relevant passages across web documents, with publication/index-date controls | **Keenable Search**, with generated cards disabled for source-only work |
 | Reading a supplied or selected page through Keenable | **Keenable Fetch**, without `prompt` for source-only work |
 | Several distinct research angles requiring broader discovery | **Octen Broad Search** |
-| Web images or relevant moments in videos | **Octen Image Search or Video Search**, when callable |
+| Visual references by text or reference image | **Octen Image Search** |
+| Videos or matching clips | **Octen Video Search**, only with early-access entitlement |
 | Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
 | Publication-date, domain, category, or content controls | **Exa Advanced Search** |
 | Ranked URLs or recent-news leads without a generated answer | **Perplexity Search** |
@@ -79,15 +83,23 @@ Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa A
 
 ### Best fit
 
-Use Octen for focused web or news discovery, multi-angle expansion from a self-contained question, page content returned with search, selected page extraction, or media discovery when available.
+Use Octen for focused web or news discovery, multi-angle expansion from a self-contained question, company/person profiles, place records, page extraction, and task-relevant image or video discovery when available.
 
 Octen can be accessed through supported integrations such as official provider skills, hosted or local MCP servers, or direct API access. Available capabilities and parameter names can differ by interface. Choose the operation needed, then inspect how the available integration exposes it.
 
-- **Pulse** finds likely destination URLs, such as official sites, documentation, and help pages. Lite returns URLs and titles; Standard can add highlights and page content. Use ordinary Search for fresh pages, news, filtered queries, or broader discovery. A candidate URL alone is not evidence of what the page says. [Pulse documentation](https://docs.octen.ai/capabilities/pulse-search)
-- **Search** handles focused web lookup. Use its news topic when current news is the evidence role. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
+- **Pulse** finds likely destination URLs, such as official sites, documentation, and help pages. Lite returns URLs and titles; Standard can add highlights and page content. Use News Search for current reporting and ordinary Search for filtered or general-web evidence. A candidate URL alone is not evidence of what the page says. [Pulse documentation](https://docs.octen.ai/capabilities/pulse-search)
+- **Search** handles focused web lookup. Use the separate News Search operation for current reporting when exposed; this plugin’s Search has no news-topic parameter. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
 - **Broad Search** expands one self-contained question into several discovery angles. Preserve the user’s intent and constraints, resolve conversational references using the available context, and fit the question within the current interface’s input limit. Let the provider generate the subqueries. Use targeted follow-ups for remaining gaps; a simple comparison may need only focused searches.
 - **Extract** reads supplied URLs or selected results whose returned text is missing, incomplete, unusable, or stale. Reuse sufficient excerpts or full text before requesting another read. When the full page body is needed, leave the relevance-query option unset if that option returns highlights instead. Use an appropriate supported cache age when freshness matters.
-- **Image Search** and **Video Search** are separate capabilities. Check current access before relying on them.
+- **News Search** returns articles and, by default, storyline summaries. For assistant-only synthesis, set `subjects.enable: false`. Domain restrictions apply to articles, not storylines; broader-web summaries cannot satisfy a publisher-restricted request.
+- **Business Search** returns company/person cards and ranked sources. Use it for profiles, products and relevant financial fields, checking periods, units and source provenance. Cards do not inherit the domain, time or language filters applied to ranked sources. Octen describes entity-card facts as extracted fields. Structured cards are not necessarily generated prose; where source-only compliance cannot be established, disable cards with `entities.enable: false` and use source evidence. Check that every compared company is covered.
+- **Place Search** returns place records, reported hours, ratings and optional review excerpts. Use a named area or a user-provided location; radius requires paired coordinates, and approximate location does not establish exact distance. Optional web results have their own filters, which do not constrain place cards. Hours can be stale; a few reviews are anecdotes, not representative sentiment.
+- **Image Search** accepts text or one reference image, not both in the same call. Use it for task-relevant visual references; preserve source-page links, verify visual claims and check reuse rights separately.
+- **Video Search** finds videos or matching clips where available. It is in beta/early access: a visible tool is not proof the account can use it. If access is known to be absent, skip the call; do not request access automatically. Returned metadata is not proof of watching the video.
+
+These nine operations are described in the [Octen MCP reference](https://docs.octen.ai/integrations/octen-mcp-server). This guide covers these nine plugin operations; inspect the current callable schema and account access before use. Try the [task-specific Octen prompts](research-prompts.md#octen-find-an-official-url); Video is a conditional example.
+
+Extract’s standard mode suits ordinary pages; advanced or auto can help with difficult pages. Inspect returned page-type labels such as `No Main Content` alongside the body to detect login walls or error pages. Retry only failed or skeletal results when useful, inspect the resolved mode and allow for higher advanced-mode cost. Optional links help follow references from a supplied page; they are not a crawl. Extracted media URLs do not establish that the media was analyzed.
 
 ### What it contributes
 

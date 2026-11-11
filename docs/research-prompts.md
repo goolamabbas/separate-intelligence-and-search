@@ -290,6 +290,8 @@ Use the multi-provider-research skill.
 
 Use only Octen for search and page reading; exclude native tools. Keep analysis and writing in this assistant, using retrieval and source-content modes only.
 
+Choose the task-appropriate Octen operation. For news, disable storylines; for business source-only work with uncertain card provenance, disable entity cards. Respect filters on source results rather than assuming they apply to cards or summaries.
+
 Start with query-relevant highlights: enable highlights and disable full content using the available controls. Start with at most 5 results per search (including each Broad Search sub-query) and at most 3 Broad Search sub-queries. Choose a suitable highlight token cap. Expand these starting budgets only to address a material evidence gap.
 
 Use Octen Extract when highlights lack sufficient context or freshness. Briefly report whether highlights were sufficient, any fuller-text retrieval, and unread sources. Do not claim billing savings without billing evidence.
@@ -306,11 +308,79 @@ Use the multi-provider-research skill.
 
 Use only Octen for search and page reading; exclude native tools. Keep analysis and writing in this assistant, using retrieval and source-content modes only.
 
+Choose the task-appropriate Octen operation. For news, disable storylines; for business source-only work with uncertain card provenance, disable entity cards. Respect filters on source results rather than assuming they apply to cards or summaries.
+
 Enable full content when additional source context is needed. Start with at most 10 results per search (including each Broad Search sub-query) and at most 5 Broad Search sub-queries. Choose a suitable per-result token cap; 2048 is a possible starting point. These limits do not guarantee complete text or coverage. Expand them only to address a material evidence gap and explain why.
 
 Briefly report the operations and important count/sub-query/token settings, whether the text was sufficient, and extraction fallbacks or unread sources. Do not claim billing savings without billing evidence.
 
 Research question: What are the strongest arguments for and against open-weight AI regulation?
+```
+
+### Octen: find an official URL
+
+Use Pulse when you want a destination, rather than an answer about its contents.
+
+```text
+Use the multi-provider-research skill.
+
+Use only Octen Pulse to find up to three likely official URLs for [SITE, DOCUMENTATION OR HELP PAGE]. Use Lite when titles and URLs suffice. Return the candidates and identify uncertainty; do not treat predicted URLs or titles as verified page content. If page-content verification is necessary, explain that it requires a source-reading step rather than claiming it was done. If Pulse is unavailable, report the gap without substituting another provider.
+```
+
+### Octen: news from selected sources
+
+```text
+Use the multi-provider-research skill.
+
+Use only Octen News Search and, where necessary, Extract to summarize reporting about [TOPIC] during [DATE WINDOW] from [ALLOWED PUBLISHERS OR DOMAINS]. Keep synthesis in this assistant. Disable storyline summaries with subjects.enable=false where exposed; use ranked articles, since domain filters do not constrain storylines. If the required control is unavailable, use another permitted Octen source-only operation or disclose the gap; do not silently relax the restriction.
+
+Start with five articles and publication-date filtering where supported. Check source domains and distinguish publication, event and retrieval dates. Reuse sufficient passages; retrieve missing context only when needed. Cite the articles, separate reporting from inference, and disclose missing coverage. Do not add another provider or native tool.
+```
+
+### Octen: compare companies from sources
+
+```text
+Use the multi-provider-research skill.
+
+Use only Octen Business Search and Extract to compare [COMPANY A] and [COMPANY B] on [PRODUCTS OR BUSINESS QUESTIONS], using [ALLOWED SOURCES, OR NO DOMAIN RESTRICTION]. Keep synthesis in this assistant. Start with entities.enable=false for source-only comparison; cards do not inherit the date, domain or language filters on ranked results.
+
+Start with up to five sources, check that both companies are covered, and make a targeted follow-up only for material gaps. Cite supporting passages and distinguish company claims from verified facts. Preserve periods, dates, currencies and units for financial fields; do not fill missing fields by inference. Read more only when needed. Report access gaps without switching providers or using native tools.
+```
+
+For tasks that permit structured entity cards, inspect field provenance and generated descriptions separately. A card is neither automatically generated analysis nor automatically faithful evidence. Do not assume its fields obey the source-result filters.
+
+### Octen: places in a named area
+
+```text
+Use the multi-provider-research skill.
+
+Use only Octen Place Search and, if necessary, Octen source reading to find up to three [VENUE TYPE] in [NAMED AREA]. Compare the returned address, website, reported hours and [RELEVANT REQUIREMENTS]. Keep analysis in this assistant. Do not infer my precise location or claim exact distance without suitable coordinates. Ask for location only if the area is missing and necessary.
+
+Leave review excerpts and additional web results off unless the question needs them. If reviews matter, request a small sample and attribute it as anecdotal evidence. Web-result filters do not constrain place cards. Treat open/closed status and hours as reported data; verify decision-critical details against a source or mark them unverified. Link returned websites or supporting sources, distinguish missing fields, and do not substitute another provider or native tool if access fails.
+```
+
+### Octen: visual references
+
+Use a text description or a reference image. Replace the input below with one of those; do not supply both to the search call.
+
+```text
+Use the multi-provider-research skill.
+
+Use only Octen Image Search and, when needed, Octen source reading to find up to five visual references for [TEXT DESCRIPTION OR REFERENCE IMAGE]. Send exactly one supported input: query, image_url or image_data. Keep analysis in this assistant; treat returned descriptions or summaries as unverified metadata, not inspected visual evidence.
+
+Return source-page links, image links and available dimensions. Inspect images before making visual claims; if viewing is unavailable, say so. Check dates where current appearance matters. Do not equate similarity with provenance or discovery with permission to reuse. Report access or evidence gaps without adding another provider or native research tool.
+```
+
+### Octen: video discovery — early access
+
+Video Search requires beta/early-access entitlement. Use this only if your account has access; a tool appearing in the application is not enough. It was not executed in the checks for this update.
+
+```text
+Use the multi-provider-research skill.
+
+If my Octen account is known to lack Video Search early access, report that and stop this evidence lane without calling the tool or requesting access. Otherwise, use only Octen Video Search to find up to three videos about [TOPIC OR MOMENT], within [DATE WINDOW IF NEEDED]. If access is denied, report the restriction without another provider or native-tool fallback.
+
+Return source links, duration and any matching segment actually returned. Keep synthesis in this assistant and label metadata-based descriptions. Do not invent timestamps or transcripts, or imply that you watched a video merely because search returned it.
 ```
 
 ### Exa Search and Exa Fetch
@@ -964,7 +1034,7 @@ Use the multi-provider-research skill.
 
 You may use any supported provider family only when it has a distinct role: Octen, Keenable, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, and authenticated X data.
 
-- Octen: broad, multi-angle discovery.
+- Octen: task-appropriate web/news, business/place records, destination URLs, relevant media or page reading; use Broad Search only for distinct research angles. Disable News storylines for assistant-only synthesis and check card provenance/filter scope.
 - Keenable: query-relevant web passages and page retrieval; disable generated cards and omit Fetch prompt for source-only work.
 - Exa: semantic cross-checking, controlled search, page reading, or relevant Connect data.
 - Perplexity: choose one mode according to the required output.
