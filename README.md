@@ -16,7 +16,7 @@ Start with one question and one suitable provider. Try the sources it returns be
 
 The [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) shows a recorded comparison of Google Meet and Zoom: the question, answer, source checks and actual tool calls. It also explains how to connect TinyFish and try your own question without installing the optional skill. The recorded answer is a September example, not a current product comparison.
 
-Already connected? Try one of the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters).
+Already connected? Explore the [starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters)—one works without the optional skill.
 
 ## The pieces, in plain language
 

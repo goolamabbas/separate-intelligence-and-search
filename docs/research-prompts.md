@@ -43,14 +43,14 @@ Use the section links below to jump to a pattern.
 
 ## Four starters
 
-Choose one task. The first prompt below works without the optional skill; the other three links open complete templates that use it. All require a suitable provider connection. [Choose a setup route](connecting-providers.md#choose-an-access-route).
+Choose one task. The first prompt below works without the optional skill; the other three links open complete templates that use it. All require a suitable provider connection. [Choose a setup route](connecting-providers.md#choose-an-access-route). For templates that use it, [install the optional skill](https://github.com/goolamabbas/multi-provider-research#install).
 
 | Start with… | What you will get | Setup |
 | --- | --- | --- |
 | [One everyday question](#one-question-without-the-skill) | A sourced answer from a suitable connected external provider | [Choose a provider](connecting-providers.md#choose-an-access-route) |
-| [Find original sources with Exa](#exa-search-and-exa-fetch) | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
-| [Read a supplied page with TinyFish](#tinyfish-read-one-page) | Evidence for your question from a page you choose | [Connect TinyFish](tinyfish-beginner.md) |
-| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
+| [Find original sources with Exa](#exa-search-and-exa-fetch) — Uses the optional skill | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
+| [Read a supplied page with TinyFish](#tinyfish-read-one-page) — Uses the optional skill | Evidence for your question from a page you choose | [Connect TinyFish](tinyfish-beginner.md) |
+| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) — Uses the optional skill | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
 
 These are templates. For a recorded run and its limitations, see the [TinyFish comparison](tinyfish-beginner.md#3-ask-a-useful-question).
 
@@ -281,6 +281,8 @@ Research question: What are the strongest arguments for and against open-weight 
 
 ### Exa Search and Exa Fetch
 
+Try the Notion/Obsidian example below, or replace the research question with your own.
+
 ```text
 Use the multi-provider-research skill.
 
@@ -470,6 +472,8 @@ Official-source preference is not a technical allowlist. If I require only speci
 ### Parallel specialized dataset lookup
 
 Template based on a bounded lookup executed on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
+
+Try the example trial below, or replace `NCT04280705` with your own NCT number.
 
 ```text
 Use the multi-provider-research skill.
