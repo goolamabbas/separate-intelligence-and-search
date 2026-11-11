@@ -1,6 +1,6 @@
 # Harness-neutral research prompt examples
 
-These examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on an application-specific `$` command, slash command, mention syntax, or rules-file format.
+The library includes a standalone starter without the skill. The remaining examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on an application-specific `$` command, slash command, mention syntax, or rules-file format.
 
 Paste an example into the instruction or chat interface of an AI application, then replace its placeholders. The application may use a different internal mechanism to locate an installed skill, but the natural-language instruction preserves the portable intent.
 
@@ -8,7 +8,7 @@ The application must still have access to the providers named in a prompt. A pro
 
 Provider and operation names describe the intended capabilities, not a required integration method. Use the supported provider skill, MCP server, plugin, connector, command-line client, or direct API available in the application. Adapt parameters to that interface while preserving each prompt’s provider, evidence, and synthesis restrictions.
 
-**Last substantively reviewed:** September 2026. Provider tools and live schemas can change.
+**Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](costs.md#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
 
 - [Choosing External Research Tools for AI Agents](README.md)
 - [Choosing an external research provider](choosing-providers.md)
@@ -17,6 +17,7 @@ Provider and operation names describe the intended capabilities, not a required 
 ## On this page
 
 - [Start here: choose a pattern](#start-here-choose-a-pattern)
+- [Four starters](#four-starters)
 - [Minimum sufficient provider set](#minimum-sufficient-provider-set)
 - [When not to invoke the skill](#when-not-to-invoke-the-skill)
 - [Before copying a prompt](#before-copying-a-prompt)
@@ -39,6 +40,33 @@ Start with **Minimum sufficient provider set** for everyday research. Use **Comm
 Use the section links below to jump to a pattern.
 
 **Testing status:** Library blocks are reusable templates, not verified end-to-end runs unless a linked run record says otherwise. For an executed product comparison, see the [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/). The [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) records a separate advanced run; it does not validate every Ultra prompt here.
+
+## Four starters
+
+Choose one task. The first prompt below works without the optional skill; the other three links open complete templates that use it. All require a suitable provider connection. [Choose a setup route](connecting-providers.md#choose-an-access-route).
+
+| Start with… | What you will get | Setup |
+| --- | --- | --- |
+| [One everyday question](#one-question-without-the-skill) | A sourced answer from a suitable connected external provider | [Choose a provider](connecting-providers.md#choose-an-access-route) |
+| [Find original sources with Exa](#exa-search-and-exa-fetch) | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
+| [Read a supplied page with TinyFish](#tinyfish-read-one-page) | Evidence for your question from a page you choose | [Connect TinyFish](tinyfish-beginner.md) |
+| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
+
+These are templates. For a recorded run and its limitations, see the [TinyFish comparison](tinyfish-beginner.md#3-ask-a-useful-question).
+
+### One question without the skill
+
+```text
+Choose a suitable connected external search provider to answer [MY QUESTION], and identify which one you use. Retrieve original sources and have this assistant analyse them. Cite the evidence, include relevant dates, distinguish facts from inference, and flag gaps. If no suitable external provider is callable, explain what connection is missing before proceeding.
+```
+
+### TinyFish: read one page
+
+```text
+Use the multi-provider-research skill.
+
+Use only TinyFish Fetch Content to read [URL] and answer [MY QUESTION]. Retrieve source content, not a provider-generated answer. Keep analysis in this assistant; cite supporting passages and distinguish the page's claims from your interpretation. If the page or relevant content is inaccessible, report the gap without switching providers or using browser automation.
+```
 
 ## Minimum sufficient provider set
 
@@ -565,17 +593,11 @@ For the details, see [Fast or standard Search?](choosing-providers.md#fast-or-st
 ```text
 Use the multi-provider-research skill.
 
-Use Perplexity Search as the only external discovery provider. Inspect its live schema. Prefer Fast Search (search_type: "fast") for routine questions; choose standard search (search_type: "web") directly for rare, difficult, or ambiguous questions. Apply supported domain, date, or country controls when relevant.
+Use Perplexity Search as the only external discovery provider. Prefer Fast Search for routine questions; use standard search for difficult or ambiguous questions or targeted follow-ups on material gaps. Inspect the live schema and apply only supported controls. If Fast Search is unavailable, disclose this and use standard Perplexity Search if supported.
 
-Reuse sufficient source excerpts. You may use the harness-native page reader to inspect selected sources. If a relevant source already found could resolve a gap and its excerpts are insufficient, read it before making another search request.
+Reuse sufficient excerpts. The application's native page reader may inspect selected sources; read a promising source before searching again when that can resolve the gap. Do not automatically run both search types or repeat answered work.
 
-If a successful Fast Search leaves a material evidence gap, use targeted standard-search follow-ups for the missing or conflicting evidence. Do not repeat parts already answered or automatically run both search types. Stop when the evidence is sufficient and say when standard search was used.
-
-Keep synthesis in this assistant. Do not use Perplexity Ask, Reason, or Research, or another external provider.
-
-Use only supported controls. If Fast Search is unavailable but standard Perplexity Search is supported, disclose this and use standard search. Report failed requests separately from evidence gaps; do not silently switch providers or answer-generation modes.
-
-Cite the sources supporting the answer and report any unresolved evidence gaps.
+Keep all analysis in this assistant. Do not use Perplexity Ask, Reason, Research or another external provider. Cite supporting sources, say when standard search was used, and distinguish failed requests from unresolved evidence gaps. If permitted retrieval cannot supply the evidence, report the gap without changing provider or answer mode.
 
 Research question: [YOUR QUESTION]
 ```

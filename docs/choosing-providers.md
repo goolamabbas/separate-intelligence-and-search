@@ -4,7 +4,7 @@ This reference compares practical roles for [Octen](https://octen.ai/), [Exa](ht
 
 These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
 
-**Last substantively reviewed:** September 2026. Provider tools, schemas, availability, and commercial terms can change. Inspect the tools exposed in the current application before relying on a capability described here.
+**Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
 
 [Choosing External Research Tools for AI Agents](README.md)
 

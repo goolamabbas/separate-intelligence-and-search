@@ -17,7 +17,7 @@ You need a TinyFish account and a ChatGPT environment that supports the plugin. 
 
 These steps follow TinyFish’s documentation, checked on the date above. The connection used for our example was already installed. A successful research request below is the useful access check; there is no need to run a separate duplicate search first.
 
-**What is free?** TinyFish documents Search at up to **30 requests per minute** and Fetch at up to **150 URLs per minute** on its wallet-based tier, including a zero wallet balance. Search and Fetch are separate from metered browser automation. Your ChatGPT plan and model usage still apply. These are published terms, not a billing measurement from this run. [Free-tier terms](https://www.tinyfish.ai/blog/search-and-fetch-are-now-free-for-every-agent-everywhere) · [Search](https://docs.tinyfish.ai/search-api) · [Fetch](https://docs.tinyfish.ai/fetch-api)
+**What is free?** TinyFish's [MCP documentation](https://docs.tinyfish.ai/mcp-integration), checked 11 November 2026, says an account is required and Search/Fetch are free within a daily allowance. Automation and other services are metered separately; legacy plans can differ. Check the current allowance for your connection. Your ChatGPT plan and model usage still apply. This updates the setup guidance, not the September run's billing evidence.
 
 <a id="3-ask-a-useful-question"></a>
 

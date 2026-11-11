@@ -6,7 +6,7 @@ Choose a provider for one useful question, then check that your application supp
 
 The optional skill is a routing layer. It tells an agent which provider to use and how to preserve evidence, but it does not create provider access.
 
-**Last substantively reviewed:** September 2026. Provider endpoints, authentication methods, and application configuration formats can change.
+**Setup overview checked:** 11 November 2026 against the linked provider documentation. This is not an end-to-end test of each connection. Historical tests below retain their own dates; endpoints, authentication and tool availability can change.
 
 [Choosing External Research Tools for AI Agents](README.md)
 
@@ -35,19 +35,23 @@ Use providers that are callable, permitted, and relevant. A required provider mu
 
 Choose according to the capabilities your task needs and the interfaces your application supports. A provider may offer several routes: an official skill, a plugin or connector, hosted or local MCP, a command-line client, or direct API access. These routes are alternatives, not a required sequence. A successful check through one route establishes what worked through that route; it does not establish that all other routes work or are unsuitable.
 
-| Service or platform | Practical access routes | Important note |
+Start with an official plugin or connector when your application offers one. Otherwise use the provider's hosted MCP instructions. Local servers and manual configuration are alternatives when the simpler route does not fit.
+
+| Provider | First route to try | Access and capability boundary |
 | --- | --- | --- |
-| **Exa** | Official plugin where available, or the hosted remote MCP server | The base MCP endpoint exposes Search and Fetch by default; Advanced Search and Agent are opt-in tools |
-| **Octen** | Official Octen skills, the hosted MCP endpoint, or the local `octen-mcp` server | Choose a supported interface and authenticate it. Inspect its live options and run a small read; availability and parameter shapes can differ |
-| **Perplexity** | Hosted remote MCP server, or its optional local MCP package | Perplexity recommends the remote server when the client supports remote MCP |
-| **Parallel** | Unified hosted MCP; supported Task/API/CLI routes for advanced workflows | Inspect web retrieval, specialized datasets and authenticated research separately |
-| **Firecrawl** | Official hosted or local MCP server | Inspect the live surface: it may expose search, scraping, mapping, crawling, parsing, agent, browser, developer, research, and monitoring tools |
-| **TinyFish** | Curated plugin where available, or its hosted remote MCP server | Inspect whether the integration exposes Search, Fetch Content, Web Automation, or a subset; visibility does not establish useful results |
-| **X** | xurl with its skill, or an authenticated X API MCP integration | These are alternative X-native interfaces; ordinary web evidence may corroborate, but it is not X-native evidence |
+| **Exa** | [Official plugin or hosted MCP](https://exa.ai/docs/reference/exa-mcp) at `https://mcp.exa.ai/mcp` | Search/Fetch can be tried keyless at free rate limits. OAuth (`?login`) or an API key enables Agent by default; Advanced Search is opt-in. An explicit tool list replaces defaults. |
+| **Octen** | [Hosted MCP](https://docs.octen.ai/integrations/octen-mcp-server) at `https://mcp.octen.ai/mcp` | Follow the documented sign-in or API-key route for your client. An account and API usage balance apply. |
+| **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. The local package is an alternative for clients needing it. |
+| **Parallel** | [Unified hosted MCP](#parallel-connection-readiness) at `https://mcp.parallel.ai/mcp` | Keyless Search/Fetch at lower limits; OAuth (`?login`) or an API key for research and higher limits. Check dataset access separately. |
+| **Firecrawl** | [Native connector or browser sign-in](https://docs.firecrawl.dev/mcp-server/oauth); supported MCP clients can [try keyless](https://docs.firecrawl.dev/mcp-server/keyless) at `https://mcp.firecrawl.dev/v2/mcp` | Keyless access exposes Search, Scrape and Parse within limits. OAuth uses `https://mcp.firecrawl.dev/v2/mcp-oauth`; sign-in or an API key accesses the team's plan. |
+| **TinyFish** | [Curated plugin](https://docs.tinyfish.ai/plugins) where available; otherwise [hosted MCP](https://docs.tinyfish.ai/mcp-integration) at `https://agent.tinyfish.ai/mcp` | Account sign-in is required. Search/Fetch have a free daily allowance; automation and other services have separate charges. [Beginner walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) |
+| **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or a supported authenticated X API integration | Inspect account access, query scope and billing for the selected route; ordinary web evidence is not X-native evidence. This route was not re-tested for the setup refresh. |
+
+See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
 
 ### Remote MCP
 
-A remote MCP server normally requires a server URL and authentication. The provider operates and updates the server, so the reader does not need to keep a local process running. It is often the simplest portable starting point.
+A remote MCP server needs a server URL; some offer limited keyless access, while others require sign-in or an API key. The provider operates and updates the server, so the reader does not need to keep a local process running. It is often the simplest portable starting point.
 
 ### Local or stdio MCP
 
@@ -74,8 +78,8 @@ Choose the route officially supported by both the provider and the application t
 ## Installation and verification checklist
 
 1. Choose an official plugin, remote MCP, local MCP, provider skill, or command-line integration supported by the application.
-2. Create the required provider account and credential.
-3. Store the credential using the application’s secret, environment-variable, or credential-management mechanism.
+2. Use keyless access when it covers the task, or create/sign in to the required provider account.
+3. If an API key is needed, store it using the application’s secret, environment-variable, or credential-management mechanism.
 4. Restart the application or begin a fresh task when required.
 5. Inspect the live tool list and the schemas of the tools you intend to use.
 6. Run one harmless search, fetch, or read-only lookup. A useful first research read can serve as this check; do not add a duplicate probe when access is already established.
@@ -126,19 +130,11 @@ Exa’s base MCP endpoint is:
 https://mcp.exa.ai/mcp
 ```
 
-It enables these tools by default:
+The documentation checked on 11 November 2026 enables `web_search_exa` and `web_fetch_exa` by default. With OAuth or an API key, `agent_run` is also enabled by default. `web_search_advanced_exa` is opt-in.
 
-- `web_search_exa`
-- `web_fetch_exa`
+For browser sign-in, use `https://mcp.exa.ai/mcp?login`. If your client cannot complete OAuth, use its supported API-key mechanism. Keyless access has free rate limits and network restrictions; see the [official troubleshooting guidance](https://exa.ai/docs/reference/exa-mcp#troubleshooting) if it fails.
 
-To expose the following tools, add them explicitly through the endpoint’s `tools` parameter:
-
-- `web_search_advanced_exa`
-- `agent_run`
-
-A successfully connected Exa server may therefore lack Advanced Search, Agent, and Exa Connect. Inspect the live tool list instead of assuming that every documented capability was installed.
-
-Exa’s documentation supports OAuth or an API key for Agent. In clients where OAuth cannot complete against a `?tools=...` endpoint, use the official Exa plugin or the client’s environment-backed API-key-header mechanism.
+An explicit `tools` list replaces the defaults: include every tool you want. A successful basic connection does not establish access to Agent, Connect datasets or every Advanced Search option. Inspect the tools exposed in your application.
 
 Never place a real API key in a public page, prompt, checked-in file, or shared configuration.
 

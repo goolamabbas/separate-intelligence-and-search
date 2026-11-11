@@ -12,6 +12,12 @@ Start with one question and one suitable provider. Try the sources it returns be
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
+## See one useful result
+
+The [ChatGPT + TinyFish walkthrough](https://goolamabbas.github.io/separate-intelligence-and-search/guide/tinyfish-beginner/) shows a recorded comparison of Google Meet and Zoom: the question, answer, source checks and actual tool calls. It also explains how to connect TinyFish and try your own question without installing the optional skill. The recorded answer is a September example, not a current product comparison.
+
+Already connected? Try one of the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters).
+
 ## The pieces, in plain language
 
 You do not need to know these terms beforehand:
@@ -76,6 +82,8 @@ Build an initial list of accounts worth investigating. **Requires:** company and
 Use [my connected search provider] to find five businesses in [market] that match [customer criteria] for [our product]. For each, link evidence of fit and any relevant recent development, with dates. Suggest likely buying roles and explain your reasoning. Separate verified facts from inferred fit and roles; do not claim purchase intent or name a contact without supporting public evidence. Flag gaps and suggest what to validate next.
 ```
 
+[Connect a provider for one of these questions](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/#choose-an-access-route).
+
 Want to go further? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
 
 ## Start with a question and one provider
@@ -97,7 +105,7 @@ The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-s
 Replace the brackets below with your details, or use one of the examples above:
 
 ```text
-Use [my connected provider] to answer [my question]. Retrieve original sources and have this assistant analyse them. Link the evidence, give relevant dates, distinguish facts from inference, and flag anything you cannot verify. If the provider is unavailable, explain the gap.
+Choose a suitable connected external search provider to answer [my question], and identify which one you use. Retrieve original sources and have this assistant analyse them. Link the evidence, give relevant dates, distinguish facts from inference, and flag anything you cannot verify. If no suitable external provider is callable, explain what connection is missing before proceeding.
 ```
 
 Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.

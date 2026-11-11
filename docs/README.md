@@ -8,7 +8,7 @@ External providers can add precise discovery controls, specialized datasets, bat
 
 This guide takes you through three decisions: **what evidence to obtain, how to obtain it reliably, and whether it supports the answer.** The provider reference, connection instructions, and prompt cookbook supply the details when you need them.
 
-**Starting path revised:** 9 November 2026. Provider reference material retains its September 2026 review scope. Provider tools, schemas, availability, and commercial terms can change.
+**Reading path revised:** 11 November 2026. Setup and access guidance carry their own check dates; historical tests and other provider facts retain their stated dates. An editorial update is not a fresh test of every tool.
 
 [← Start with the introduction](../README.md)
 
