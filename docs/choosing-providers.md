@@ -1,6 +1,6 @@
 # Choosing an external research provider
 
-This reference compares practical roles for [Octen](https://octen.ai/), [Exa](https://exa.ai/), [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview), and [Parallel](https://parallel.ai/). It also explains when authenticated X-native evidence belongs in a research workflow.
+This reference compares practical roles for [Octen](https://octen.ai/), [Keenable](https://keenable.ai/), [Exa](https://exa.ai/), [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview), and [Parallel](https://parallel.ai/). It also explains when authenticated X-native evidence belongs in a research workflow.
 
 These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
 
@@ -15,6 +15,7 @@ These services overlap, but they are not interchangeable. Choose according to th
 - [Quick chooser](#quick-chooser)
 - [Retrieval and provider-side synthesis](#retrieval-and-provider-side-synthesis)
 - [Octen](#octen)
+- [Keenable](#keenable)
 - [Exa](#exa)
 - [Perplexity](#perplexity)
 - [Parallel](#parallel)
@@ -29,6 +30,8 @@ These services overlap, but they are not interchangeable. Choose according to th
 | --- | --- |
 | Finding an official site, documentation page, or familiar destination URL | **Octen Pulse** |
 | A focused web or news lookup | **Octen Search** |
+| Query-relevant passages across web documents, with publication/index-date controls | **Keenable Search**, with generated cards disabled for source-only work |
+| Reading a supplied or selected page through Keenable | **Keenable Fetch**, without `prompt` for source-only work |
 | Several distinct research angles requiring broader discovery | **Octen Broad Search** |
 | Web images or relevant moments in videos | **Octen Image Search or Video Search**, when callable |
 | Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
@@ -97,6 +100,43 @@ When additional source context is needed, explicitly request full content using 
 ### What to avoid
 
 Do not repeat the same broad query across providers merely to increase provider count. Give complementary providers a distinct evidence or verification role. Do not automatically Extract every Octen result, and do not forbid another read when the returned content lacks necessary context. Ten results is a useful content-pricing threshold, not a universal evidence limit; larger searches or follow-up queries can be justified by a coverage gap. Lower token caps manage context, but can remove qualifications needed to support a claim.
+
+## Keenable
+
+### Best fit
+
+**Guidance checked 11 November 2026.** Use Keenable for general web discovery, relevant passages from long documents, date-controlled search and reading supplied or selected pages. Its MCP exposes `search_web_pages` and `fetch_page_content`; SDK and API options can differ. Start with the [connection guidance](connecting-providers.md#keenable-connection-readiness) or the [one-question prompt](research-prompts.md#keenable-one-sourced-question).
+
+### Search: relevant passages before more page reads
+
+Describe the source and evidence you want, rather than stacking keywords. Keenable's Dynamic Snippets selects passages from across a document with a token classifier. Reuse snippets that contain the necessary facts and qualifications; fetch more context when passages are incomplete, ambiguous or stale. Keenable reports substantial token savings against its earlier snippets, but this is not a promise of 50% lower total costs on every task. [Technical explanation](https://keenable.ai/blog/keenable-snippets-full-page-cost-reduction)
+
+| Control | Use it for |
+| --- | --- |
+| `pro` | Ordinary research where retrieval depth matters; the documented default when selectable |
+| `realtime` | Latency-sensitive retrieval; the name does not guarantee fresher source content |
+| `max_results` and `snippet_max_length` | Bound result count and characters per snippet; increase only when important context or coverage is missing |
+| `published_after` / `published_before` | Publication windows; pages without a known publication date may be omitted |
+| `acquired_after` / `acquired_before` | When Keenable indexed the page, not when the event happened |
+| `site` / `exclude_domains` | Restrict a site or omit hosts and their subdomains; verify returned sources fit the task |
+
+Use `query_time` only for point-in-time index search. `query_time: "7d"` means as of seven days ago, not the last seven days. Use explicit timestamps for historical boundaries; do not assume ordinary Fetch reconstructs the historical page body. For a broad question, use a few distinct queries and bounded concurrency rather than repeating one query or assuming extra searches are free. [Search controls](https://docs.keenable.ai/products/search) · [Best practices](https://docs.keenable.ai/best-practices)
+
+### Keep source retrieval separate from generated answers
+
+For source-only work, set Search's `disable_cards: true`: Keenable can otherwise return its own written cards, whose URLs expire after one day. These are not original source pages. Leave Fetch's `prompt` unset: supplying it asks an LLM to read the page and return an answer instead of source text. These controls preserve analysis by the assistant selected in your application.
+
+Fetch normally returns indexed Markdown, but an unindexed page can trigger live retrieval. Set `live: true` when the current source matters. Check `max_chars` and truncation before treating a result as the complete document. A live fetch does not establish that the underlying source is current or that every element was extracted. [Fetch documentation](https://docs.keenable.ai/products/fetch)
+
+### What the benchmarks tell you
+
+On 11 November 2026, Keenable Pro and Realtime occupied the top two displayed rows of the [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api). Its [methodology](https://artificialanalysis.ai/methodology/search-api) uses GPT-5.6 Luna at medium effort across three benchmarks; most provider runs use Stirrup, while native OpenAI search has a different workflow. The listed Keenable settings do not establish a separate result with generated cards disabled. These are configuration-specific results, not a guarantee for your task or a test of this MCP connection.
+
+Keenable's [October Vals announcement](https://keenable.ai/blog/keenable-vals-web-search-index) reported 49.08% with GPT-5.6 Sol and roughly 53% lower mean total task cost than that same model with Exa. That cost includes model inference and search fees. The [current Vals page](https://www.vals.ai/benchmarks/web_search) now lists newer model/provider combinations above it; those cross-model rows do not isolate search-provider superiority. This guide has not reproduced either benchmark.
+
+### What to avoid
+
+Do not make Keenable the universal default because of a ranking, automatically replace specialized records with general web results, or fetch every search hit. Do not treat generated cards or prompted Fetch as source-only extraction. Inspect the actual schema: public MCP routes may omit `mode`, and account/operator defaults can affect it. Missing usage metadata is not proof that calls were free. See [allowances and costs](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access).
 
 ## Exa
 
@@ -435,6 +475,7 @@ If one evidence role is blocked, disclose the gap, follow the permitted fallback
 
 ## Official documentation
 
+- [Keenable documentation](https://docs.keenable.ai/)
 - [Octen documentation](https://docs.octen.ai/)
 - [Exa MCP](https://exa.ai/docs/reference/exa-mcp)
 - [Exa Agent](https://exa.ai/docs/reference/agent-api-guide)

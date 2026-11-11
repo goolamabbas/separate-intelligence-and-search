@@ -234,6 +234,50 @@ Finish with a concise provider ledger covering requested providers, providers ac
 
 ## Common one-provider patterns
 
+### Keenable: one sourced question
+
+This template works without the optional skill. The following Keenable templates use it.
+
+```text
+Use only Keenable Search and Fetch to answer [QUESTION]. Keep all analysis and final writing in this assistant.
+
+Describe the sources and evidence needed in your search queries. Use Pro when the callable interface supports mode selection; otherwise use the available mode and disclose the limitation. Set disable_cards to true. Reuse sufficient snippets and fetch only supplied pages or sources whose context is missing, incomplete or stale. Leave Fetch's prompt parameter unset; request a live fetch when current page content matters.
+
+Cite original source URLs, preserve relevant dates, distinguish facts from inference and explain evidence gaps. If Keenable is unavailable, report that without switching providers.
+```
+
+### Keenable: developments in a publication window
+
+```text
+Use the multi-provider-research skill. Use only Keenable Search and Fetch to identify significant developments in [TOPIC] published between [START DATE] and [END DATE]. Keep synthesis in this assistant.
+
+Use supported publication-date filters, not query_time. Separate publication dates, indexing dates and the dates of the events described. Publication filters can omit undated pages; note that limitation and do not claim complete coverage. Prefer original announcements and deduplicate coverage of the same event.
+
+Disable generated cards, omit Fetch's prompt parameter and fetch additional context only when needed. Return the development, event date, publication date, source link and why it matters. Report access or date-verification gaps without silently changing providers or the requested date window.
+```
+
+### Keenable: read a supplied long document
+
+```text
+Use the multi-provider-research skill. Use only Keenable Fetch to read [URL] and answer [QUESTION ABOUT THE DOCUMENT]. Keep analysis in this assistant.
+
+Leave prompt unset so the result contains source text. Request live retrieval if the current version matters. Check for truncation and make the returned content large enough to cover the relevant passages within available limits. If adequate context cannot be retrieved, explain what remains unread rather than treating an extract as the full document.
+
+Support the answer with source quotations or section references and the original URL. Preserve qualifications, dates and units. Do not search for substitute documents or switch providers without permission.
+```
+
+### Keenable: several distinct research angles
+
+```text
+Use the multi-provider-research skill. Use only Keenable Search and Fetch to investigate [QUESTION] from these angles: [ANGLES]. Keep synthesis in this assistant.
+
+Use one focused query per necessary angle, with bounded concurrency and a modest initial result count. Avoid duplicate queries and page reads. Expand only where an important evidence gap remains. Use Pro for depth, or Realtime if I explicitly prioritize response time and the interface supports it; do not assume either mode guarantees freshness.
+
+Disable generated cards and omit Fetch's prompt parameter. Reuse adequate snippets, retrieve missing context and cite the underlying sources. Report where the evidence agrees, conflicts or remains incomplete. If access or budget blocks an angle, complete the other permitted angles and disclose the gap.
+```
+
+
+
 
 ### Octen Search, Broad Search, and Extract
 
@@ -918,9 +962,10 @@ This pattern is for a comprehensive task that needs several distinct evidence fa
 ```text
 Use the multi-provider-research skill.
 
-You may use any supported provider family only when it has a distinct role: Octen, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, and authenticated X data.
+You may use any supported provider family only when it has a distinct role: Octen, Keenable, Exa, exactly one Perplexity mode, Parallel retrieval or permitted research, and authenticated X data.
 
 - Octen: broad, multi-angle discovery.
+- Keenable: query-relevant web passages and page retrieval; disable generated cards and omit Fetch prompt for source-only work.
 - Exa: semantic cross-checking, controlled search, page reading, or relevant Connect data.
 - Perplexity: choose one mode according to the required output.
 - Parallel: objective-shaped Search/Fetch, relevant specialized records, or permitted provider research; avoid duplicate work.
@@ -938,7 +983,7 @@ Research question: Produce a comprehensive evidence-backed analysis of reactions
 ```text
 Use the multi-provider-research skill.
 
-You may use Octen, Exa Search and Fetch, relevant Exa Connect providers, one task-appropriate Perplexity mode, Parallel, and authenticated X interfaces. Use only those that make a material contribution.
+You may use Octen, Keenable Search and Fetch, Exa Search and Fetch, relevant Exa Connect providers, one task-appropriate Perplexity mode, Parallel, and authenticated X interfaces. Use only those that make a material contribution.
 
 Do not repeat successful searches or page reads merely for provider coverage. Report tools used, distinct contributions, and material limitations. Expand query, date-range, and provenance details when they affect interpretation or reproducibility.
 

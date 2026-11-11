@@ -120,7 +120,7 @@ I built it to help an assistant:
 - Check source evidence and explain material gaps or failed retrievals.
 - Distinguish retrieving sources from asking a provider to generate its own analysis.
 
-The skill covers Octen, Exa, Perplexity, Parallel, and authenticated X tools. You do not need all of them installed.
+The skill covers Octen, Keenable, Exa, Perplexity, Parallel, and authenticated X tools. You do not need all of them installed.
 
 It is an instruction package, so its use depends on your application's support for skills and connected tools. It does not install providers, supply API keys, or include paid access to their services.
 

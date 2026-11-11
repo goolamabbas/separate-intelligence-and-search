@@ -39,12 +39,21 @@ Start with an official plugin or connector when your application offers one. Oth
 | Provider | First route to try | Access and capability boundary |
 | --- | --- | --- |
 | **Exa** | [Official plugin or hosted MCP](https://exa.ai/docs/reference/exa-mcp) at `https://mcp.exa.ai/mcp` | Search/Fetch can be tried keyless at free rate limits. OAuth (`?login`) or an API key enables Agent by default; Advanced Search is opt-in. An explicit tool list replaces defaults. |
+| **Keenable** | [Hosted MCP](https://docs.keenable.ai/mcp-server); choose the [endpoint for your access route](#keenable-connection-readiness) | Search/Fetch can run keyless at shared limits; sign-in or a key uses organization credits. Public schemas can omit mode selection. |
 | **Octen** | [Hosted MCP](https://docs.octen.ai/integrations/octen-mcp-server) at `https://mcp.octen.ai/mcp` | Follow the documented sign-in or API-key route for your client. An account and API usage balance apply. |
 | **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. The local package is an alternative for clients needing it. |
 | **Parallel** | [Unified hosted MCP](#parallel-connection-readiness) at `https://mcp.parallel.ai/mcp` | Keyless Search/Fetch at lower limits; OAuth (`?login`) or an API key for research and higher limits. Check dataset access separately. |
 | **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or a supported authenticated X API integration | Inspect account access, query scope and billing for the selected route; ordinary web evidence is not X-native evidence. This route was not re-tested for the setup refresh. |
 
 See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
+
+<a id="keenable-connection-readiness"></a>
+
+### Keenable connection readiness
+
+Keenable documents `https://api.keenable.ai/mcp` for usual API-key setups, `/mcp-oauth` for browser sign-in and `/mcp-public` for keyless Codex or clients that have trouble with OAuth discovery. Inspect the actual tools: `search_web_pages` and `fetch_page_content`. The public endpoint can omit `mode`; do not copy unsupported options from another interface. Complete a useful read to confirm execution. [Endpoint and client guidance](https://docs.keenable.ai/mcp-server)
+
+For source-only research, set `disable_cards: true` on Search and leave Fetch's `prompt` unset. Generated cards and prompted Fetch are provider-written output. Use task instructions to choose Keenable; adding it does not require disabling native search or configuring every application.
 
 ### Remote MCP
 
@@ -100,7 +109,7 @@ If your policy requires the model selected in your application to perform all vi
 ```
 Use provider tools only for search, retrieval, extraction, and page reading.
 
-Do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or another provider-side answer or agent endpoint.
+Do not use Keenable generated cards or prompted Fetch; Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or another provider-side answer or agent endpoint.
 
 Choose source-content or faithful extraction modes. Do not request generated summaries or freeform answers through a fetch or scrape tool.
 

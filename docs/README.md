@@ -220,6 +220,8 @@ Expand the report when coverage, provenance, reproducibility, or an audit reques
 
 Before relying on the result, check: **did the relevant tools work, did each provider have a useful role, and do the sources support the answer?** More tools and longer reports are not substitutes for those checks.
 
+For general web research with passages selected from across long documents, consider [Keenable Search and Fetch](choosing-providers.md#keenable). Try the [one-question template](research-prompts.md#keenable-one-sourced-question), which works without the optional skill.
+
 ## Continue reading
 
 - **Choose a capability:** [Choosing an external research provider](choosing-providers.md).
