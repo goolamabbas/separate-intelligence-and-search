@@ -109,9 +109,9 @@ If your policy requires the model selected in your application to perform all vi
 ```
 Use provider tools only for search, retrieval, extraction, and page reading.
 
-Do not use Keenable generated cards or prompted Fetch; Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or another provider-side answer or agent endpoint.
+Do not use Octen News storylines; Keenable generated cards or prompted Fetch; Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group; or another provider-side answer or agent endpoint.
 
-Choose source-content or faithful extraction modes. Do not request generated summaries or freeform answers through a fetch or scrape tool.
+Choose source-content or faithful extraction modes. Do not request generated summaries or freeform answers through a fetch or scrape tool. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
 
 Have the harness-selected model perform all analysis and final synthesis.
 
@@ -187,7 +187,7 @@ No costly Agent run is necessary merely to check whether these controls are visi
 **Parallel guidance checked 11 November 2026.** Start with the [unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp`, or a supported integration exposing the capabilities your task needs. The [installation page](https://parallel.ai/mcp) links client-specific setup. The documentation-only MCP is a different service and does not provide general Parallel research access.
 
 1. **Connect and authenticate as needed.** Basic Search/Fetch works without a key at lower rate limits. For authenticated research and higher limits, use OAuth at `https://mcp.parallel.ai/mcp?login`, or a securely stored API key in a supported client header. Authenticated calls are billed to your Parallel account after applicable free usage. Account funds do not replace dataset entitlements.
-2. **Inspect the tools actually exposed.** The documented default includes `web_search`, `web_fetch`, `web_decisions`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
+2. **Inspect the tools actually exposed.** The documented default includes `web_search`, `web_fetch`, `web_decisions`, `image_search`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
 3. **Check the control you need.** Per-call MCP arguments, authenticated connection settings and direct API request fields are different surfaces. The `x-parallel-mcp-config` JSON header supports `override` values enforced for every call and `model_choice` paths exposed to the agent. Overrides apply last. Custom-header support is required; reconnect and inspect the resulting schema after a configuration change.
 4. **Verify relevant data access.** For structured records, use `find_verticals` to inspect a matching operation's schema and price, then run one bounded lookup when useful. For research connectors, check supported selection, effort and organization access. If access fails, report the precise missing capability and available setup route rather than assuming the dataset does not exist.
 5. **Inspect the result.** Confirm usable evidence and actual source contribution, not just tool visibility. Preserve returned usage and limitations. Some client wrappers omit billing metadata; do not interpret missing cost as zero.
@@ -243,7 +243,7 @@ For native-only work, do not load the multi-provider-research skill or call exte
 Before external research, inspect relevant callable tools and schemas.
 Prefer a specialized connected dataset when it materially supplies the requested evidence within the permitted scope.
 Verify actual provider contribution from completed results, not configuration or requested provider names.
-Use the multi-provider-research skill for research through a named provider, materially matched specialized data, batch enrichment, site extraction, or browser-based evidence gathering.
+Use the multi-provider-research skill for research through a named provider, materially matched specialized data, batch enrichment, or external source retrieval.
 Do not activate it solely because a task mentions a provider or involves a browser.
 Use the minimum sufficient provider set and inspect only relevant schemas; reuse schema knowledge unless the surface changes or validation fails.
 Complete independent permitted work when one evidence lane is blocked, while respecting its fallback policy and the selected tool's lifecycle.
@@ -262,7 +262,7 @@ For native-only work, do not load $multi-provider-research or call external prov
 Before external research, inspect relevant callable tools and schemas.
 Prefer a specialized connected dataset when it materially supplies the requested evidence within the permitted scope.
 Verify actual provider contribution from completed results, not configuration or requested provider names.
-Use $multi-provider-research for research through a named provider, materially matched specialized data, batch enrichment, site extraction, or browser-based evidence gathering.
+Use $multi-provider-research for research through a named provider, materially matched specialized data, batch enrichment, or external source retrieval.
 Do not activate it solely because a task mentions a provider or involves a browser.
 Use the minimum sufficient provider set and inspect only relevant schemas; reuse schema knowledge unless the surface changes or validation fails.
 Complete independent permitted work when one evidence lane is blocked, while respecting its fallback policy and the selected tool's lifecycle.
@@ -277,6 +277,7 @@ Report tools used, contributions, and material limitations proportionally.
 
 ## Official setup documentation
 
+- [Keenable MCP](https://docs.keenable.ai/mcp-server)
 - [Exa MCP](https://exa.ai/docs/reference/exa-mcp)
 - [Octen MCP](https://docs.octen.ai/integrations/octen-mcp-server)
 - [Octen skills](https://docs.octen.ai/integrations/octen-skills)

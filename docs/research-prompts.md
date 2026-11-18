@@ -56,7 +56,7 @@ Choose one task. The first prompt below works without the optional skill; the ot
 ### One question without the skill
 
 ```text
-Choose a suitable connected external search provider to answer [MY QUESTION], and identify which one you use. Retrieve original sources and have this assistant analyse them. Cite the evidence, include relevant dates, distinguish facts from inference, and flag gaps. If no suitable external provider is callable, explain what connection is missing before proceeding.
+Choose a suitable connected external search provider to answer [MY QUESTION], and identify which one you use. Retrieve original sources and have this assistant analyse them. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient. Cite the evidence, include relevant dates, distinguish facts from inference, and flag gaps. If no suitable external provider is callable, explain what connection is missing before proceeding.
 ```
 
 ### Octen: read one page
@@ -133,7 +133,7 @@ Use this clause when external retrieval is allowed but the model selected in you
 ```text
 Use external providers only for search, retrieval, extraction, and page reading.
 
-Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool.
+Do not invoke provider-side answer, reasoning, research, or agent tools. In particular, do not use Perplexity Ask, Reason, or Research; Exa Agent; Parallel web_research, Decisions, Deep Research or Task Group. Inspect output options too: do not request generated summaries or freeform answers through a retrieval tool. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
 
 Have the harness-selected model perform all analysis and final synthesis from the retrieved evidence.
 ```
@@ -261,7 +261,7 @@ Disable generated cards, omit Fetch's prompt parameter and fetch additional cont
 ```text
 Use the multi-provider-research skill. Use only Keenable Fetch to read [URL] and answer [QUESTION ABOUT THE DOCUMENT]. Keep analysis in this assistant.
 
-Leave prompt unset so the result contains source text. Request live retrieval if the current version matters. Check for truncation and make the returned content large enough to cover the relevant passages within available limits. If adequate context cannot be retrieved, explain what remains unread rather than treating an extract as the full document.
+Leave prompt unset so the result contains source text. Request live retrieval if the current version matters or the URL is not indexed. Check for truncation and make the returned content large enough to cover the relevant passages within available limits. If adequate context cannot be retrieved, explain what remains unread rather than treating an extract as the full document.
 
 Support the answer with source quotations or section references and the original URL. Preserve qualifications, dates and units. Do not search for substitute documents or switch providers without permission.
 ```
@@ -301,7 +301,7 @@ Research question: [YOUR QUESTION]
 
 **Full content when needed**
 
-Octen’s pricing page, checked on 13 September 2026, includes full content for the first ten results per search without an additional content charge. Search charges and model context costs remain. Explicitly request full content when additional context is needed rather than relying on an integration’s defaults. The following prompt uses conservative starting limits while allowing evidence-driven follow-up work. [Pricing](https://docs.octen.ai/overview/pricing.md)
+Octen’s pricing page, checked on 18 November 2026, lists a ten-result full-content allowance per search under pay-as-you-go API pricing. Search Plans charge for all full-content results. Broad Search can run several sub-queries; verify the applicable allowance and returned usage before estimating charges. Search charges and model context costs remain. Explicitly request full content when additional context is needed rather than relying on an integration’s defaults. The following prompt uses conservative starting limits while allowing evidence-driven follow-up work. [Pricing](https://docs.octen.ai/overview/pricing.md)
 
 ```text
 Use the multi-provider-research skill.
@@ -310,7 +310,7 @@ Use only Octen for search and page reading; exclude native tools. Keep analysis 
 
 Choose the task-appropriate Octen operation. For news, disable storylines; for business source-only work with uncertain card provenance, disable entity cards. Respect filters on source results rather than assuming they apply to cards or summaries.
 
-Enable full content when additional source context is needed. Start with at most 10 results per search (including each Broad Search sub-query) and at most 5 Broad Search sub-queries. Choose a suitable per-result token cap; 2048 is a possible starting point. These limits do not guarantee complete text or coverage. Expand them only to address a material evidence gap and explain why.
+Enable full content when additional source context is needed. Start with at most 10 results for a single Search, or at most 3 results per sub-query across up to 3 Broad Search sub-queries. Choose a suitable per-result token cap; 2048 is a possible starting point. These limits do not guarantee complete text or coverage. Expand them only to address a material evidence gap and explain why.
 
 Briefly report the operations and important count/sub-query/token settings, whether the text was sufficient, and extraction fallbacks or unread sources. Do not claim billing savings without billing evidence.
 
@@ -886,9 +886,9 @@ Use the multi-provider-research skill.
 
 Use exactly Octen and Exa as external providers. Both must contribute a distinct role. Use their source-reading tools; do not add another external provider or a native page reader.
 
-Use retrieval and source-content modes. Have the model selected in this application perform the analysis and final answer; do not use provider-generated summaries, answers, or agent research.
+Use retrieval and source-content modes. Have the model selected in this application perform the analysis and final answer; do not use provider-generated summaries, answers, or agent research. Disable generated output enabled by default, including Octen News storylines with subjects.enable: false. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
 
-- Use Octen Broad Search for multi-angle discovery. Give it one self-contained question that preserves my intent and constraints, resolves conversational references, and fits the current input limit. Let Octen generate the subqueries.
+- Choose the Octen operation that fits the evidence needed, such as News Search for current reporting or Search for a focused lookup. Use Broad Search when distinct discovery angles are needed. Give Broad Search one self-contained question that preserves my intent and constraints, resolves conversational references, and fits the current input limit. Let Octen generate the subqueries.
 - When source context is needed, explicitly request Octen full content using the current interface’s controls, then inspect the returned text.
 - Use regular Exa Search for an independent semantic cross-check with a distinct verification purpose.
 - Reuse sufficient excerpts or full text returned by either provider. Use Octen Extract or Exa Fetch for supplied URLs or missing, incomplete, unusable, or stale content. Prefer the corresponding provider’s reader for its unique results.
@@ -907,9 +907,9 @@ Use the multi-provider-research skill.
 
 Use exactly Octen and Perplexity Search as external providers. Both must contribute a distinct role. You may also use the harness-native page reader for citation verification; do not add another external provider.
 
-Use retrieval and source-content modes. Have the model selected in this application perform the analysis and final answer. Do not use Perplexity Ask, Reason, or Research, or request generated summaries or answers through retrieval options.
+Use retrieval and source-content modes. Have the model selected in this application perform the analysis and final answer. Do not use Perplexity Ask, Reason, or Research, or request generated summaries or answers through retrieval options. Disable generated output enabled by default, including Octen News storylines with subjects.enable: false. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
 
-- Use Octen Broad Search for multi-angle discovery. Give it one self-contained question that preserves my intent and constraints, resolves conversational references, and fits the current input limit. Let Octen generate the subqueries.
+- Choose the Octen operation that fits the evidence needed, such as News Search for current reporting or Search for a focused lookup. Use Broad Search when distinct discovery angles are needed. Give Broad Search one self-contained question that preserves my intent and constraints, resolves conversational references, and fits the current input limit. Let Octen generate the subqueries.
 - When source context is needed, explicitly request Octen full content using the current interface’s controls, then inspect what returned.
 - Use Perplexity Search for a distinct targeted query, applying supported domain, country, or recency controls when useful.
 - Reuse sufficient excerpts or full text. Use Octen Extract for supplied URLs or Octen results with missing, incomplete, unusable, or stale content. Use the native page reader for Perplexity sources that need additional context.

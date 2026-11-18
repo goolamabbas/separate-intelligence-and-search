@@ -77,7 +77,7 @@ When provider-generated synthesis is allowed, require the final response to iden
 
 For example, search relevance models help select source text. That is different from asking a provider to write the research answer.
 
-Provider-generated analysis includes Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Deep Research and Task Group. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
+For assistant-only synthesis, disable generated output that is enabled by default. Provider-generated analysis includes Octen News storylines; Keenable generated cards and prompted Fetch; Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Decisions, Deep Research and Task Group. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
 
 ## Octen
 
@@ -103,7 +103,7 @@ Extract’s standard mode suits ordinary pages; advanced or auto can help with d
 
 ### What it contributes
 
-Plain Search is useful for a bounded lookup; Broad Search is useful when several discovery angles are needed. Requesting page text alongside search can reduce separate extraction calls. For Web Search and Broad Search, Octen’s pricing page includes full content for the first ten results per search at no additional content charge; results beyond ten cost $0.50 per 1,000. Search calls remain chargeable, and Broad Search may execute several of them. Start with only as many results and sub-queries as the evidence needs. [Current pricing](https://docs.octen.ai/overview/pricing.md)
+Plain Search is useful for a bounded lookup; Broad Search is useful when several discovery angles are needed. Requesting page text alongside search can reduce separate extraction calls. Checked 18 November 2026, Octen’s pay-as-you-go API pricing lists full content for the first ten results per search at no additional content charge, then $0.50 per 1,000 results. Search Plans charge $0.50 per 1,000 full-content results with no free allowance. For Broad Search, verify the applicable allowance and returned usage before estimating charges. Search calls remain chargeable, and Broad Search may execute several of them. Start with only as many results and sub-queries as the evidence needs. [Current pricing](https://docs.octen.ai/overview/pricing.md)
 
 **Pulse pricing checked 31 October 2026:** Lite costs $0.10 per 1,000 calls and Standard $0.20. Standard includes full content for the first result; additional full-content results cost $0.50 per 1,000. Pulse shares Web Search’s throughput limit. These allowances differ from Web Search and Broad Search.
 
@@ -138,7 +138,7 @@ Use `query_time` only for point-in-time index search. `query_time: "7d"` means a
 
 For source-only work, set Search's `disable_cards: true`: Keenable can otherwise return its own written cards, whose URLs expire after one day. These are not original source pages. Leave Fetch's `prompt` unset: supplying it asks an LLM to read the page and return an answer instead of source text. These controls preserve analysis by the assistant selected in your application.
 
-Fetch normally returns indexed Markdown, but an unindexed page can trigger live retrieval. Set `live: true` when the current source matters. Check `max_chars` and truncation before treating a result as the complete document. A live fetch does not establish that the underlying source is current or that every element was extracted. [Fetch documentation](https://docs.keenable.ai/products/fetch)
+Keenable documents MCP Fetch as indexed-only by default, with a `max_chars` default of 20,000. Set `live: true` for current content or unindexed URLs. The HTTP Fetch API documents automatic live fallback for unindexed URLs and a 50,000-character default. Check the selected interface and truncation before treating a result as the complete document. A live fetch does not establish that the underlying source is current or that every element was extracted. [Fetch documentation](https://docs.keenable.ai/products/fetch) · [MCP defaults](https://docs.keenable.ai/mcp-server)
 
 ### What the benchmarks tell you
 

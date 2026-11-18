@@ -57,7 +57,6 @@ function visit(dir) {
     html = html.replace('</head>', `<link rel="icon" type="image/svg+xml" href="${relative(current,base.href+'favicon.svg')}"><style>.guide-nav a{padding:8px 10px}.guide-nav .nav-label{margin-bottom:10px}.template-status{font-size:12px;color:var(--muted);margin:4px 0 14px}.mobile-navigation .nav-label{display:none}</style></head>`);
     if (current === 'guide/research-prompts/index.html') {
       html = html.replace('Harness-neutral research prompts for everyday questions, specific providers, and deeper investigations.','Research prompts for everyday questions, specific providers, and deeper investigations.');
-      html = html.replace(/(<div class="example-body">)/g,'$1<p class="template-status">Reusable template · no end-to-end run record attached</p>');
     }
     fs.writeFileSync(f,html);
   }

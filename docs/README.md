@@ -4,7 +4,7 @@
 
 **Use the smallest permitted toolset that can supply the evidence your question needs.** Start with your application's built-in search and page reader. Add an external provider when it fills a specific gap, confirm that it works, and judge the answer against the sources—not the number of tools used.
 
-External providers can add precise discovery controls, specialized datasets, batch research, website crawling, browser-rendered extraction, or provider-generated analysis. The choice depends on your task and the capabilities your application actually exposes.
+External providers can add precise discovery controls, specialized datasets, batch research, source retrieval, or provider-generated analysis. The choice depends on your task and the capabilities your application actually exposes.
 
 This guide takes you through three decisions: **what evidence to obtain, how to obtain it reliably, and whether it supports the answer.** The provider reference, connection instructions, and prompt cookbook supply the details when you need them.
 
@@ -58,7 +58,7 @@ A provider is useful when it fills an evidence gap within the boundaries you set
 
 Start with the search and page-reading tools already available in your AI application. They may be sufficient for a straightforward lookup or reading a known source.
 
-Consider external providers when you need something specific: more precise discovery controls, specialized datasets, repeated research across a list, website mapping or crawling, browser-rendered pages, or provider-generated research.
+Consider external providers when you need something specific: more precise discovery controls, specialized datasets, repeated research across a list, source retrieval, or provider-generated research.
 
 Use the smallest set that covers the task. External services can add setup, cost, latency, and another service receiving the query. Capabilities vary by application and integration, so verify what is available rather than assuming an external tool is always better.
 
@@ -78,7 +78,7 @@ The [prompt library](research-prompts.md) includes complete native-only and rest
 
 ### Choose by desired outcome
 
-Use the [provider quick chooser](choosing-providers.md#quick-chooser) to match your question to a capability: finding sources, collecting a website, obtaining structured data, or requesting provider-generated analysis. The chooser is the maintained comparison table; these are possible starting points, not rankings.
+Use the [provider quick chooser](choosing-providers.md#quick-chooser) to match your question to a capability: finding sources, reading specific pages, obtaining structured data, or requesting provider-generated analysis. The chooser is the maintained comparison table; these are possible starting points, not rankings.
 
 ![Research workflow: choose permitted tools, retrieve evidence, then report contributions and gaps.](assets/research-workflow.svg)
 
@@ -97,7 +97,7 @@ For ordinary lookups, retrieving source material and having your selected model 
 ```
 Use external tools to retrieve source content and relevant excerpts. Model-assisted ranking and passage selection are permitted.
 
-Do not request provider-generated summaries, answers, research reports, or agent analysis, including through output options inside search, fetch, or scrape tools.
+Do not request provider-generated summaries, answers, research reports, or agent analysis, including through output options inside search, fetch, or scrape tools. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
 
 Have the model selected in this application perform the analysis and final answer generation.
 ```

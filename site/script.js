@@ -41,7 +41,10 @@ document.querySelectorAll('.examples pre, .skill-copy pre').forEach((pre) => {
         navigator.clipboard.writeText(pre.textContent),
         new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Clipboard unavailable')), 1000); })
       ]);
-      status.textContent = 'Copied. Replace the brackets with your details.';
+      status.textContent = pre.closest('.skill-copy')
+        ? 'Copied. Paste it into your coding agent.'
+        : 'Copied. Replace the brackets with your details.';
+      button.textContent = 'Copied ✓';
     } catch {
       const range = document.createRange();
       range.selectNodeContents(pre);
