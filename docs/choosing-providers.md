@@ -111,7 +111,7 @@ When additional source context is needed, explicitly request full content using 
 
 ### What to avoid
 
-Do not repeat the same broad query across providers merely to increase provider count. Give complementary providers a distinct evidence or verification role. Do not automatically Extract every Octen result, and do not forbid another read when the returned content lacks necessary context. Ten results is a useful content-pricing threshold, not a universal evidence limit; larger searches or follow-up queries can be justified by a coverage gap. Lower token caps manage context, but can remove qualifications needed to support a claim.
+Do not repeat the same broad query across providers merely to increase provider count. Give complementary providers a distinct evidence or verification role. Do not automatically Extract every Octen result, and do not forbid another read when the returned content lacks necessary context. Expand the result count or run a follow-up query when the first search leaves a material evidence gap. Lower token caps manage context, but can remove qualifications needed to support a claim.
 
 ## Keenable
 

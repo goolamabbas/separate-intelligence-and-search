@@ -1,4 +1,5 @@
 for (const button of document.querySelectorAll('[data-copy]')) {
+  const originalLabel = [...button.childNodes];
   button.addEventListener('click', async () => {
     const prompt = document.getElementById(button.dataset.copy);
     const status = button.closest('.prompt-block').querySelector('[role="status"]');
@@ -12,6 +13,7 @@ for (const button of document.querySelectorAll('[data-copy]')) {
       status.textContent = 'Copied. Paste into your assistant and adapt the placeholders.';
       button.textContent = 'Copied ✓';
     } catch {
+      button.replaceChildren(...originalLabel);
       const selection = window.getSelection();
       const range = document.createRange();
       range.selectNodeContents(prompt);
