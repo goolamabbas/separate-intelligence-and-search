@@ -1,6 +1,6 @@
 # Harness-neutral research prompt examples
 
-The library includes a standalone starter without the skill. The remaining examples invoke the reusable routing skill through a natural-language instruction: `Use the multi-provider-research skill.` They do not depend on an application-specific `$` command, slash command, mention syntax, or rules-file format.
+Some prompts work with a connected provider alone. Prompts that use the optional routing skill begin with `Use the multi-provider-research skill.` You can use that instruction across applications without learning a special command.
 
 Paste an example into the instruction or chat interface of an AI application, then replace its placeholders. The application may use a different internal mechanism to locate an installed skill, but the natural-language instruction preserves the portable intent.
 

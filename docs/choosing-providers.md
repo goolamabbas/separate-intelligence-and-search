@@ -36,7 +36,8 @@ These services overlap, but they are not interchangeable. Choose according to th
 | Query-relevant passages across web documents, with publication/index-date controls | **Keenable Search**, with generated cards disabled for source-only work |
 | Reading a supplied or selected page through Keenable | **Keenable Fetch**, without `prompt` for source-only work |
 | Several distinct research angles requiring broader discovery | **Octen Broad Search** |
-| Visual references by text or reference image | **Octen Image Search** |
+| Find images from a text description | **Parallel Image Search** or **Octen Image Search** |
+| Find images using a reference image | **Octen Image Search** |
 | Videos or matching clips | **Octen Video Search**, only with early-access entitlement |
 | Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
 | Publication-date, domain, category, or content controls | **Exa Advanced Search** |
@@ -377,6 +378,7 @@ The [unified MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) e
 | Research need | Route | Access and output |
 | --- | --- | --- |
 | Find public sources and supporting passages | `web_search`, then `web_fetch` when needed | Core MCP retrieval; returns source evidence for your assistant |
+| Find images for a brief or presentation | `image_search` | Direct image and source-page links, with pixel dimensions when available |
 | Retrieve specialized records | `find_verticals`, then `search_vertical` | Discover a matching operation, input schema and price; check the returned records and citations |
 | Get a cited answer to one research question | `web_research` | Authenticated MCP; provider-generated answer returned in the same call |
 | Benefit from included Index Partner evidence | An eligible Task or Responses research operation | Automatic relevance-based retrieval; partner and processor coverage varies |
@@ -385,6 +387,8 @@ The [unified MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) e
 | Produce a substantial asynchronous report or enrich a list | Task MCP, Task API or Parallel CLI | Separate advanced workflow with its own lifecycle and processor costs |
 
 These routes are alternatives and can complement one another when they fill distinct evidence gaps. A successful web search does not establish access to every dataset or research operation.
+
+**Finding an image.** Give Parallel short keyword queries and describe what makes an image suitable. For example, search for “Python logo” and specify that you want an official logo for a presentation. In a fast-mode MCP check on 20 November 2026, the results included both third-party pages and the [Python Software Foundation’s logo page](https://www.python.org/community/logos/). Use the source page to check attribution and terms of use, and open the image before describing what it shows. [Parallel’s launch article](https://parallel.ai/blog/parallel-images-api) · [Images API quickstart](https://docs.parallel.ai/image-search/image-search-quickstart)
 
 ### Search
 
