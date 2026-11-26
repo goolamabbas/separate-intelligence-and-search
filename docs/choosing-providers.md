@@ -260,6 +260,8 @@ Ultra delegates research and inference to Exa's own workflow and models. It does
 
 **Terms checked 26 September 2026:** Exa documents a default $20 per-run cap with actual usage billing; a run finishing early can cost less. It describes complex runs as typically about 30 minutes, potentially three hours. These are provider descriptions, not timings or quality results measured for this guide. Fixed Agent efforts offer predictable per-request prices when they meet the task. Check applicable Connect charges if adding a dataset. [Ultra documentation](https://exa.ai/docs/agent/agent-ultra.md) · [Current pricing](https://exa.ai/docs/reference/pricing.md)
 
+**Advanced reference for runs with a required budget.** Check which controls your assistant’s connection actually exposes.
+
 | Control in the direct API | What it means |
 | --- | --- |
 | `budget.maxCostDollars` | $1–$100; available for `auto` and `ultra`; Ultra defaults to $20 |

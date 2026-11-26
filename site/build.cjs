@@ -11,7 +11,9 @@ fs.mkdirSync(path.join(out,'assets'),{recursive:true});
 const sections={};for(const part of source.split(/^## /m).slice(1)){const [title,...body]=part.split('\n');sections[title]=body.join('\n').trim();}
 const render=s=>marked.parse(s.replaceAll('(#start-with-a-question-and-one-provider)', '(#start)').replaceAll('(docs/README.md)',`(${guide})`).replaceAll('(assets/','(assets/'));
 const setup=sections['Start with a question and one provider'].split(/^### /m).slice(1).map(x=>{const [title,...body]=x.split('\n');return {title,body:body.join('\n')}});
-const introduction=source.split('## The pieces')[0].split('\n\n').slice(2,6).join('\n\n');
+const openingParagraphs=source.split('## The pieces')[0].split('\n\n');
+const audience=openingParagraphs[1];
+const introduction=openingParagraphs.slice(2,6).join('\n\n');
 const prompt=setup[2].body.match(/```text\n([\s\S]*?)```/)[1].trim();
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 const html=`<!doctype html>
@@ -20,7 +22,7 @@ const html=`<!doctype html>
 
 <header class="masthead wrap"><a class="brand" href="#"><span class="brand-mark" aria-hidden="true">↗</span> Separate intelligence & search</a><nav aria-label="Main navigation"><a href="#idea">The idea</a><a href="${guide}">Detailed guide</a><a href="${skill}">Optional skill <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main">
-<section class="hero wrap"><div class="eyebrow"><span></span> A practical guide by Yusuf Goolamabbas</div><h1>Choose your AI.<br>Choose <em>how it searches.</em></h1><div class="hero-bottom"><p>You’ve invested in an AI assistant. It’s worth investing a little in the information it can access.</p><div class="actions"><a class="text-link" href="#examples">Find a question to try <span aria-hidden="true">→</span></a></div></div>
+<section class="hero wrap"><div class="eyebrow"><span></span> A practical guide by Yusuf Goolamabbas</div><h1>Choose your AI.<br>Choose <em>how it searches.</em></h1><div class="hero-bottom"><p>${escape(audience)}</p><div class="actions"><a class="text-link" href="#examples">Find a question to try <span aria-hidden="true">→</span></a></div></div>
 <div class="choice-map" aria-label="Two separate choices, working together"><div class="choice"><div class="choice-label">01 / YOUR INTELLIGENCE</div><h2>The assistant you like.</h2><p>Interprets your question.<br> Reasons with evidence. Writes the answer.</p><div class="tags"><span>Your application</span><span>Your model</span></div></div><div class="map-join" aria-hidden="true">+</div><div class="choice search-choice"><div class="choice-label">02 / YOUR RESEARCH TOOLS</div><h2>The evidence you need.</h2><p>Finds relevant sources.<br> Retrieves the content for your assistant.</p><div class="tags"><span>Search</span><span>Retrieve</span><span>Verify</span></div></div><div class="map-caption"><span class="connector-line" aria-hidden="true"></span><p>Your application connects the tools. Your chosen model can use their sources to develop an answer.</p></div></div>
 <p class="hero-footnote">One suitable provider can be enough. Start with the tools you already have.</p></section>
 <section class="section wrap idea idea-text" id="idea"><div><span class="eyebrow">THE IDEA</span><h2>Keep the assistant.<br>Open up your sources.</h2><p class="lead">Choose where your assistant gets its evidence.</p><div class="prose">${render(introduction)}</div><details class="plain-details"><summary>Why choose them separately? <span aria-hidden="true">+</span></summary><div class="prose">${render(sections['Why choose them separately?'])}</div></details></div></section>

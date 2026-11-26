@@ -1,10 +1,10 @@
 # Choosing External Research Tools for AI Agents
 
-*A practical guide to choosing research tools, connecting them, and judging the evidence they return.*
+*A practical guide to finding and checking sources with the chat or coding assistant you already use.*
 
 **Use the smallest permitted toolset that can supply the evidence your question needs.** Start with your application's built-in search and page reader. Add an external provider when it fills a specific gap, confirm that it works, and judge the answer against the sources—not the number of tools used.
 
-External providers can add precise discovery controls, specialized datasets, batch research, source retrieval, or provider-generated analysis. The choice depends on your task and the capabilities your application actually exposes.
+Follow the main path with one question and a copyable prompt. If you need a provider, start with a supported app, plugin, connector or MCP server. The setup guide also points terminal-capable agents to command-line options and app builders to the providers’ integration docs.
 
 This guide takes you through three decisions: **what evidence to obtain, how to obtain it reliably, and whether it supports the answer.** The provider reference, connection instructions, and prompt cookbook supply the details when you need them.
 
@@ -27,8 +27,8 @@ Your application is the workspace, the model interprets your question and writes
 
 For a first setup, follow the guide in order:
 
-1. **Choose:** start with a question you care about and a relevant provider compatible with your application.
-2. **Connect and try:** connect that provider and ask it a useful question. No routing skill is required.
+1. **Choose:** start with a question you care about and see whether your assistant’s existing tools can answer it.
+2. **Connect and try:** if you need an external provider, connect one that fits your application and try a prompt.
 3. **Evaluate:** open supporting sources and check dates, claims and important gaps.
 4. **Optionally add guidance:** install the routing skill if your application supports it and you want reusable research instructions.
 
@@ -112,7 +112,7 @@ A working connection comes before routing instructions. Confirm that one suitabl
 
 ### Connect only the providers you need
 
-Provider access and the routing skill do different jobs. Access may come through a supported provider skill, MCP server, plugin, connector, command-line client, or direct API. Choose the route that fits your application and supplies the capabilities you need. The routing skill guides when and how to use those capabilities; it does not require every provider to use the same integration method.
+Start with a supported app, plugin or connector, or use a direct MCP connection when it gives your assistant a capability you need. Connect the provider first. The optional routing skill gives the assistant reusable guidance on when and how to use the tools it can reach.
 
 One working provider is enough to start. Connect it, run a small read-only check, and confirm useful results before adding more. See [Installing and testing external research providers](connecting-providers.md) for setup and optional project-instruction snippets.
 

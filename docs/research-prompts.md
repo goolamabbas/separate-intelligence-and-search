@@ -6,7 +6,7 @@ Paste an example into the instruction or chat interface of an AI application, th
 
 The application must still have access to the providers named in a prompt. A provider mentioned in an instruction is not necessarily installed, connected, authenticated, or callable.
 
-Provider and operation names describe the intended capabilities, not a required integration method. Use the supported provider skill, MCP server, plugin, connector, command-line client, or direct API available in the application. Adapt parameters to that interface while preserving each prompt’s provider, evidence, and synthesis restrictions.
+Start with the tools exposed by your app, plugin, connector or MCP connection. A compatible coding agent can also use a provider CLI when the task permits it and the CLI exposes the required operation. Check the actual tool and its controls before using it. Preserve each prompt’s provider, operation, evidence and synthesis restrictions. If a required operation is missing, report the gap and follow the prompt’s fallback instructions.
 
 **Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](costs.md#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
 

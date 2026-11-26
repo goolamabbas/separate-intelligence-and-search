@@ -1,6 +1,6 @@
 # Installing and testing external research providers
 
-This guide explains how to make an external research provider callable inside an AI application and verify that it returns useful results without requiring the optional `multi-provider-research` routing skill.
+Connect a research provider to the AI assistant you already use and check that it returns useful results. You can try the setup and starter prompts before deciding whether to add the optional `multi-provider-research` skill.
 
 Choose a provider for one useful question, then check that your application supports the required connection and tools before paying. Provider charges are separate from your AI subscription; check current pricing for the operation you intend to use.
 
@@ -34,9 +34,7 @@ Use providers that are callable, permitted, and relevant. A required provider mu
 
 ## Choose an access route
 
-Choose according to the capabilities your task needs and the interfaces your application supports. A provider may offer several routes: an official skill, a plugin or connector, hosted or local MCP, a command-line client, or direct API access. These routes are alternatives, not a required sequence. A successful check through one route establishes what worked through that route; it does not establish that all other routes work or are unsuitable.
-
-Start with an official plugin or connector when your application offers one. Otherwise use the provider's hosted MCP instructions. Local servers and manual configuration are alternatives when the simpler route does not fit.
+Start with the provider’s official app, plugin or connector if your assistant offers one and it covers the task. Use the provider’s hosted MCP instructions if you need a different operation or your assistant connects directly to MCP servers. Check what your chosen connection actually exposes before adding another route. [Other ways to connect](#other-connection-options)
 
 | Provider | First route to try | Access and capability boundary |
 | --- | --- | --- |
@@ -69,23 +67,31 @@ Use a local MCP server when:
 - the application supports only local MCP processes;
 - a pinned local version or direct local control is important.
 
-### Provider skill
-
-Use an official provider skill when it contains instructions or scripts that directly call the provider API. A skill is not automatically an MCP server, and an instruction-only skill does not create connectivity.
-
 ### Plugin or connector
 
 A marketplace plugin or connector can be the simplest option when it bundles the provider connection, skills, and safety guidance. You must still inspect the tools it exposes after installation.
 
-### Direct API or command-line access
+<a id="other-connection-options"></a>
 
-Use a supported API or command-line client when the application can call it securely and it supplies the required capability. Inspect its own parameters and authentication requirements; do not copy MCP arguments into a direct API request without checking their shape. Keep credentials out of prompts, public pages, and logs.
+### Other ways to connect
 
-Choose the route officially supported by both the provider and the application that exposes the tools required for the task.
+#### If your coding assistant can run terminal commands
+
+Any compatible coding agent can use both MCP and a provider’s command-line tool (CLI). Check each route in the current session. For MCP, confirm the enabled connection exposes the required tool. For a CLI, confirm the command is available to the agent and has the account, network and execution access it needs. Check the installed version’s help for supported commands and flags.
+
+Use the route that supplies the operation or controls you need. For example, use Parallel’s MCP Fetch to read a supplied page. For a task that calls for a list of companies meeting explicit criteria, consider Parallel CLI’s FindAll if the operation and its charges fit the task. Reuse sufficient evidence when both routes cover the same job. [Parallel CLI](https://docs.parallel.ai/integrations/cli) · [Parallel MCP tools](https://docs.parallel.ai/integrations/mcp/quickstart#tools)
+
+#### Provider skill
+
+A provider-specific skill can teach a compatible agent to use that provider’s CLI or supply scripts for a supported connection. Check its prerequisites and the actual tools it makes available. The optional skill in this guide gives your assistant reusable instructions for research across its available tools.
+
+#### Direct API or command-line access
+
+Follow the provider’s CLI or API documentation for setup, authentication and parameters. Use credentials through the supported secret or account mechanism. If you are building research into your own product, use the provider’s developer docs for programmatic MCP, direct API and SDK integration. [Example developer overview from Parallel](https://docs.parallel.ai/integrations/developer-quickstart)
 
 ## Installation and verification checklist
 
-1. Choose an official plugin, remote MCP, local MCP, provider skill, or command-line integration supported by the application.
+1. Choose one supported connection for the task. Start with the official app, plugin or connector if it covers the tools you need.
 2. Use keyless access when it covers the task, or create/sign in to the required provider account.
 3. If an API key is needed, store it using the application’s secret, environment-variable, or credential-management mechanism.
 4. Restart the application or begin a fresh task when required.
@@ -219,7 +225,7 @@ For authenticated same-call research, include `web_research` and use the authent
 
 #### Enable research connectors deliberately
 
-The following is an illustrative value for `x-parallel-mcp-config`, for an authenticated client that supports custom headers. It enables two documented free research connectors and fixes compatible medium effort:
+**Advanced setup for authenticated hosted MCP.** Use the example below when your client supports custom headers and your research needs these connectors. The `x-parallel-mcp-config` value enables two documented free research connectors and fixes a compatible effort level.
 
 ```json
 {

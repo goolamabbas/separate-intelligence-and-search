@@ -1,6 +1,6 @@
 # Choose Your AI. Choose How It Searches.
 
-A practical guide to choosing useful sources for the AI assistant you already use.
+A practical guide to finding and checking sources with the AI assistant you already use.
 
 **You’ve invested in an AI assistant. It’s worth investing a little in the information it can access.** That can begin with time spent connecting a useful provider and learning to inspect its sources; it need not mean another paid subscription.
 
@@ -8,7 +8,7 @@ When we use an AI assistant, the model and its search tools can feel like one se
 
 Your application is the workspace around these parts. In a compatible application, you can choose a model you like and connect providers that suit your needs. The application determines which models and connections are available; choosing a model does not automatically unlock every tool.
 
-Start with one question and one suitable provider. Try the sources it returns before deciding whether you need anything more.
+Start with one question and the tools your assistant already has. If you need a better source or a capability it lacks, connect one provider through an app, plugin, connector or MCP. Try a prompt and check what comes back.
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
@@ -21,7 +21,7 @@ You do not need to know these terms beforehand:
 | **Model** | The AI that interprets your request and generates a response. It can work with information supplied by external tools. |
 | **Application** | The workspace around the model, sometimes called a harness. It manages your conversation and the tools the model can use. Think of it as the place where you work with AI. |
 | **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Octen, Exa, Parallel, or Perplexity. |
-| **Connector or plugin** | A way for your application to access an external service. The name and setup process vary by application. You may also encounter **MCP**, a standard for connecting AI applications to tools. |
+| **App, plugin or connector** | A way for your application to access an external service. The name and setup process vary by application. You may also encounter **MCP**, a standard for connecting AI applications to tools. |
 | **Skill** | A reusable package of instructions that an assistant can follow for a particular kind of task. The multi-provider-research skill gives guidance on using research tools. |
 
 **Search** finds potentially useful sources. **Retrieval** brings back their contents so the assistant can use the evidence in its answer. Some providers also perform research and analysis using their own models. Choosing an Agent service such as Exa Agent Ultra delegates some reasoning to that service; it does not inherit your selected model.
