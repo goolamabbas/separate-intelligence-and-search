@@ -25,12 +25,59 @@ This guide takes you through three decisions: **what evidence to obtain, how to 
 
 Your application is the workspace, the model interprets your question and writes the answer, and a connected provider supplies sources or other research capabilities. Check which connections your application supports before choosing or paying for a provider.
 
-For a first setup, follow the guide in order:
-
-1. **Choose:** start with a question you care about and see whether your assistant’s existing tools can answer it.
-2. **Connect and try:** if you need an external provider, connect one that fits your application and try a prompt.
-3. **Evaluate:** open supporting sources and check dates, claims and important gaps.
-4. **Optionally add guidance:** install the routing skill if your application supports it and you want reusable research instructions.
+<figure class="research-paths" id="research-paths" aria-labelledby="research-paths-title">
+  <figcaption id="research-paths-title">How your assistant gets research tools</figcaption>
+  <section class="research-paths-primary" aria-labelledby="research-paths-start">
+    <h3 id="research-paths-start">Start with the assistant you already use</h3>
+    <ol class="research-paths-flow" role="list">
+      <li>
+        <strong>Ask a question</strong>
+        <span>Try your assistant’s built-in search and page reader.</span>
+      </li>
+      <li>
+        <strong>Connect a provider if needed</strong>
+        <span>Choose one app, plugin, connector or direct MCP connection.</span>
+      </li>
+      <li>
+        <strong>Try a prompt and check the sources</strong>
+        <span>Open key links and check dates, claims and gaps.</span>
+      </li>
+    </ol>
+  </section>
+  <section class="research-paths-coding" aria-labelledby="research-paths-coding-title">
+    <h3 id="research-paths-coding-title">For coding agents with MCP and terminal access</h3>
+    <p>One agent can use either route or both, depending on the task.</p>
+    <dl class="research-paths-routes">
+      <div>
+        <dt>MCP connection</dt>
+        <dd>
+          <strong>Search for relevant sources</strong>
+          <span>Find official release notes and migration guides for a software update.</span>
+        </dd>
+      </div>
+      <div>
+        <dt>Provider CLI</dt>
+        <dd>
+          <strong>Build a list that meets your criteria</strong>
+          <span>Use Parallel FindAll to discover companies that match a set of requirements.</span>
+        </dd>
+      </div>
+    </dl>
+  </section>
+  <section class="research-paths-skills" aria-labelledby="research-paths-skills-title">
+    <h3 id="research-paths-skills-title">Optional skills</h3>
+    <dl>
+      <div>
+        <dt>Multi-provider research skill</dt>
+        <dd>Helps your assistant choose and use available research tools.</dd>
+      </div>
+      <div>
+        <dt>Provider-specific skill</dt>
+        <dd>Shows your assistant how to use one provider’s tools or CLI.</dd>
+      </div>
+    </dl>
+  </section>
+</figure>
 
 For a starting question, try the introduction’s [creative-project, company research, consumer marketing and B2B examples](https://goolamabbas.github.io/separate-intelligence-and-search/#examples). They are suggested uses with copyable prompts, not recorded searches.
 
