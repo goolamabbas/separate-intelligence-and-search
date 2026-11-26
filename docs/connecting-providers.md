@@ -12,6 +12,8 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 
 ## On this page
 
+- [ChatGPT: try the Parallel app](#chatgpt-try-the-parallel-app)
+- [Claude Code: connect directly to Exa](#claude-code-connect-directly-to-exa)
 - [Install only what you need](#install-only-what-you-need)
 - [Choose an access route](#choose-an-access-route)
 - [Installation and verification checklist](#installation-and-verification-checklist)
@@ -24,6 +26,34 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 - [Optional project-instruction snippets](#optional-project-instruction-snippets)
 - [Continue reading](#continue-reading)
 - [Official setup documentation](#official-setup-documentation)
+
+## ChatGPT: try the Parallel app
+
+1. Open the [Parallel listing in OpenAI’s directory](https://openai.com/business/plugins/parallel-search/) and choose the install option. Review the permissions and follow any connection prompts. If Parallel is already installed, go straight to the next step.
+2. Start a new chat in ChatGPT Work with Parallel enabled. Try this public question. Parallel receives the search query.
+
+```text
+Use Parallel Search to find the official WordPress note about the upgrade to WordPress 6.6. What was the minimum PHP version it required? Link to the note. If Parallel is unavailable, tell me.
+```
+
+**Check what ran.** Look at the activity for this answer. A completed search attributed to **Parallel** confirms the app handled it. If your view shows individual tool names, look for `web_search` under Parallel. A generic “searched the web” label leaves the provider unclear. If the activity is unclear, select Parallel explicitly in a new chat and retry. The result to check is **PHP 7.2.24** in the [WordPress developer note](https://make.wordpress.org/core/2024/04/08/dropping-support-for-php-7-1/).
+
+## Claude Code: connect directly to Exa
+
+1. In a terminal, open the folder where you use Claude Code. Run this command there to add Exa for your own use in that folder. Exa offers limited search access without an API key. [Exa’s hosted MCP](https://exa.ai/docs/reference/exa-mcp) · [Claude Code’s connection instructions](https://code.claude.com/docs/en/mcp)
+
+```sh
+claude mcp add --transport http exa https://mcp.exa.ai/mcp
+```
+
+2. Start `claude` in that same folder. Type `/mcp` and check that **exa** shows as connected. If you already have that connection, you can start here.
+3. Paste this question. If Claude asks for permission to use Exa Search, approve it for this search.
+
+```text
+Use Exa Search to find the original Acquired interview with Nvidia CEO Jensen Huang from October 2023. Give me the episode title and the link to its transcript. If Exa is unavailable, say so.
+```
+
+**Check what ran.** Find the tool call above Claude’s answer and expand its details if needed. Look for the **exa** server and **web_search_exa** returning a result. In a transcript the full name can appear as `mcp__exa__web_search_exa`. The expected result is Acquired’s [NVIDIA CEO Jensen Huang](https://www.acquired.fm/episodes/jensen-huang). The `/mcp` screen tells you the connection is ready. The completed search tells you Claude used it for this answer.
 
 ## Install only what you need
 

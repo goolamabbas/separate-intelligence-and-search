@@ -34,7 +34,7 @@ markdown.use({renderer: {
   }
 }});
 let html = markdown.parse(body);
-const copyLabels = ['prompt', 'endpoint', 'configuration', 'endpoint', 'configuration', 'instructions', 'instructions'];
+const copyLabels = ['prompt', 'command', 'prompt', 'prompt', 'endpoint', 'configuration', 'endpoint', 'configuration', 'instructions', 'instructions'];
 const sourceBlocks = [...source.matchAll(/```([^\n]*)\n([\s\S]*?)```/g)];
 if (sourceBlocks.length !== copyLabels.length) throw new Error('Review connection copy labels after changing code blocks');
 for (const block of sourceBlocks) if (block[1].trim() === 'json') JSON.parse(block[2]);
