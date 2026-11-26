@@ -2,13 +2,13 @@
 
 A practical guide to finding and checking sources with the AI assistant you already use.
 
-**You’ve invested in an AI assistant. It’s worth investing a little in the information it can access.** That can begin with time spent connecting a useful provider and learning to inspect its sources; it need not mean another paid subscription.
+When your assistant gives you an answer, ask yourself: **“Can I open the source and check the part of the answer I’m relying on?”**
+
+Suppose you ask, “Do we need to change anything before upgrading this app?” Your assistant says yes and links to the release notes. Open the link. Does it say **who needs to change what**? If the passage answers that question for your team, you’re done. If it’s unclear, ask your assistant to find the exact instruction. If its built-in search still comes up short, that’s a reason to try a connected research tool.
 
 When we use an AI assistant, the model and its search tools can feel like one service. But they perform different jobs. The model interprets your question, reasons with the information it receives and writes the answer. Search and retrieval tools find sources and bring back their contents.
 
 Your application is the workspace around these parts. In a compatible application, you can choose a model you like and connect providers that suit your needs. The application determines which models and connections are available; choosing a model does not automatically unlock every tool.
-
-Start with one question and the tools your assistant already has. If you need a better source or a capability it lacks, connect one provider through an app, plugin, connector or MCP. Try a prompt and check what comes back.
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
