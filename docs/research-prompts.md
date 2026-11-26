@@ -48,7 +48,7 @@ All four prompts work without the optional skill. Pick a question your connected
 | [Check before upgrading an app](#one-question-without-the-skill) | An upgrade instruction and the official passage behind it | [Choose a provider](connecting-providers.md#choose-an-access-route) |
 | [Find original sources with Exa](#exa-search-and-exa-fetch) | A comparison of Notion and Obsidian from their own help pages | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
 | [Read a supplied page with Octen](#octen-read-one-page) | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
-| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) | A clinical trial’s title, status and last update from its registry record | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
+| [Look up a trial record with Parallel’s dataset tools](#parallel-specialized-dataset-lookup) | A clinical trial’s title, status and last update from its registry record | [Direct Parallel MCP with dataset access](connecting-providers.md#parallel-connection-readiness). Using the Parallel app in ChatGPT? Try the [upgrade question](#one-question-without-the-skill) with Parallel Search. |
 
 
 ### One question without the skill

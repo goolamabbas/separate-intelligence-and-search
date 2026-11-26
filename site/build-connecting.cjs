@@ -10,7 +10,7 @@ const introduction = 'https://goolamabbas.github.io/separate-intelligence-and-se
 const escape = text => text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const slug = text => text.toLowerCase().replace(/[^\p{L}\p{N}_\- ]/gu, '').replaceAll(' ', '-');
 const title = source.match(/^# (.+)$/m)[1];
-const subtitle = 'Connect one provider, verify useful results, then add the routing skill.';
+const subtitle = 'Connect one research tool to your assistant and check that it answered your question. The skill is optional.';
 const headings = [...source.replace(/```[\s\S]*?```/g, '').matchAll(/^## (.+)$/gm)].map(m => m[1]).filter(h => h !== 'On this page');
 const toc = headings.map(h => `<a href="#${slug(h)}">${escape(h)}</a>`).join('\n');
 let body = source.replace(/^# .+\n\n/, '')
