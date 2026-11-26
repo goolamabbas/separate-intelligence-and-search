@@ -4,7 +4,7 @@ This reference compares practical roles for [Octen](https://octen.ai/), [Keenabl
 
 These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
 
-**Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
+**Reading the examples.** Dated tests describe the connection used for that task. Check [setup options](connecting-providers.md#choose-an-access-route) and [provider allowances](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) for your own connection.
 
 [Choosing research tools for your AI assistant](README.md)
 

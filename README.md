@@ -92,7 +92,7 @@ Use the [provider reference](https://goolamabbas.github.io/separate-intelligence
 
 Follow the provider’s official instructions for your application. A connector, plugin or MCP server gives the application access to external tools; the available routes depend on the application and plan.
 
-The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. Try a [starter prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a suitable connected provider. These are templates, not recorded runs.
+The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. Try a [starter prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a suitable connected provider.
 
 ### 3. Ask a question and inspect the sources
 

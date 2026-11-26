@@ -2,7 +2,7 @@
 
 Count three things separately: your application or model plan, research-provider charges, and local taxes or currency conversion. Free retrieval still uses your assistant’s model allowance.
 
-These are dated examples to help you compare options, not a promise of current prices or availability in your account. Prices and availability may have changed since these checks.
+The check dates below apply to the examples in each section. Confirm the rate for your account and operation before starting a paid run.
 
 ## Start with what you already have
 
@@ -10,7 +10,7 @@ If your current application supports the tools you need, try one useful task bef
 
 ## Provider allowances and access
 
-**Access and allowance guidance checked 11 November 2026.** These are published terms, not measured bills or a guarantee of access in every application. Each setup link explains the supported connection; check your account before a paid operation.
+**Access and allowance guidance checked 11 November 2026.** The table summarizes published provider terms.
 
 | Provider | How to try it | What can incur charges | Setup and terms |
 | --- | --- | --- | --- |
@@ -29,8 +29,6 @@ Start with the capability your question needs. A keyless connection may expose o
 For optional authenticated X research, check the selected interface's billing and result limits before running a query. This page does not estimate X charges or assume who pays through a third-party connector. See [X-native evidence](choosing-providers.md#optional-authenticated-x-native-evidence).
 
 ## Regional application examples
-
-These retain their original dated source checks; the November access refresh above does not reverify these application offers.
 
 
 Choosing these parts separately also lets you explore combinations that fit your budget. This can be especially useful in India, Pakistan, and other emerging markets, or anywhere you want to get more from what you already spend. A coding-oriented application can serve as a workspace for research and everyday assistance when it supports the necessary skills and tools.

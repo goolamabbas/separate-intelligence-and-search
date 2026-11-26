@@ -2,11 +2,11 @@
 
 Connect a research provider to the AI assistant you already use and check that it returns useful results. You can try the setup and starter prompts before deciding whether to add the optional `multi-provider-research` skill.
 
-Choose a provider for one useful question, then check that your application supports the required connection and tools before paying. Provider charges are separate from your AI subscription; check current pricing for the operation you intend to use.
+**Before you connect**, review the permissions your assistant shows. When you run a search, the provider receives the search terms your assistant sends. When you ask it to read a page, it receives the URL, including any private details in the link. Try a public example first. Searches and page reads may use a free allowance or incur a separate charge on the provider account used by your connection. [Check costs and access](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access).
 
 The optional skill is a routing layer. It tells an agent which provider to use and how to preserve evidence, but it does not create provider access.
 
-**Setup overview checked:** 11 November 2026 against the linked provider documentation. This is not an end-to-end test of each connection. Historical tests below retain their own dates; endpoints, authentication and tool availability can change.
+**About these checks.** The setup overview follows provider documentation checked on 11 November 2026. Dated test notes identify the connection and tools actually used.
 
 [Choosing research tools for your AI assistant](README.md)
 
@@ -30,7 +30,7 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 ## ChatGPT: try the Parallel app
 
 1. Open the [Parallel listing in OpenAI’s directory](https://openai.com/business/plugins/parallel-search/) and choose the install option. Review the permissions and follow any connection prompts. If Parallel is already installed, go straight to the next step.
-2. Start a new chat in ChatGPT Work with Parallel enabled. Try this public question. Parallel receives the search query.
+2. Start a new chat in ChatGPT Work with Parallel enabled. Try this public WordPress question. Parallel receives the search terms.
 
 ```text
 Use Parallel Search to find the official WordPress note about the upgrade to WordPress 6.6. What was the minimum PHP version it required? Link to the note. If Parallel is unavailable, tell me.
@@ -76,8 +76,6 @@ Once connected, return to the question you chose or [try the release-notes promp
 | **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. Context is supported by the hosted server and requires v1.5.0 or later on the local server. |
 | **Parallel** | [Parallel app in ChatGPT](https://openai.com/business/plugins/parallel-search/) or [direct hosted MCP](#parallel-connection-readiness) | The app supplies tools through its connection. The direct hosted MCP offers keyless Search/Fetch at lower limits. Check the selected connection for the operations you need. |
 | **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or the [official read-only MCP](#read-only-x-research) | Check authentication, required read scopes and which developer account pays for usage. |
-
-See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
 
 <a id="keenable-connection-readiness"></a>
 

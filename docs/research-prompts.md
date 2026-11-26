@@ -8,8 +8,6 @@ The application must still have access to the providers named in a prompt. A pro
 
 Start with the tools exposed by your app, plugin, connector or MCP connection. A compatible coding agent can also use a provider CLI when the task permits it and the CLI exposes the required operation. Check the actual tool and its controls before using it. Preserve each prompt’s provider, operation, evidence and synthesis restrictions. If a required operation is missing, report the gap and follow the prompt’s fallback instructions.
 
-**Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](costs.md#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
-
 - [Choosing research tools for your AI assistant](README.md)
 - [Choosing an external research provider](choosing-providers.md)
 - [Connecting and testing providers](connecting-providers.md)
@@ -39,7 +37,7 @@ Start with **Minimum sufficient provider set** for everyday research. Use **Comm
 
 Use the section links below to jump to a pattern.
 
-**Testing status:** Library blocks are reusable templates, not verified end-to-end runs unless a linked run record says otherwise. The [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) records a separate advanced run; it does not validate every Ultra prompt here.
+**About the examples.** These are prompts to adapt. Recorded runs, such as the [Exa Ultra case study](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/), identify what was tried and what happened.
 
 ## Four starters
 
@@ -125,6 +123,8 @@ In the final response, list the exact search and fetch tools used.
 For a hard technical guarantee, disable external tools and automatic skill loading or use a clean profile, then review the tool-call record.
 
 ## Before copying a prompt
+
+Use public details when you fill in a prompt. A provider can receive search terms, a URL to read, or records you ask it to look up. For example, “retailers in Lyon” is enough for a public search even if you’re doing the work for a particular client. Check what your connection [charges for the operation](costs.md#provider-allowances-and-access), especially before requesting a research report or submitting a whole list.
 
 ### Provider access
 
@@ -476,7 +476,7 @@ Return supporting passages with speaker or filing section, reporting period, pub
 
 ### Exa Agent Ultra for comprehensive discovery
 
-Use this when broad coverage and difficult qualification criteria justify provider-generated research. This is an illustrative, unexecuted prompt. The $10 and 30-minute settings are example limits: adjust them before use. The duration control is a soft ceiling. See [when Ultra is worth it](choosing-providers.md#when-agent-ultra-is-worth-it).
+Use this when broad coverage and difficult qualification criteria justify provider-generated research. The $10 and 30-minute settings are example limits: adjust them before use. The duration control is a soft ceiling. See [when Ultra is worth it](choosing-providers.md#when-agent-ultra-is-worth-it).
 
 ```text
 Use the multi-provider-research skill.
@@ -622,7 +622,7 @@ Retain the task URL or identifier and stop after creation; I will request monito
 
 ### Parallel Task Group
 
-Advanced template: repeated enrichment with a shared output contract.
+Parallel receives the entries you submit and the fields you want filled in. Start with a few public entries and check the cost of processing the batch.
 
 ```text
 Use the multi-provider-research skill.
@@ -700,7 +700,7 @@ Research question: Compare the compliance trade-offs of releasing a frontier mod
 
 ### Perplexity Research
 
-Use Research only when comprehensive synthesis justifies its additional latency.
+Perplexity receives the research question and uses its own models to produce a report. Check the [API pricing](https://docs.perplexity.ai/docs/getting-started/pricing) before starting the run.
 
 ```text
 Use the multi-provider-research skill.
@@ -742,7 +742,7 @@ On 3 September 2026, the live Exa `dataSources` schema inspected while preparing
 
 Exa also documents [additional partners](https://exa.ai/docs/reference/agent-api/connect/additional-partners) requiring account enablement.
 
-Inspect the available Connect data sources and their schema before first use; reuse that knowledge unless the surface changes or validation fails. The Agent interface may expose these through a `dataSources` field or another supported control. Do not assume access or commercial terms from documentation.
+Inspect the available Connect data sources and their schema before first use; reuse that knowledge unless the surface changes or validation fails. The Agent interface may expose these through a `dataSources` field or another supported control. Check the price of the Agent run and any separate partner data charges before sending a list.
 
 Use this common structure:
 

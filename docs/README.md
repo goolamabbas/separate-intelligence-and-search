@@ -6,7 +6,7 @@ Start with a question you care about and try your assistant’s built-in search.
 
 [Choose a tool for your question](choosing-providers.md#quick-chooser), [connect it to your assistant](connecting-providers.md#choose-an-access-route), then [try a first question](research-prompts.md#one-question-without-the-skill). You can do all three before installing the optional research skill.
 
-**Reading path revised:** 26 November 2026. Setup and access guidance carry their own check dates; historical tests and other provider facts retain their stated dates. An editorial update is not a fresh test of every tool.
+**Reading path revised:** 26 November 2026. See the [setup notes](connecting-providers.md) for connection checks and [Costs and access](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/) for dated prices.
 
 [← Start with the introduction](../README.md)
 
@@ -185,7 +185,7 @@ Add provider or synthesis restrictions when they matter. The prompt library cont
 
 ### Use the reusable routing skill
 
-For a first task, choose a [starter prompt](research-prompts.md#four-starters) and inspect the sources returned. These are templates, not recorded runs.
+For a first task, choose a [starter prompt](research-prompts.md#four-starters) and inspect the sources returned.
 
 This step is optional. Provider connections work independently of the skill. Installation requires an application with compatible skill support and appropriate file access; the skill supplies neither connections nor paid provider access.
 
