@@ -44,7 +44,7 @@ Start with an official plugin or connector when your application offers one. Oth
 | **Keenable** | [Hosted MCP](https://docs.keenable.ai/mcp-server); choose the [endpoint for your access route](#keenable-connection-readiness) | Search/Fetch can run keyless at shared limits; sign-in or a key uses organization credits. Public schemas can omit mode selection. |
 | **Octen** | [Hosted MCP](https://docs.octen.ai/integrations/octen-mcp-server) at `https://mcp.octen.ai/mcp` | Follow the documented sign-in or API-key route for your client. An account and API usage balance apply. Video Search requires early-access entitlement; a visible tool alone does not establish access. |
 | **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. Context is supported by the hosted server and requires v1.5.0 or later on the local server. |
-| **Parallel** | [ChatGPT plugin](https://openai.com/business/plugins/parallel-search/) or [hosted MCP](#parallel-connection-readiness) | The hosted MCP offers keyless Search/Fetch at lower limits. Check each route for the tools and dataset access you need. |
+| **Parallel** | [Parallel app in ChatGPT](https://openai.com/business/plugins/parallel-search/) or [direct hosted MCP](#parallel-connection-readiness) | The app supplies tools through its connection. The direct hosted MCP offers keyless Search/Fetch at lower limits. Check the selected connection for the operations you need. |
 | **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or the [official read-only MCP](#read-only-x-research) | Check authentication, required read scopes and which developer account pays for usage. |
 
 See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
@@ -190,17 +190,26 @@ Check for `perplexity_context` when you need to read a known URL. Perplexity doc
 
 ### Parallel connection readiness
 
-**Parallel guidance checked 11 November 2026.** Start with the [unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp`, or a supported integration exposing the capabilities your task needs. The [installation page](https://parallel.ai/mcp) links client-specific setup. The documentation-only MCP is a different service and does not provide general Parallel research access.
+**Using ChatGPT desktop? Start with the Parallel app from the plugin directory.** It’s the simplest way to try Search and Fetch, which work without a Parallel account. The listing also describes Decisions and asks you to connect a Parallel account for Research. Start with one useful question and check which tools your chat exposes. [Parallel app listing](https://openai.com/business/plugins/parallel-search/)
 
-In ChatGPT, the [Parallel plugin](https://openai.com/business/plugins/parallel-search/) is another setup route. On 26 November 2026, the inspected plugin listed dedicated flight and product search tools. It did not list the hosted server’s two vertical tools. Choose the route that supplies the operation you need. The checks below describe the hosted MCP unless stated otherwise.
+Consider the direct hosted MCP when you need a specific operation missing from the app, such as a supported dataset lookup, or when you need to configure which tools or search controls the connection exposes. Your client must support the chosen setup. For ChatGPT, check the custom MCP instructions and your workspace permissions before adding a server. [Custom MCP setup in ChatGPT](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)
 
-1. **Connect and authenticate as needed.** Basic Search/Fetch works without a key at lower rate limits. For authenticated research and higher limits, use OAuth at `https://mcp.parallel.ai/mcp?login`, or a securely stored API key in a supported client header. Authenticated calls are billed to your Parallel account after applicable free usage. Account funds do not replace dataset entitlements.
-2. **Inspect the tools actually exposed.** The hosted MCP’s documented default includes `web_search`, `web_fetch`, `web_decisions`, `image_search`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
+| Connection | What we verified on 26 November 2026 |
+| --- | --- |
+| **Parallel app in ChatGPT** | A Codex chat in ChatGPT desktop ran the app’s dedicated `flight_search` and `product_search` tools. One sample fare search returned 20 itineraries with booking links, and one product search returned two priced merchant listings. The two dataset tools below were absent from the app’s tool list in that chat. Availability in other modes, workspaces or clients remains unverified. |
+| **Direct hosted Parallel MCP** at `https://mcp.parallel.ai/mcp` | An anonymous connection listed `web_search`, `web_fetch`, `web_decisions`, `image_search`, `find_verticals` and `search_vertical` among its tools. It returned ClinicalTrials.gov discovery results. A separate check on 11 November retrieved one registry record. |
+
+The app can supply its own tools even when a separately configured Parallel MCP server is disabled. [Hosted MCP installation guide](https://docs.parallel.ai/integrations/mcp/installation)
+
+#### Direct hosted MCP setup
+
+1. **Connect and authenticate as needed.** Search, Fetch, Decisions and fast-mode Image Search work without a key at lower rate limits. For authenticated research and higher limits, use OAuth at `https://mcp.parallel.ai/mcp?login`, or a securely stored API key in a supported client header. Authenticated calls are billed to your Parallel account after applicable free usage. Account funds do not replace dataset entitlements.
+2. **Inspect the tools actually exposed.** The quickstart explains five core web tools in its table and separately lists `find_verticals` and `search_vertical` among the default tools. Check the selected host, authentication and tool list. A `tools` URL parameter replaces the default list, so include every operation needed. [Hosted MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart#tools)
 3. **Check the control you need.** Per-call MCP arguments, authenticated connection settings and direct API request fields are different surfaces. The `x-parallel-mcp-config` JSON header supports `override` values enforced for every call and `model_choice` paths exposed to the agent. Overrides apply last. Custom-header support is required; reconnect and inspect the resulting schema after a configuration change.
-4. **Verify relevant data access.** For structured records, use `find_verticals` to inspect a matching operation's schema and price, then run one bounded lookup when useful. For research connectors, check supported selection, effort and organization access. If access fails, report the precise missing capability and available setup route rather than assuming the dataset does not exist.
+4. **Verify relevant data access.** If the connection exposes both dataset tools, use `find_verticals` to inspect a matching operation’s schema and price. Use `search_vertical` for a bounded lookup when the match, access and cost fit the task. For research connectors, check supported selection, effort and organization access. If access fails, report the precise missing capability and available setup route rather than assuming the dataset does not exist.
 5. **Inspect the result.** Confirm usable evidence and actual source contribution, not just tool visibility. Preserve returned usage and limitations. Some client wrappers omit billing metadata; do not interpret missing cost as zero.
 
-A connection that needs web retrieval and specialized records can use this tool list:
+For web retrieval and supported dataset lookups through the direct hosted MCP, request these tools:
 
 ```text
 https://mcp.parallel.ai/mcp?tools=web_search,web_fetch,find_verticals,search_vertical
@@ -231,7 +240,7 @@ This is connection configuration, not an argument to the default `web_research` 
 
 The current MCP defaults Search to `fast`; configuration can select another supported mode. Session IDs and optional client-model metadata should be supplied only when the current schema accepts them. Session IDs correlate calls, not guaranteed memory or duplicate suppression.
 
-**Observed in this connection, 11 November 2026:** Search accepted only `objective` and `search_queries`; Fetch accepted URLs and retrieval options, but neither accepted session or model metadata. Research exposed input, effort and previous response ID, with no `data_sources` argument. Specialized discovery and one ClinicalTrials.gov lookup succeeded; the record was truncated. We did not change configuration, validate connector overrides, run paid research or test licensed sources. See the [capability guide](choosing-providers.md#parallel).
+**Earlier hosted MCP check, 11 November 2026:** Search accepted only `objective` and `search_queries`; Fetch accepted URLs and retrieval options, but neither accepted session or model metadata. Research exposed input, effort and previous response ID, with no `data_sources` argument. Specialized discovery and one ClinicalTrials.gov lookup succeeded; the record was truncated. We did not change configuration, validate connector overrides, run paid research or test licensed sources. See the [capability guide](choosing-providers.md#parallel).
 
 For asynchronous reports and list enrichment, use the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), Task API or CLI when that workflow is needed. Inspect their schemas separately; do not launch a report merely to prove installation.
 

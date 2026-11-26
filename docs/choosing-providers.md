@@ -387,20 +387,20 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 
 ### Best fit
 
-**Parallel guidance checked 11 November 2026.**
+**Connection checks are dated in the [setup guide](connecting-providers.md#parallel-connection-readiness).**
 
 Use Parallel to find source evidence, query relevant specialized records, or commission provider-generated research when that suits the task. A user should be able to ask a question without knowing the dataset catalogue: the agent should consider the relevant accessible sources and choose the smallest useful combination.
 
 **Two distinct routes:** Parallel’s finance, legal and healthcare improvements help its existing web search find relevant source documents. Specialized dataset access is a separate route: discover an available operation, then query its records. Check the selected connection for a callable dataset operation.
 
-The [hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) documents web retrieval, specialized-source discovery and authenticated research. The ChatGPT plugin can expose fare and product search. Check the tool list for the connection you choose. Start with the [connection readiness checks](connecting-providers.md#parallel-connection-readiness), then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
+The Parallel app in ChatGPT and the direct hosted MCP expose their own tool lists. The app connection we tested ran dedicated fare and product searches. The direct hosted connection exposed tools for discovering and querying supported datasets. Check the [setup guide and dated tests](connecting-providers.md#parallel-connection-readiness) for the route that fits your task, then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
 
 | Research need | Route | Access and output |
 | --- | --- | --- |
 | Find public sources and supporting passages | `web_search`, then `web_fetch` when needed | Core MCP retrieval; returns source evidence for your assistant |
-| Find images for a brief or presentation | `image_search` | Direct image and source-page links, with pixel dimensions when available |
-| Find flight fares or product offers | Dedicated flight or product search when exposed | Check itinerary, market, price currency, availability and observation time |
-| Retrieve specialized records | `find_verticals`, then `search_vertical` | Discover a matching operation, input schema and price; check the returned records and citations |
+| Find images for a brief or presentation | Images API or `image_search` on a connection that exposes it | Direct image and source-page links, with pixel dimensions when available |
+| Find flight fares or product offers | Dedicated tools on supporting app connections | Check the itinerary or product variant, market, currency, availability and observation time |
+| Retrieve records from a supported dataset | `find_verticals`, then `search_vertical`, when both are exposed | Check the matching operation, schema, price and returned evidence |
 | Get a cited answer to one research question | `web_research` | Authenticated MCP; provider-generated answer returned in the same call |
 | Benefit from included Index Partner evidence | An eligible Task or Responses research operation | Automatic relevance-based retrieval; partner and processor coverage varies |
 | Add selected free or paid connectors to research | Authenticated research configuration or a supported Task/Responses interface | Requires exposed configuration and account access; selection does not guarantee a call |
@@ -409,7 +409,7 @@ The [hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) do
 
 These routes are alternatives and can complement one another when they fill distinct evidence gaps. A successful web search does not establish access to every dataset or research operation.
 
-**Finding an image.** Give Parallel short keyword queries and describe what makes an image suitable. For example, search for “Python logo” and specify that you want an official logo for a presentation. In a fast-mode MCP check on 20 November 2026, the results included both third-party pages and the [Python Software Foundation’s logo page](https://www.python.org/community/logos/). Use the source page to check attribution and terms of use, and open the image before describing what it shows. [Parallel’s launch article](https://parallel.ai/blog/parallel-images-api) · [Images API quickstart](https://docs.parallel.ai/image-search/image-search-quickstart)
+**Finding an image.** Parallel’s Images API has its own search operation, exposed as `image_search` on supporting MCP connections. Give it short keyword queries and describe what makes an image suitable. For example, search for “Python logo” and specify that you want an official logo for a presentation. In a fast-mode MCP check on 20 November 2026, the results included both third-party pages and the [Python Software Foundation’s logo page](https://www.python.org/community/logos/). Use the source page to check attribution and terms of use, and open the image before describing what it shows. [Parallel’s launch article](https://parallel.ai/blog/parallel-images-api) · [Images API quickstart](https://docs.parallel.ai/image-search/image-search-quickstart)
 
 ### Search
 
@@ -436,13 +436,15 @@ The announcements' benchmarks are dated vendor evaluations, not independent guar
 
 ### Specialized dataset operations: discover, then query
 
-When a question materially benefits from a specialized dataset, use `find_verticals` with the evidence needed, rather than defaulting to generic web search. Examples include trial registrations, biomedical literature, compounds, Medicare coverage and places. Discovery returns candidate IDs, prices and full input schemas for the best matches. If the desired match lacks a schema, refine discovery before executing it.
+Start with Search or Fetch when public pages can answer the question. Look for a structured operation when the task needs exact record fields, such as looking up a trial registration by its ID. The hosted MCP quickstart lists the two dataset tools, with limited detail on individual operations. If your connection exposes both tools, use `find_verticals` to look for a match and inspect the returned ID, input schema and price. Refine discovery if the match lacks a schema. [Hosted MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart#tools)
 
 Inspect the selected operation's fields, coverage, output type and price, then call `search_vertical` with that returned ID and its accepted arguments. Some operations analyze records rather than simply retrieving them: assistant-only synthesis restrictions apply to the operation, even inside a retrieval-oriented tool. Preserve record identifiers and citations; report truncation, missing fields and coverage gaps. A catalogue entry proves discovery, not successful retrieval.
 
 A separate discovery check on 11 November 2026 requested financial filings and court rulings but returned no dedicated finance or legal operation. This describes that response, not proof that such datasets are unavailable through every connection or access route.
 
-**Executed check, 11 November 2026:** discovery returned `clinical_trials.get_trial_details` with a required `nct_id` and a $0 call price. One lookup of `NCT04280705` returned a trial identifier, title, completed status and an official ClinicalTrials.gov citation; the result reported `cost_usd: 0`. The returned record was truncated, so its last-update field was not verified. This checks one lookup, not every vertical or the completeness of the registry.
+**Executed hosted MCP check, 11 November 2026:** discovery returned `clinical_trials.get_trial_details` with a required `nct_id` and a $0 call price. One lookup of `NCT04280705` returned a trial identifier, title, completed status and an official ClinicalTrials.gov citation; the result reported `cost_usd: 0`. The returned record was truncated, so its last-update field was not verified. This checks one lookup, not every vertical or the completeness of the registry.
+
+**Hosted MCP discovery check, 26 November 2026.** The trial-details operation appeared again. The response included a full schema for a broader trial-search operation, while the exact-ID candidate had no input schema in that response. The check ended at discovery.
 
 ### Included partners, selected connectors and licensed sources
 

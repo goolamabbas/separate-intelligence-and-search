@@ -520,7 +520,7 @@ Provider spending limit: [LIMIT]
 
 Use only Parallel for external research, with no native search or readers. Inspect its current tools and consider relevant indexed sources, specialized datasets and eligible research sources; I should not need to name each dataset. Reuse sufficient evidence and choose the smallest useful combination.
 
-Use find_verticals when structured records would materially help. Inspect the selected operation's schema, coverage and price before executing it. Provider-generated web_research is permitted when useful within the budget; do not use Decisions or start asynchronous Tasks for this request.
+If structured records would materially help and this connection exposes find_verticals and search_vertical, discover a suitable operation. Inspect its schema, coverage and price before calling it. If the connection lacks these tools, report the structured-data gap. Provider-generated web_research is permitted when useful within the budget; do not use Decisions or start asynchronous Tasks for this request.
 
 For eligible research, describe the needed records and fields so relevant included Index Partner evidence can contribute. Use already-enabled connectors only within my budget and access; do not assume inclusion proves use. Do not change configuration, buy access or add licensed/private sources. If a necessary control or entitlement is missing, explain the specific gap and next step. Do not treat a prompt as an enforced spending limit.
 
@@ -550,7 +550,7 @@ Use the multi-provider-research skill.
 
 Compare [METRIC] for [COMPANIES] over [REPORTING PERIODS], as known on [DATE]. Use only Parallel retrieval operations; no native tools or other providers. Keep synthesis and calculations in this assistant; do not use web_research, Decisions or Task workflows.
 
-Find primary filings, exchange/regulator records and issuer reports. If specialized records would materially improve field comparability, discover a matching vertical, inspect its schema and price, and use it only within [PROVIDER BUDGET]. Do not assume a finance-specific operation exists; use one only if live discovery returns a suitable match. Do not use an analysis operation under this retrieval-only instruction. If the budget or required control is unresolved, explain the gap before paid execution.
+Find primary filings, exchange/regulator records and issuer reports. If specialized records would materially improve field comparability and the selected connection exposes vertical discovery and lookup, discover a matching operation, inspect its schema and price, and use it only within [PROVIDER BUDGET]. Do not assume a finance-specific operation exists; use one only if live discovery returns a suitable match. Do not use an analysis operation under this retrieval-only instruction. If the budget or required control is unresolved, explain the gap before paid execution.
 
 Return entity identifiers, reported values, reporting period, currency, units, filing date, source table/page and URL. Check amendments or restatements and explain differences in definitions. Label calculations and forecasts separately. Do not substitute a current value for a historical one or claim access to a licensed feed from web evidence alone. Report missing fields and actual dataset contributions.
 ```
@@ -575,7 +575,7 @@ Official-source preference is not a technical allowlist. If I require only speci
 
 ### Parallel specialized dataset lookup
 
-Template based on a bounded lookup executed on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
+Template for a connection that exposes both dataset tools. It is based on a bounded lookup through the direct hosted MCP on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
 
 Try the example trial below, or replace `NCT04280705` with your own NCT number.
 
@@ -584,7 +584,7 @@ Use the multi-provider-research skill.
 
 Find the official title, status and last-update date for trial NCT04280705. Use only Parallel specialized-source discovery and retrieval; keep analysis here. No web_research, Decisions, Tasks, other providers or native tools.
 
-Use find_verticals to identify the appropriate ClinicalTrials.gov lookup. Inspect its returned ID, input schema and price; execute one matching record lookup only if the quoted call price is zero. If a needed schema is absent, refine discovery rather than guessing arguments.
+Check that the selected connection exposes find_verticals and search_vertical. If either is unavailable, report the missing operation. Otherwise use find_verticals to identify the appropriate ClinicalTrials.gov lookup. Inspect its returned ID, input schema and price; execute one matching record lookup only if the quoted call price is zero. If a needed schema is absent, refine discovery rather than guessing arguments.
 
 Return the fields with the registry identifier and official citation. If the response is truncated or a field is missing, label it unverified and use a narrower supported retrieval only if available within these restrictions. Do not fill missing dates from memory. Report the selected operation and returned cost separately from the discovery quote.
 ```
