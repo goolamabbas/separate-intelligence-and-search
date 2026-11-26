@@ -88,6 +88,24 @@ The skill handles tool discovery, source checks, avoiding duplicate work, and re
 
 The examples below rely on these skill defaults rather than repeating them. Each copied block retains its task-specific restrictions. Use the current [skill package](https://github.com/goolamabbas/multi-provider-research#install); the prose around a prompt is not a substitute for loading the skill.
 
+### Explain two earnings figures for the same quarter
+
+Choose one prompt. Both ask the same question and work without the optional skill. The first needs a connection that can find and read sources. The second needs a connected research tool that can return a cited answer.
+
+**Have your assistant explain the figures**
+
+```text
+Why did [COMPANY] report two different figures for earnings per share in [FISCAL QUARTER AND YEAR]? Use a connected tool to find the issuer’s earnings release and the relevant regulatory filing available by [DATE]. Have this assistant write the explanation from those sources. Give both figures and their definitions, show which adjustments explain the difference, and link to the supporting table or passage. Identify the filing by type, reporting period and date. If the quarterly filing was still pending, say which document supports the figures.
+```
+
+**Delegate the explanation and check the evidence**
+
+```text
+Ask a connected research tool for a cited explanation of why [COMPANY] reported two different figures for earnings per share in [FISCAL QUARTER AND YEAR], using information available by [DATE]. Ask for both figures, their definitions, the adjustments that explain the difference, and the type, period and date of the relevant filing. Have this assistant check the explanation against the issuer’s earnings release and filing, link to the supporting table or passage, and flag any discrepancy. If the quarterly filing was still pending, say which document supports the figures.
+```
+
+For examples using a particular connection, see [Exa filings and earnings-call passages](#exa-filings-and-earnings-call-passages), [Parallel same-call research](#parallel-same-call-research) and [Perplexity Research](#perplexity-research).
+
 ## When not to invoke the skill
 
 Installing the skill does not authorize it for every task. A mention of a provider in a copyediting task or a general browser task does not by itself call for research routing. Use this prompt when only the current application’s built-in search and page-reading tools are permitted:
@@ -350,6 +368,8 @@ Start with up to five sources, check that both companies are covered, and make a
 For tasks that permit structured entity cards, inspect field provenance and generated descriptions separately. A card is neither automatically generated analysis nor automatically faithful evidence. Do not assume its fields obey the source-result filters.
 
 ### Octen: places in a named area
+
+For example, ask “Which library branch near [STATION] can I visit this Saturday, [DATE]?” Use place results to find nearby branches, then check the official branch page for Saturday hours and temporary closures before suggesting a visit.
 
 ```text
 Use the multi-provider-research skill.
@@ -664,7 +684,7 @@ Use only Perplexity Context to read [URLS] and answer [QUESTION]. Retrieve Markd
 Use this when you need to find the right pages first. Search finds the URLs, and Context reads selected pages when the snippets leave an important detail unclear.
 
 ```text
-Use Perplexity Search to find the official release notes for [SOFTWARE OR VERSION]. If the search results leave an important detail unclear, use Perplexity Context to read the relevant pages. Skip scoring and have this assistant do the analysis. Tell me what changed and what I should check before upgrading. Link to the sources and flag anything you couldn’t verify.
+We manage [SOFTWARE] for our team and plan to upgrade to [VERSION]. Who needs to take action before upgrading, and what should they do? Use Perplexity Search to find the official release notes. If they cover only new features, look for administrator or migration notes for that version. If a source excerpt gives both the affected users and the action, cite it. If either is unclear, use Perplexity Context to read the relevant page. Skip scoring and have this assistant explain what the evidence supports. Link to the sources and flag any remaining uncertainty.
 ```
 
 ### Perplexity Ask

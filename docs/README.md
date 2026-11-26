@@ -247,6 +247,8 @@ Successful tool calls do not establish that an answer is correct. Check whether 
 
 Inspect source content supporting important claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when the evidence is ambiguous, incomplete, conflicting, or potentially stale. Generated answers are synthesis and require supporting source evidence. For changing facts, check observation dates and available cache controls. Fetching a page today does not establish that its contents are current.
 
+Suppose you ask, “We manage this app for our team. Who needs to do something before we upgrade?” If search turns up only new features, look for the administrator notes for that version. If an excerpt mentions a change to a setting your team uses but leaves out who is affected, open the note and read the surrounding instructions. Once you have the affected setting, the action and a link to the versioned source, you can answer.
+
 ### Verify the evidence in either workflow
 
 Selected excerpts can omit useful context, and generated analysis can misinterpret its sources. Inspect the underlying content when a claim depends on qualifications, surrounding text, or conflicting evidence. If sufficient source content has already been returned, a duplicate fetch is unnecessary.
