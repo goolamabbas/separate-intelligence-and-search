@@ -43,20 +43,20 @@ Use the section links below to jump to a pattern.
 
 ## Four starters
 
-Choose one task. The first prompt below works without the optional skill; the other three links open complete templates that use it. All require a suitable provider connection. [Choose a setup route](connecting-providers.md#choose-an-access-route). For templates that use it, [install the optional skill](https://github.com/goolamabbas/multi-provider-research#install).
+All four prompts work without the optional skill. Pick a question your connected provider can help with. Replace anything in square brackets before you paste it. [Choose a setup route](connecting-providers.md#choose-an-access-route).
 
 | Start with… | What you will get | Setup |
 | --- | --- | --- |
 | [Check before upgrading an app](#one-question-without-the-skill) | An upgrade instruction and the official passage behind it | [Choose a provider](connecting-providers.md#choose-an-access-route) |
-| [Find original sources with Exa](#exa-search-and-exa-fetch) — Uses the optional skill | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
-| [Read a supplied page with Octen](#octen-read-one-page) — Uses the optional skill | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
-| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) — Uses the optional skill | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
+| [Find original sources with Exa](#exa-search-and-exa-fetch) | A comparison of Notion and Obsidian from their own help pages | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
+| [Read a supplied page with Octen](#octen-read-one-page) | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
+| [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) | A clinical trial’s title, status and last update from its registry record | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
 
 
 ### One question without the skill
 
 ```text
-Use [my connected search provider] to find the official release notes for [app and version]. Read the notes and explain who needs to do something before upgrading and what they should do. Link to the passage that supports your answer. If the notes give no specific instruction, say so.
+Before I upgrade to [app and version], is there anything I need to do? Use [my connected search provider] to read the official release notes. Tell me who needs to take action and link to the exact instructions. If the notes give none, say so.
 ```
 
 Open the cited passage. Does it apply to your version and to the way you use the app? If you want to specify exactly who writes the answer, see the [optional controls](#model-boundary).
@@ -64,9 +64,7 @@ Open the cited passage. Does it apply to your version and to the way you use the
 ### Octen: read one page
 
 ```text
-Use the multi-provider-research skill.
-
-Use only Octen Extract to read [URL] and answer [MY QUESTION]. Retrieve source content and keep analysis in this assistant. Cite supporting passages and distinguish the page's claims from your interpretation. If the page or relevant content is inaccessible, report the gap without switching providers.
+What does [URL] say about [my question]? Use only Octen Extract to read the page. Quote the passage that answers my question and explain it in your own words. If you can’t read the page or it doesn’t answer the question, tell me.
 ```
 
 ## Minimum sufficient provider set
@@ -410,16 +408,7 @@ Return source links, duration and any matching segment actually returned. Keep s
 Try the Notion/Obsidian example below, or replace the research question with your own.
 
 ```text
-Use the multi-provider-research skill.
-
-Use only regular Exa Search and Exa Fetch as external research tools. Do not use Exa Agent, Exa Connect, or another external provider.
-
-Find authoritative sources with dates appropriate to the question. Inspect returned source content before citing it. Reuse sufficient excerpts or full text; retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications.
-
-Use only the providers and operations named above for discovery and page reading; do not use a native page reader or add another provider.
-Retrieve source content or faithful extracts only; no provider-generated summaries, answers, reports, or agent analysis. Keep all analysis and final writing in this assistant.
-
-Research question: Compare the documented export formats and offline access of Notion and Obsidian for a personal research notebook.
+I’m choosing between Notion and Obsidian for my research notes. What can I do offline in each, and which formats can I export my notes to? Use only Exa Search to find their official help pages and Exa Fetch to read them if the excerpts leave anything unclear. Give me your own comparison, link to the pages, and flag any limits that would affect my choice.
 ```
 
 ### Exa Advanced Search
@@ -597,18 +586,12 @@ Official-source preference is not a technical allowlist. If I require only speci
 
 ### Parallel specialized dataset lookup
 
-Template for a connection that exposes both dataset tools. It is based on a bounded lookup through the direct hosted MCP on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
+This example needs a Parallel connection with both dataset tools: `find_verticals` finds the lookup and describes its inputs and price; `search_vertical` retrieves the record. It is based on a bounded lookup through the direct hosted MCP on 11 November 2026. The live response was truncated; this complete prompt has not been independently tested end to end.
 
 Try the example trial below, or replace `NCT04280705` with your own NCT number.
 
 ```text
-Use the multi-provider-research skill.
-
-Find the official title, status and last-update date for trial NCT04280705. Use only Parallel specialized-source discovery and retrieval; keep analysis here. No web_research, Decisions, Tasks, other providers or native tools.
-
-Check that the selected connection exposes find_verticals and search_vertical. If either is unavailable, report the missing operation. Otherwise use find_verticals to identify the appropriate ClinicalTrials.gov lookup. Inspect its returned ID, input schema and price; execute one matching record lookup only if the quoted call price is zero. If a needed schema is absent, refine discovery rather than guessing arguments.
-
-Return the fields with the registry identifier and official citation. If the response is truncated or a field is missing, label it unverified and use a narrower supported retrieval only if available within these restrictions. Do not fill missing dates from memory. Report the selected operation and returned cost separately from the discovery quote.
+What is clinical trial NCT04280705 called, what’s its status, and when was its registry record last updated? Use only Parallel to find the ClinicalTrials.gov lookup. Look up the record once if Parallel quotes a price of zero. If the lookup is unavailable or the price is missing or higher, stop and tell me. Link to the record, flag any detail you couldn’t verify, and tell me what cost the lookup reported.
 ```
 
 ### Parallel same-call research
@@ -864,7 +847,7 @@ Research question: Find current offers for laptops with at least 32 GB of RAM, a
 
 ### Particle
 
-Use this pattern when Particle’s additional analytics or structured fields are required, or when you specifically want Particle-backed evidence. For ordinary episode discovery, transcript summaries, or quotations, use [Exa Search and Fetch](#exa-search-and-exa-fetch); see [podcast retrieval guidance](choosing-providers.md#podcast-transcripts-through-search).
+Use this pattern when Particle’s additional analytics or structured fields are required, or when you specifically want Particle-backed evidence. For ordinary episode discovery, transcript summaries, or quotations, try the [Exa podcast prompt](#exa-podcast-passages-for-a-creative-project). See [podcast retrieval guidance](choosing-providers.md#podcast-transcripts-through-search).
 
 ```text
 Use the multi-provider-research skill.
