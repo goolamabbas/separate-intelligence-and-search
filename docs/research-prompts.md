@@ -659,6 +659,14 @@ Use this when you already have URLs and want the current assistant to explain wh
 Use only Perplexity Context to read [URLS] and answer [QUESTION]. Retrieve Markdown or source highlights. Omit criteria scoring and have this assistant do the analysis. Inspect each URL's status and reuse successful reads. Request a live read if currentness matters. Retry only recoverable failures without repeating successful reads. Cite the supporting passages with source URLs and report any page you could not verify.
 ```
 
+### Perplexity Search and Context
+
+Use this when you need to find the right pages first. Search finds the URLs, and Context reads selected pages when the snippets leave an important detail unclear.
+
+```text
+Use Perplexity Search to find the official release notes for [SOFTWARE OR VERSION]. If the search results leave an important detail unclear, use Perplexity Context to read the relevant pages. Skip scoring and have this assistant do the analysis. Tell me what changed and what I should check before upgrading. Link to the sources and flag anything you couldn’t verify.
+```
+
 ### Perplexity Ask
 
 ```text
