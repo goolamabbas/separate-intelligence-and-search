@@ -1,14 +1,14 @@
 # Choose Your AI. Choose How It Searches.
 
-A practical guide to finding and checking sources with the AI assistant you already use.
+When is it worth connecting a research tool to the AI assistant you already use?
 
-When your assistant gives you an answer, ask yourself: **“Can I open the source and check the part of the answer I’m relying on?”**
+Did Jensen Huang really say he wouldn’t start Nvidia again? We asked an AI assistant to find the original interview. With search turned off, it remembered the gist and gave us a link. The link led to a missing page.
 
-Suppose you ask, “Do we need to change anything before upgrading this app?” Your assistant says yes and links to the release notes. Open the link. Does it say **who needs to change what**? If the passage answers that question for your team, you’re done. If it’s unclear, ask your assistant to find the exact instruction. If its built-in search still comes up short, that’s a reason to try a connected research tool.
+With built-in search, the same assistant found the interview. The host had asked what company Huang would start if he were 30 again. Huang explained how hard it would be to begin knowing everything he would have to endure. He later said he would do it again if he knew how it would turn out. You can check both exchanges yourself. [Original interview](https://www.acquired.fm/episodes/jensen-huang) · [Huang’s follow-up](https://www.acquired.fm/episodes/acquired-live-from-chase-center-with-daniel-ek-emily-chang-jensen-huang-and-mark-zuckerberg)
 
-When we use an AI assistant, the model and its search tools can feel like one service. But they perform different jobs. The model interprets your question, reasons with the information it receives and writes the answer. Search and retrieval tools find sources and bring back their contents.
+We tried the question again using a connected search service, Exa. It found the original passage too. For someone checking that headline, built-in search was enough. On a different task, checking five potential sponsors, the assistant used both tools. Built-in search found a dated membership roster. Exa brought back the foundation’s own member profiles and an announcement showing that one company joined later. Built-in search alone had reached the same shortlist. [Member profiles](https://rustfoundation.org/members/) · [Membership announcement](https://rustfoundation.org/media/q12021-membership-update/)
 
-Your application is the workspace around these parts. In a compatible application, you can choose a model you like and connect providers that suit your needs. The application determines which models and connections are available; choosing a model does not automatically unlock every tool.
+Try this with a question of your own. Ask for the original interview, the instruction you need to follow, or a source for each company on your list. Open one link and check the detail you’ll rely on. If you can use the answer, you’re done. If a piece is missing, this guide shows how to give the assistant you already use another place to look.
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
