@@ -18,7 +18,9 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 - [Installation does not authorize every task](#installation-does-not-authorize-every-task)
 - [A connected tool may use a different model](#a-connected-tool-may-use-a-different-model)
 - [Worked example: enabling all Exa MCP tools in Codex](#worked-example-enabling-all-exa-mcp-tools-in-codex)
+- [Verify Perplexity Context](#verify-perplexity-context)
 - [Parallel verification notes](#parallel-verification-notes)
+- [Read-only X research](#read-only-x-research)
 - [Optional project-instruction snippets](#optional-project-instruction-snippets)
 - [Continue reading](#continue-reading)
 - [Official setup documentation](#official-setup-documentation)
@@ -41,9 +43,9 @@ Start with an official plugin or connector when your application offers one. Oth
 | **Exa** | [Official plugin or hosted MCP](https://exa.ai/docs/reference/exa-mcp) at `https://mcp.exa.ai/mcp` | Search/Fetch can be tried keyless at free rate limits. OAuth (`?login`) or an API key enables Agent by default; Advanced Search is opt-in. An explicit tool list replaces defaults. |
 | **Keenable** | [Hosted MCP](https://docs.keenable.ai/mcp-server); choose the [endpoint for your access route](#keenable-connection-readiness) | Search/Fetch can run keyless at shared limits; sign-in or a key uses organization credits. Public schemas can omit mode selection. |
 | **Octen** | [Hosted MCP](https://docs.octen.ai/integrations/octen-mcp-server) at `https://mcp.octen.ai/mcp` | Follow the documented sign-in or API-key route for your client. An account and API usage balance apply. Video Search requires early-access entitlement; a visible tool alone does not establish access. |
-| **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. The local package is an alternative for clients needing it. |
-| **Parallel** | [Unified hosted MCP](#parallel-connection-readiness) at `https://mcp.parallel.ai/mcp` | Keyless Search/Fetch at lower limits; OAuth (`?login`) or an API key for research and higher limits. Check dataset access separately. |
-| **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or a supported authenticated X API integration | Inspect account access, query scope and billing for the selected route; ordinary web evidence is not X-native evidence. This route was not re-tested for the setup refresh. |
+| **Perplexity** | [Recommended hosted MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) at `https://api.perplexity.ai/mcp` | OAuth sign-in or bearer API key; calls bill the selected API organization/key. Context is supported by the hosted server and requires v1.5.0 or later on the local server. |
+| **Parallel** | [ChatGPT plugin](https://openai.com/business/plugins/parallel-search/) or [hosted MCP](#parallel-connection-readiness) | The hosted MCP offers keyless Search/Fetch at lower limits. Check each route for the tools and dataset access you need. |
+| **X (optional)** | [xurl](https://github.com/xdevplatform/xurl) or the [official read-only MCP](#read-only-x-research) | Check authentication, required read scopes and which developer account pays for usage. |
 
 See [allowances and charging boundaries](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) before adding funds. The links above are documentation and setup routes, not confirmation that every tool is available in your account.
 
@@ -178,6 +180,10 @@ Retain the run ID and resume that run after an interrupted wait. A client pollin
 
 No costly Agent run is necessary merely to check whether these controls are visible. Use the [Ultra decision guide](choosing-providers.md#when-agent-ultra-is-worth-it) before choosing this route.
 
+## Verify Perplexity Context
+
+Check for `perplexity_context` when you need to read a known URL. Perplexity documents support on the hosted MCP and local version 1.5.0 or later. On 26 November 2026, a two-URL live request to Context returned both documentation pages with individual `ok` statuses. Check your organization’s batch and usage limits, and use the [Context prompt](research-prompts.md#perplexity-context) for a useful first read. [Perplexity MCP setup](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
+
 ## Parallel verification notes
 
 <a id="parallel-connection-readiness"></a>
@@ -186,8 +192,10 @@ No costly Agent run is necessary merely to check whether these controls are visi
 
 **Parallel guidance checked 11 November 2026.** Start with the [unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart) at `https://mcp.parallel.ai/mcp`, or a supported integration exposing the capabilities your task needs. The [installation page](https://parallel.ai/mcp) links client-specific setup. The documentation-only MCP is a different service and does not provide general Parallel research access.
 
+In ChatGPT, the [Parallel plugin](https://openai.com/business/plugins/parallel-search/) is another setup route. On 26 November 2026, the inspected plugin listed dedicated flight and product search tools. It did not list the hosted server’s two vertical tools. Choose the route that supplies the operation you need. The checks below describe the hosted MCP unless stated otherwise.
+
 1. **Connect and authenticate as needed.** Basic Search/Fetch works without a key at lower rate limits. For authenticated research and higher limits, use OAuth at `https://mcp.parallel.ai/mcp?login`, or a securely stored API key in a supported client header. Authenticated calls are billed to your Parallel account after applicable free usage. Account funds do not replace dataset entitlements.
-2. **Inspect the tools actually exposed.** The documented default includes `web_search`, `web_fetch`, `web_decisions`, `image_search`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
+2. **Inspect the tools actually exposed.** The hosted MCP’s documented default includes `web_search`, `web_fetch`, `web_decisions`, `image_search`, `find_verticals` and `search_vertical`, plus `web_research` when authenticated. A `tools` URL parameter replaces the default list, so include every operation needed. A custom Search-only list can hide specialized discovery even though the service supports it.
 3. **Check the control you need.** Per-call MCP arguments, authenticated connection settings and direct API request fields are different surfaces. The `x-parallel-mcp-config` JSON header supports `override` values enforced for every call and `model_choice` paths exposed to the agent. Overrides apply last. Custom-header support is required; reconnect and inspect the resulting schema after a configuration change.
 4. **Verify relevant data access.** For structured records, use `find_verticals` to inspect a matching operation's schema and price, then run one bounded lookup when useful. For research connectors, check supported selection, effort and organization access. If access fails, report the precise missing capability and available setup route rather than assuming the dataset does not exist.
 5. **Inspect the result.** Confirm usable evidence and actual source contribution, not just tool visibility. Preserve returned usage and limitations. Some client wrappers omit billing metadata; do not interpret missing cost as zero.
@@ -226,6 +234,10 @@ The current MCP defaults Search to `fast`; configuration can select another supp
 **Observed in this connection, 11 November 2026:** Search accepted only `objective` and `search_queries`; Fetch accepted URLs and retrieval options, but neither accepted session or model metadata. Research exposed input, effort and previous response ID, with no `data_sources` argument. Specialized discovery and one ClinicalTrials.gov lookup succeeded; the record was truncated. We did not change configuration, validate connector overrides, run paid research or test licensed sources. See the [capability guide](choosing-providers.md#parallel).
 
 For asynchronous reports and list enrichment, use the [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), Task API or CLI when that workflow is needed. Inspect their schemas separately; do not launch a report merely to prove installation.
+
+## Read-only X research
+
+For research-only use with the official X MCP, connect to `https://api.x.com/mcp?read_only=true`. X omits write tools from this connection and refuses write calls even if the token has write scopes. Read operations still require the appropriate OAuth scopes. If you use a personal and a team developer account, verify the account linked to the app for credits and billing. Authenticated [xurl](https://github.com/xdevplatform/xurl) is also a suitable read route. [X MCP setup](https://docs.x.com/tools/mcp) · [Developer account switching](https://devcommunity.x.com/t/announcement-multi-account-support/281774)
 
 ## Optional project-instruction snippets
 

@@ -651,6 +651,14 @@ Keep all analysis in this assistant. Do not use Perplexity Ask, Reason, Research
 Research question: [YOUR QUESTION]
 ```
 
+### Perplexity Context
+
+Use this when you already have URLs and want the current assistant to explain what the pages say. [Context and freshness guidance](choosing-providers.md#read-known-urls-with-context).
+
+```text
+Use only Perplexity Context to read [URLS] and answer [QUESTION]. Retrieve Markdown or source highlights. Omit criteria scoring and have this assistant do the analysis. Inspect each URL's status and reuse successful reads. Request a live read if currentness matters. Retry only recoverable failures without repeating successful reads. Cite the supporting passages with source URLs and report any page you could not verify.
+```
+
 ### Perplexity Ask
 
 ```text

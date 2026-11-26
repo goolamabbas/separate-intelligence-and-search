@@ -42,10 +42,11 @@ These services overlap, but they are not interchangeable. Choose according to th
 | Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
 | Publication-date, domain, category, or content controls | **Exa Advanced Search** |
 | Ranked URLs or recent-news leads without a generated answer | **Perplexity Search** |
+| Read known URLs through Perplexity | **Perplexity Context** |
 | A quick, focused factual answer or concise cited explanation | **Perplexity Ask** |
 | A comparison or decision analysis against explicit criteria using current web evidence | **Perplexity Reason** |
 | A deep multi-source investigation | **Perplexity Research** |
-| Objective-shaped web excerpts, financial filings or primary legal sources | **Parallel Search** |
+| Objective-shaped web excerpts from primary financial, legal or healthcare sources | **Parallel Search** |
 | Specialized registry or dataset records | **Parallel vertical discovery and retrieval**, when the returned coverage and fields fit |
 | A cited answer returned by Parallel in one call | **Parallel web_research**, when provider synthesis is permitted |
 | One substantial provider-generated research report | **Parallel Deep Research** |
@@ -119,6 +120,8 @@ Do not repeat the same broad query across providers merely to increase provider 
 ### Best fit
 
 **Guidance checked 11 November 2026.** Use Keenable for general web discovery, relevant passages from long documents, date-controlled search and reading supplied or selected pages. Its MCP exposes `search_web_pages` and `fetch_page_content`; SDK and API options can differ. Start with the [connection guidance](connecting-providers.md#keenable-connection-readiness) or the [one-question prompt](research-prompts.md#keenable-one-sourced-question).
+
+Keenable says it uses records of production and evaluation searches to improve retrieval, including queries, returned snippets and which pages agents fetched. Send only the public details needed for the search. Check the terms that apply to your connection before sending sensitive material. [How Keenable uses search trajectories](https://keenable.ai/blog/trajectories-in-improvements-out)
 
 ### Search: relevant passages before more page reads
 
@@ -199,6 +202,10 @@ Inspect the strongest returned sources before making material claims. Excerpts o
 
 <a id="describe-the-evidence-you-want"></a>
 
+### Flight status through Search
+
+Use ordinary Exa Search for flight status or airport boards. Give the airline and flight number, local departure date, and airports or leg. A search for UA599 on 26 November 2026 returned two legs on one [Exa Library page](https://exa.ai/library/flights/flight/UA599?date=2026-11-26). Check the leg and time zone, and distinguish scheduled, estimated and actual times. For ticket prices, use a fare lookup that covers the itinerary when your connection exposes one. [Exa Flights](https://exa.ai/blog/flights)
+
 ### Describe the evidence you want
 
 Add the details that distinguish a useful source; a longer query is not automatically better. Dates should fit the question, including historical or creative research.
@@ -207,10 +214,13 @@ Add the details that distinguish a useful source; a longer query is not automati
 | --- | --- |
 | Creative interviews | Practitioner or creative challenge, and the interview format you want |
 | Earnings-call research | Company or ticker, fiscal quarter/year, and the issue management discussed |
+| Market quote or recent price history | Instrument or ticker, exchange or quote currency, and observation time or date range |
 | Company or buying-role research | What the company sells, whom it serves, location, and the person's relationship to it |
 | Personal learning through papers | Research question, method or finding; relevant publication period if needed |
 
 For example, ask for “[company] [quarter/year] earnings call transcript about [issue]”, rather than simply “[company] outlook”. For filings, describe the disclosure sought, not just “10-K”. [Financial search guidance](https://exa.ai/docs/search/data/financial) · [Company and people queries](https://exa.ai/docs/search/data/companies-people)
+
+Exa Search can return quotes and recent price history alongside filings and earnings-call passages. Check the source, timestamp, currency and units before comparing prices. Use Connect when the task requires a particular partner or the relevant fields are missing from the returned sources. [Financial Markets documentation](https://exa.ai/docs/search/data/financial)
 
 Domain filters are collection-specific. SEC guidance uses `sec.gov`; earnings-call guidance uses `exa.ai/library/markets/stocks`, not the collection's landing-page URL. A filter still does not establish the returned document's identity, type or reporting period. [SEC collection](https://exa.ai/library/sec-filing) · [Earnings-call collection](https://exa.ai/library/earnings-call)
 
@@ -296,11 +306,12 @@ Requesting a Connect provider does not prove that it contributed. Check complete
 
 ### Best fit
 
-Use Perplexity when you need filtered source discovery or web-grounded synthesis.
+Use Perplexity for filtered source discovery, reading known URLs, or web-grounded synthesis.
 
 | Desired output | Perplexity mode |
 | --- | --- |
 | Ranked sources, facts, or recent-news leads | **Search** |
+| Page content or focused passages from supplied or selected URLs | **Context** |
 | A quick, focused factual answer, summary, or concise explanation | **Ask** |
 | A comparison or decision analysis against explicit criteria using current web evidence | **Reason** |
 | A comprehensive, literature-style investigation | **Research** |
@@ -326,6 +337,14 @@ Choose standard search directly for a difficult question. If Fast Search leaves 
 
 Fast Search (`search_type: "fast"`) is different from **Ask's Agent API `fast` preset**, which generates an answer. Use the [Perplexity Search prompt](research-prompts.md#perplexity-search) to let your assistant select the search type and follow up on important evidence gaps.
 
+<a id="read-known-urls-with-context"></a>
+
+### Read known URLs with Context
+
+Use [Perplexity Context](https://docs.perplexity.ai/docs/context/quickstart) to read supplied pages or fill a material gap in a Search excerpt when the task permits Context. It returns Markdown by default and can return source highlights focused on a question. Check each URL’s status and reuse successful reads. The default permits stored copies up to two days old. Set `max_age_seconds: 0` for a live fetch when freshness matters. Try the [Context prompt](research-prompts.md#perplexity-context).
+
+For a historical comparison, give Context a cutoff with `snapshot_as_of` on an interface that exposes it. On 26 November 2026, Context returned archived copies of two Perplexity documentation pages using a 20 November cutoff. If you also need discovery, use the same cutoff in Search where supported. The direct Search API documents the field. The Search MCP schema inspected on 26 November did not expose it. Report missing archived copies and preserve the cutoff if you use another permitted archive. Keenable’s `query_time` selects an earlier search index state. Context’s cutoff selects a stored page body. [Perplexity Time Machine](https://docs.perplexity.ai/docs/search/time-machine)
+
 ### Model boundary
 
 The Perplexity MCP integration described here distinguishes retrieval from provider-side synthesis as follows. Other interfaces may expose different controls or configurations; inspect the selected operation before use:
@@ -333,6 +352,7 @@ The Perplexity MCP integration described here distinguishes retrieval from provi
 | Tool | What happens |
 | --- | --- |
 | **Search** | The Search API returns ranked results without an AI-written answer; the application performs any later synthesis |
+| **Context** | Returns page content or excerpts from known URLs. Leave optional `criteria` scoring off when the assistant must do all analysis |
 | **Ask** | The Agent API generates an answer using its `fast` preset |
 | **Reason** | The Agent API performs the comparison or reasoning using its `medium` preset |
 | **Research** | The Agent API produces the investigation using its `high` preset |
@@ -371,14 +391,15 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 
 Use Parallel to find source evidence, query relevant specialized records, or commission provider-generated research when that suits the task. A user should be able to ask a question without knowing the dataset catalogue: the agent should consider the relevant accessible sources and choose the smallest useful combination.
 
-**Two distinct routes:** Parallel’s financial and legal improvements help its existing web search find relevant source documents. Specialized dataset access is a separate route: discover an available operation, then query its records. The Finance and Legal releases do not establish that a corresponding dataset operation is available.
+**Two distinct routes:** Parallel’s finance, legal and healthcare improvements help its existing web search find relevant source documents. Specialized dataset access is a separate route: discover an available operation, then query its records. Check the selected connection for a callable dataset operation.
 
-The [unified MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) exposes web retrieval and specialized-source discovery together, with authenticated research available on the same connection. Other integrations can expose a different subset. Start with the [connection readiness checks](connecting-providers.md#parallel-connection-readiness), then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
+The [hosted MCP server](https://docs.parallel.ai/integrations/mcp/quickstart) documents web retrieval, specialized-source discovery and authenticated research. The ChatGPT plugin can expose fare and product search. Check the tool list for the connection you choose. Start with the [connection readiness checks](connecting-providers.md#parallel-connection-readiness), then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
 
 | Research need | Route | Access and output |
 | --- | --- | --- |
 | Find public sources and supporting passages | `web_search`, then `web_fetch` when needed | Core MCP retrieval; returns source evidence for your assistant |
 | Find images for a brief or presentation | `image_search` | Direct image and source-page links, with pixel dimensions when available |
+| Find flight fares or product offers | Dedicated flight or product search when exposed | Check itinerary, market, price currency, availability and observation time |
 | Retrieve specialized records | `find_verticals`, then `search_vertical` | Discover a matching operation, input schema and price; check the returned records and citations |
 | Get a cited answer to one research question | `web_research` | Authenticated MCP; provider-generated answer returned in the same call |
 | Benefit from included Index Partner evidence | An eligible Task or Responses research operation | Automatic relevance-based retrieval; partner and processor coverage varies |
@@ -397,14 +418,17 @@ Give `web_search` one goal-style objective and short related keyword queries. Th
 Inspect supported freshness controls when currentness matters. A fetch can still return cached material. Keep publication, reporting-period, effective and retrieval dates distinct. Reuse session IDs only if the callable schema accepts them: they correlate calls and do not establish conversational memory or deduplication. Supply optional model metadata only when both the field and the exact model identity are known.
 
 <a id="financial-and-legal-sources"></a>
+<a id="parallel-financial-and-legal-web-search"></a>
 
-### Financial and legal web search
+### Financial, legal and healthcare web search
 
 Parallel describes its [29 October 2026 Finance release](https://parallel.ai/blog/parallel-for-finance) and [6 November 2026 Legal release](https://parallel.ai/blog/parallel-for-legal) as index and ranking upgrades across its existing APIs, with no new plan or subscription. They are useful reasons to consider Parallel for filings, registers, company announcements, court opinions, legislation and regulatory material. They do not create new Finance or Legal tool names or guarantee complete coverage. Normal usage charges and access limits still apply.
 
 For financial work, retain entity identifiers, reporting periods, currency and units, filing/publication dates, source tables and amendments or restatements. Distinguish a reported value from a calculation, forecast or market observation. Use a specialized dataset when comparable fields or coverage require it; do not assume a web filing supplies a licensed feed.
 
 For legal work, retain jurisdiction, court or issuer, document identifiers, decision/enactment/effective dates and supporting sections or pages. Check the proposition against the passage. Distinguish holdings from syllabuses, dissents and submissions, and enacted rules from proposals or guidance. Search metadata can differ from dates printed in the source. Older authority may remain applicable; finding a case does not establish that it remains good law or that a citator check occurred. Customer-specific private indexes are not a promise of the same coverage for every account.
+
+[Parallel for Healthcare](https://parallel.ai/blog/parallel-for-healthcare) adds search index and ranking improvements for sources such as trial registrations and published papers. To trace a reported trial result, find the ClinicalTrials.gov entry and confirm the trial ID and whether the result is posted. For exact registry fields, use a matching structured lookup if exposed. The [registry check below](#discover-specialized-records) illustrates the second route.
 
 The announcements' benchmarks are dated vendor evaluations, not independent guarantees or routing rules. Their reported end-to-end costs include answer-model tokens and search/fetch usage. This guide has not reproduced those benchmarks.
 

@@ -20,6 +20,8 @@ If your current application supports the tools you need, try one useful task bef
 | **Perplexity** | Sign in to the hosted MCP or supply an API key. Sign-in is an access route, not a free-use promise. | Tool calls are billed at standard API rates to the chosen organization or API key; your assistant subscription does not establish API credit. | [Hosted MCP and billing](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) |
 | **Parallel** | Keyless MCP Search/Fetch at lower rate limits. | Authenticated calls use API pricing after applicable free usage. Research and specialized data can have different charges; inspect the selected operation. | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) · [MCP access and billing](https://docs.parallel.ai/integrations/mcp/quickstart) |
 
+**Perplexity Context, checked 26 November 2026.** The list price is $1 per 1,000 URLs with an `ok` or `not_modified` result. Optional `criteria` scoring adds input-token charges. The number of URLs allowed per request depends on the usage tier. [Context pricing](https://docs.perplexity.ai/docs/getting-started/pricing#context-api-pricing) · [Context quickstart](https://docs.perplexity.ai/docs/context/quickstart)
+
 Keenable's allowance resets on the organization's monthly anniversary date. Its $1-per-1,000 dedicated-capacity price requires 100+ requests per second and is not the standard pay-as-you-go tier. Check account terms and exposed usage; missing billing metadata does not mean zero cost.
 
 Start with the capability your question needs. A keyless connection may expose only basic tools; a free retrieval allowance does not cover every research or automation operation. Your assistant's model usage still applies.
