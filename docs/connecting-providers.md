@@ -8,7 +8,7 @@ The optional skill is a routing layer. It tells an agent which provider to use a
 
 **Setup overview checked:** 11 November 2026 against the linked provider documentation. This is not an end-to-end test of each connection. Historical tests below retain their own dates; endpoints, authentication and tool availability can change.
 
-[Choosing External Research Tools for AI Agents](README.md)
+[Choosing research tools for your AI assistant](README.md)
 
 ## On this page
 
@@ -34,7 +34,9 @@ Use providers that are callable, permitted, and relevant. A required provider mu
 
 ## Choose an access route
 
-Start with the provider’s official app, plugin or connector if your assistant offers one and it covers the task. Use the provider’s hosted MCP instructions if you need a different operation or your assistant connects directly to MCP servers. Check what your chosen connection actually exposes before adding another route. [Other ways to connect](#other-connection-options)
+Look for the provider in your assistant’s apps or connectors. If it’s listed, follow its setup instructions. Some assistants use MCP, a standard way to connect an assistant to outside tools. The table below links to the supported route for each provider and explains when you may need to sign in or pay for usage.
+
+Once connected, return to the question you chose or [try the release-notes prompt](research-prompts.md#one-question-without-the-skill). A working connection should give you a source you can open and check. [Other ways to connect](#other-connection-options)
 
 | Provider | First route to try | Access and capability boundary |
 | --- | --- | --- |
@@ -298,7 +300,7 @@ Report tools used, contributions, and material limitations proportionally.
 
 ## Continue reading
 
-- [Choosing External Research Tools for AI Agents](README.md)
+- [Choosing research tools for your AI assistant](README.md)
 - [Choosing an external research provider](choosing-providers.md)
 - [Research prompt examples](research-prompts.md)
 

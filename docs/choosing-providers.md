@@ -6,7 +6,7 @@ These services overlap, but they are not interchangeable. Choose according to th
 
 **Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
 
-[Choosing External Research Tools for AI Agents](README.md)
+[Choosing research tools for your AI assistant](README.md)
 
 ## On this page
 
@@ -25,6 +25,14 @@ These services overlap, but they are not interchangeable. Choose according to th
 - [Official documentation](#official-documentation)
 
 ## Quick chooser
+
+What would you like your assistant to bring back?
+
+- **A passage you can check.** Ask [Keenable](#keenable) to find the exact wording of a policy, or [Parallel](#parallel) to find where a company described a change in its filing.
+- **A list or an explanation.** Try [Exa](#exa) for a list of companies with evidence for each match, or [Perplexity](#perplexity) for an explanation of two figures that seem to disagree.
+- **A place, image or conversation.** Try [Octen](#octen) for a branch near a station or the original page for a photo. Use [X](#optional-authenticated-x-native-evidence) when you need the original post and the reply that clarified it.
+
+If one of those fits, follow its link and try the question there. The full table below covers more specialized tasks.
 
 | If you need… | Start with… |
 | --- | --- |
@@ -85,6 +93,8 @@ For assistant-only synthesis, disable generated output that is enabled by defaul
 
 ### Best fit
 
+**Try this with Octen.** Which library near [station] can I visit this Saturday? Find nearby branches, then check the official branch page for hours and closures. [Connection options](connecting-providers.md#choose-an-access-route)
+
 Use Octen for focused web or news discovery, multi-angle expansion from a self-contained question, company/person profiles, place records, page extraction, and task-relevant image or video discovery when available.
 
 Octen can be accessed through supported integrations such as official provider skills, hosted or local MCP servers, or direct API access. Available capabilities and parameter names can differ by interface. Choose the operation needed, then inspect how the available integration exposes it.
@@ -118,6 +128,8 @@ Do not repeat the same broad query across providers merely to increase provider 
 ## Keenable
 
 ### Best fit
+
+**Try this with Keenable.** Does [policy or feature] apply to every customer? Find the passage that says who qualifies. Open the original page if the excerpt leaves out a condition. [Connection options](connecting-providers.md#choose-an-access-route)
 
 **Guidance checked 11 November 2026.** Use Keenable for general web discovery, relevant passages from long documents, date-controlled search and reading supplied or selected pages. Its MCP exposes `search_web_pages` and `fetch_page_content`; SDK and API options can differ. Start with the [connection guidance](connecting-providers.md#keenable-connection-readiness) or the [one-question prompt](research-prompts.md#keenable-one-sourced-question).
 
@@ -157,6 +169,8 @@ Do not make Keenable the universal default because of a ranking, automatically r
 ## Exa
 
 ### Best fit
+
+**Try this with Exa.** Which five retailers announced a new store in [region] during [period]? Give me the location, date and original announcement for each. Use Search to gather sources, or ask Agent to research and assemble the table. [Connection options](connecting-providers.md#choose-an-access-route)
 
 Use Exa when the task benefits from semantic source discovery, precise search controls, fetching known pages, structured multi-step research, or specialized datasets.
 
@@ -308,7 +322,9 @@ Requesting a Connect provider does not prove that it contributed. Check complete
 
 ### Best fit
 
-Use Perplexity for filtered source discovery, reading known URLs, or web-grounded synthesis.
+Suppose two news stories give different earnings figures for the same company. Use **Ask** for “What number did the company report?”, **Reason** for “Why are both numbers being quoted?” or **Research** for “Trace both figures through the company’s releases and filings. What was known on announcement day?” Open the cited filing to check the explanation.
+
+If you want your own assistant to write the answer, **Search** finds the pages and **Context** reads them. [Connection options](connecting-providers.md#choose-an-access-route) · [Try Search and Context together](research-prompts.md#perplexity-search-and-context)
 
 | Desired output | Perplexity mode |
 | --- | --- |
@@ -388,6 +404,8 @@ An MCP wrapper may expose only a subset of direct Agent API controls. Inspect th
 ## Parallel
 
 ### Best fit
+
+**Try this with Parallel.** What did [company] say about [issue] in its latest filing? Find the passage and link to it. If you later have a spreadsheet of companies, see the batch options below. [Connection options](connecting-providers.md#choose-an-access-route)
 
 **Connection checks are dated in the [setup guide](connecting-providers.md#parallel-connection-readiness).**
 
@@ -483,6 +501,8 @@ Parallel also exposes Decisions for typed judgments. It is outside this guide's 
 
 ## Optional: authenticated X-native evidence
 
+**Try this with X.** Who posted the original announcement about [topic], and which reply clarified it? Show the author, time and link for each post. [Connection options](connecting-providers.md#choose-an-access-route)
+
 Web search is not a substitute for authenticated X data. When a task requires posts, users, counts, geographic trends, bookmark folders, news search, or archive coverage, use an authenticated X-native interface.
 
 - Use one authenticated X-native read interface. In an environment where **xurl** is available and authenticated, it is a suitable default.
@@ -513,7 +533,7 @@ If one evidence role is blocked, disclose the gap, follow the permitted fallback
 
 ## Continue reading
 
-- [Choosing External Research Tools for AI Agents](README.md)
+- [Choosing research tools for your AI assistant](README.md)
 - [Connecting and testing providers](connecting-providers.md)
 - [Research prompt examples](research-prompts.md)
 

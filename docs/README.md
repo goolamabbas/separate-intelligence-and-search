@@ -1,14 +1,12 @@
-# Choosing External Research Tools for AI Agents
+# Choosing research tools for your AI assistant
 
 *A practical guide to finding and checking sources with the chat or coding assistant you already use.*
 
-**Use the smallest permitted toolset that can supply the evidence your question needs.** Start with your application's built-in search and page reader. Add an external provider when it fills a specific gap, confirm that it works, and judge the answer against the sources—not the number of tools used.
+Start with a question you care about and try your assistant’s built-in search. Open one of its sources. Does it actually answer your question? If you still need an original document, a list of companies with evidence for each, or a particular post, a connected research tool can help.
 
-Follow the main path with one question and a copyable prompt. If you need a provider, start with a supported app, plugin, connector or MCP server. The setup guide also points terminal-capable agents to command-line options and app builders to the providers’ integration docs.
+[Choose a tool for your question](choosing-providers.md#quick-chooser), [connect it to your assistant](connecting-providers.md#choose-an-access-route), then [try a first question](research-prompts.md#one-question-without-the-skill). You can do all three before installing the optional research skill.
 
-This guide takes you through three decisions: **what evidence to obtain, how to obtain it reliably, and whether it supports the answer.** The provider reference, connection instructions, and prompt cookbook supply the details when you need them.
-
-**Reading path revised:** 11 November 2026. Setup and access guidance carry their own check dates; historical tests and other provider facts retain their stated dates. An editorial update is not a fresh test of every tool.
+**Reading path revised:** 26 November 2026. Setup and access guidance carry their own check dates; historical tests and other provider facts retain their stated dates. An editorial update is not a fresh test of every tool.
 
 [← Start with the introduction](../README.md)
 

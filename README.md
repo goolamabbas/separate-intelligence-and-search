@@ -99,7 +99,7 @@ The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-s
 Replace the brackets below with your details, or use one of the examples above:
 
 ```text
-Choose a suitable connected external search provider to answer [my question], and identify which one you use. Retrieve original sources and have this assistant analyse them. Turn off provider-generated summaries, storylines, cards and answers when enabled by default. If you can’t turn them off, use another permitted way to read the sources if one is available, and explain the limitation. Link the evidence, give relevant dates, distinguish facts from inference, and flag anything you cannot verify. If no suitable external provider is callable, explain what connection is missing before proceeding.
+Use [my connected search provider] to find the official release notes for [app and version]. Read the notes and explain who needs to do something before upgrading and what they should do. Link to the passage that supports your answer. If the notes give no specific instruction, say so.
 ```
 
 Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.
@@ -157,7 +157,7 @@ You do not need to reproduce this setup: start with one provider and add another
 ## Go deeper
 
 - **[Multi-provider-research on GitHub](https://github.com/goolamabbas/multi-provider-research):** the skill package, installation instructions, and routing rules.
-- **[Choosing External Research Tools for AI Agents](docs/README.md):** the detailed guide and copyable prompts, including examples that combine providers.
+- **[Choosing research tools for your AI assistant](docs/README.md):** the detailed guide and copyable prompts, including examples that combine providers.
 - **[My newsletter introduction](https://paragraph.com/@yusufg-ai-web3-curated-topics/a-practical-guide-to-choosing-external-research-tools-for-ai-agents):** more context on the approach.
 - **[Artificial Analysis Search Index](https://artificialanalysis.ai/agents/search-api):** a benchmark resource to explore alongside your own task-based testing.
 

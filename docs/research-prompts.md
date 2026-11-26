@@ -10,7 +10,7 @@ Start with the tools exposed by your app, plugin, connector or MCP connection. A
 
 **Review scope:** Sections and recorded tests retain their own check dates. The [setup overview](connecting-providers.md#choose-an-access-route) and [access/allowance summary](costs.md#provider-allowances-and-access) were refreshed on 11 November 2026; that does not reverify every capability or prompt on this page.
 
-- [Choosing External Research Tools for AI Agents](README.md)
+- [Choosing research tools for your AI assistant](README.md)
 - [Choosing an external research provider](choosing-providers.md)
 - [Connecting and testing providers](connecting-providers.md)
 
@@ -47,7 +47,7 @@ Choose one task. The first prompt below works without the optional skill; the ot
 
 | Start with… | What you will get | Setup |
 | --- | --- | --- |
-| [One everyday question](#one-question-without-the-skill) | A sourced answer from a suitable connected external provider | [Choose a provider](connecting-providers.md#choose-an-access-route) |
+| [Check before upgrading an app](#one-question-without-the-skill) | An upgrade instruction and the official passage behind it | [Choose a provider](connecting-providers.md#choose-an-access-route) |
 | [Find original sources with Exa](#exa-search-and-exa-fetch) — Uses the optional skill | Relevant sources, with page retrieval only where needed | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
 | [Read a supplied page with Octen](#octen-read-one-page) — Uses the optional skill | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
 | [Look up specialized records with Parallel](#parallel-specialized-dataset-lookup) — Uses the optional skill | Relevant dataset discovery and records, with access and field gaps explained | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) |
@@ -56,8 +56,10 @@ Choose one task. The first prompt below works without the optional skill; the ot
 ### One question without the skill
 
 ```text
-Choose a suitable connected external search provider to answer [MY QUESTION], and identify which one you use. Retrieve original sources and have this assistant analyse them. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient. Cite the evidence, include relevant dates, distinguish facts from inference, and flag gaps. If no suitable external provider is callable, explain what connection is missing before proceeding.
+Use [my connected search provider] to find the official release notes for [app and version]. Read the notes and explain who needs to do something before upgrading and what they should do. Link to the passage that supports your answer. If the notes give no specific instruction, say so.
 ```
+
+Open the cited passage. Does it apply to your version and to the way you use the app? If you want to specify exactly who writes the answer, see the [optional controls](#model-boundary).
 
 ### Octen: read one page
 
