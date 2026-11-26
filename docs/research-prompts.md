@@ -41,13 +41,13 @@ Use the section links below to jump to a pattern.
 
 ## Four starters
 
-All four prompts work without the optional skill. Pick a question your connected provider can help with. Replace anything in square brackets before you paste it. [Choose a setup route](connecting-providers.md#choose-an-access-route).
+All four prompts work without the optional skill. Pick a question your connected provider can help with. Replace anything in square brackets before you paste it. [Choose a setup route](connecting-providers.md).
 
 | Start with… | What you will get | Setup |
 | --- | --- | --- |
-| [Check before upgrading an app](#one-question-without-the-skill) | An upgrade instruction and the official passage behind it | [Choose a provider](connecting-providers.md#choose-an-access-route) |
-| [Find original sources with Exa](#exa-search-and-exa-fetch) | A comparison of Notion and Obsidian from their own help pages | [Connect Exa](https://exa.ai/docs/reference/exa-mcp) |
-| [Read a supplied page with Octen](#octen-read-one-page) | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#choose-an-access-route) |
+| [Check before upgrading an app](#one-question-without-the-skill) | An upgrade instruction and the official passage behind it | [Choose a provider](connecting-providers.md) |
+| [Find original sources with Exa](#exa-search-and-exa-fetch) | A comparison of Notion and Obsidian from their own help pages | [Connect Exa](https://exa.ai/docs/reference/exa-mcp). Using Claude Code? [Connect Exa step by step](connecting-providers.md#claude-code-connect-directly-to-exa). |
+| [Read a supplied page with Octen](#octen-read-one-page) | Evidence for your question from a page you choose | [Connect Octen](connecting-providers.md#octen-setup) |
 | [Look up a trial record with Parallel’s dataset tools](#parallel-specialized-dataset-lookup) | A clinical trial’s title, status and last update from its registry record | [Direct Parallel MCP with dataset access](connecting-providers.md#parallel-connection-readiness). Using the Parallel app in ChatGPT? Try the [upgrade question](#one-question-without-the-skill) with Parallel Search. |
 
 

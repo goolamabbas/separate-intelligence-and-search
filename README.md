@@ -8,6 +8,8 @@ With built-in search, the same assistant found the interview. The host had asked
 
 We tried the question again using a connected search service, Exa. It found the original passage too. For someone checking that headline, built-in search was enough. On a different task, checking five potential sponsors, the assistant used both tools. Built-in search found a dated membership roster. Exa brought back the foundation’s own member profiles and an announcement showing that one company joined later. Built-in search alone had reached the same shortlist. [Member profiles](https://rustfoundation.org/members/) · [Membership announcement](https://rustfoundation.org/media/q12021-membership-update/)
 
+Suppose you want your assistant to find a post you bookmarked on X, or check a clinical trial’s status using its registry number. With your permission, an X connection can search your saved bookmarks. A connection with access to the trial registry can look up that number and return the status recorded for that study.
+
 Try this with a question of your own. Ask for the original interview, the instruction you need to follow, or a source for each company on your list. Open one link and check the detail you’ll rely on. If you can use the answer, you’re done. If a piece is missing, this guide shows how to give the assistant you already use another place to look.
 
 **[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
@@ -76,7 +78,7 @@ Build an initial list of accounts worth investigating. **Requires:** company and
 Use [my connected search provider] to find five businesses in [market] that match [customer criteria] for [our product]. For each, link evidence of fit and any relevant recent development, with dates. Suggest likely buying roles and explain your reasoning. Separate verified facts from inferred fit and roles; do not claim purchase intent or name a contact without supporting public evidence. Flag gaps and suggest what to validate next.
 ```
 
-[Connect a provider for one of these questions](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/#choose-an-access-route).
+[Connect a provider for one of these questions](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/).
 
 Want to go further? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
 
@@ -99,14 +101,14 @@ The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-s
 Replace the brackets below with your details, or use one of the examples above:
 
 ```text
-Use [my connected search provider] to find the official release notes for [app and version]. Read the notes and explain who needs to do something before upgrading and what they should do. Link to the passage that supports your answer. If the notes give no specific instruction, say so.
+Before I upgrade to [app and version], is there anything I need to do? Use [my connected search provider] to read the official release notes. Tell me who needs to take action and link to the exact instructions. If the notes give none, say so.
 ```
 
 Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.
 
 If this meets your needs, keep the setup simple. Add another provider when a specific gap calls for it.
 
-Explore the [starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters)—one works without the optional skill.
+Try any of the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a connected provider. The skill is optional.
 
 ## What the optional skill adds
 

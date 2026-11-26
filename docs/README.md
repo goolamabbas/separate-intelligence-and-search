@@ -4,7 +4,7 @@
 
 Start with a question you care about and try your assistant’s built-in search. Open one of its sources. Does it actually answer your question? If you still need an original document, a list of companies with evidence for each, or a particular post, a connected research tool can help.
 
-[Choose a tool for your question](choosing-providers.md#quick-chooser), [connect it to your assistant](connecting-providers.md#choose-an-access-route), then [try a first question](research-prompts.md#one-question-without-the-skill). You can do all three before installing the optional research skill.
+[Choose a tool for your question](choosing-providers.md#quick-chooser), [connect it to your assistant](connecting-providers.md), then [try a first question](research-prompts.md#one-question-without-the-skill). You can do all three before installing the optional research skill.
 
 **Reading path revised:** 26 November 2026. See the [setup notes](connecting-providers.md) for connection checks and [Costs and access](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/) for dated prices.
 
