@@ -260,6 +260,8 @@ Exa’s ordinary search index now includes podcast episodes with full transcript
 
 The [podcast collection](https://exa.ai/library/podcast) currently describes the 30 most recent episodes per show; do not assume a complete archive or treat a missing result as proof an interview does not exist. Check that a result is an interview if that is what you requested. Check the episode date, speaker, and surrounding transcript passage before quoting. Use Particle through Agent only when its additional analytics or structured fields are needed, or when explicitly requested. Ordinary transcript retrieval does not require an Agent run. [Podcast search and API example](https://exa.ai/library/podcast) · [29 October announcement](https://exa.ai/blog/podcast-search)
 
+Ready to try this? [Connect Exa in Claude Code](connecting-providers.md#claude-code-connect-directly-to-exa) or, if Exa is already connected, [try the podcast interview prompt](research-prompts.md#exa-podcast-passages-for-a-creative-project).
+
 ### Agent and Connect
 
 Exa Agent is a different layer from ordinary search. Use it for multi-step research, enrichment, structured list-building, or repeatable output schemas.
