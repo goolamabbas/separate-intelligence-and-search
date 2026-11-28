@@ -24,11 +24,8 @@
 .compare-card code,.step-end code{background:rgba(24,45,53,.08);padding:1px 5px;border-radius:3px;font-size:12px}
 .step-end code{background:rgba(255,255,255,.12);color:#e1eae2}
 .step-end strong{color:#fff}
-.compare-note{font-size:13px;margin-bottom:28px}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:26px}
+.compare-note{font-size:13px;margin-bottom:0}
 .why-num{display:block;font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px}
-.why-item h3{font-size:16px;margin:0 0 8px;color:var(--ink)}
-.why-item p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
 .connect-step .step-body{margin-top:0}
 .connect-step .step-body ul{margin-top:0}
 .connect-step .step-body code{background:#e4eadf;padding:2px 6px;border-radius:3px;font-size:12px}
@@ -47,5 +44,5 @@
 .examples-foot{margin:0}
 .copy-example{background:var(--green);color:white;border:0;border-radius:3px;padding:8px 14px;cursor:pointer;font-size:12px}
 .example-copy-status{font-size:12px;min-height:20px}
-@media(max-width:800px){.compare-grid,.why-grid,.example-grid{grid-template-columns:1fr}.terms-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.compare-grid,.example-grid{grid-template-columns:1fr}.terms-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.compare-card,.example-card{padding:20px}.masthead{flex-wrap:wrap}.masthead nav{flex-wrap:wrap}.masthead nav a:first-child{display:block}}
