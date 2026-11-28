@@ -42,7 +42,7 @@ Use [my connected search provider] to compare [Product A] and [Product B] on [2�
 
 ### Read one long page or PDF cleanly
 
-Useful when built-in page readers choke on a long PDF, JavaScript-heavy documentation page, or dense terms page.
+Useful when built-in page readers choke on a long government circular (such as an RBI or tax PDF), JavaScript-heavy documentation page, or dense terms page.
 
 ```text
 Read [URL] using [Parallel Fetch / Keenable Fetch / Octen Extract / Exa Fetch / Perplexity Context]. Answer this question from the page: [my question]. Quote the exact passage that supports your answer, explain any conditions or exceptions, and tell me if the page could not be read completely.
@@ -54,10 +54,18 @@ Task-first prompts for work, investing, learning, and creative projects. Each wo
 
 ### Find firsthand podcast or interview quotes
 
-Works well with [Exa](choosing-providers.md#podcast-transcripts-through-search) (which indexes podcast transcripts in Exa Library) or general web search.
+Built-in search often returns generic blog listicles for craft questions. Dedicated semantic search—such as [Exa](choosing-providers.md#podcast-transcripts-through-search), which indexes podcast transcripts in Exa Library—pulls verbatim passages directly from practitioner episodes and interviews.
 
 ```text
-Use [my connected search provider] to find 3 firsthand interviews or podcast transcripts where practitioners discuss [topic or creative challenge]. Prefer original interviews or transcripts over news summaries. For each, give the speaker, episode or publication date, direct link, a verbatim quote (with timestamp if available), and the key takeaway. Flag anything you could not verify directly.
+Use [Exa Search / my connected search provider] to find 3–5 firsthand podcast transcripts or practitioner interviews discussing [specific craft problem, e.g. how documentary film editors cut hundreds of hours of archival footage into a story]. Skip generic blog listicles. For each, give the speaker, episode or publication date, direct link, a verbatim quote (with timestamp if available), and the specific method they used. Flag anything you could not verify directly.
+```
+
+### Find domain experts or speakers
+
+General web search often hits LinkedIn walls when looking for real practitioners. Structured people search—such as [Exa](choosing-providers.md#exa) (`category:people`) or [Parallel](choosing-providers.md#parallel) People—returns verified public career profiles in one call.
+
+```text
+Use [Exa people search / my connected search provider] to find 8 domain experts in [country or city] working on [topic, e.g. UPI and RBI payments compliance] who could serve as podcast guests, speakers, or advisors. For each person, give their current title, company, relevant past roles, and public profile link. Do not guess private email addresses or phone numbers.
 ```
 
 ### Research a public company against a thesis
@@ -86,10 +94,10 @@ Use [my connected search provider] to find 10 businesses in [region or market] t
 
 ### Check local places and current hours
 
-Pairs well with [Octen Place Search](choosing-providers.md#octen), then verifies hours or closures on the official venue page.
+Generic web search repeats stale “Top 10” blog roundups. Dedicated local search—such as [Octen Place Search](choosing-providers.md#octen) (with recent review excerpts) or [Parallel Places](choosing-providers.md#parallel)—pulls live hours, ratings, and recent customer feedback that catches details like weekend laptop rules or closures.
 
 ```text
-Use [Octen Place Search / my connected search provider] to find 5 [type of venue, e.g. quiet coworking spaces or public libraries] near [neighborhood or station] that are open on [day and time]. For each, give the address, reported hours, and a link to the official venue page so I can confirm holiday or weekend changes.
+Use [Octen Place Search / Parallel Places / my connected search provider] to find 5 [type of venue, e.g. quiet specialty coffee shops for laptop work] in [neighborhood and city, e.g. Indiranagar, Bengaluru] open on [day and time, e.g. Sunday morning]. Include live hours, rating, recent customer review excerpts, and the official venue link, and flag any practical caveats mentioned by recent visitors (such as weekend laptop bans, weak Wi-Fi, or wait times).
 ```
 
 ### Find official visual references or logos
@@ -122,18 +130,18 @@ Use Exa Agent with [Similarweb / Fiber / Financial Datasets / Baselayer / Partic
 
 ### Look up a structured registry record
 
-Uses [Parallel's vertical tools](choosing-providers.md#parallel) (`find_verticals` -> `search_vertical`) for structured registries such as ClinicalTrials.gov.
+Uses [Parallel's vertical tools](choosing-providers.md#parallel) (`find_verticals` -> `search_vertical`) to query live public registries directly—including **ClinicalTrials.gov**, **PubMed**, and **bioRxiv** at **$0 per call**—instead of relying on second-hand blog posts.
 
 ```text
-Use Parallel's dataset discovery tools to look up [registry record, e.g. clinical trial NCT04280705]. Check the matching operation and its price first, then return the official record title, status, key dates, and registry link. If dataset lookup tools are unavailable on this connection, tell me and fall back to the official registry web page.
+Use Parallel's vertical dataset tools to search [registry and criteria, e.g. active Phase 3 Type 2 diabetes clinical trials currently recruiting in India on ClinicalTrials.gov]. Check the matching tool and its price first, then return up to 5 official records with registry ID, status, sponsor, key dates, and direct registry link. If vertical tools are unavailable on this connection, tell me and fall back to the official registry website.
 ```
 
 ### Check what the web or a page said before a past date
 
-Uses [Keenable's `query_time`](choosing-providers.md#keenable) (web index as of a past date) or [Perplexity Context's `snapshot_as_of`](choosing-providers.md#perplexity) (archived copy of a known URL).
+Built-in search toggles have no time machine. Use [Keenable's `query_time`](choosing-providers.md#keenable) (web index as of a past date) or [Perplexity Context's `snapshot_as_of`](choosing-providers.md#perplexity) (archived copy of a known URL) to verify what a pricing page, terms page, or public claim showed before a quiet change.
 
 ```text
-Use [Keenable Search with query_time / Perplexity Context with snapshot_as_of] to check what [topic or URL] showed as of [YYYY-MM-DD]. Clearly separate what was visible on or before that cutoff date from any current live content, and report if no archived snapshot is available.
+Use [Keenable Search with query_time / Perplexity Context with snapshot_as_of] to check what [URL or topic, e.g. https://cursor.com/pricing] showed as of [YYYY-MM-DD]. Clearly separate what was visible on or before that cutoff date from any current live content, and report if no archived snapshot is available.
 ```
 
 ### Check original posts, threads, or bookmarks on X
