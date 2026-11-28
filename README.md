@@ -27,7 +27,7 @@ You do not need to know these terms beforehand:
 | --- | --- |
 | **Model** | The AI that interprets your request and generates a response. It can work with information supplied by external tools. |
 | **Application** | The workspace around the model, sometimes called a harness. It manages your conversation and the tools the model can use. Think of it as the place where you work with AI. |
-| **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Octen, Exa, Parallel, or Perplexity. |
+| **Provider** | In this guide, an external service that supplies search, retrieval, structured data, or analysis, such as Exa, Parallel, Keenable, Octen, or Perplexity. |
 | **App, plugin or connector** | A way for your application to access an external service. The name and setup process vary by application. You may also encounter **MCP**, a standard for connecting AI applications to tools. |
 | **Skill** | A reusable package of instructions that an assistant can follow for a particular kind of task. The multi-provider-research skill gives guidance on using research tools. |
 
@@ -39,51 +39,20 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
 - **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
-- **Multiply a low-cost workspace (no coding required):** Apps marketed as “coding agents” (such as Cursor Start, Command Code Desktop, or OpenCode Desktop) double as everyday chat workspaces for research, writing, and business work. Because they cannot subsidize heavy web search at low prices, plugging in a free MCP search provider upgrades them for $0 extra.
+- **Multiply a low-cost workspace (no coding required):** Apps marketed as “coding agents” (such as Command Code Desktop, OpenCode Desktop, or Cursor) double as everyday chat workspaces for research, writing, and business work. Because they cannot subsidize heavy web search at low prices, plugging in a free MCP search provider upgrades them for $0 extra.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 
 ## Four questions to try
 
-These are suggested uses for creative interests, personal learning and work, not searches performed for this guide. Replace the brackets with your details. Each starts with a connected search provider; specialist data is an optional extension.
+Once a search provider is connected, you can use it for everyday work and personal projects, not just coding. Each starter below links directly to a short, copy-paste prompt in the cookbook:
 
-### Explore ideas for a creative project
+- **Creative projects & interviews:** Find firsthand podcast quotes, transcripts, and original interviews with source links and timestamps. [Try the interview prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#find-firsthand-podcast-or-interview-quotes).
+- **Companies & markets:** Build a startup market map or examine a public company against original filings and earnings commentary. [Market-map prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#build-a-startup-market-map) · [Company-thesis prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#research-a-public-company-against-a-thesis).
+- **Rules, policies & upgrades:** Verify official regulations (such as RBI or tax rules) or software release notes from primary pages before acting. [Policy & upgrade prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#check-an-upgrade-or-policy-before-acting).
+- **Prospective B2B accounts:** Discover businesses matching your customer criteria with dated public evidence, or enrich a list consistently. [B2B account prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#discover-prospective-b2b-accounts).
 
-Developing a short film or essay? Interviews with people who have tackled a similar theme or creative challenge can reveal different approaches and the choices behind them. **Requires:** search and page retrieval. Ordinary web search can find published interviews; a provider with [searchable podcast transcripts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/#podcast-transcripts-through-search) may also find relevant passages within episodes. Coverage and timestamps vary by provider and source.
-
-```text
-Use [my connected search provider] to find firsthand interviews with people who have worked on [theme or creative challenge], to help me develop [my project]. Find three different perspectives and explain the creative choices, motivations or lessons each person describes. Prefer original interviews or transcripts. Include names, source links and dates, plus timestamps where available. Distinguish what the interviewees actually said from your suggestions for my project, and flag anything you cannot verify.
-```
-
-### Research a company before investing
-
-Bring together results, filings and management commentary to examine a thesis. **Requires:** search and page retrieval that can reach original company or regulatory sources. Exa documents financial material in its [data index](https://exa.ai/docs/search/data/overview); other providers may also find the public documents you need.
-
-```text
-Use [my connected search provider] to research [company and ticker] against this thesis: [my thesis]. Compare its latest results with the same period last year: revenue, margins, cash flow and management outlook. Prefer company filings and original announcements. Link sources, label reporting periods, separate reported facts from interpretation, and identify evidence for and against the thesis. Flag missing or incomparable data.
-```
-
-### Understand consumers and messages to test
-
-Explore consumer needs and how competing brands present themselves. **Requires:** public-web search and page retrieval. Public comments can suggest motivations; they do not establish how common a view is or who a brand’s customers are.
-
-```text
-Use [my connected search provider] to explore consumer needs for [product category] in [market] and compare how [two brands] describe their products. Find recurring motivations, frustrations and buying occasions in accessible public sources. Link and date the evidence, distinguish brand claims from consumer comments, and note sampling gaps. Suggest three audience and message hypotheses to validate through customer research or campaign tests. Do not infer audience demographics or purchase intent from web mentions.
-```
-
-For audience estimates beyond public web sources, a separate data service may help. [Similarweb through Exa Connect](https://exa.ai/docs/agent/connect/similarweb) offers **estimated** website demographics, audience overlap and traffic sources. Connect is accessed through **Exa Agent**, which researches and synthesises results for your assistant to review; ordinary Exa Search alone does not supply this partner data. Check [Connect access and additive charges](https://exa.ai/docs/agent/connect/overview) before requesting it.
-
-### Find businesses that could become customers
-
-Build an initial list of accounts worth investigating. **Requires:** company and public professional-source search, such as [Exa’s company and people search](https://exa.ai/docs/search/data/companies-people). A relevant role is not evidence that someone is currently buying.
-
-```text
-Use [my connected search provider] to find five businesses in [market] that match [customer criteria] for [our product]. For each, link evidence of fit and any relevant recent development, with dates. Suggest likely buying roles and explain your reasoning. Separate verified facts from inferred fit and roles; do not claim purchase intent or name a contact without supporting public evidence. Flag gaps and suggest what to validate next.
-```
-
-[Connect a provider for one of these questions](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/).
-
-Want to go further? The [prompt library](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/) also covers technical documentation and podcast transcripts.
+Browse all 21 short prompts in the [prompt cookbook](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/), or [connect a provider](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/).
 
 ## Start with a question and one provider
 
@@ -133,7 +102,7 @@ I built it to help an assistant:
 - Check source evidence and explain material gaps or failed retrievals.
 - Distinguish retrieving sources from asking a provider to generate its own analysis.
 
-The skill covers Octen, Keenable, Exa, Perplexity, Parallel, and authenticated X tools. You do not need all of them installed.
+The skill covers Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X tools. You do not need all of them installed.
 
 It is an instruction package, so its use depends on your application's support for skills and connected tools. It does not install providers, supply API keys, or include paid access to their services.
 
@@ -155,7 +124,7 @@ Once the application can load it, ask the assistant to use `multi-provider-resea
 
 ## This freedom of choice can also help with cost
 
-You do not need a $20–$200/month subscription to start. **Claude Free** includes directory connectors plus one custom MCP connector, **ChatGPT Free** includes directory plugins (subject to plan limits), and **OpenCode Desktop** offers free models with no account needed. When free chat limits get in your way, do not be put off by the “coding agent” label: **Command Code Desktop** (Go plan US$1/month, UPI supported), **Cursor Start** (₹649/month in India, tax included, via UPI or card), and **OpenCode Desktop / Go** (free models, or US$10/month for ~30+ open-weight models) all have normal desktop chat windows you can use for everyday research, writing, business, and creative work.
+You do not need a $20–$200/month subscription to start. **Claude Free** includes directory connectors plus one custom MCP connector, **ChatGPT Free** includes directory plugins (subject to plan limits), and **OpenCode Desktop** offers free models with no account needed. When free chat limits get in your way, do not be put off by the “coding agent” label: **Command Code Desktop** (Go plan US$1/month, UPI supported), **Cursor** (Free, Plus at US$8/month, or legacy Start at ₹649/month for existing India subscribers), and **OpenCode Desktop / Go** (free models, or US$10/month for ~30+ open-weight models) all have normal desktop chat windows you can use for everyday research, writing, business, and creative work.
 
 At those prices, the app cannot afford to subsidize heavy web search. Connect one free-tier search provider over MCP and that same workspace gains dedicated search for **$0 extra** on ordinary queries: **Exa** gives $10/month in recurring credits with no credit card, **Keenable** gives 100,000 free requests a month with no credit card, and **Parallel** works through keyless MCP with no account at all.
 

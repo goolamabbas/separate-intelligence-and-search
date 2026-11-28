@@ -17,7 +17,7 @@ Pick the page that matches where you are:
 | Page | Use it when you want to… |
 | --- | --- |
 | [**Choosing providers**](choosing-providers.md) | Compare what Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X each do well, without vendor hype or rankings. |
-| [**Connecting providers**](connecting-providers.md) | Add a provider in two minutes in ChatGPT, Claude, Cursor, Grok Bot, or a coding agent, plus optional advanced MCP configuration. |
+| [**Connecting providers**](connecting-providers.md) | Set up a free provider in ChatGPT, Claude, Cursor, Command Code, OpenCode, Grok Bot, or a terminal agent, plus optional advanced MCP configuration. |
 | [**Research prompts**](research-prompts.md) | Copy practical prompts for everyday research, provider-specific tasks, or stricter audit boundaries. |
 | [**Costs and access**](costs.md) | Compare free recurring tiers, keyless endpoints, and low-cost regional workspace combinations. |
 
