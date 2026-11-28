@@ -119,10 +119,10 @@ It is an instruction package only (you still connect your own free or paid provi
 In OpenCode, Command Code, Claude Code, Codex, or any agent with local file access, paste:
 
 ```text
-Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
+Install the multi-provider-research skill for all my projects by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
 
-Using Claude Desktop/Cowork or another GUI app? Upload the latest verified ZIP from [GitHub Releases](https://github.com/goolamabbas/multi-provider-research/releases/latest) (or follow the [manual installation guide](https://github.com/goolamabbas/multi-provider-research#manual-installation)). Then start a fresh chat and ask your assistant to use `multi-provider-research`.
+Omit `for all my projects` to install only in the current folder. Using Claude Desktop/Cowork or another GUI app? Upload the latest verified ZIP from [GitHub Releases](https://github.com/goolamabbas/multi-provider-research/releases/latest) (or follow the [manual installation guide](https://github.com/goolamabbas/multi-provider-research#manual-installation)). Then start a fresh chat and ask your assistant to use `multi-provider-research`.
 
 ## Do more with less
 
