@@ -1,18 +1,23 @@
 # Choose Your AI. Choose How It Searches.
 
-When is it worth connecting a research tool to the AI assistant you already use?
+Your AI subscription pays for intelligence first and bundles search as an add-on. Keep the assistant you already like, and connect a dedicated search provider for free when you need deeper coverage or structured data.
 
-Did Jensen Huang really say he wouldn’t start Nvidia again? We asked an AI assistant to find the original interview. With search turned off, it remembered the gist and gave us a link. The link led to a missing page.
+If you use a flagship assistant like ChatGPT or Claude, its built-in web search is already surprisingly capable. On 28 November 2026, we tested ChatGPT (GPT-6.2 Astra, medium reasoning) with built-in search only on three everyday lookups: finding verbatim timestamped podcast quotes, naming five recent UK startups, and catching a quiet Notion deprecation notice for full-workspace PDF exports. Built-in search handled all three accurately.
 
-With built-in search, the same assistant found the interview. The host had asked what company Huang would start if he were 30 again. Huang explained how hard it would be to begin knowing everything he would have to endure. He later said he would do it again if he knew how it would turn out. You can check both exchanges yourself. [Original interview](https://www.acquired.fm/episodes/jensen-huang) · [Huang’s follow-up](https://www.acquired.fm/episodes/acquired-live-from-chase-center-with-daniel-ek-emily-chang-jensen-huang-and-mark-zuckerberg)
+So why connect a separate search provider? Because an AI subscription has to subsidize both intelligence and search, and AI labs compete primarily on intelligence. Built-in search is tuned to be fast and good enough for quick questions. A dedicated search provider's entire business depends on wider coverage, structured indexes, and retrieval controls, and you do not have to switch AI assistants to use one.
 
-We tried the question again using a connected search service, Exa. It found the original passage too. For someone checking that headline, built-in search was enough. On a different task, checking five potential sponsors, the assistant used both tools. Built-in search found a dated membership roster. Exa brought back the foundation’s own member profiles and an announcement showing that one company joined later. Built-in search alone had reached the same shortlist. [Member profiles](https://rustfoundation.org/members/) · [Membership announcement](https://rustfoundation.org/media/q12021-membership-update/)
+To see where that difference shows up in practice, we asked for a real market map: **15 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting, including founding year, employee count, and 1-year headcount growth.**
 
-Suppose you want your assistant to find a post you bookmarked on X, or check a clinical trial’s status using its registry number. With your permission, an X connection can search your saved bookmarks. A connection with access to the trial registry can look up that number and return the status recorded for that study.
+| What we compared (28 November 2026) | ChatGPT built-in search (GPT-6.2 Astra) | Exa company search (1 call, free tier) |
+| --- | --- | --- |
+| **Qualifying UK startups found** | 15 startups (5 drawn from Y Combinator profiles) | **20 startups** (founded 2023–2025, 2–17 employees) in one call |
+| **Overlap between the two lists** | Only **1 company overlapped** ([Diligent](https://godiligent.ai/)) | **19 startups** built-in search never surfaced |
+| **1-year headcount growth** | **`not found` on 12 of 15** (2 undated Growjo estimates; 1 FY2024–FY2025 filing) | Tracked **1-year growth on 10 of 20** (plus monthly growth on 3 newer startups) |
+| **On the overlapping company ([Diligent](https://godiligent.ai/))** | 10 employees (YC profile); 1-year growth: `not found` | **17 employees**, **`+157.1% YoY`**, 5-country split, **$3.06M** across 3 dated rounds |
 
-Try this with a question of your own. Ask for the original interview, the instruction you need to follow, or a source for each company on your list. Open one link and check the detail you’ll rely on. If you can use the answer, you’re done. If a piece is missing, this guide shows how to give the assistant you already use another place to look.
+Exa's headcount and growth figures are tracked profile estimates rather than audited payroll filings, so you still check key facts before acting on them. What changed is coverage and structure: a single free call more than doubled the real market map and returned structured company records that general web snippets did not have.
 
-**[Try your first question](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
+**[Try it free in 2 minutes](#start-with-a-question-and-one-provider)** · **[Read the full guide](docs/README.md)**
 
 ## The pieces, in plain language
 
@@ -32,13 +37,11 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 ## Why choose them separately?
 
-You might like your assistant's writing and reasoning but want another way to find technical documentation, explore a topic from several angles, or read a webpage. A connected provider gives it another route to the information it needs, within the same workspace.
+- **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
+- **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
+- **Better search in every workspace:** Coding agents, Cursor, CLI tools, and lower-cost plans often ship with thin or missing search. Connect one free provider to upgrade any of them without switching models.
 
-For example, when comparing two products, a search provider can find their official documentation, a retrieval tool can bring back the relevant pages, and your chosen assistant can use that evidence to explain the tradeoffs. Some providers also offer their own generated analysis. That is different from retrieving sources for your assistant to interpret.
-
-You can keep a setup that works for you and add a capability when you need it. You can also try a different research provider without choosing a new model solely for its bundled search. Better results still depend on the task, the sources, and how the assistant uses them.
-
-This is useful for more than recent news. Research also means finding older documents, checking an original source, and distinguishing what the evidence supports from what remains uncertain.
+You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 
 ## Four questions to try
 
@@ -84,31 +87,27 @@ Want to go further? The [prompt library](https://goolamabbas.github.io/separate-
 
 ## Start with a question and one provider
 
-### 1. Choose a question and check compatibility
+The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen, and Perplexity). To feel the difference in two minutes with no credit card, start with **Exa** ($10/month in free credits, no payment method required) or **Parallel** (works without an account at all).
 
-Pick a question you care about, perhaps one of the examples above. Choose a relevant provider that your AI application can connect to. Check the supported connection and the tools it exposes before creating a paid account. You do not need local skill support to use a provider.
+### 1. Connect Exa (or Parallel) in your app
 
-Use the [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/) to match the question to a capability. Start with tools you already have if they are sufficient.
+- **ChatGPT or Codex:** Open [Exa in OpenAI’s plugin directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed).
+- **Claude (Web, Desktop, or Cowork):** In a new chat, click **+** → **Add connector**, search for **Exa**, and click **Connect** (or install the [Parallel connector](https://claude.com/marketplace/connectors/parallel-search)).
+- **Claude Code, Cursor, or another MCP client:** Add `https://mcp.exa.ai/mcp` (for example, `claude mcp add --transport http exa https://mcp.exa.ai/mcp`), or `https://mcp.parallel.ai/mcp` for Parallel.
 
-### 2. Connect the provider
+Using a different assistant, or want to compare all five providers first? See the [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/).
 
-Follow the provider’s official instructions for your application. A connector, plugin or MCP server gives the application access to external tools; the available routes depend on the application and plan.
+### 2. Paste a ready-to-run prompt
 
-The [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) explains the options. Try a [starter prompt](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a suitable connected provider.
-
-### 3. Ask a question and inspect the sources
-
-Replace the brackets below with your details, or use one of the examples above:
+Start a fresh chat with your new connector enabled and paste this prompt as-is (if you connected Parallel instead of Exa, swap `Exa Search` for `Parallel Search`):
 
 ```text
-Before I upgrade to [app and version], is there anything I need to do? Use [my connected search provider] to read the official release notes. Tell me who needs to take action and link to the exact instructions. If the notes give none, say so.
+Use Exa Search to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If Exa is unavailable, tell me instead of falling back to built-in search.
 ```
 
-Open a few links. Do they support the claims? Are dates and reporting periods appropriate? Does the answer acknowledge missing evidence? A useful first search also checks the connection; there is no need to repeat it solely to test access.
+Check the tool activity above the answer to confirm **Exa** ran (not generic “Searched the web”), and open two links to inspect the evidence. Curious about the contrast? Paste the same prompt into a separate chat with connectors off and count how many companies overlap and how many growth figures come back `not found`.
 
-If this meets your needs, keep the setup simple. Add another provider when a specific gap calls for it.
-
-Try any of the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) with a connected provider. The skill is optional.
+Once you see how it works, swap in any topic you care about, or try the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/). The routing skill below is optional.
 
 ## What the optional skill adds
 

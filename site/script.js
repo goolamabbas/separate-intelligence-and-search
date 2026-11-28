@@ -10,7 +10,7 @@ copyButton.addEventListener('click', async () => {
       navigator.clipboard.writeText(prompt.textContent),
       new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Clipboard unavailable')), 1000); })
     ]);
-    status.textContent = 'Copied. Paste it into your assistant and replace the brackets.';
+    status.textContent = 'Copied. Paste it into your assistant once Exa is connected.';
     copyButton.textContent = 'Copied ✓';
   } catch {
     copyButton.replaceChildren(...copyPromptLabel);
