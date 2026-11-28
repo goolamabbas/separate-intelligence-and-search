@@ -101,35 +101,28 @@ Once you see how it works, swap in any topic you care about, or try the [four st
 
 ## What the optional skill adds
 
-After trying a provider, you may want reusable guidance for future research. Connecting tools gives your assistant access to them. The **multi-provider-research** skill supplies instructions for deciding how to use them in a research task.
+Out of the box, AI models often misuse connected search tools: sending vague queries, fetching pages one by one, missing specialized filters or $0 registries, or papering over failed page reads.
 
-I built it to help an assistant:
+The free **[multi-provider-research](https://github.com/goolamabbas/multi-provider-research)** skill (`v0.12.0`) adds a tested research playbook across Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X:
 
-- Choose the smallest useful set of available providers. One can be enough.
-- Give each provider a clear job when more than one is needed.
-- Respect your instructions about which providers to use or exclude.
-- Check source evidence and explain material gaps or failed retrievals.
-- Distinguish retrieving sources from asking a provider to generate its own analysis.
+- **Gets more from even a single provider:** Reaches for structured company and people indexes, clean PDF fetchers, date filters, local reviews, and $0 public registries instead of treating every tool like a plain search box.
+- **Cuts wasted turns and model cost:** Batches page reads, reuses snippets when they already answer the question, and avoids redundant searches (in the [worked example below](#see-the-approach-in-practice), it helped finish in 8 turns for $0.011 in model cost).
+- **Coordinates multiple providers cleanly:** Gives each tool a distinct job when you connect more than one, without duplicating searches or blurring sources.
+- **Protects your budget and evidence:** Flags failed reads or gaps honestly, keeps primary sources separate from provider-written summaries, and warns before launching paid delegated runs.
 
-The skill covers Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X tools. You do not need all of them installed.
+It is an instruction package only (you still connect your own free or paid provider) and works in any skill-capable app, including Claude Desktop/Cowork, OpenCode Desktop, Command Code Desktop, Codex, and Claude Code.
 
-It is an instruction package, so its use depends on your application's support for skills and connected tools. It does not install providers, supply API keys, or include paid access to their services.
+**[Explore multi-provider-research on GitHub →](https://github.com/goolamabbas/multi-provider-research)**
 
-**[Get multi-provider-research on GitHub →](https://github.com/goolamabbas/multi-provider-research)**
+### Quick install
 
-### Add it when useful
-
-A skill is a reusable package of instructions. Installing this optional skill requires an application that supports it and the appropriate file access; those are separate from the requirements for connecting a provider.
-
-Ask your coding agent with local file access:
+In OpenCode, Command Code, Claude Code, Codex, or any agent with local file access, paste:
 
 ```text
 Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
 
-Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. For manual setup, follow the [installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
-
-Once the application can load it, ask the assistant to use `multi-provider-research` with your question. The skill does not install provider connections or supply paid access, and it is not supported by every AI application.
+Using Claude Desktop/Cowork or another GUI app? Upload the latest verified ZIP from [GitHub Releases](https://github.com/goolamabbas/multi-provider-research/releases/latest) (or follow the [manual installation guide](https://github.com/goolamabbas/multi-provider-research#manual-installation)). Then start a fresh chat and ask your assistant to use `multi-provider-research`.
 
 ## Do more with less
 

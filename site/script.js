@@ -29,15 +29,24 @@ document.querySelectorAll('button[data-copy-target]').forEach((copyButton) => {
 
 // Add the same accessible copy interaction to source-derived examples and installation.
 document.querySelectorAll('.examples pre, .skill-copy pre').forEach((pre) => {
+  const wrap = document.createElement('div');
+  wrap.className = 'copy-box';
+  const bar = document.createElement('div');
+  bar.className = 'copy-bar';
+  const label = document.createElement('span');
+  label.textContent = pre.closest('.skill-copy') ? 'INSTALL PROMPT' : 'RESEARCH PROMPT';
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'copy-example';
-  button.textContent = 'Copy prompt';
+  button.textContent = 'Copy prompt ⧉';
   const status = document.createElement('p');
   status.className = 'example-copy-status';
   status.setAttribute('role', 'status');
-  pre.before(button);
-  pre.after(status);
+  status.setAttribute('aria-live', 'polite');
+  bar.append(label, button);
+  pre.before(wrap);
+  wrap.append(bar, pre);
+  wrap.after(status);
   button.addEventListener('click', async () => {
     let timer;
     try {
@@ -46,11 +55,11 @@ document.querySelectorAll('.examples pre, .skill-copy pre').forEach((pre) => {
         new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Clipboard unavailable')), 1000); })
       ]);
       status.textContent = pre.closest('.skill-copy')
-        ? 'Copied. Paste it into your coding agent.'
+        ? 'Copied. Paste it into OpenCode, Command Code, or your AI agent.'
         : 'Copied. Replace the brackets with your details.';
       button.textContent = 'Copied ✓';
     } catch {
-      button.textContent = 'Copy prompt';
+      button.textContent = 'Copy prompt ⧉';
       const range = document.createRange();
       range.selectNodeContents(pre);
       const selection = window.getSelection();
