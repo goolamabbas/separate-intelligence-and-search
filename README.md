@@ -56,17 +56,26 @@ Browse all 21 short prompts in the [prompt cookbook](https://goolamabbas.github.
 
 ## Start with a question and one provider
 
-The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen, and Perplexity). To feel the difference in two minutes with no credit card, start with **Parallel** (keyless MCP, no account needed) or **Exa** (keyless Search/Fetch over MCP, or a free account with $10/month in recurring credits and no card).
+The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen, and Perplexity). To try the idea with no credit card, start with **Parallel** (works without creating an account) or **Exa** (a free account gives you US$10 of free search credit each month, nothing to pay).
 
 ### 1. Connect Exa (or Parallel) in your app
 
-- **ChatGPT or Codex (including Free plans):** Open [Exa in OpenAI’s plugin directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (free account, no card), or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed (directory plugins work on Free plans too, subject to plan limits).
-- **Claude (Web, Desktop, or Cowork — including Free plans):** In a new chat, click **+** → **Add connector**, then connect **Exa** (asks you to sign in to a free account) or the [Parallel Search connector](https://claude.com/marketplace/connectors/parallel-search) (search and page reading with no Parallel account). Claude Free includes directory connectors plus one custom remote MCP connector.
-- **Cursor, Command Code, OpenCode, or Claude Code (desktop GUI or terminal):** Add `https://mcp.parallel.ai/mcp` (keyless, no account) or `https://mcp.exa.ai/mcp` (keyless Search/Fetch, or `?login` for $10/month free credits). Prefer a desktop window instead of a terminal? Use **Command Code Desktop** (**Settings → MCP**), **OpenCode Desktop** (`/mcps`), or **Cursor**'s 1-click marketplace. From a terminal:
+- **ChatGPT (Web, Desktop, or Mobile — including Free plans):** Open [Exa in OpenAI’s directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (free account, no card), or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed (directory plugins work on Free plans too, subject to plan limits).
+- **Claude (Web, Desktop, Cowork, or Mobile — including Free plans):** In a new chat, click **+** → **Add connector**, then connect **Exa** (asks you to sign in to a free account) or the [Parallel Search connector](https://claude.com/marketplace/connectors/parallel-search) (search and page reading with no Parallel account). Claude Free includes directory connectors plus one custom connector.
+
+<details class="plain-details">
+<summary>Using a desktop app (Cursor, Command Code, OpenCode) or a terminal? <span>+</span></summary>
+<div class="prose">
+
+- **Desktop apps (no terminal needed):** Download [Command Code Desktop](https://commandcode.ai/docs/desktop) (**Settings → MCP**) or [OpenCode Desktop](https://opencode.ai/desktop) (pick a free model and type `/mcps`), then paste `https://mcp.parallel.ai/mcp` (no account needed) or `https://mcp.exa.ai/mcp` (free search/fetch, or `?login` for your free account's US$10 monthly credit). In **Cursor**, install Exa or Parallel from the 1-click marketplace.
+- **Terminal 1-liners:**
   - Claude Code: `claude mcp add --transport http parallel https://mcp.parallel.ai/mcp`
-  - Command Code: `cmd mcp add --transport http --scope user parallel https://mcp.parallel.ai/mcp`
-  - OpenCode: `opencode mcp add parallel --global --url https://mcp.parallel.ai/mcp` (OpenCode also supports Exa and Parallel natively via `/connect` or API keys — see [OpenCode web search](https://opencode.ai/docs/websearch/))
-- **Keyless vs. sign-in note:** Keyless endpoints connect without signing in. If a client shows `needs authentication` or you want an account’s free monthly allowance, use the `?login` URL or run `/mcp` (Command Code) / `/mcps` (OpenCode).
+  - Command Code CLI: `cmd mcp add --transport http --scope user parallel https://mcp.parallel.ai/mcp`
+  - OpenCode CLI: `opencode mcp add parallel --global --url https://mcp.parallel.ai/mcp` (OpenCode also supports Exa and Parallel via `/connect` or API keys — see [OpenCode web search](https://opencode.ai/docs/websearch/))
+- **Sign-in note:** The bare URLs above connect without signing in. If your app asks to authenticate or you want an account’s free monthly allowance, use `?login` or run `/mcp` (Command Code) / `/mcps` (OpenCode).
+
+</div>
+</details>
 
 Using a different assistant, or want to compare all five providers first? See the [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/).
 
@@ -124,17 +133,17 @@ Once the application can load it, ask the assistant to use `multi-provider-resea
 
 ## This freedom of choice can also help with cost
 
-You do not need a $20–$200/month subscription to start. **Claude Free** includes directory connectors plus one custom MCP connector, **ChatGPT Free** includes directory plugins (subject to plan limits), and **OpenCode Desktop** offers free models with no account needed. When free chat limits get in your way, do not be put off by the “coding agent” label: **Command Code Desktop** (Go plan US$1/month, UPI supported), **Cursor** (Free, Plus at US$8/month, or legacy Start at ₹649/month for existing India subscribers), and **OpenCode Desktop / Go** (free models, or US$10/month for ~30+ open-weight models) all have normal desktop chat windows you can use for everyday research, writing, business, and creative work.
+You do not need a $20–$200/month subscription to start. **Claude Free** (directory connectors plus one custom connector, including on mobile) and **ChatGPT Free** (directory plugins on web, desktop, and mobile, subject to plan limits) let you test free search today—keep in mind that free search still uses your assistant’s message allowance when the model reads results.
 
-At those prices, the app cannot afford to subsidize heavy web search. Connect one free-tier search provider over MCP and that same workspace gains dedicated search for **$0 extra** on ordinary queries: **Exa** gives $10/month in recurring credits with no credit card, **Keenable** gives 100,000 free requests a month with no credit card, and **Parallel** works through keyless MCP with no account at all.
+When free chat caps get in your way, do not be put off by the “coding agent” label: [OpenCode Desktop](https://opencode.ai/desktop) (free models with no account, or US$10/month Go for ~30+ open-weight models), [Command Code Desktop](https://commandcode.ai/docs/desktop) (Go plan US$1/month, UPI supported), and **Cursor** (Free, Plus at US$8/month, or legacy Start at ₹649/month for existing India subscribers) all have regular desktop chat windows for everyday research, writing, business, and creative work. To get started without a terminal: download the desktop app, pick a free or low-cost model, open **Settings → MCP** (Command Code) or type `/mcps` (OpenCode), and paste `https://mcp.parallel.ai/mcp`.
 
-Account for your AI subscription, research-provider charges, and local taxes separately: free retrieval still uses your assistant’s model allowance, and deep delegated runs or paid partner datasets cost extra. Check current pricing before adding funds.
+At those prices, the app cannot afford to subsidize heavy web search. Connecting one free search provider gives that workspace dedicated search for **$0 extra** on ordinary queries: **Parallel** works with no account at all, **Exa** gives US$10 of free search credit each month (no credit card, nothing to pay), and **Keenable** gives 100,000 free requests a month (no credit card). Deep delegated runs and paid partner datasets cost extra—check current pricing before adding funds.
 
 [Compare free tiers, regional plans, and costs](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each regional example retains its own source-check date.
 
 ## See the approach in practice
 
-We ran the same India B2B SaaS brief (RBI recurring e-mandate rules, DPDP Rules milestones, and a 10-startup market map) three times on one open-weight model (`DeepSeek-V4.1-Flash-1017-Fast`) in OpenCode `v2.4.2`: bare model vs. OpenCode native `websearch` vs. Parallel + Exa MCP with `multi-provider-research` `v0.12.0`. The MCP + `v0.12.0` run finished in **138s** for **$0.011** in model inference (52% cheaper and 58% fewer turns than native `websearch`), had **0 fetch errors** across 16 live URLs (vs. 4 of 5 local fetch errors), and returned **6/10 YoY startup growth figures** vs. 0/10.
+We ran the same India B2B SaaS brief (RBI recurring e-mandate rules, DPDP Rules milestones, and a 10-startup market map) three times on one open-weight model (`DeepSeek-V4.1-Flash-1017-Fast`) in OpenCode `v2.4.2`: bare model vs. OpenCode native `websearch` (pinned to Parallel) vs. Parallel + Exa MCP with `multi-provider-research` `v0.12.0`. The MCP + `v0.12.0` run finished in **138s** for **$0.011** in model inference (52% lower model cost and 58% fewer turns than native `websearch`; search ~$0.06 at list rates, **$0 on free tiers**), had **0 fetch errors** across 16 live web pages (vs. 4 of 5 local fetch errors), and returned **6/10 LinkedIn-reported YoY startup growth figures** (by pairing Exa with Parallel) vs. 0/10.
 
 **[Read the controlled A/B/C worked example →](https://goolamabbas.github.io/separate-intelligence-and-search/guide/india-saas-case-study/)**
 
