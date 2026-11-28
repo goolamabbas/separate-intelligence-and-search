@@ -18,13 +18,15 @@ Already signed in to your assistant? Pick a route below to try your first free s
 - **Parallel (no account required):** Open [Parallel in OpenAI’s directory](https://openai.com/business/plugins/parallel-search/) and click Install to use Search and Fetch without creating a Parallel account.
 - **Keenable:** Search for **Keenable** in OpenAI's Plugins Directory, or connect via custom MCP if your workspace supports it.
 
+*Free-plan note:* Directory plugins are available across plans including ChatGPT Free and Go (subject to each plan's usage and feature limits), while adding a custom remote MCP server on ChatGPT web requires higher plans.
+
 ### Claude (Web, Desktop, or Cowork)
 
 1. Start a new chat and click **+** (bottom left) -> **Add connector** (or **Customize -> Connectors**).
 2. Search for **Exa**, **Parallel**, or **Keenable Web Search** and click **Connect**.
 3. Start a new chat and toggle the connector on if needed.
 
-In Claude's directory, **Exa** asks you to sign in to a free account, while **Parallel Search** (`search.parallel.ai/mcp`) lets you search and read pages with no Parallel account. If you later want Parallel's image search or structured-data tools, choose **Add custom connector** and paste `https://mcp.parallel.ai/mcp` (the same custom-connector route works for Perplexity or any other remote MCP server in the table below).
+In Claude's directory, **Exa** asks you to sign in to a free account, while **Parallel Search** (`search.parallel.ai/mcp`) lets you search and read pages with no Parallel account. If you later want Parallel's image search or structured-data tools, choose **Add custom connector** and paste `https://mcp.parallel.ai/mcp` (the same custom-connector route works for Perplexity or any other remote MCP server in the table below). *Free-plan note:* Claude Free includes directory connectors plus one custom remote MCP connector, subject to Free message limits.
 
 ### Cursor & VS Code
 
@@ -37,9 +39,14 @@ In Claude's directory, **Exa** asks you to sign in to a free account, while **Pa
 - **Exa in Grok Build:** Run `/marketplace`, select **exa**, press `i`, then run `/mcp` to sign in (free monthly credits included).
 
 <span id="claude-code-connect-directly-to-exa"></span>
-### Claude Code, Codex CLI, Command Code, OpenCode, and terminal agents
+### Command Code, OpenCode, Claude Code, Codex CLI, and terminal agents
 
-Connect a hosted remote MCP server in one command (no local server process to maintain):
+You do not need to be a programmer or use a terminal to use Command Code or OpenCode for everyday research:
+
+- **Command Code Desktop** ([macOS, Windows, Linux](https://commandcode.ai/docs/desktop)): Open the account menu -> **Settings -> MCP**, paste a hosted remote MCP URL (`https://mcp.parallel.ai/mcp` or `https://mcp.exa.ai/mcp`), and test the connection.
+- **OpenCode Desktop** ([macOS, Windows, Linux](https://opencode.ai/desktop)): Start with free built-in models (no account needed) or connect a plan, then run `/mcps` in a chat to manage MCP servers (or `/connect` for native web search).
+
+Prefer a terminal? Connect a hosted remote MCP server in one command (no local server process to maintain):
 
 ```bash
 # Claude Code (keyless; use ?login on Exa for OAuth + Agent)
@@ -135,6 +142,6 @@ If you use a coding agent with the optional `multi-provider-research` skill, you
 - [xurl (X CLI)](https://github.com/xdevplatform/xurl)
 - [Codex MCP docs](https://developers.openai.com/codex/mcp)
 - [Claude Code MCP docs](https://code.claude.com/docs/en/mcp)
-- [Command Code MCP docs](https://commandcode.ai/docs/mcp)
-- [OpenCode MCP docs](https://opencode.ai/docs/mcp-servers/)
+- [Command Code MCP docs](https://commandcode.ai/docs/mcp) · [Command Code Desktop](https://commandcode.ai/docs/desktop)
+- [OpenCode MCP docs](https://opencode.ai/docs/mcp-servers/) · [OpenCode Desktop](https://opencode.ai/desktop)
 - [OpenCode Web Search docs](https://opencode.ai/docs/websearch/)
