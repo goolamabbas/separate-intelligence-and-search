@@ -9,11 +9,34 @@
 @media(max-width:480px){.worked-example{padding:24px}.worked-example h2{font-size:30px}}
 
 /* Starting path: retain the existing palette and readable, single-column examples. */
-.idea-text{display:block;max-width:850px}.idea-text .prose{max-width:760px}
+.idea-text{display:block;max-width:960px}.idea-text .prose{max-width:780px}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:28px 0 22px}
+.compare-card{border:1px solid var(--line);border-radius:5px;padding:24px 26px;background:var(--white)}
+.compare-external{background:var(--soft);border-color:#b8c8b4}
+.compare-label{display:block;font-size:10px;font-weight:700;letter-spacing:1.6px;color:var(--green);margin-bottom:10px}
+.compare-baseline .compare-label{color:var(--muted)}
+.compare-card h3{font:22px/1.25 Georgia,serif;margin:0 0 14px;color:var(--ink)}
+.compare-card ul{margin:0;padding-left:18px;font-size:14px;line-height:1.7;color:var(--muted)}
+.compare-card li{margin-bottom:10px}
+.compare-card li:last-child{margin-bottom:0}
+.compare-card strong{color:var(--ink)}
+.compare-card a{color:var(--green)}
+.compare-card code,.step-end code{background:rgba(24,45,53,.08);padding:1px 5px;border-radius:3px;font-size:12px}
+.step-end code{background:rgba(255,255,255,.12);color:#e1eae2}
+.step-end strong{color:#fff}
+.compare-note{font-size:13px;margin-bottom:28px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:26px}
+.why-num{display:block;font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px}
+.why-item h3{font-size:16px;margin:0 0 8px;color:var(--ink)}
+.why-item p{font-size:13px;line-height:1.7;color:var(--muted);margin:0}
+.connect-step .step-body{margin-top:0}
+.connect-step .step-body ul{margin-top:0}
+.connect-step .step-body code{background:#e4eadf;padding:2px 6px;border-radius:3px;font-size:12px}
+.start-band{margin-top:55px}
 .terms-grid{grid-template-columns:repeat(4,1fr)}
 .examples>.prose{max-width:850px}.examples h2{max-width:700px}
 .examples h3{border-top:1px solid var(--line);padding-top:28px;margin-top:32px;font:28px/1.3 Georgia,serif}
 .copy-example{background:var(--green);color:white;border:0;border-radius:3px;padding:8px 14px;cursor:pointer;font-size:12px}
 .example-copy-status{font-size:12px;min-height:20px}
-@media(max-width:800px){.terms-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.masthead{flex-wrap:wrap}.masthead nav{flex-wrap:wrap}.masthead nav a:first-child{display:block}}
+@media(max-width:800px){.compare-grid,.why-grid{grid-template-columns:1fr}.terms-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.compare-card{padding:20px}.masthead{flex-wrap:wrap}.masthead nav{flex-wrap:wrap}.masthead nav a:first-child{display:block}}
