@@ -10,7 +10,7 @@ const introduction = 'https://goolamabbas.github.io/separate-intelligence-and-se
 const escape = text => text.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const slug = text => text.toLowerCase().replace(/[^\p{L}\p{N}_\- ]/gu, '').replaceAll(' ', '-');
 const title = source.match(/^# (.+)$/m)[1];
-const subtitle = 'Application costs, provider allowances, and dated regional examples.';
+const subtitle = 'Provider free tiers, low-cost global workspaces, and when paying is worth it.';
 const headings = [...source.replace(/```[\s\S]*?```/g, '').matchAll(/^## (.+)$/gm)].map(m => m[1]).filter(h => h !== 'On this page');
 const toc = headings.map(h => `<a href="#${slug(h)}">${escape(h)}</a>`).join('\n');
 let body = source.replace(/^# .+\n\n/, '')
