@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "websearch": false,
+  "mcp": {
+    "servers": {
+      "parallel": {
+        "type": "remote",
+        "url": "https://mcp.parallel.ai/mcp",
+        "oauth": false,
+        "codemode": false,
+        "disabled": false,
+        "headers": {
+          "Authorization": "Bearer {env:PARALLEL_API_KEY}"
+        }
+      },
+      "exa": {
+        "type": "remote",
+        "url": "https://mcp.exa.ai/mcp",
+        "oauth": false,
+        "codemode": false,
+        "disabled": false,
+        "headers": {
+          "x-api-key": "{env:EXA_API_KEY}"
+        }
+      },
+      "octen": { "type": "local", "command": ["npx", "-y", "octen-mcp"], "disabled": true }
+    }
+  },
+  "permissions": [
+    { "action": "shell", "resource": "*", "effect": "deny" },
+    { "action": "edit", "resource": "*", "effect": "deny" },
+    { "action": "webfetch", "resource": "*", "effect": "deny" },
+    { "action": "websearch", "resource": "*", "effect": "deny" },
+    { "action": "subagent", "resource": "*", "effect": "deny" },
+    { "action": "skill", "resource": "*", "effect": "deny" },
+    { "action": "skill", "resource": "multi-provider-research", "effect": "allow" },
+    { "action": "parallel_*", "resource": "*", "effect": "allow" },
+    { "action": "exa_*", "resource": "*", "effect": "allow" }
+  ]
+}

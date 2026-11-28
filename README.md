@@ -134,11 +134,11 @@ Account for your AI subscription, research-provider charges, and local taxes sep
 
 ## See the approach in practice
 
-Two AI assistants researched Ethereum’s Glamsterdam upgrade using connected evidence providers. A third combined their reports. Explore where the tools filled gaps, where their contributions overlapped, and how the synthesis handled differences.
+We ran the same India B2B SaaS brief (RBI recurring e-mandate rules, DPDP Rules milestones, and a 10-startup market map) three times on one open-weight model (`DeepSeek-V4.1-Flash-1017-Fast`) in OpenCode `v2.4.2`: bare model vs. OpenCode native `websearch` vs. Parallel + Exa MCP with `multi-provider-research` `v0.12.0`. The MCP + `v0.12.0` run finished in **138s** for **$0.011** in model inference (52% cheaper and 58% fewer turns than native `websearch`), had **0 fetch errors** across 16 live URLs (vs. 4 of 5 local fetch errors), and returned **6/10 YoY startup growth figures** vs. 0/10.
 
-**[Explore the Glamsterdam worked example ↗](https://goolamabbas.github.io/understanding-glamsterdam/method.html)**
+**[Read the controlled A/B/C worked example →](https://goolamabbas.github.io/separate-intelligence-and-search/guide/india-saas-case-study/)**
 
-You do not need to reproduce this setup: start with one provider and add another when it fills a specific gap. This is a documented workflow, not a controlled comparison proving that more providers produce better results.
+You do not need two providers to start: connect one free provider first and add a second only when a distinct job calls for it. Full memos, configs, and parsed JSONL logs are published in the repository for inspection.
 
 ## Go deeper
 

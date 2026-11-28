@@ -64,6 +64,8 @@ require('./build-connecting.cjs');
 
 require("./build-ultra-case.cjs");
 
+require("./build-india-case.cjs");
+
 require("./build-retired-pages.cjs");
 
 require("./build-costs.cjs");

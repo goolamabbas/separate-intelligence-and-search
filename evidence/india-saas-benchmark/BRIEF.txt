@@ -1,0 +1,15 @@
+You are advising a founder preparing to launch a B2B subscription SaaS product in India (late November 2026). Produce a concise, decision-ready research memo with two sections:
+
+Part 1 — Regulatory rules (primary official sources required):
+1. Current RBI recurring e-mandate rules for cards and UPI Autopay in India: give the official rbi.org.in direction name, reference number, date, the general per-transaction rupee cap without Additional Factor of Authentication (AFA), and any higher category-specific caps.
+2. Current status of India's Digital Personal Data Protection (DPDP) Rules: cite the official government notification/gazette or meity.gov.in source, date, and key compliance milestones or timelines currently in force as of late November 2026.
+
+Part 2 — Indian startup market map (structured company discovery):
+Build a table of 10 Indian startups founded in 2022 or later with fewer than 100 employees building either (a) UPI Autopay / recurring-billing / payment-mandate tools, or (b) DPDP privacy / consent-management compliance tools. For each company, provide: name, website, founding year, employee count (and 1-year growth if available), focus area, and a 1-sentence product summary.
+
+Evidence rules:
+- Return the finished memo directly in your reply (do not create or edit files on disk).
+- Cite exact source URLs and dates for every regulatory figure and startup claim.
+- Separate verified facts from estimates or unverified details.
+- Explicitly list any required fields or regulatory milestones you could not verify rather than guessing.
+- At the end, include a short "Tools & gaps" note listing which search/fetch tools you actually used (if any) and what remained unverified.
