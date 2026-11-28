@@ -1,0 +1,421 @@
+{
+  "run-a-bare": {
+    "events": 35,
+    "steps": 10,
+    "toolCounts": {
+      "execute": 6,
+      "glob": 1,
+      "read": 2
+    },
+    "totalToolCalls": 9,
+    "tokens": {
+      "input": 18461,
+      "output": 4130,
+      "cacheRead": 118400
+    },
+    "reportedModelCostUsd": 0.005377,
+    "parallelUsage": [],
+    "memoChars": 12116,
+    "memoWords": 1822,
+    "toolDetails": [
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const r = await search({ query: \\\"web search fetch url internet\\\", limit: 20 });\\nreturn r;\"}",
+        "outputChars": 6141
+      },
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const urls = [\\n  \\\"https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx\\\",\\n  \\\"https://www.meity.gov.in/\\\",\\n  \\\"https://duckduckgo.com/html/?q=test\\\",\\n];\\nconst out = {};\\nfor (const u of urls) {\\n  tr",
+        "outputChars": 269
+      },
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const [res, ev] = await Promise.allSettled([\\n  tools.opencode.list_mcp_resources({}),\\n  tools.opencode.list_mcp_events({ server: \\\"webfetch\\\" }).catch(e => ({ err: String(e) })),\\n]);\\nconst s2 = await search(",
+        "outputChars": 198
+      },
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const g = await search({ query: \\\"\\\", limit: 50 });\\nreturn g;\"}",
+        "outputChars": 20135
+      },
+      {
+        "tool": "glob",
+        "status": "completed",
+        "inputPreview": "{\"pattern\":\"**/*\",\"path\":\"/Users/yusufg/droid-non-coding-root/india-saas-research-benchmark/run-a-bare\"}",
+        "outputChars": 199
+      },
+      {
+        "tool": "read",
+        "status": "completed",
+        "inputPreview": "{\"path\":\"/Users/yusufg/droid-non-coding-root/india-saas-research-benchmark/run-a-bare/memo-india-b2b-saas-nov2026.md\"}",
+        "outputChars": 17925
+      },
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const qs = [\\\"shell\\\", \\\"bash\\\", \\\"terminal\\\", \\\"exec\\\", \\\"run command\\\", \\\"webfetch\\\", \\\"http request\\\", \\\"browse\\\"];\\nconst out = {};\\nfor (const q of qs) {\\n  const r = await search({ query: q, limit: 10 });\\",
+        "outputChars": 435
+      },
+      {
+        "tool": "read",
+        "status": "completed",
+        "inputPreview": "{\"path\":\"/Users/yusufg/droid-non-coding-root/india-saas-research-benchmark/run-a-bare/opencode.jsonc\"}",
+        "outputChars": 870
+      },
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const probes = [\\n  \\\"https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12051\\\",\\n  \\\"https://www.meity.gov.in/data-protection-framework\\\",\\n  \\\"https://egazette.gov.in/\\\",\\n];\\nconst res = {};\\nawait ",
+        "outputChars": 260
+      }
+    ]
+  },
+  "run-b-native-websearch": {
+    "events": 74,
+    "steps": 19,
+    "toolCounts": {
+      "execute": 1,
+      "websearch": 28,
+      "webfetch": 5
+    },
+    "totalToolCalls": 34,
+    "tokens": {
+      "input": 176921,
+      "output": 7589,
+      "cacheRead": 1679232
+    },
+    "reportedModelCostUsd": 0.023149,
+    "parallelUsage": [],
+    "memoChars": 20019,
+    "memoWords": 2677,
+    "toolDetails": [
+      {
+        "tool": "execute",
+        "status": "completed",
+        "inputPreview": "{\"code\":\"const q = await tools.search({ query: \\\"websearch\\\", limit: 10 });\\nconsole.log(JSON.stringify(q, null, 2));\"}",
+        "outputChars": 57
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"RBI e-mandate recurring payments direction 2021 reference number Rs 15000 AFA\"}",
+        "outputChars": 26786
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"DPDP Rules 2025 notified gazette MeitY compliance timeline 18 months\"}",
+        "outputChars": 26298
+      },
+      {
+        "tool": "webfetch",
+        "status": "completed",
+        "inputPreview": "{\"url\":\"https://rbi.org.in/SCRIPTs/BS_ViewMasDirections.aspx?id=13374\",\"format\":\"markdown\"}",
+        "outputChars": 16785
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"\\\"Digital Payments – E-mandate Framework, 2026\\\" RBI master direction UPI Autopay limit per transaction\"}",
+        "outputChars": 26973
+      },
+      {
+        "tool": "webfetch",
+        "status": "error",
+        "inputPreview": "{\"format\":\"markdown\",\"url\":\"https://www.meity.gov.in/documents/act-and-policies/digital-personal-dataprotection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025\"}",
+        "outputChars": 2
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"DPDP consent management platform startup India founded 2023 seed funding\"}",
+        "outputChars": 26200
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Indian startup \\\"UPI Autopay\\\" infrastructure API recurring subscription billing founded 2023\"}",
+        "outputChars": 25917
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"\\\"e-mandate\\\" API startup India recurring payments founded 2022 2024\"}",
+        "outputChars": 26308
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"\\\"mandate\\\" \\\"UPI Autopay\\\" startup funding entrackr 2024 2025 collections infrastructure\"}",
+        "outputChars": 26365
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"recurring payments startup India seed funding 2025 subscription billing platform founded 2024\"}",
+        "outputChars": 26748
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"paycorp.io India founded year recurring payments NACH UPI employees\"}",
+        "outputChars": 26385
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"ConsentEZ GoTrust Consently HyperTrust India founded year consent management DPDP\"}",
+        "outputChars": 26235
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Zenskar billing startup India founded year employees; Revio subscription payments India\"}",
+        "outputChars": 25915
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Finsire mandate infrastructure startup founded year employees India\"}",
+        "outputChars": 26272
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Flexprice founded employees Bengaluru open source billing Tracxn\"}",
+        "outputChars": 26022
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Dodo Payments founded 2024 India employees Bengaluru merchant of record\"}",
+        "outputChars": 25819
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"\\\"Digital Anumati\\\" founded 2023 employees consent management Noida\"}",
+        "outputChars": 26099
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Redacto employees founded 2025 Bengaluru privacy Tracxn headcount\"}",
+        "outputChars": 20350
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"ConsentEZ founded year India company team; DPConsent Pion Global founded\"}",
+        "outputChars": 25952
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Consently founded year company Pune DPDP consent management employees\"}",
+        "outputChars": 26228
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"KavachOne ConsentiQo founded year India; ConsentEZ startup founded year\"}",
+        "outputChars": 26041
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"\\\"DPDP.ai\\\" founded 2023 employees company India consent platform\"}",
+        "outputChars": 26278
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"SubversePay Technologies founded 2025 subscription billing revenue recovery Chennai employees\"}",
+        "outputChars": 26031
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Originpay India payment orchestration founded year company employees subscriptions\"}",
+        "outputChars": 25643
+      },
+      {
+        "tool": "webfetch",
+        "status": "error",
+        "inputPreview": "{\"format\":\"text\",\"url\":\"https://egazette.gov.in/WriteReadData/2025/267647.pdf\"}",
+        "outputChars": 2
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"DPDP \\\"Removal of Difficulties\\\" order 2026 S.O. 5458(E) sections 9 and 10 gazette\"}",
+        "outputChars": 26843
+      },
+      {
+        "tool": "webfetch",
+        "status": "error",
+        "inputPreview": "{\"format\":\"text\",\"url\":\"https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf\"}",
+        "outputChars": 2
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"PIB press release DPDP consent manager registration opens 13 November 2026 dpbi.gov.in\"}",
+        "outputChars": 27030
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"GoTrust Noida founded 2023 employees 80 privacy platform funding Series A\"}",
+        "outputChars": 15193
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"RBI e-mandate AFA limit change 2026 15000 increase circular October November 2026\"}",
+        "outputChars": 26665
+      },
+      {
+        "tool": "webfetch",
+        "status": "error",
+        "inputPreview": "{\"format\":\"text\",\"url\":\"https://www.dpdpa.in/dpdpa_rules_2025/dpdpa_rules_english_2.pdf\"}",
+        "outputChars": 2
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"RocketPay Tracxn employee count 2026 Bengaluru UPI Autopay eNACH founded 2022\"}",
+        "outputChars": 23846
+      },
+      {
+        "tool": "websearch",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"DPDP Rules 2025 Rule 7 personal data breach 72 hours Rule 8 erasure 48 hours Rule 3 notice\"}",
+        "outputChars": 26318
+      }
+    ]
+  },
+  "run-c-mcp-skill": {
+    "events": 34,
+    "steps": 8,
+    "toolCounts": {
+      "skill": 1,
+      "read": 2,
+      "parallel_web_search": 4,
+      "exa_web_search_exa": 6,
+      "parallel_web_fetch": 3
+    },
+    "totalToolCalls": 16,
+    "tokens": {
+      "input": 74823,
+      "output": 6939,
+      "cacheRead": 260352
+    },
+    "reportedModelCostUsd": 0.011075,
+    "parallelUsage": [],
+    "memoChars": 16299,
+    "memoWords": 2246,
+    "toolDetails": [
+      {
+        "tool": "skill",
+        "status": "completed",
+        "inputPreview": "{\"id\":\"multi-provider-research\"}",
+        "outputChars": 5780
+      },
+      {
+        "tool": "read",
+        "status": "completed",
+        "inputPreview": "{\"path\":\"/Users/yusufg/.agents/skills/multi-provider-research/references/parallel.md\"}",
+        "outputChars": 3406
+      },
+      {
+        "tool": "read",
+        "status": "completed",
+        "inputPreview": "{\"path\":\"/Users/yusufg/.agents/skills/multi-provider-research/references/exa.md\"}",
+        "outputChars": 3511
+      },
+      {
+        "tool": "parallel_web_search",
+        "status": "completed",
+        "inputPreview": "{\"objective\":\"Find the exact RBI circular/direction on processing of e-mandate for recurring transactions on cards and UPI Autopay, including circular reference numbers, dates, and the per-transaction limit exempt from A",
+        "outputChars": 27883
+      },
+      {
+        "tool": "parallel_web_search",
+        "status": "completed",
+        "inputPreview": "{\"objective\":\"Find the official Digital Personal Data Protection Rules 2025 notification: the Gazette of India notification number (G.S.R.), date issued by MeitY, and the phased compliance timelines/commencement dates fo",
+        "outputChars": 28150
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Indian startup founded 2022 or later offering DPDP Act consent management platform or privacy compliance SaaS for Indian businesses\",\"objective\":\"Find Indian privacy-tech startups (founded 2022+) selling consen",
+        "outputChars": 24947
+      },
+      {
+        "tool": "parallel_web_fetch",
+        "status": "completed",
+        "inputPreview": "{\"urls\":[\"https://rbi.org.in/SCRIPTS/BS_ViewMasDirections.aspx?id=13374\",\"https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa\"],\"objective\":\"Extract exact direction",
+        "outputChars": 7988
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"Indian startup founded 2022 or later building UPI Autopay, recurring payment mandates, or subscription billing infrastructure for SaaS companies in India\",\"objective\":\"Identify small Indian startups (founded 20",
+        "outputChars": 27051
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"LinkedIn company profile of small Indian fintech startup offering UPI Autopay mandate and subscription billing infrastructure, founded 2023 or 2024, with employee count\",\"objective\":\"Find LinkedIn company pages",
+        "outputChars": 15344
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"LinkedIn company page Indian DPDP privacy compliance SaaS startup founded 2023 or 2024 consent management platform with number of employees\",\"objective\":\"Find LinkedIn company pages of 2022+ founded Indian cons",
+        "outputChars": 19213
+      },
+      {
+        "tool": "parallel_web_search",
+        "status": "completed",
+        "inputPreview": "{\"objective\":\"Establish the DPDP compliance status as of November 2026: whether Consent Manager registration under Rule 4 opened on 13 November 2026, whether the Data Protection Board chairperson/members have been appoin",
+        "outputChars": 27673
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"LinkedIn company page DemandPay recurring payment engine UPI AutoPay billing links for ISPs and subscription businesses India employees founded\",\"objective\":\"Get DemandPay's company profile: founding year, empl",
+        "outputChars": 10627
+      },
+      {
+        "tool": "exa_web_search_exa",
+        "status": "completed",
+        "inputPreview": "{\"query\":\"LinkedIn company page RocketPay Bengaluru UPI Autopay eNACH collections employees headcount founded 2022\",\"objective\":\"Get RocketPay's LinkedIn company page details: employee count, yearly growth, founding year",
+        "outputChars": 6461
+      },
+      {
+        "tool": "parallel_web_fetch",
+        "status": "completed",
+        "inputPreview": "{\"urls\":[\"https://www.rocketpay.co.in/\",\"https://www.circlepay.in/\",\"https://aucurx.com/\",\"https://subversepay.in/\",\"https://transactbridge.com/\",\"https://privezi.ai/\",\"https://concur.live/\",\"https://redacto.ai/\",\"https:",
+        "outputChars": 28913
+      },
+      {
+        "tool": "parallel_web_search",
+        "status": "completed",
+        "inputPreview": "{\"objective\":\"Check whether RBI issued any amendment to the Digital Payments – E-mandate Framework, 2026 after 21 April 2026 (up to late November 2026), and whether NPCI changed UPI AutoPay limits in 2026. Prefer rbi.org",
+        "outputChars": 27810
+      },
+      {
+        "tool": "parallel_web_fetch",
+        "status": "completed",
+        "inputPreview": "{\"urls\":[\"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2336151\",\"https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12570\"],\"objective\":\"Confirm (a) PIB details on Consent Manager registration: effective date, ",
+        "outputChars": 4722
+      }
+    ]
+  }
+}
