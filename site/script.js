@@ -1,28 +1,30 @@
-const copyButton = document.getElementById('copy-prompt');
-const copyPromptLabel = [...copyButton.childNodes];
-copyButton.addEventListener('click', async () => {
-  const prompt = document.getElementById('research-prompt');
-  const status = document.getElementById('copy-status');
-  status.textContent = 'Copying…';
-  let timer;
-  try {
-    await Promise.race([
-      navigator.clipboard.writeText(prompt.textContent),
-      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Clipboard unavailable')), 1000); })
-    ]);
-    status.textContent = 'Copied. Paste it into your assistant once Exa is connected.';
-    copyButton.textContent = 'Copied ✓';
-  } catch {
-    copyButton.replaceChildren(...copyPromptLabel);
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(prompt);
-    selection.removeAllRanges();
-    selection.addRange(range);
-    status.textContent = 'Prompt selected. Use your browser’s Copy command.';
-  } finally {
-    clearTimeout(timer);
-  }
+document.querySelectorAll('button[data-copy-target]').forEach((copyButton) => {
+  const copyPromptLabel = [...copyButton.childNodes];
+  copyButton.addEventListener('click', async () => {
+    const prompt = document.getElementById(copyButton.dataset.copyTarget);
+    const status = document.getElementById(copyButton.dataset.statusTarget);
+    if (!prompt || !status) return;
+    status.textContent = 'Copying…';
+    let timer;
+    try {
+      await Promise.race([
+        navigator.clipboard.writeText(prompt.textContent),
+        new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Clipboard unavailable')), 1000); })
+      ]);
+      status.textContent = 'Copied. Paste it into a fresh chat with your search provider enabled.';
+      copyButton.textContent = 'Copied ✓';
+    } catch {
+      copyButton.replaceChildren(...copyPromptLabel);
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(prompt);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      status.textContent = 'Prompt selected. Use your browser’s Copy command.';
+    } finally {
+      clearTimeout(timer);
+    }
+  });
 });
 
 // Add the same accessible copy interaction to source-derived examples and installation.

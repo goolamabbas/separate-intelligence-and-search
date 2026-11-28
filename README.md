@@ -1,6 +1,6 @@
 # Choose Your AI. Choose How It Searches.
 
-Your AI subscription pays for intelligence first and bundles search as an add-on. Keep the assistant you already like, and connect a dedicated search provider for free when you need deeper coverage or structured data.
+Flagship AI subscriptions pay for intelligence first and bundle search as an add-on, while low-cost coding agents ship with thin or missing search. Keep the assistant or coding agent you already use, and connect a free dedicated search provider when coverage or structured data matters.
 
 If you use a flagship assistant like ChatGPT or Claude, its built-in web search is already surprisingly capable. On 28 November 2026, we tested ChatGPT (GPT-6.2 Astra, medium reasoning) with built-in search only on three everyday lookups: finding verbatim timestamped podcast quotes, naming five recent UK startups, and catching a quiet Notion deprecation notice for full-workspace PDF exports. Built-in search handled all three accurately.
 
@@ -39,7 +39,7 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
 - **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
-- **Multiply a low-cost agent:** Affordable coding agents such as Cursor Start or Command Code Go cannot afford to subsidize heavy web search. Connect one free MCP search provider to upgrade them for $0 extra without switching models.
+- **Multiply a low-cost agent:** Affordable coding agents such as Cursor Start, Command Code Go, or OpenCode Go cannot afford to subsidize heavy web search. Connect one free MCP search provider to upgrade them for $0 extra without switching models.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 
@@ -87,25 +87,37 @@ Want to go further? The [prompt library](https://goolamabbas.github.io/separate-
 
 ## Start with a question and one provider
 
-The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen, and Perplexity). To feel the difference in two minutes with no credit card, start with **Exa** ($10/month in free credits, no payment method required) or **Parallel** (works without an account at all).
+The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen, and Perplexity). To feel the difference in two minutes with no credit card, start with **Parallel** (keyless MCP, no account needed) or **Exa** (keyless Search/Fetch over MCP, or a free account with $10/month in recurring credits and no card).
 
 ### 1. Connect Exa (or Parallel) in your app
 
-- **ChatGPT or Codex:** Open [Exa in OpenAI’s plugin directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed).
+- **ChatGPT or Codex:** Open [Exa in OpenAI’s plugin directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (free account, no card), or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed.
 - **Claude (Web, Desktop, or Cowork):** In a new chat, click **+** → **Add connector**, then connect **Exa** (asks you to sign in to a free account) or the [Parallel Search connector](https://claude.com/marketplace/connectors/parallel-search) (search and page reading with no Parallel account).
-- **Claude Code, Cursor, or another MCP client:** Add `https://mcp.exa.ai/mcp` (for example, `claude mcp add --transport http exa https://mcp.exa.ai/mcp`), or `https://mcp.parallel.ai/mcp` for Parallel.
+- **Cursor, Claude Code, Command Code, or OpenCode:** Add `https://mcp.parallel.ai/mcp` (keyless, no account) or `https://mcp.exa.ai/mcp` (keyless Search/Fetch, or `?login` for $10/month free credits):
+  - Claude Code: `claude mcp add --transport http parallel https://mcp.parallel.ai/mcp`
+  - Command Code: `cmd mcp add --transport http --scope user parallel https://mcp.parallel.ai/mcp`
+  - OpenCode: `opencode mcp add parallel --global --url https://mcp.parallel.ai/mcp` (OpenCode also supports Exa and Parallel natively via `/connect` or API keys — see [OpenCode web search](https://opencode.ai/docs/websearch/))
+- **Keyless vs. sign-in note:** Keyless endpoints connect without signing in. If a client shows `needs authentication` or you want an account’s free monthly allowance, use the `?login` URL or run `/mcp` (Command Code) / `/mcps` (OpenCode).
 
 Using a different assistant, or want to compare all five providers first? See the [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/).
 
 ### 2. Paste a ready-to-run prompt
 
-Start a fresh chat with your new connector enabled and paste this prompt as-is (works with Exa, Parallel, or any connected search provider):
+Start a fresh chat with your new connector enabled and paste either prompt as-is (both work with Exa, Parallel, Keenable, or any connected search provider):
+
+**Option A — Company list (plays to Exa’s company index):**
 
 ```text
 Use my connected external search provider (not built-in web search) to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If no external search provider is connected, stop and tell me instead of falling back to built-in search.
 ```
 
-Open the tool activity above the answer and look for the provider you connected (not generic “Searched the web”), then open two links to inspect the evidence. Curious about the contrast? Ask just the market-map question in a fresh chat with connectors off and count how many companies overlap and how many growth figures come back `not found`.
+**Option B — Primary-source policy check (plays to Parallel or Keenable):**
+
+```text
+Use my connected external search provider (not built-in web search) to check the current RBI rules for recurring e-mandates on cards and UPI in India. Give the official rbi.org.in direction name, reference number, date, the general per-transaction rupee cap without extra authentication (AFA), any higher category limits, and direct source links. If no external search provider is connected, stop and tell me instead of falling back to built-in search.
+```
+
+Open the tool activity above the answer and look for the provider you connected (not generic “Searched the web”), then open two links to inspect the evidence. Curious about the contrast? Ask just the market-map or RBI question in a fresh chat with connectors off and compare what comes back.
 
 Once you see how it works, swap in any topic you care about, or try the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/). The routing skill below is optional.
 
