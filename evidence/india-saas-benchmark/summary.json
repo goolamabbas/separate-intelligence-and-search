@@ -72,7 +72,10 @@
         "inputPreview": "{\"code\":\"const probes = [\\n  \\\"https://www.rbi.org.in/Scripts/BS_ViewMasDirections.aspx?id=12051\\\",\\n  \\\"https://www.meity.gov.in/data-protection-framework\\\",\\n  \\\"https://egazette.gov.in/\\\",\\n];\\nconst res = {};\\nawait ",
         "outputChars": 260
       }
-    ]
+    ],
+    "wallClockSeconds": 58,
+    "fetchedUrls": [],
+    "failedFetchUrls": []
   },
   "run-b-native-websearch": {
     "events": 74,
@@ -297,6 +300,16 @@
         "inputPreview": "{\"query\":\"DPDP Rules 2025 Rule 7 personal data breach 72 hours Rule 8 erasure 48 hours Rule 3 notice\"}",
         "outputChars": 26318
       }
+    ],
+    "wallClockSeconds": 170,
+    "fetchedUrls": [
+      "https://rbi.org.in/SCRIPTs/BS_ViewMasDirections.aspx?id=13374"
+    ],
+    "failedFetchUrls": [
+      "https://www.meity.gov.in/documents/act-and-policies/digital-personal-dataprotection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "https://egazette.gov.in/WriteReadData/2025/267647.pdf",
+      "https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf",
+      "https://www.dpdpa.in/dpdpa_rules_2025/dpdpa_rules_english_2.pdf"
     ]
   },
   "run-c-mcp-skill": {
@@ -416,6 +429,26 @@
         "inputPreview": "{\"urls\":[\"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2336151\",\"https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12570\"],\"objective\":\"Confirm (a) PIB details on Consent Manager registration: effective date, ",
         "outputChars": 4722
       }
-    ]
+    ],
+    "wallClockSeconds": 138,
+    "fetchedUrls": [
+      "https://rbi.org.in/SCRIPTS/BS_ViewMasDirections.aspx?id=13374",
+      "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa",
+      "https://www.rocketpay.co.in/",
+      "https://www.circlepay.in/",
+      "https://aucurx.com/",
+      "https://subversepay.in/",
+      "https://transactbridge.com/",
+      "https://privezi.ai/",
+      "https://concur.live/",
+      "https://redacto.ai/",
+      "https://digitalanumati.com/",
+      "https://fortifyze.com/",
+      "https://neostra.io/",
+      "https://getpatronus.com/",
+      "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2336151",
+      "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12570"
+    ],
+    "failedFetchUrls": []
   }
 }
