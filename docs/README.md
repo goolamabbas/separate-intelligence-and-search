@@ -4,6 +4,8 @@
 
 [← Start with the introduction](../README.md)
 
+Choose the best intelligence you can afford (from a free chat plan or a $1–$10 desktop app to a $20–$200 frontier subscription) and never let that choice restrict the web coverage or datasets you can reach. Dedicated search providers plug into any of them for $0 to pennies, and you only pay for deeper search or commercial datasets if and when you need them.
+
 Flagship AI assistants already ship with capable built-in web search for quick lookups. Dedicated research providers become valuable when you need wider market coverage, structured company or registry records, stricter date and domain controls, or better search inside coding agents and lower-cost workspaces.
 
 Start with one provider that fits your app and question, verify that it actually ran, and inspect the links it returns. You do not need the optional routing skill to use any provider.

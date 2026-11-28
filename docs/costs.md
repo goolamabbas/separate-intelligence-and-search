@@ -2,9 +2,9 @@
 
 [← Start with the introduction](../README.md)
 
-Count three things separately: your AI assistant subscription, your research-provider usage, and local taxes or currency conversion. Free search still consumes your assistant's model allowance when the model reads returned pages and writes an answer.
+Pay for the best intelligence you can afford, and treat search and datasets as a separate choice. Dedicated search providers let even a $0 or $1–$10 workspace reach wide web indexes, live public registries, and structured company or people data—often for **$0 on free tiers or pennies pay-as-you-go**, with paid tiers available only when you need higher throughput, batch jobs, or commercial partner datasets.
 
-Because search and intelligence are separate choices, you can start for **$0** on top of the assistant you already use, or pair a $0–$10/month desktop workspace with generous free search allowances.
+When estimating total spend, count three things separately: your AI assistant subscription, your research-provider usage, and local taxes or currency conversion. Free search still consumes your assistant's model allowance when the model reads returned pages and writes an answer.
 
 [Choosing research tools for your AI assistant](README.md)
 
