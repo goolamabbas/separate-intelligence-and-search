@@ -39,9 +39,6 @@ function visit(dir) {
     if (current.includes('exa-ultra-case-study')) {
       html = html.replace('<article>', `<details class="mobile-navigation"><summary>Explore the guide <span>+</span></summary><nav aria-label="Guide pages">${nav}</nav></details><article>`);
     }
-    if (current === 'index.html') {
-      html = html.replace('<a href="#idea">The idea</a>', `<a href="#start">Start here</a><a href="${base.href}guide/costs/">Costs</a>`);
-    }
     // All internal navigation stays inside this build, including a localhost preview.
     html = html.replace(/<a\b([^>]*\bhref="([^"]+)"[^>]*)>([\s\S]*?)<\/a>/g, (whole,attrs,href,content) => {
       if (!href.startsWith(base.href)) return whole;
