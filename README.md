@@ -1,6 +1,6 @@
 # Choose Your AI. Choose How It Searches.
 
-Flagship AI subscriptions pay for intelligence first, free chat plans cap your usage, and low-cost desktop apps like OpenCode and Command Code ship with thin or missing search. Connect a free dedicated search provider to any of them, even if you never write a line of code.
+Flagship AI subscriptions pay for intelligence first, free chat plans cap your usage, and low-cost desktop apps like OpenCode and Command Code ship with thin or missing search. Connect a free dedicated search provider to any of them for deeper coverage, primary sources, and structured data without upgrading your AI plan. Setup takes a couple of minutes, even if you never write a line of code.
 
 If you use a flagship assistant like ChatGPT or Claude, its built-in web search is already surprisingly capable. On 28 November 2026, we tested ChatGPT (GPT-6.2 Astra, medium reasoning) with built-in search only on three everyday lookups: finding verbatim timestamped podcast quotes, naming five recent UK startups, and catching a quiet Notion deprecation notice for full-workspace PDF exports. Built-in search handled all three accurately.
 
