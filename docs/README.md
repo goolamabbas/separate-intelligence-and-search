@@ -1,284 +1,90 @@
 # Choosing research tools for your AI assistant
 
-*A practical guide to finding and checking sources with the chat or coding assistant you already use.*
-
-Start with a question you care about and try your assistant’s built-in search. Open one of its sources. Does it actually answer your question? If you still need an original document, a list of companies with evidence for each, or a particular post, a connected research tool can help.
-
-[Choose a tool for your question](choosing-providers.md#quick-chooser), [connect it to your assistant](connecting-providers.md), then [try a first question](research-prompts.md#one-question-without-the-skill). You can do all three before installing the optional research skill.
-
-**Reading path revised:** 26 November 2026. See the [setup notes](connecting-providers.md) for connection checks and [Costs and access](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/) for dated prices.
+*A practical guide to pairing your favorite AI assistant with dedicated search and retrieval tools.*
 
 [← Start with the introduction](../README.md)
 
-## On this page
+Flagship AI assistants already ship with capable built-in web search for quick lookups. Dedicated research providers become valuable when you need wider market coverage, structured company or registry records, stricter date and domain controls, or better search inside coding agents and lower-cost workspaces.
 
-- [Choose your path](#choose-your-path)
-- [Key terms](#key-terms)
-- [Choose tools for the evidence you need](#choose-tools-for-the-evidence-you-need)
-- [Make one provider work before adding more](#make-one-provider-work-before-adding-more)
-- [Judge the answer by its evidence](#judge-the-answer-by-its-evidence)
-- [Continue reading](#continue-reading)
+Start with one provider that fits your app and question, verify that it actually ran, and inspect the links it returns. You do not need the optional routing skill to use any provider.
 
-## Choose your path
+**Guide refreshed:** 28 November 2026. Check each provider's linked documentation for live schemas and current rates.
 
-Your application is the workspace, the model interprets your question and writes the answer, and a connected provider supplies sources or other research capabilities. Check which connections your application supports before choosing or paying for a provider.
+## How the guide is organized
 
-<figure class="research-paths" id="research-paths" aria-labelledby="research-paths-title">
-  <figcaption id="research-paths-title">How your assistant gets research tools</figcaption>
-  <section class="research-paths-primary" aria-labelledby="research-paths-start">
-    <h3 id="research-paths-start">Start with the assistant you already use</h3>
-    <ol class="research-paths-flow" role="list">
-      <li>
-        <strong>Ask a question</strong>
-        <span>Try your assistant’s built-in search and page reader.</span>
-      </li>
-      <li>
-        <strong>Connect a provider if needed</strong>
-        <span>Choose one app, plugin, connector or direct MCP connection.</span>
-      </li>
-      <li>
-        <strong>Try a prompt and check the sources</strong>
-        <span>Open key links and check dates, claims and gaps.</span>
-      </li>
-    </ol>
-  </section>
-  <section class="research-paths-coding" aria-labelledby="research-paths-coding-title">
-    <h3 id="research-paths-coding-title">For coding agents with MCP and terminal access</h3>
-    <p>One agent can use either route or both, depending on the task.</p>
-    <dl class="research-paths-routes">
-      <div>
-        <dt>MCP connection</dt>
-        <dd>
-          <strong>Search for relevant sources</strong>
-          <span>Find official release notes and migration guides for a software update.</span>
-        </dd>
-      </div>
-      <div>
-        <dt>Provider CLI</dt>
-        <dd>
-          <strong>Build a list that meets your criteria</strong>
-          <span>Use Parallel FindAll to discover companies that match a set of requirements.</span>
-        </dd>
-      </div>
-    </dl>
-  </section>
-  <section class="research-paths-skills" aria-labelledby="research-paths-skills-title">
-    <h3 id="research-paths-skills-title">Optional skills</h3>
-    <dl>
-      <div>
-        <dt>Multi-provider research skill</dt>
-        <dd>Helps your assistant choose and use available research tools.</dd>
-      </div>
-      <div>
-        <dt>Provider-specific skill</dt>
-        <dd>Shows your assistant how to use one provider’s tools or CLI.</dd>
-      </div>
-    </dl>
-  </section>
-</figure>
+Pick the page that matches where you are:
 
-For a starting question, try the introduction’s [creative-project, company research, consumer marketing and B2B examples](https://goolamabbas.github.io/separate-intelligence-and-search/#examples). They are suggested uses with copyable prompts, not recorded searches.
-
-Already connected? Try the [compact prompt](#try-it-first-a-compact-prompt-prefix) or [add the routing skill](#use-the-reusable-routing-skill).
-
-Already know what you need? Use the [provider reference](choosing-providers.md), [connection instructions](connecting-providers.md), or [prompt cookbook](research-prompts.md) directly.
-
-## Key terms
-
-| Term | Meaning here |
+| Page | Use it when you want to… |
 | --- | --- |
-| **Application (sometimes called a harness)** | The application or agent environment that plans the task, calls tools, and presents the result |
-| **Provider** | An external service supplying search, extraction, structured data, synthesis, or platform-native evidence |
-| **MCP server or connector** | A supported way for the application to call provider tools |
-| **Skill** | Reusable instructions that tell the application how to route work; a skill does not create provider access by itself |
-| **Retrieval** | Finding or reading sources for the model selected in your application to analyze |
-| **Provider-generated synthesis** | An answer, comparison, research report, or agent result produced by a model or workflow inside the provider |
-| **Evidence role** | A distinct source type or dataset assigned a clear role in the research |
+| [**Choosing providers**](choosing-providers.md) | Compare what Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X each do well, without vendor hype or rankings. |
+| [**Connecting providers**](connecting-providers.md) | Add a provider in two minutes in ChatGPT, Claude, Cursor, Grok Bot, or a coding agent, plus optional advanced MCP configuration. |
+| [**Research prompts**](research-prompts.md) | Copy practical prompts for everyday research, provider-specific tasks, or stricter audit boundaries. |
+| [**Costs and access**](costs.md) | Compare free recurring tiers, keyless endpoints, and low-cost regional workspace combinations. |
 
-## Choose tools for the evidence you need
+## The simple 3-step workflow
 
-A provider is useful when it fills an evidence gap within the boundaries you set. Decide what must be found, which services may receive the task, and whether they should retrieve sources or generate analysis.
-
-### Native search or external providers?
-
-Start with the search and page-reading tools already available in your AI application. They may be sufficient for a straightforward lookup or reading a known source.
-
-Consider external providers when you need something specific: more precise discovery controls, specialized datasets, repeated research across a list, source retrieval, or provider-generated research.
-
-Use the smallest set that covers the task. External services can add setup, cost, latency, and another service receiving the query. Capabilities vary by application and integration, so verify what is available rather than assuming an external tool is always better.
-
-### Choose the operating mode before choosing tools
-
-Choose the boundary that fits the task:
-
-| Mode | What to permit |
-| --- | --- |
-| Native only | The current application’s built-in search and page-reading tools |
-| Flexible external research | Relevant available providers, selected according to the evidence needed |
-| Restricted providers | Only the providers and reading interfaces you explicitly permit |
-
-**Required** means a provider must contribute to its assigned role. **May use** makes it optional. **Only** or **exactly** restricts the permitted set. State separately whether a native page reader may verify citations and what should happen if a required tool is unavailable.
-
-The [prompt library](research-prompts.md) includes complete native-only and restricted-provider examples. Prompt instructions define the requested boundary; a profile with excluded tools disabled is needed when that boundary must be technically enforced.
-
-### Choose by desired outcome
-
-Use the [provider quick chooser](choosing-providers.md#quick-chooser) to match your question to a capability: finding sources, reading specific pages, obtaining structured data, or requesting provider-generated analysis. The chooser is the maintained comparison table; these are possible starting points, not rankings.
+1. **Keep the assistant you already use.** Your application (ChatGPT, Claude, Cursor, Grok Bot, Claude Code, Codex) and model stay the same.
+2. **Connect one provider for the gap you have.** Start with a free or keyless route such as Exa, Parallel, or Keenable. Add another provider only when a distinct capability calls for it.
+3. **Inspect the evidence, not just the prose.** Open one or two returned links, check dates and qualifications, and confirm the connected provider actually handled the search.
 
 ![Research workflow: choose permitted tools, retrieve evidence, then report contributions and gaps.](assets/research-workflow.svg)
 
-Choose the permitted tools, retrieve the evidence, and report what matters.
+### Source retrieval vs. provider-written answers
 
-### Source processing and answer generation
+Most providers offer two distinct kinds of operations:
 
-**Retrieval supplies source material; provider-generated analysis supplies conclusions.** Your selected model can write the answer from retrieved sources, or incorporate analysis produced by a provider when you permit it. Retrieval may still use internal models for ranking or extraction.
-
-Read [retrieval and provider-side synthesis](choosing-providers.md#retrieval-and-provider-side-synthesis) for the full distinction and operation examples. Check output options as well as tool names: a fetch tool can also offer generated summaries.
-
-#### Keeping analysis in your selected model
-
-For ordinary lookups, retrieving source material and having your selected model develop the answer is a useful default. If you want that boundary to be explicit, add:
-
-```
-Use external tools to retrieve source content and relevant excerpts. Model-assisted ranking and passage selection are permitted.
-
-Do not request provider-generated summaries, answers, research reports, or agent analysis, including through output options inside search, fetch, or scrape tools. Disable provider-generated summaries, storylines, cards and answers when enabled by default. If a required control is unavailable, report the limitation and use another permitted source-content operation when sufficient.
-
-Have the model selected in this application perform the analysis and final answer generation.
-```
-
-This controls the requested output and workflow. It does not guarantee that external services perform no internal model processing.
+- **Search and fetch (retrieval):** The provider finds relevant pages or structured records and hands the evidence to your chosen model to read and write the answer. This is the right default when you want your own assistant doing the reasoning.
+- **Agent or research modes (provider-side synthesis):** The provider runs its own internal model and workflow to produce a report, structured table, or cited answer (for example, Exa Agent, Parallel `web_research` / Deep Research, or Perplexity Ask / Reason / Research). These can be powerful for deep multi-step work, but they use the provider's model rather than yours and often carry higher per-run charges.
 
 ![Source preparation and provider-generated analysis are distinct operations; inspect the selected output mode.](assets/source-processing-and-answer-generation.svg)
 
-## Make one provider work before adding more
+Read the full breakdown in [Choosing providers](choosing-providers.md#retrieval-and-provider-side-synthesis).
 
-A working connection comes before routing instructions. Confirm that one suitable provider returns useful evidence, then decide whether a short prompt is enough or a reusable skill will help.
+## Try a short prompt first
 
-### Connect only the providers you need
+Once one provider is connected, you do not need a complicated prompt. Start with a plain request that names the tool and asks for verifiable links:
 
-Start with a supported app, plugin or connector, or use a direct MCP connection when it gives your assistant a capability you need. Connect the provider first. The optional routing skill gives the assistant reusable guidance on when and how to use the tools it can reach.
+```text
+Use [my connected search provider] to answer this question: [YOUR QUESTION]
 
-One working provider is enough to start. Connect it, run a small read-only check, and confirm useful results before adding more. See [Installing and testing external research providers](connecting-providers.md) for setup and optional project-instruction snippets.
-
-### Verify access and give each provider a distinct job
-
-<a id="1-verify-relevant-access"></a>
-
-A provider named in a prompt is not necessarily callable or authenticated. Inspect the relevant tools and confirm what actually returns useful evidence.
-
-<a id="2-avoid-routine-duplication"></a>
-
-Give each provider a distinct job. Do not repeat successful searches or page reads merely to increase provider count.
-
-### Try it first: a compact prompt prefix
-
-Once a suitable external provider is connected, try:
-
-```
-Use the relevant external research tools available in this session. Check access first, choose the smallest useful set, and avoid duplicate searches or page reads. Support important claims with inspected source content, distinguish facts from inference, and report tools used and material limitations.
-
-Research question: [YOUR QUESTION]
+Prefer primary and official sources. Link the exact pages you relied on, keep reported facts separate from interpretation, and tell me if anything important could not be verified.
 ```
 
-Add provider or synthesis restrictions when they matter. The prompt library contains more detailed patterns.
+For ready-to-paste examples across everyday topics, see the [Prompt library](research-prompts.md#four-starters) or the introduction's [four domain examples](../README.md#examples).
 
-### Use the reusable routing skill
+## Add the optional routing skill when you use more than one tool
 
-For a first task, choose a [starter prompt](research-prompts.md#four-starters) and inspect the sources returned.
+Connecting a provider gives your assistant access to it. The optional **[multi-provider-research](https://github.com/goolamabbas/multi-provider-research)** skill adds reusable instructions for coding agents and skill-capable apps so you do not have to repeat routing rules in every prompt. It helps an assistant pick the smallest useful set of connected providers, avoid duplicate searches, check primary sources, and flag real gaps.
 
-This step is optional. Provider connections work independently of the skill. Installation requires an application with compatible skill support and appropriate file access; the skill supplies neither connections nor paid provider access.
+It is an instruction package only: it does not install providers, supply API keys, or pay for usage.
 
-The `multi-provider-research` skill packages the detailed routing rules so your prompt can stay short. It works with any available subset of supported providers, including one.
-
-To install, paste this into your coding agent with local file access:
+In a coding agent with local file access, paste:
 
 ```text
 Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
 
-Inside a project, this defaults to installation for that project. Add “for all my projects” to request a personal installation for your application. The agent checks the supported location and may ask for permission to write there. Provider connections are separate. For manual setup, use the [installation instructions](https://github.com/goolamabbas/multi-provider-research#manual-installation).
+Once installed, start a fresh session and ask:
 
-1. Connect and test at least one provider.
-2. Follow the [current installation and update instructions](https://github.com/goolamabbas/multi-provider-research#install) for the complete skill package.
-3. Start a fresh task so the application can discover it.
-4. Try:
-
-```
+```text
 Use the multi-provider-research skill.
 
 Research question: [YOUR QUESTION]
 ```
 
-The natural-language invocation is portable; skill installation and discovery depend on the application. The skill does not install, authenticate, or pay for providers.
+See the [GitHub repository](https://github.com/goolamabbas/multi-provider-research) for manual installation and release notes.
 
-For provider restrictions, native-tool permissions, or fallback choices, add only the relevant [control clauses](research-prompts.md#useful-control-clauses). The [everyday prompt and defaults](research-prompts.md#minimum-sufficient-provider-set) explain what the skill handles for you.
+## Worked examples
 
-#### GitHub repository for multi-provider-research skill
+Real runs help show what connected research looks like in practice, including where tools overlap and where they fall short:
 
-- [Public GitHub repository](https://github.com/goolamabbas/multi-provider-research)
-- [Releases](https://github.com/goolamabbas/multi-provider-research/releases)
-
-### One practical example
-
-#### Read and compare product documentation
-
-```
-Use the multi-provider-research skill.
-
-Use regular Exa Search and Fetch as the only research tools and page readers. Do not use a native page reader. Use source-content modes, not generated summaries or answers; have the model selected in this application perform the analysis. If Exa is unavailable, report the gap without substituting another provider. Compare the documented export formats and data-portability options of [PRODUCT A] and [PRODUCT B]. Inspect official source content, distinguish documented support from inference, and report inaccessible or unclear evidence. Do not use Exa Agent or another provider.
-```
-
-For specialized datasets, provider-generated research, and complementary-provider workflows, use the [prompt library](research-prompts.md).
-
-#### See a documented research workflow
-
-The [Glamsterdam worked example](https://goolamabbas.github.io/understanding-glamsterdam/method.html) follows two assistants researching an Ethereum upgrade and a third synthesizing their reports. Inspect the recorded provider contributions, recovery from incomplete retrievals, and decisions about conflicting or qualified findings. The case study includes the reports and publication copies of the prompts, and explains their limits; it does not establish that four providers were necessary or independently audit the original tool calls.
-
-## Judge the answer by its evidence
-
-Successful tool calls do not establish that an answer is correct. Check whether inspected sources support the important claims, whether their dates fit the question, and whether missing evidence could change the conclusion.
-
-### Verify evidence and freshness
-
-<a id="3-verify-evidence-and-freshness"></a>
-
-Inspect source content supporting important claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when the evidence is ambiguous, incomplete, conflicting, or potentially stale. Generated answers are synthesis and require supporting source evidence. For changing facts, check observation dates and available cache controls. Fetching a page today does not establish that its contents are current.
-
-Suppose you ask, “We manage this app for our team. Who needs to do something before we upgrade?” If search turns up only new features, look for the administrator notes for that version. If an excerpt mentions a change to a setting your team uses but leaves out who is affected, open the note and read the surrounding instructions. Once you have the affected setting, the action and a link to the versioned source, you can answer.
-
-### Verify the evidence in either workflow
-
-Selected excerpts can omit useful context, and generated analysis can misinterpret its sources. Inspect the underlying content when a claim depends on qualifications, surrounding text, or conflicting evidence. If sufficient source content has already been returned, a duplicate fetch is unnecessary.
-
-When provider-generated analysis contributes to the answer, identify the operation used and its model or preset when disclosed. Do not assume it uses the model selected in your application.
-
-### What a good research answer should report
-
-A useful answer identifies its sources, separates facts from inference, and briefly names the tools used, their contributions, and important limitations.
-
-Expand the report when coverage, provenance, reproducibility, or an audit request requires it. Relevant details may include filters, observation dates, confirmed dataset contributions, pending jobs, and failed verification. A simple X lookup or two-provider task does not automatically need a full ledger.
-
-### Worked example: inspect one delegated investigation
-
-[Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) separates the assistant-designed assignment, Exa-generated findings, and assistant interpretation. Read the short explanation or inspect the complete catalogue and original files. It is an unaudited case study, not a comparative benchmark.
-
-### Three rules that prevent most problems
-
-Before relying on the result, check: **did the relevant tools work, did each provider have a useful role, and do the sources support the answer?** More tools and longer reports are not substitutes for those checks.
-
-For general web research with passages selected from across long documents, consider [Keenable Search and Fetch](choosing-providers.md#keenable). Try the [one-question template](research-prompts.md#keenable-one-sourced-question), which works without the optional skill.
+- **[28 November 2026 market-map test](../README.md#idea):** Side-by-side comparison of ChatGPT built-in search (GPT-6.2 Astra) vs. one free-tier Exa company search call on UK AI compliance and accounting startups.
+- **[Glamsterdam multi-assistant research](https://goolamabbas.github.io/understanding-glamsterdam/method.html):** Two AI assistants researching Ethereum's Glamsterdam upgrade with connected providers, synthesized by a third.
+- **[Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/):** A transparent look at one $11.66 delegated Exa Agent Ultra run, separating the assignment, Exa's generated catalogue, and the assistant's review.
 
 ## Continue reading
 
-- **Choose a capability:** [Choosing an external research provider](choosing-providers.md).
-- **Make it available:** [Connecting and testing providers](connecting-providers.md).
-- **Apply it to a task:** [Research prompt examples](research-prompts.md).
-
-### Making fuller use of a Parallel connection
-
-Parallel can supply web evidence, specialized records and optional provider-generated research. The [Parallel capability guide](choosing-providers.md#parallel) explains how the agent discovers relevant sources; [connection readiness](connecting-providers.md#parallel-connection-readiness) distinguishes tools, configuration and entitlements. Try the [accessible-data prompt](research-prompts.md#parallel-use-relevant-accessible-data) or choose a retrieval-only example.
-
-### Final rule of thumb
-
-Choose tools for the evidence you need. Require a provider when its contribution matters, restrict the permitted set when that boundary matters, and otherwise let the agent choose the smallest useful set.
+- **Compare the five providers:** [Choosing an external research provider](choosing-providers.md)
+- **Set one up in your app:** [Installing and testing external research providers](connecting-providers.md)
+- **Copy a prompt:** [Research prompt cookbook](research-prompts.md)
+- **Compare free tiers and budgets:** [Plan your research budget](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/)

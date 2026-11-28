@@ -1,54 +1,44 @@
 # Plan your research budget
 
-Count three things separately: your application or model plan, research-provider charges, and local taxes or currency conversion. Free retrieval still uses your assistant’s model allowance.
+[← Start with the introduction](../README.md)
 
-The check dates below apply to the examples in each section. Confirm the rate for your account and operation before starting a paid run.
+Count three things separately: your AI assistant subscription, your research-provider usage, and local taxes or currency conversion. Free search still consumes your assistant's model allowance when the model reads returned pages and writes an answer.
 
-## Start with what you already have
+Because search and intelligence are separate choices, you can start for **$0** on top of the assistant you already use—or pair an affordable regional workspace with generous free search allowances.
 
-If your current application supports the tools you need, try one useful task before adding subscriptions. Try a [starter prompt](research-prompts.md#four-starters) and inspect the sources it returns.
+[Choosing research tools for your AI assistant](README.md)
 
 ## Provider allowances and access
 
-**Access and allowance guidance checked 11 November 2026.** The table summarizes published provider terms.
+**Published terms checked 28 November 2026.** Confirm current rates in your provider dashboard before running paid research or batch enrichments.
 
-| Provider | How to try it | What can incur charges | Setup and terms |
+| Provider | Free & keyless access | Paid starting rates (after free tier) | Official pricing |
 | --- | --- | --- | --- |
-| **Exa** | Keyless MCP Search/Fetch at free rate limits. Account credits are separate: $10 on signup, reset to $10 monthly; completing onboarding earns the first team a one-time $10 bonus. | Authenticated API usage consumes credits; Agent and Connect have their own usage and data charges. | [Connect Exa](connecting-providers.md#choose-an-access-route) · [MCP access](https://exa.ai/docs/reference/exa-mcp) · [Pricing](https://exa.ai/docs/reference/pricing) |
-| **Keenable** | Keyless Search/Fetch: 1,000 requests/hour and up to 10 requests/second per IP per endpoint, shared with other users of that IP. Authenticated organizations receive 100,000 free requests monthly. | Standard pay-as-you-go: $4 per 1,000 after the allowance. Search and Fetch are separate calls; the four standard SKUs currently use one credit each. MCP has no separate surcharge. | [Connect Keenable](connecting-providers.md#keenable-connection-readiness) · [Pricing](https://keenable.ai/pricing) · [Credits](https://docs.keenable.ai/credits) · [Limits](https://docs.keenable.ai/rate-limits) |
-| **Octen** | New accounts receive $5 in free balance. Connect through the supported hosted MCP route. | API usage draws from the balance. Broad Search can make several billable subqueries; optional plans have separate terms. | [Connect Octen](connecting-providers.md#choose-an-access-route) · [Pricing](https://docs.octen.ai/overview/pricing) |
-| **Perplexity** | Sign in to the hosted MCP or supply an API key. Sign-in is an access route, not a free-use promise. | Tool calls are billed at standard API rates to the chosen organization or API key; your assistant subscription does not establish API credit. | [Hosted MCP and billing](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) |
-| **Parallel** | Direct hosted MCP Search/Fetch at lower rate limits without a key. | Authenticated calls to the hosted MCP use API pricing after applicable free usage. Check the terms for the selected app connection, research or dataset operation. | [Connect Parallel](connecting-providers.md#parallel-connection-readiness) · [MCP access and billing](https://docs.parallel.ai/integrations/mcp/quickstart) |
+| **Exa** | Keyless MCP Search/Fetch at free rate limits. Free Starter account: **$10/month recurring credits + $10 onboarding bonus, no credit card required** (~2,500 Lite or ~1,400 Auto searches/mo). | Lite Search **$4/1k**, Auto Search **$7/1k**, Contents **$1/1k pages**. Agent runs and Connect partner datasets bill separately. | [Exa Pricing](https://exa.ai/pricing) · [MCP Setup](connecting-providers.md#choose-an-access-route) |
+| **Keenable** | Keyless Search/Fetch: **1,000 req/hour per IP**. Free account (no credit card required): **100,000 free requests every month** (resets on signup anniversary). | Pay-as-you-go: **$4/1k requests** after the 100k monthly allowance. Search and Fetch count as 1 credit each; no MCP surcharge. | [Keenable Pricing](https://keenable.ai/pricing) · [MCP Setup](connecting-providers.md#keenable-connection-readiness) |
+| **Parallel** | Keyless MCP (`mcp.parallel.ai/mcp`): **no account and no API key** for `web_search`, `web_fetch`, `web_decisions`, fast `image_search`, and verticals at lower limits. Orgs with a card on file get **$5/month free credits**. | Search **`fast`/`turbo` $1/1k**, `basic`/`advanced` **$5/1k**, Extract **$1/1k URLs**. `web_research`, Task Deep Research, and FindAll bill higher per-run rates. | [Parallel Pricing](https://docs.parallel.ai/getting-started/pricing) · [MCP Setup](connecting-providers.md#parallel-connection-readiness) |
+| **Octen** | No keyless tier; new accounts receive **$5 one-time free balance** on registration. | Pulse **$0.10–$0.20/1k**, Web/Broad Search **$1/1k** (first 10 full-content results free on pay-as-you-go), Premier/Business/Place **$4–$5/1k**, Extract **$1–$2.50/1k URLs**. | [Octen Pricing](https://docs.octen.ai/overview/pricing) · [MCP Setup](connecting-providers.md#choose-an-access-route) |
+| **Perplexity** | No free API tier or keyless MCP. Requires an API organization with billing enabled (consumer Perplexity Pro does not include API/MCP credits). | Search API: Fast Search **$1/1k**, standard Web Search **$5/1k**; Context **$1/1k URLs** (`ok` or `not_modified`). Ask/Reason/Research bill model tokens plus tool fees. | [Perplexity Pricing](https://docs.perplexity.ai/docs/getting-started/pricing) · [MCP Setup](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) |
 
-**Perplexity Context, checked 26 November 2026.** The list price is $1 per 1,000 URLs with an `ok` or `not_modified` result. Optional `criteria` scoring adds input-token charges. The number of URLs allowed per request depends on the usage tier. [Context pricing](https://docs.perplexity.ai/docs/getting-started/pricing#context-api-pricing) · [Context quickstart](https://docs.perplexity.ai/docs/context/quickstart)
+For optional authenticated X research, check your X developer account's billing tier and rate limits before running queries. See [authenticated X-native evidence](choosing-providers.md#optional-authenticated-x-native-evidence).
 
-Keenable's allowance resets on the organization's monthly anniversary date. Its $1-per-1,000 dedicated-capacity price requires 100+ requests per second and is not the standard pay-as-you-go tier. Check account terms and exposed usage; missing billing metadata does not mean zero cost.
+**Rule of thumb on surprise bills:** Ordinary Search and Fetch calls rarely cost more than pennies even after free tiers run out. Where spend adds up quickly is **delegated multi-step research** (Exa Agent Ultra, Parallel Deep Research / FindAll, Perplexity Research) and **paid partner datasets** (Exa Connect, paid Parallel connectors). Always check budget controls and test on 2–3 rows before scaling a batch.
 
-Start with the capability your question needs. A keyless connection may expose only basic tools; a free retrieval allowance does not cover every research or automation operation. Your assistant's model usage still applies.
+## Low-cost and regional workspace combinations
 
-For optional authenticated X research, check the selected interface's billing and result limits before running a query. This page does not estimate X charges or assume who pays through a third-party connector. See [X-native evidence](choosing-providers.md#optional-authenticated-x-native-evidence).
+Separating intelligence from search is especially helpful if you are in India, Pakistan, or another emerging market—or simply want a capable research workspace without stacking multiple $20–$200/month subscriptions. A coding-oriented app that supports MCP servers can double as an everyday research assistant.
 
-## Regional application examples
+- **India example — Cursor Start (₹649/month, tax included):** Announced [28 July 2026](https://x.com/cursor_ai/status/2081978255004053560) ([launch blog](https://cursor.com/blog/cursor-start-india)), billed in INR via UPI or card, with support for MCP servers, plugins, and skills. Pairing Cursor Start with Exa's $10/month free credits, Keenable's 100k free monthly requests, or keyless Parallel gives you a full research workspace at local pricing. *(India-specific offer; verify current eligibility and limits in your Cursor account.)*
+- **Global low-cost option — Command Code Go (US$1/month) & GOAT (US$10/month):** Command Code's [Go plan](https://commandcode.ai/docs/plans/go) and [GOAT plan](https://commandcode.ai/docs/plans/goat) ([payment methods](https://commandcode.ai/docs/resources/payment-methods) include UPI for INR and Alipay for USD) offer low-cost starting model allowances that you can pair with free-tier Exa, Keenable, or Parallel MCP retrieval.
 
+*Regional workspace examples above were checked on 19 September 2026. Confirm current prices, included model allowances, and local checkout terms before subscribing.*
 
-Choosing these parts separately also lets you explore combinations that fit your budget. This can be especially useful in India, Pakistan, and other emerging markets, or anywhere you want to get more from what you already spend. A coding-oriented application can serve as a workspace for research and everyday assistance when it supports the necessary skills and tools.
+## See a real delegated-run cost
 
-**For readers in India, Cursor Start is a useful example.** Cursor [announced the plan on 28 July 2026](https://x.com/cursor_ai/status/2081978255004053560). Its [launch blog](https://cursor.com/blog/cursor-start-india) lists **₹649/month, including tax**, billed in INR with UPI or card, along with more agent requests than the free plan and support for plugins, MCP servers, hooks, and skills. Those connections are what make it relevant here: you can explore pairing Cursor's included model access with a separate research provider.
+Want to see what one high-effort delegated research run actually costs in practice? Read [Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/), which documents one $11.66 run (92 searches, 54 qualifying records) rather than guessing typical prices.
 
-This is an India-specific offer, not a price to assume is available in Pakistan or other markets. Model names and allowances can change; confirm current eligibility, included usage, and pricing in your Cursor account before subscribing. The price above comes from the launch blog; the public pricing page retrieved for this guide did not display the regional Start offer.
+## Continue reading
 
-**For a broader lower-cost option, Command Code lists its [Go plan at US$1/month](https://commandcode.ai/docs/plans/go) and its [GOAT plan at US$10/month](https://commandcode.ai/docs/plans/goat).** These are starting subscription prices with their own usage allowances, not promises of unlimited model use. Its [payment documentation](https://commandcode.ai/docs/resources/payment-methods) also describes UPI for INR-billed plans and Alipay for USD-billed plans. Check the payment options available to you at checkout.
-
-One combination to explore is **Command Code Go + the multi-provider-research skill + Exa within its free credit allowance**. This pairs a low-cost model plan with a way to start retrieving sources without additional provider charges. It is a suggested combination, not an end-to-end setup tested for this guide. Confirm that the application exposes the connected tools to your chosen model.
-
-If you already pay for a compatible application, start by exploring its supported connections. Account for three things separately: your application or model plan, any research-provider charges, and local taxes or currency conversion. Free retrieval still uses your assistant's model allowance when it reads sources and writes an answer.
-
-*Regional application examples: sources checked on 19 September 2026. Cursor Start details are attributed to its launch announcement; other listed prices and provider terms reflect the official pages retrieved on that date. Check the linked pages and checkout for changes before signing up.*
-
-
-## Compare costs without guessing
-
-The advanced Exa case study reports one run’s cost, not an expected cost for every task. Use measured call counts and clearly attributed provider terms; do not treat that example as a typical-task price.
-
-- [Advanced Exa run and reported cost](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/)
-- [Provider reference](choosing-providers.md)
+- [Choosing an external research provider](choosing-providers.md)
+- [Connecting and testing providers](connecting-providers.md)
+- [Research prompt cookbook](research-prompts.md)

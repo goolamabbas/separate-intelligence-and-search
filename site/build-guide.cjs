@@ -23,10 +23,9 @@ markdown.use({renderer: {
     return `<h${depth} id="${id}">${this.parser.parseInline(tokens)}<a class="heading-anchor" href="#${id}" aria-label="Link to ${escape(text)}">#</a></h${depth}>\n`;
   },
   link({href,title,tokens}) {
-    if (href === '../README.md') href = introduction;
+    if (/^\.\.\/README\.md(?:#.*)?$/.test(href)) href = introduction + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
     else if (/^research-prompts\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/research-prompts/' + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
-    else if (/^choosing-providers\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/choosing-providers/' + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
-    else if (/^connecting-providers\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/connecting-providers/' + (href.includes('#') ? href.slice(href.indexOf('#')) : '');
+    else if (/^(choosing-providers|connecting-providers|costs)\.md(?:#.*)?$/.test(href)) href = introduction + 'guide/' + href.replace('.md', '/');
     return `<a href="${escape(href)}"${title ? ` title="${escape(title)}"` : ''}>${this.parser.parseInline(tokens)}</a>`;
   }
 }});
