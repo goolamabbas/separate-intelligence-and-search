@@ -37,22 +37,29 @@ In Claude's directory, **Exa** asks you to sign in to a free account, while **Pa
 - **Exa in Grok Build:** Run `/marketplace`, select **exa**, press `i`, then run `/mcp` to sign in (free monthly credits included).
 
 <span id="claude-code-connect-directly-to-exa"></span>
-### Claude Code, Codex CLI, and terminal agents
+### Claude Code, Codex CLI, Command Code, OpenCode, and terminal agents
 
 Connect a hosted remote MCP server in one command (no local server process to maintain):
 
 ```bash
-# Exa (keyless Search/Fetch; use ?login for OAuth + Agent)
-claude mcp add --transport http exa https://mcp.exa.ai/mcp
-
-# Parallel (keyless Search/Fetch/Decisions/Verticals)
+# Claude Code (keyless; use ?login on Exa for OAuth + Agent)
 claude mcp add --transport http parallel https://mcp.parallel.ai/mcp
-
-# Keenable (keyless 1,000 req/hr; add X-API-Key for 100k free req/mo)
+claude mcp add --transport http exa https://mcp.exa.ai/mcp
 claude mcp add --transport http keenable https://api.keenable.ai/mcp
+
+# Command Code (add --scope user for all projects; run /mcp inside a session for OAuth/status)
+cmd mcp add --transport http --scope user parallel https://mcp.parallel.ai/mcp
+cmd mcp add --transport http --scope user exa https://mcp.exa.ai/mcp
+
+# OpenCode (add --global for all projects; check status with `opencode mcp list` or `/mcps`)
+opencode mcp add parallel --global --url https://mcp.parallel.ai/mcp
+opencode mcp add exa --global --url https://mcp.exa.ai/mcp
 ```
 
-For Codex CLI, use `codex mcp add <name> --url <url>` (for keyless Keenable in Codex, use `https://api.keenable.ai/mcp-public`). In Claude Code, Exa is also available as an official plugin (`claude plugin install exa@claude-plugins-official`).
+- **Codex CLI:** Use `codex mcp add <name> --url <url>` (for keyless Keenable in Codex, use `https://api.keenable.ai/mcp-public`).
+- **Claude Code plugin:** Exa is also available as an official plugin (`claude plugin install exa@claude-plugins-official`).
+- **OpenCode native web search (optional shortcut):** If you only need basic web search without MCP, OpenCode natively supports Exa (`EXA_API_KEY`) and Parallel (`PARALLEL_API_KEY`) via `/connect` or environment variables—see [OpenCode Web Search](https://opencode.ai/docs/websearch/).
+- **Keyless vs. OAuth note:** Keyless endpoints (`mcp.parallel.ai/mcp`, `mcp.exa.ai/mcp`, `api.keenable.ai/mcp`) connect without signing in. If a client flags `needs authentication` or you want an account's free monthly allowance, switch to the `?login` URL and sign in via `/mcp` (Command Code) or `/mcps` (OpenCode). Note that Command Code hides MCP tools while in `plan` mode.
 
 ## Verify it actually ran
 
@@ -128,3 +135,6 @@ If you use a coding agent with the optional `multi-provider-research` skill, you
 - [xurl (X CLI)](https://github.com/xdevplatform/xurl)
 - [Codex MCP docs](https://developers.openai.com/codex/mcp)
 - [Claude Code MCP docs](https://code.claude.com/docs/en/mcp)
+- [Command Code MCP docs](https://commandcode.ai/docs/mcp)
+- [OpenCode MCP docs](https://opencode.ai/docs/mcp-servers/)
+- [OpenCode Web Search docs](https://opencode.ai/docs/websearch/)
