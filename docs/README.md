@@ -60,13 +60,13 @@ Connecting a provider gives your assistant access to it. The optional **[multi-p
 
 It is an instruction package only: it does not install providers, supply API keys, or pay for usage.
 
-In a coding agent with local file access, paste:
+In OpenCode, Command Code, Claude Code, Codex, or any agent with local file access, paste:
 
 ```text
-Install the multi-provider-research skill by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
+Install the multi-provider-research skill for all my projects by following https://raw.githubusercontent.com/goolamabbas/multi-provider-research/main/install.md
 ```
 
-Once installed, start a fresh session and ask:
+Omit `for all my projects` to install only in the current folder. Once installed, start a fresh session and ask:
 
 ```text
 Use the multi-provider-research skill.
