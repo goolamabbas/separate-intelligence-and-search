@@ -38,7 +38,7 @@ In this guide, your **intelligence stack** means your application and models. Yo
 ## Why choose them separately?
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
-- **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
+- **Control where it looks:** Limit search to official sites, recent dates, full PDFs, or public records instead of relying on whatever top snippets a built-in search pulls back.
 - **Better search in low-cost apps:** Affordable desktop workspaces like OpenCode and Command Code are priced for models, not heavy web search, and work well for everyday research and writing even if you never code. Connect one free search provider for $0 extra.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
