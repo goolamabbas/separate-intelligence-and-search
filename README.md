@@ -39,7 +39,7 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
 - **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
-- **Multiply a low-cost workspace (no coding required):** Apps marketed as “coding agents” (such as Command Code Desktop, OpenCode Desktop, or Cursor) double as everyday chat workspaces for research, writing, and business work. Because they cannot subsidize heavy web search at low prices, plugging in a free MCP search provider upgrades them for $0 extra.
+- **Upgrade any low-cost workspace (no coding required):** Apps marketed as “coding agents” (such as Command Code Desktop, OpenCode Desktop, or Cursor) double as everyday chat workspaces for research, writing, and business work. Because they cannot subsidize heavy web search at low prices, plugging in a free MCP search provider upgrades them for $0 extra.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 

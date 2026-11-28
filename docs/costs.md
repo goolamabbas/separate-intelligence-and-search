@@ -26,7 +26,7 @@ For optional authenticated X research, check your X developer account's billing 
 
 ## Low-cost and regional workspace combinations
 
-Separating intelligence from search is an even bigger multiplier in India, Pakistan, or other price-sensitive markets, or whenever you want strong research without paying $20–$200/month. You can start at **$0** on **Claude Free** (directory connectors plus one custom MCP connector) or **ChatGPT Free** (directory plugins, subject to plan limits). When free chat caps run out, do not let the "coding agent" label put off non-programmers: Cursor, Command Code Desktop, and OpenCode Desktop all ship with regular desktop chat interfaces suitable for everyday research, writing, business analysis, and creative work.
+Separating intelligence from search goes even further in India, Pakistan, and other price-sensitive markets, or whenever you want strong research without paying $20–$200/month. You can start at **$0** on **Claude Free** (directory connectors plus one custom MCP connector) or **ChatGPT Free** (directory plugins, subject to plan limits). When free chat caps run out, do not let the "coding agent" label put off non-programmers: Cursor, Command Code Desktop, and OpenCode Desktop all ship with regular desktop chat interfaces suitable for everyday research, writing, business analysis, and creative work.
 
 Because low-cost workspaces are priced tightly for intelligence, they cannot afford to subsidize heavy built-in web search. Pairing one over MCP with a free-tier search provider (Exa's $10/month recurring credits, Keenable's 100k free monthly requests, or keyless Parallel) upgrades it into a capable everyday research assistant for **$0 extra** on ordinary search and fetch.
 
