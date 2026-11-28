@@ -48,7 +48,7 @@ Because low-cost workspaces are priced tightly for intelligence, they cannot aff
 
 ## See a real delegated-run cost
 
-Want to see what one high-effort delegated research run actually costs in practice? Read [Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/), which documents one $11.66 run (92 searches, 54 qualifying records) rather than guessing typical prices.
+Want to see what one high-effort delegated research run actually costs in practice? [Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) documents a single $11.66 run (92 searches, 54 qualifying records) on a technical AI-benchmarks topic, kept here as a concrete receipt for how delegated costs and prompt-vs-API budget limits behave.
 
 ## Continue reading
 
