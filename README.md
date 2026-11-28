@@ -131,15 +131,13 @@ Inside a project, this defaults to installation for that project. Add “for all
 
 Once the application can load it, ask the assistant to use `multi-provider-research` with your question. The skill does not install provider connections or supply paid access, and it is not supported by every AI application.
 
-## This freedom of choice can also help with cost
+## Do more with less
 
-You do not need a $20–$200/month subscription to start. **Claude Free** (directory connectors plus one custom connector, including on mobile) and **ChatGPT Free** (directory plugins on web, desktop, and mobile, subject to plan limits) let you test free search today—keep in mind that free search still uses your assistant’s message allowance when the model reads results.
+- **Start at $0:** Connect a free search provider (Parallel, Exa, or Keenable) to **Claude Free**, **ChatGPT Free**, or **OpenCode Desktop’s free models**. Free search still uses your assistant’s message limit when the model reads returned pages, so you spend tokens on better evidence instead of dead-end snippets.
+- **Stay at $1–$10/month:** Global desktop apps like [Command Code Desktop](https://commandcode.ai/docs/desktop) (Go at $1/month or GOAT at $10/month; accepts cards, UPI, Alipay, WeChat Pay, and crypto) and [OpenCode Desktop](https://opencode.ai/desktop) (free models, or Go at $10/month) are priced for models, not heavy web search, and double as regular chat apps for everyday research and writing even if you never code. Adding a free search provider upgrades them for **$0 extra** on ordinary queries.
+- **Already paying $20–$200/month?** Higher tiers buy more intelligence and usage, not a different search index. Keeping your current plan and plugging in a free dedicated search provider adds wider coverage and structured data for **$0 extra** on ordinary queries; only delegated multi-step runs and commercial partner datasets cost real money.
 
-When free chat caps get in your way, do not be put off by the “coding agent” label: [OpenCode Desktop](https://opencode.ai/desktop) (free models with no account, or US$10/month Go for ~30+ open-weight models) and [Command Code Desktop](https://commandcode.ai/docs/desktop) (Go plan US$1/month, UPI supported) both have regular desktop chat windows for everyday research, writing, business, and creative work. To get started without a terminal: download the desktop app, pick a free or low-cost model, open **Settings → MCP** (Command Code) or type `/mcps` (OpenCode), and paste `https://mcp.parallel.ai/mcp`.
-
-At those prices, the app cannot afford to subsidize heavy web search. Connecting one free search provider gives that workspace dedicated search for **$0 extra** on ordinary queries: **Parallel** works with no account at all, **Exa** gives US$10 of free search credit each month (no credit card, nothing to pay), and **Keenable** gives 100,000 free requests a month (no credit card). Deep delegated runs and paid partner datasets cost extra—check current pricing before adding funds.
-
-[Compare free tiers, regional plans, and costs](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each regional example retains its own source-check date.
+[Compare provider free tiers, low-cost apps, and when paying is worth it →](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/)
 
 ## See the approach in practice
 

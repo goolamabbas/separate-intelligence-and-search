@@ -19,7 +19,7 @@ Pick the page that matches where you are:
 | [**Choosing providers**](choosing-providers.md) | Compare what Exa, Parallel, Keenable, Octen, Perplexity, and authenticated X each do well, without vendor hype or rankings. |
 | [**Connecting providers**](connecting-providers.md) | Set up a free provider in ChatGPT, Claude, Cursor, Command Code, OpenCode, Grok Bot, or a terminal agent, plus optional advanced MCP configuration. |
 | [**Research prompts**](research-prompts.md) | Copy practical prompts for everyday research, provider-specific tasks, or stricter audit boundaries. |
-| [**Costs and access**](costs.md) | Compare free recurring tiers, keyless endpoints, and low-cost regional workspace combinations. |
+| [**Costs and access**](costs.md) | Compare free recurring tiers, keyless endpoints, low-cost global workspaces, and when paying is worth it. |
 
 ## The simple 3-step workflow
 
