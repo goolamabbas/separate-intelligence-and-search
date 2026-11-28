@@ -143,7 +143,7 @@ At those prices, the app cannot afford to subsidize heavy web search. Connecting
 
 ## See the approach in practice
 
-We ran the same India B2B SaaS brief (RBI recurring e-mandate rules, DPDP Rules milestones, and a 10-startup market map) three times on one open-weight model (`DeepSeek-V4.1-Flash-1017-Fast`) in OpenCode `v2.4.2`: bare model vs. OpenCode native `websearch` (pinned to Parallel) vs. Parallel + Exa MCP with `multi-provider-research` `v0.12.0`. The MCP + `v0.12.0` run finished in **138s** for **$0.011** in model inference (52% lower model cost and 58% fewer turns than native `websearch`; search ~$0.06 at list rates, **$0 on free tiers**), had **0 fetch errors** across 16 live web pages (vs. 4 of 5 local fetch errors), and returned **6/10 LinkedIn-reported YoY startup growth figures** (by pairing Exa with Parallel) vs. 0/10.
+We ran the same India B2B SaaS brief (RBI recurring e-mandate rules, DPDP Rules milestones, and a 10-startup market map) three times on one open-weight model (`DeepSeek-V4.1-Flash-1017-Fast`) in OpenCode `v2.4.2`: bare model vs. OpenCode native `websearch` (pinned to Parallel) vs. Parallel + Exa MCP with `multi-provider-research` `v0.12.0`. The MCP + `v0.12.0` run finished in **138s** for **$0.011** in model inference (52% lower model cost and 58% fewer turns than native `websearch`; search about $0.06 at list rates, **$0 on free tiers**), had **0 fetch errors** across 16 live web pages (vs. 4 of 5 local fetch errors), and returned **6/10 LinkedIn-reported YoY startup growth figures** (by pairing Exa with Parallel) vs. 0/10.
 
 **[Read the controlled A/B/C worked example →](https://goolamabbas.github.io/separate-intelligence-and-search/guide/india-saas-case-study/)**
 
