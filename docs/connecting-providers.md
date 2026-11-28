@@ -10,7 +10,7 @@ Connect one search provider to the AI assistant you already use, run one real qu
 
 ## Quick setup by assistant
 
-Pick the assistant you actually use. All four consumer setups below take under two minutes and require no credit card when starting with Exa, Parallel, or Keenable.
+Already signed in to your assistant? Pick a route below to try your first free search with no credit card when starting with Exa, Parallel, or Keenable.
 
 ### ChatGPT (Web, Desktop, or Codex)
 
@@ -24,7 +24,7 @@ Pick the assistant you actually use. All four consumer setups below take under t
 2. Search for **Exa**, **Parallel**, or **Keenable Web Search** and click **Connect**.
 3. Start a new chat and toggle the connector on if needed.
 
-For Perplexity or another remote MCP server not in the directory, choose **Add custom connector** and paste the provider's remote MCP URL from the table below.
+In Claude's directory, **Exa** asks you to sign in to a free account, while **Parallel Search** (`search.parallel.ai/mcp`) lets you search and read pages with no Parallel account. If you later want Parallel's image search or structured-data tools, choose **Add custom connector** and paste `https://mcp.parallel.ai/mcp` (the same custom-connector route works for Perplexity or any other remote MCP server in the table below).
 
 ### Cursor & VS Code
 
@@ -56,10 +56,10 @@ For Codex CLI, use `codex mcp add <name> --url <url>` (for keyless Keenable in C
 
 ## Verify it actually ran
 
-An installed connector can still be bypassed if your assistant quietly falls back to its built-in web search. Start a **fresh chat** and paste this ready-to-run prompt (swap `Exa` for whichever provider you connected):
+An installed connector can still be bypassed if your assistant quietly falls back to its built-in web search. Start a **fresh chat** and paste this ready-to-run prompt (works with any connected search provider):
 
 ```text
-Use Exa Search to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If Exa is unavailable, tell me instead of falling back to built-in search.
+Use my connected external search provider (not built-in web search) to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If no external search provider is connected, stop and tell me instead of falling back to built-in search.
 ```
 
 **How to confirm it worked:**

@@ -92,20 +92,20 @@ The full guide compares five providers neutrally (Exa, Parallel, Keenable, Octen
 ### 1. Connect Exa (or Parallel) in your app
 
 - **ChatGPT or Codex:** Open [Exa in OpenAI’s plugin directory](https://chatgpt.com/plugins/exa?open_in_app) and click Install (or install the [Parallel app](https://openai.com/business/plugins/parallel-search/) with no account needed).
-- **Claude (Web, Desktop, or Cowork):** In a new chat, click **+** → **Add connector**, search for **Exa**, and click **Connect** (or install the [Parallel connector](https://claude.com/marketplace/connectors/parallel-search)).
+- **Claude (Web, Desktop, or Cowork):** In a new chat, click **+** → **Add connector**, then connect **Exa** (asks you to sign in to a free account) or the [Parallel Search connector](https://claude.com/marketplace/connectors/parallel-search) (search and page reading with no Parallel account).
 - **Claude Code, Cursor, or another MCP client:** Add `https://mcp.exa.ai/mcp` (for example, `claude mcp add --transport http exa https://mcp.exa.ai/mcp`), or `https://mcp.parallel.ai/mcp` for Parallel.
 
 Using a different assistant, or want to compare all five providers first? See the [connection guide](https://goolamabbas.github.io/separate-intelligence-and-search/guide/connecting-providers/) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/).
 
 ### 2. Paste a ready-to-run prompt
 
-Start a fresh chat with your new connector enabled and paste this prompt as-is (if you connected Parallel instead of Exa, swap `Exa Search` for `Parallel Search`):
+Start a fresh chat with your new connector enabled and paste this prompt as-is (works with Exa, Parallel, or any connected search provider):
 
 ```text
-Use Exa Search to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If Exa is unavailable, tell me instead of falling back to built-in search.
+Use my connected external search provider (not built-in web search) to build a market map of 10 UK startups founded in 2023 or later with fewer than 50 employees building AI tools for compliance, KYC/AML, or accounting teams. For each company, give the website, founding year, employee count, 1-year headcount growth if available, and a 1-sentence summary of what the product does. If no external search provider is connected, stop and tell me instead of falling back to built-in search.
 ```
 
-Check the tool activity above the answer to confirm **Exa** ran (not generic “Searched the web”), and open two links to inspect the evidence. Curious about the contrast? Paste the same prompt into a separate chat with connectors off and count how many companies overlap and how many growth figures come back `not found`.
+Open the tool activity above the answer and look for the provider you connected (not generic “Searched the web”), then open two links to inspect the evidence. Curious about the contrast? Ask just the market-map question in a fresh chat with connectors off and count how many companies overlap and how many growth figures come back `not found`.
 
 Once you see how it works, swap in any topic you care about, or try the [four starter prompts](https://goolamabbas.github.io/separate-intelligence-and-search/guide/research-prompts/#four-starters) and [provider reference](https://goolamabbas.github.io/separate-intelligence-and-search/guide/choosing-providers/). The routing skill below is optional.
 
