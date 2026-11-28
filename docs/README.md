@@ -80,7 +80,6 @@ Real runs help show what connected research looks like in practice, including wh
 
 - **[28 November 2026 market-map test](../README.md#idea):** Side-by-side comparison of ChatGPT built-in search (GPT-6.2 Astra) vs. one free-tier Exa company search call on UK AI compliance and accounting startups.
 - **[Controlled A/B/C test: OpenCode + open-weight model + v0.12.0](https://goolamabbas.github.io/separate-intelligence-and-search/guide/india-saas-case-study/):** Same `DeepSeek-V4.1-Flash-1017-Fast` model across bare, OpenCode native `websearch`, and Parallel + Exa MCP with `multi-provider-research` `v0.12.0` on an India B2B SaaS brief ($0.011 model cost, exact tool logs, and why MCP beat native `websearch`).
-- **[Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/):** A transparent look at one $11.66 delegated Exa Agent Ultra run, separating the assignment, Exa's generated catalogue, and the assistant's review.
 
 ## Continue reading
 
