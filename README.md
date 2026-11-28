@@ -39,7 +39,7 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
 - **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
-- **Better search in every workspace:** Coding agents, Cursor, CLI tools, and lower-cost plans often ship with thin or missing search. Connect one free provider to upgrade any of them without switching models.
+- **Multiply a low-cost agent:** Affordable coding agents such as Cursor Start or Command Code Go cannot afford to subsidize heavy web search. Connect one free MCP search provider to upgrade them for $0 extra without switching models.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 
@@ -143,9 +143,13 @@ Once the application can load it, ask the assistant to use `multi-provider-resea
 
 ## This freedom of choice can also help with cost
 
-Start with the application you already use. Provider charges are separate from your AI subscription. A free allowance or small credit balance may support initial basic searches, depending on the provider and tool. Premium datasets and deeper research can cost more. Check the provider’s current pricing before adding funds or requesting paid data.
+If a $20–$200/month flagship chat plan does not fit your budget, separating intelligence from search works even more in your favor. Affordable MCP-capable coding agents such as **Cursor Start** (₹649/month in India, tax included, via UPI or card) or **Command Code Go** (US$1/month) are priced for intelligence, so they cannot afford to subsidize heavy built-in web search.
 
-[Explore free retrieval allowances and regional pricing examples](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each example retains its own source-check date.
+Connect a free-tier search provider over MCP and that same low-cost agent gains dedicated search for **$0 extra** on ordinary queries: **Exa** gives $10/month in recurring credits with no credit card, **Keenable** gives 100,000 free requests a month with no credit card, and **Parallel** works through keyless MCP with no account at all.
+
+Account for your AI subscription, research-provider charges, and local taxes separately: free retrieval still uses your assistant’s model allowance, and deep delegated runs or paid partner datasets cost extra. Check current pricing before adding funds.
+
+[Compare free tiers, regional plans, and costs](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/). Each regional example retains its own source-check date.
 
 ## See the approach in practice
 
