@@ -1,6 +1,6 @@
 # Choose Your AI. Choose How It Searches.
 
-Flagship AI subscriptions pay for intelligence first, free chat plans cap your usage, and low-cost desktop apps like Cursor, Command Code, and OpenCode ship with thin or missing search. Connect a free dedicated search provider to any of them, even if you never write a line of code.
+Flagship AI subscriptions pay for intelligence first, free chat plans cap your usage, and low-cost desktop apps like OpenCode and Command Code ship with thin or missing search. Connect a free dedicated search provider to any of them, even if you never write a line of code.
 
 If you use a flagship assistant like ChatGPT or Claude, its built-in web search is already surprisingly capable. On 28 November 2026, we tested ChatGPT (GPT-6.2 Astra, medium reasoning) with built-in search only on three everyday lookups: finding verbatim timestamped podcast quotes, naming five recent UK startups, and catching a quiet Notion deprecation notice for full-workspace PDF exports. Built-in search handled all three accurately.
 
@@ -39,7 +39,7 @@ In this guide, your **intelligence stack** means your application and models. Yo
 
 - **Wider coverage and structured indexes:** One bundled search only shows one slice of the web. Dedicated company, filing, paper, and transcript indexes uncover more of the market with structured fields attached.
 - **Controls a search toggle hides:** Get domain locks, date and freshness filters, point-in-time search, ongoing monitors, live traffic or registry data, and authenticated X bookmarks in the same chat.
-- **Better search in low-cost apps:** Affordable desktop workspaces like OpenCode, Command Code, and Cursor are priced for models, not heavy web search, and work well for everyday research and writing even if you never code. Connect one free search provider for $0 extra.
+- **Better search in low-cost apps:** Affordable desktop workspaces like OpenCode and Command Code are priced for models, not heavy web search, and work well for everyday research and writing even if you never code. Connect one free search provider for $0 extra.
 
 You can keep the assistant whose writing and reasoning you already like and add a research capability only when a task calls for it. Some providers also offer their own generated analysis, which is different from retrieving sources for your chosen model to interpret.
 
@@ -135,7 +135,7 @@ Once the application can load it, ask the assistant to use `multi-provider-resea
 
 You do not need a $20–$200/month subscription to start. **Claude Free** (directory connectors plus one custom connector, including on mobile) and **ChatGPT Free** (directory plugins on web, desktop, and mobile, subject to plan limits) let you test free search today—keep in mind that free search still uses your assistant’s message allowance when the model reads results.
 
-When free chat caps get in your way, do not be put off by the “coding agent” label: [OpenCode Desktop](https://opencode.ai/desktop) (free models with no account, or US$10/month Go for ~30+ open-weight models), [Command Code Desktop](https://commandcode.ai/docs/desktop) (Go plan US$1/month, UPI supported), and **Cursor** (Free, Plus at US$8/month, or legacy Start at ₹649/month for existing India subscribers) all have regular desktop chat windows for everyday research, writing, business, and creative work. To get started without a terminal: download the desktop app, pick a free or low-cost model, open **Settings → MCP** (Command Code) or type `/mcps` (OpenCode), and paste `https://mcp.parallel.ai/mcp`.
+When free chat caps get in your way, do not be put off by the “coding agent” label: [OpenCode Desktop](https://opencode.ai/desktop) (free models with no account, or US$10/month Go for ~30+ open-weight models) and [Command Code Desktop](https://commandcode.ai/docs/desktop) (Go plan US$1/month, UPI supported) both have regular desktop chat windows for everyday research, writing, business, and creative work. To get started without a terminal: download the desktop app, pick a free or low-cost model, open **Settings → MCP** (Command Code) or type `/mcps` (OpenCode), and paste `https://mcp.parallel.ai/mcp`.
 
 At those prices, the app cannot afford to subsidize heavy web search. Connecting one free search provider gives that workspace dedicated search for **$0 extra** on ordinary queries: **Parallel** works with no account at all, **Exa** gives US$10 of free search credit each month (no credit card, nothing to pay), and **Keenable** gives 100,000 free requests a month (no credit card). Deep delegated runs and paid partner datasets cost extra—check current pricing before adding funds.
 
