@@ -10,7 +10,6 @@ const pages = [
   ['guide/connecting-providers/', 'Connect & install'],
   ['guide/research-prompts/', 'Prompt library'],
   ['guide/costs/', 'Costs & access'],
-  ['guide/exa-ultra-case-study/', 'Advanced: Exa Ultra'],
 ];
 const esc = s => s.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
 const relative = (current, target) => {

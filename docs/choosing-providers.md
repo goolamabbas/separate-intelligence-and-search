@@ -1,566 +1,166 @@
 # Choosing an external research provider
 
-This reference compares practical roles for [Octen](https://octen.ai/), [Keenable](https://keenable.ai/), [Exa](https://exa.ai/), [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview), and [Parallel](https://parallel.ai/). It also explains when authenticated X-native evidence belongs in a research workflow.
+[← Start with the introduction](../README.md)
 
-These services overlap, but they are not interchangeable. Choose according to the evidence and output the task requires—not according to how many providers are available.
+This guide covers five dedicated search providers—[Exa](https://exa.ai/), [Parallel](https://parallel.ai/), [Keenable](https://keenable.ai/), [Octen](https://octen.ai/), and [Perplexity](https://docs.perplexity.ai/docs/getting-started/overview)—plus optional authenticated X access.
 
-**Reading the examples.** Dated tests describe the connection used for that task. Check [setup options](connecting-providers.md#choose-an-access-route) and [provider allowances](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) for your own connection.
+Search is a fast-moving race, and these services overlap significantly. Rather than declaring permanent winners, this page explains **what each provider distinctly brings to the table**, how its free or paid access works, and when to reach for it.
+
+**Note on live changes:** Providers update their MCP tools, search modes, and pricing frequently. Use this page for durable strengths and trade-offs, and follow the linked official docs for live schemas and current rates. See [Connecting providers](connecting-providers.md#choose-an-access-route) for setup and [Costs and access](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access) for free tiers.
 
 [Choosing research tools for your AI assistant](README.md)
 
-## On this page
-
-- [Other tools to explore](#other-tools-to-explore)
-
-- [Quick chooser](#quick-chooser)
-- [Retrieval and provider-side synthesis](#retrieval-and-provider-side-synthesis)
-- [Octen](#octen)
-- [Keenable](#keenable)
-- [Exa](#exa)
-- [Perplexity](#perplexity)
-- [Parallel](#parallel)
-- [Optional: authenticated X-native evidence](#optional-authenticated-x-native-evidence)
-- [Combining providers without duplicating work](#combining-providers-without-duplicating-work)
-- [Continue reading](#continue-reading)
-- [Official documentation](#official-documentation)
-
 ## Quick chooser
 
-What would you like your assistant to bring back?
+Start with the capability your question actually needs:
 
-- **A passage you can check.** Ask [Keenable](#keenable) to find the exact wording of a policy, or [Parallel](#parallel) to find where a company described a change in its filing.
-- **A list or an explanation.** Try [Exa](#exa) for a list of companies with evidence for each match, or [Perplexity](#perplexity) for an explanation of two figures that seem to disagree.
-- **A place, image or conversation.** Try [Octen](#octen) for a branch near a station or the original page for a photo. Use [X](#optional-authenticated-x-native-evidence) when you need the original post and the reply that clarified it.
+| If you need… | Good starting point | Why it fits |
+| --- | --- | --- |
+| Company lists, people/role discovery, research papers, or podcast transcripts | **Exa** | Built-in semantic search plus structured company, people, paper, and podcast indexes; $10/month free credits with no card. |
+| Clean web/PDF excerpts, specialized registries, or structured batch list enrichment | **Parallel** | Keyless MCP and 1-click app installs; strong PDF/JS page fetch, vertical dataset lookup, and FindAll / Task Group batch tools. |
+| High-recall general web search, long-document passages, or point-in-time index queries | **Keenable** | Dynamic passage selection across long pages, `query_time` historical index search, and 100,000 free monthly requests (no card). |
+| Multi-angle discovery, local places, business cards, current news, or image/reference-image search | **Octen** | Broad Search expands one question into multiple angles; dedicated Place, Business, News, Image, and fast URL-lookup (Pulse) tools. |
+| A quick cited answer/reasoning pass, or archived URL snapshots (`snapshot_as_of`) | **Perplexity** | Combines raw Search + URL Context reading (including archived snapshots) with optional Ask, Reason, and Research synthesis modes. |
+| Original posts, thread clarifications, trends, or your own saved bookmarks on X | [**Authenticated X**](#optional-authenticated-x-native-evidence) | Web search cannot reliably substitute for authenticated X data or your personal bookmarks. |
 
-If one of those fits, follow its link and try the question there. The full table below covers more specialized tasks.
-
-| If you need… | Start with… |
-| --- | --- |
-| Finding an official site, documentation page, or familiar destination URL | **Octen Pulse** |
-| A focused general-web lookup | **Octen Search** |
-| Current reporting on one topic | **Octen News Search**, with storylines disabled for assistant-only synthesis |
-| Company or professional-person profiles and comparisons | **Octen Business Search**, checking card provenance and source filters |
-| Local places, reported hours and review evidence | **Octen Place Search** |
-| Query-relevant passages across web documents, with publication/index-date controls | **Keenable Search**, with generated cards disabled for source-only work |
-| Reading a supplied or selected page through Keenable | **Keenable Fetch**, without `prompt` for source-only work |
-| Several distinct research angles requiring broader discovery | **Octen Broad Search** |
-| Find images from a text description | **Parallel Image Search** or **Octen Image Search** |
-| Find images using a reference image | **Octen Image Search** |
-| Videos or matching clips | **Octen Video Search**, only with early-access entitlement |
-| Semantically precise web discovery and existing Library records | **Exa Search**, with the source type and qualifying details in the query |
-| Publication-date, domain, category, or content controls | **Exa Advanced Search** |
-| Ranked URLs or recent-news leads without a generated answer | **Perplexity Search** |
-| Read known URLs through Perplexity | **Perplexity Context** |
-| A quick, focused factual answer or concise cited explanation | **Perplexity Ask** |
-| A comparison or decision analysis against explicit criteria using current web evidence | **Perplexity Reason** |
-| A deep multi-source investigation | **Perplexity Research** |
-| Objective-shaped web excerpts from primary financial, legal or healthcare sources | **Parallel Search** |
-| Specialized registry or dataset records | **Parallel vertical discovery and retrieval**, when the returned coverage and fields fit |
-| A cited answer returned by Parallel in one call | **Parallel web_research**, when provider synthesis is permitted |
-| One substantial provider-generated research report | **Parallel Deep Research** |
-| The same structured enrichment task repeated across several inputs | **Parallel Task Group** |
-| Multi-source enrichment or partner-specific fields not supplied by sufficient source records | **Exa Agent and relevant Connect providers** |
-| Large lists or difficult qualification criteria where completeness outweighs latency and cost | **Exa Agent Ultra**, when provider-generated research is permitted and suitable budget controls are available |
-| Prediction-market odds, history, order books, or public position data | **Exa Agent with Polymarket Connect**, when exposed |
-| Reading a page found by Octen | Reuse sufficient excerpts or full text returned by Search or Broad Search; use **Octen Extract** for supplied URLs or missing, incomplete, unusable, or stale content |
-| Reading a known or Exa-discovered page | **Exa Fetch** for supplied URLs or insufficient search content; for Places, request text during Search |
-| Authenticated posts, users, trends, counts, or bookmarks from X | **An authenticated X-native interface** |
-
-Apply provider constraints in this order: explicit inclusions or exclusions, named-provider requests, materially matched specialized data, then a generic discovery default. A named provider is required for its requested role; “only” or “exactly” makes the permitted set exclusive. Add a complementary provider only within the authorized scope.
+**Just want to try the concept in two minutes without a credit card?** Start with **Exa**, **Parallel**, or **Keenable**. All three work through 1-click connectors or keyless MCP endpoints with no payment method required.
 
 ## Retrieval and provider-side synthesis
 
-A supported provider connection lets the model selected in your application call a provider. It does not automatically make that model the one used inside every provider operation.
+Every provider here lets your assistant fetch evidence, and several also offer provider-side synthesis (running their own model to write an answer or report):
 
-| Operation | Typical boundary |
-| --- | --- |
-| **Search, fetch, or extraction** | The provider returns ranked results or page content. The model selected in your application interprets the evidence and normally writes the final response. |
-| **Answer, reasoning, research, or agent run** | A model or workflow inside the provider may generate prose or structured output before returning it to the application. |
+| Mode | What happens | Good default for |
+| --- | --- | --- |
+| **Search & Fetch (retrieval)** | Provider returns ranked links, excerpts, structured records, or clean page text. **Your chosen assistant** reads them and writes the answer. | Everyday lookups, comparing primary docs, keeping reasoning in your preferred model. |
+| **Agent / Research (provider synthesis)** | Provider runs its own model and multi-step workflow, returning a finished answer, comparison, or structured table. | Deep multi-source reports, large list enrichment, or partner datasets accessed through an agent endpoint. |
 
-Search and extraction providers may still use machine-learning systems for ranking, rendering, extraction, or classification. The distinction is about who produces the visible analysis or narrative answer.
+Two practical rules keep you out of trouble:
 
-When the model selected in your application must perform all visible reasoning and synthesis, allow source retrieval and faithful extraction but exclude provider-generated answers. Inspect the selected output mode as well as the tool name: a scrape or fetch tool may also offer generated summaries or freeform answers. Ordinary lookups can default to retrieval and assistant analysis unless the user requests a different approach.
+1. **Watch for cost jumps.** Ordinary Search and Fetch calls cost fractions of a cent (or sit inside free tiers). Delegated research runs (Exa Agent Ultra, Parallel Deep Research / FindAll, Perplexity Research) can cost dollars per run. Check budget controls before launching them.
+2. **Verify material claims.** Even a great provider-written summary is synthesis, not a primary source. Open the cited link when a specific number, date, or policy caveat matters.
 
-For changing facts, check available cache controls and retain the source’s observation or reporting date. Fetching a page today does not establish that its contents are current. Disclose important uncertainty about freshness.
-
-When provider-generated synthesis is allowed, require the final response to identify the provider tool and any model or preset exposed in the completed result. Check what a parameter actually means: a field named `model_name` can be analytics metadata rather than a model selector.
-
-For example, search relevance models help select source text. That is different from asking a provider to write the research answer.
-
-For assistant-only synthesis, disable generated output that is enabled by default. Provider-generated analysis includes Octen News storylines; Keenable generated cards and prompted Fetch; Perplexity Ask, Reason, and Research; Exa Agent, including Ultra and Connect runs; Parallel web_research, Decisions, Deep Research and Task Group. Such workflows can mix retrieved records with inferred findings. Keep their contributions distinct and check supported budgets before an expensive run.
-
-## Octen
-
-### Best fit
-
-**Try this with Octen.** Which library near [station] can I visit this Saturday? Find nearby branches, then check the official branch page for hours and closures. [Connection options](connecting-providers.md#choose-an-access-route)
-
-Use Octen for focused web or news discovery, multi-angle expansion from a self-contained question, company/person profiles, place records, page extraction, and task-relevant image or video discovery when available.
-
-Octen can be accessed through supported integrations such as official provider skills, hosted or local MCP servers, or direct API access. Available capabilities and parameter names can differ by interface. Choose the operation needed, then inspect how the available integration exposes it.
-
-- **Pulse** finds likely destination URLs, such as official sites, documentation, and help pages. Lite returns URLs and titles; Standard can add highlights and page content. Use News Search for current reporting and ordinary Search for filtered or general-web evidence. A candidate URL alone is not evidence of what the page says. [Pulse documentation](https://docs.octen.ai/capabilities/pulse-search)
-- **Search** handles focused web lookup. Use the separate News Search operation for current reporting when exposed; this plugin’s Search has no news-topic parameter. When source text will help answer the question, explicitly enable full content using the current interface’s controls.
-- **Broad Search** expands one self-contained question into several discovery angles. Preserve the user’s intent and constraints, resolve conversational references using the available context, and fit the question within the current interface’s input limit. Let the provider generate the subqueries. Use targeted follow-ups for remaining gaps; a simple comparison may need only focused searches.
-- **Extract** reads supplied URLs or selected results whose returned text is missing, incomplete, unusable, or stale. Reuse sufficient excerpts or full text before requesting another read. When the full page body is needed, leave the relevance-query option unset if that option returns highlights instead. Use an appropriate supported cache age when freshness matters.
-- **News Search** returns articles and, by default, storyline summaries. For assistant-only synthesis, set `subjects.enable: false`. Domain restrictions apply to articles, not storylines; broader-web summaries cannot satisfy a publisher-restricted request.
-- **Business Search** returns company/person cards and ranked sources. Use it for profiles, products and relevant financial fields, checking periods, units and source provenance. Cards do not inherit the domain, time or language filters applied to ranked sources. Octen describes entity-card facts as extracted fields. Structured cards are not necessarily generated prose; where source-only compliance cannot be established, disable cards with `entities.enable: false` and use source evidence. Check that every compared company is covered.
-- **Place Search** returns place records, reported hours, ratings and optional review excerpts. Use a named area or a user-provided location; radius requires paired coordinates, and approximate location does not establish exact distance. Optional web results have their own filters, which do not constrain place cards. Hours can be stale; a few reviews are anecdotes, not representative sentiment.
-- **Image Search** accepts text or one reference image, not both in the same call. Use it for task-relevant visual references; preserve source-page links, verify visual claims and check reuse rights separately.
-- **Video Search** finds videos or matching clips where available. It is in beta/early access: a visible tool is not proof the account can use it. If access is known to be absent, skip the call; do not request access automatically. Returned metadata is not proof of watching the video.
-
-These nine operations are described in the [Octen MCP reference](https://docs.octen.ai/integrations/octen-mcp-server). This guide covers these nine plugin operations; inspect the current callable schema and account access before use. Try the [task-specific Octen prompts](research-prompts.md#octen-find-an-official-url); Video is a conditional example.
-
-Extract’s standard mode suits ordinary pages; advanced or auto can help with difficult pages. Inspect returned page-type labels such as `No Main Content` alongside the body to detect login walls or error pages. Retry only failed or skeletal results when useful, inspect the resolved mode and allow for higher advanced-mode cost. Optional links help follow references from a supplied page; they are not a crawl. Extracted media URLs do not establish that the media was analyzed.
-
-### What it contributes
-
-Plain Search is useful for a bounded lookup; Broad Search is useful when several discovery angles are needed. Requesting page text alongside search can reduce separate extraction calls. Checked 18 November 2026, Octen’s pay-as-you-go API pricing lists full content for the first ten results per search at no additional content charge, then $0.50 per 1,000 results. Search Plans charge $0.50 per 1,000 full-content results with no free allowance. For Broad Search, verify the applicable allowance and returned usage before estimating charges. Search calls remain chargeable, and Broad Search may execute several of them. Start with only as many results and sub-queries as the evidence needs. [Current pricing](https://docs.octen.ai/overview/pricing.md)
-
-**Pulse pricing checked 31 October 2026:** Lite costs $0.10 per 1,000 calls and Standard $0.20. Standard includes full content for the first result; additional full-content results cost $0.50 per 1,000. Pulse shares Web Search’s throughput limit. These allowances differ from Web Search and Broad Search.
-
-When additional source context is needed, explicitly request full content using the available interface’s controls rather than relying on defaults. Inspect what actually returned: a full-content request does not guarantee that every page was retrieved, that its text is complete, or that it is fresh. Reuse sufficient excerpts or full text without another read. [Octen documentation](https://docs.octen.ai/)
-
-### What to avoid
-
-Do not repeat the same broad query across providers merely to increase provider count. Give complementary providers a distinct evidence or verification role. Do not automatically Extract every Octen result, and do not forbid another read when the returned content lacks necessary context. Expand the result count or run a follow-up query when the first search leaves a material evidence gap. Lower token caps manage context, but can remove qualifications needed to support a claim.
-
-## Keenable
-
-### Best fit
-
-**Try this with Keenable.** Does [policy or feature] apply to every customer? Find the passage that says who qualifies. Open the original page if the excerpt leaves out a condition. [Connection options](connecting-providers.md#choose-an-access-route)
-
-**Guidance checked 11 November 2026.** Use Keenable for general web discovery, relevant passages from long documents, date-controlled search and reading supplied or selected pages. Its MCP exposes `search_web_pages` and `fetch_page_content`; SDK and API options can differ. Start with the [connection guidance](connecting-providers.md#keenable-connection-readiness) or the [one-question prompt](research-prompts.md#keenable-one-sourced-question).
-
-Keenable says it uses records of production and evaluation searches to improve retrieval, including queries, returned snippets and which pages agents fetched. Send only the public details needed for the search. Check the terms that apply to your connection before sending sensitive material. [How Keenable uses search trajectories](https://keenable.ai/blog/trajectories-in-improvements-out)
-
-### Search: relevant passages before more page reads
-
-Describe the source and evidence you want, rather than stacking keywords. Keenable's Dynamic Snippets selects passages from across a document with a token classifier. Reuse snippets that contain the necessary facts and qualifications; fetch more context when passages are incomplete, ambiguous or stale. Keenable reports substantial token savings against its earlier snippets, but this is not a promise of 50% lower total costs on every task. [Technical explanation](https://keenable.ai/blog/keenable-snippets-full-page-cost-reduction)
-
-| Control | Use it for |
-| --- | --- |
-| `pro` | Ordinary research where retrieval depth matters; the documented default when selectable |
-| `realtime` | Latency-sensitive retrieval; the name does not guarantee fresher source content |
-| `max_results` and `snippet_max_length` | Bound result count and characters per snippet; increase only when important context or coverage is missing |
-| `published_after` / `published_before` | Publication windows; pages without a known publication date may be omitted |
-| `acquired_after` / `acquired_before` | When Keenable indexed the page, not when the event happened |
-| `site` / `exclude_domains` | Restrict a site or omit hosts and their subdomains; verify returned sources fit the task |
-
-Use `query_time` only for point-in-time index search. `query_time: "7d"` means as of seven days ago, not the last seven days. Use explicit timestamps for historical boundaries; do not assume ordinary Fetch reconstructs the historical page body. For a broad question, use a few distinct queries and bounded concurrency rather than repeating one query or assuming extra searches are free. [Search controls](https://docs.keenable.ai/products/search) · [Best practices](https://docs.keenable.ai/best-practices)
-
-### Keep source retrieval separate from generated answers
-
-For source-only work, set Search's `disable_cards: true`: Keenable can otherwise return its own written cards, whose URLs expire after one day. These are not original source pages. Leave Fetch's `prompt` unset: supplying it asks an LLM to read the page and return an answer instead of source text. These controls preserve analysis by the assistant selected in your application.
-
-Keenable documents MCP Fetch as indexed-only by default, with a `max_chars` default of 20,000. Set `live: true` for current content or unindexed URLs. The HTTP Fetch API documents automatic live fallback for unindexed URLs and a 50,000-character default. Check the selected interface and truncation before treating a result as the complete document. A live fetch does not establish that the underlying source is current or that every element was extracted. [Fetch documentation](https://docs.keenable.ai/products/fetch) · [MCP defaults](https://docs.keenable.ai/mcp-server)
-
-### What the benchmarks tell you
-
-On 11 November 2026, Keenable Pro and Realtime occupied the top two displayed rows of the [Artificial Analysis Search API leaderboard](https://artificialanalysis.ai/agents/search-api). Its [methodology](https://artificialanalysis.ai/methodology/search-api) uses GPT-5.6 Luna at medium effort across three benchmarks; most provider runs use Stirrup, while native OpenAI search has a different workflow. The listed Keenable settings do not establish a separate result with generated cards disabled. These are configuration-specific results, not a guarantee for your task or a test of this MCP connection.
-
-Keenable's [October Vals announcement](https://keenable.ai/blog/keenable-vals-web-search-index) reported 49.08% with GPT-5.6 Sol and roughly 53% lower mean total task cost than that same model with Exa. That cost includes model inference and search fees. The [current Vals page](https://www.vals.ai/benchmarks/web_search) now lists newer model/provider combinations above it; those cross-model rows do not isolate search-provider superiority. This guide has not reproduced either benchmark.
-
-### What to avoid
-
-Do not make Keenable the universal default because of a ranking, automatically replace specialized records with general web results, or fetch every search hit. Do not treat generated cards or prompted Fetch as source-only extraction. Inspect the actual schema: public MCP routes may omit `mode`, and account/operator defaults can affect it. Missing usage metadata is not proof that calls were free. See [allowances and costs](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/#provider-allowances-and-access).
+If you need strict "assistant-only synthesis" (disabling default provider cards, storylines, or prompted fetch summaries), see the optional control clauses in the [Prompt library](research-prompts.md#model-boundary).
 
 ## Exa
 
-### Best fit
+**Best for:** Semantic discovery ("find pages *like* this or matching these criteria"), structured company and people search, research papers, podcast transcripts, and optional deep enrichment via Exa Agent and Connect partners.
 
-**Try this with Exa.** Which five retailers announced a new store in [region] during [period]? Give me the location, date and original announcement for each. Use Search to gather sources, or ask Agent to research and assemble the table. [Connection options](connecting-providers.md#choose-an-access-route)
+**Free & easy start:** Official 1-click plugin/connector in **ChatGPT**, **Claude**, **Cursor**, **Grok Build**, and **VS Code**, plus keyless MCP (`https://mcp.exa.ai/mcp`). Free Starter accounts get **$10/month in recurring credits plus a $10 onboarding bonus with no credit card required**.
 
-Use Exa when the task benefits from semantic source discovery, precise search controls, fetching known pages, structured multi-step research, or specialized datasets.
+<span id="specialized-search-indexes"></span>
+<span id="describe-the-evidence-you-want"></span>
+### Where Exa stands out
 
-### Search, Advanced Search, and Fetch
+- **Semantic & structured discovery:** Exa's search index understands natural-language descriptions of the ideal source, not just keywords. Its built-in data index covers companies (`category:company`), people (`category:people`), news, research papers, code/docs, and financial filings—returning structured fields (like employee counts, workforce growth, and funding rounds) inside ordinary Search calls without needing an expensive Agent run.
+- <span id="podcast-transcripts-through-search"></span>**Podcast transcripts & primary interviews:** Ordinary Exa Search can search inside indexed podcast transcripts (via Exa Library) and surface verbatim passages and timestamps, useful for creative research or founder interviews. Coverage varies by show, so a missing result does not mean an interview never existed.
+- **Auto vs. Lite search modes:** `auto` is the general-purpose default; `lite` is faster and cheaper using cached content when live freshness isn't needed.
+- <span id="request-places-content-during-search"></span>**Exa Fetch & Places note:** Use Exa Fetch when search highlights miss surrounding context on a known URL. For Exa Library Places results, request content during Search where supported rather than relying on a follow-up Fetch.
 
-- **Regular Search** is the normal starting point for semantic discovery and independent cross-checking. Convert a terse request into a richer description of the ideal sources without changing the user’s intent or constraints.
-- **Advanced Search** is appropriate when supported domain, publication-date, category, freshness, geographic, or subpage controls materially affect the result.
-- **Fetch** reads known URLs or selected Exa results when search highlights are insufficient.
+<span id="when-agent-ultra-is-worth-it"></span>
+### Exa Agent, Connect partners, and Ultra (optional)
 
-Regular Search should remain the default. Advanced Search is not inherently better; use it when its additional controls solve a specific retrieval need.
+- **Exa Agent** handles multi-step research, list-building, and structured JSON outputs when a single search isn't enough. It requires sign-in or an API key.
+- **Exa Connect** plugs specialized third-party datasets into Exa Agent without separate vendor contracts—including **Similarweb** (website traffic and audience overlap), **Fiber.ai** (B2B firmographics), **Financial Datasets** (US public-company filings and financials), **Baselayer** (US business verification), **Particle** (podcast analytics), **Polymarket** (prediction-market odds), **Affiliate.com** (shopping), and **Jinko** (travel). Partner calls carry additive charges on top of Agent usage.
+- **When Agent Ultra is worth it:** Ultra is Exa's highest-effort Agent mode for hard, comprehensive list-building where completeness outweighs speed and cost (runs can take minutes and have a $20 default cap unless a budget limit is set via the API). Keep ordinary lookups on Search and Fetch. See [Inside one Exa Ultra research run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) for a transparent walkthrough.
 
-### Auto or Lite?
-
-**Checked 31 October 2026:** Auto is the general-purpose default. Lite is a lower-cost option when cached page content and its smaller set of controls meet the task.
-
-| Search mode | Use when | Price per 1,000 requests |
-| --- | --- | --- |
-| `auto` | You need the general-purpose search path or controls unavailable in Lite | $7 |
-| `lite` | Cost or latency matters and cached content is sufficient | $4 |
-
-Both prices include up to ten results; additional results cost $1 per 1,000. Lite never fetches pages live and rejects unsupported options, including content-freshness controls. If fresh page content is required, use Auto with supported freshness controls or retrieve the source separately. `fast` and `instant` are legacy choices; use Lite for new requests where it fits. Search mode and the regular/Advanced tool interface are separate choices; available controls depend on the integration.
-
-Do not use `startCrawlDate` or `endCrawlDate` to enforce freshness: Exa no longer applies them. Publication-date filters constrain publication dates, not when content was last retrieved. Inspect response warnings and notices for ignored options or relaxed search constraints, and verify that the returned sources still meet the task. [Search documentation](https://exa.ai/docs/search/quickstart) · [Changelog](https://exa.ai/docs/changelog)
-
-<a id="specialized-search-indexes"></a>
-
-### Specialized search indexes
-
-**Library guidance checked 10 November 2026.** Exa Search can return web pages and structured pages from [Exa Library](https://exa.ai/library), including company profiles, papers, filings and podcast transcripts. Library collections, API search categories and Connect providers are different things. Not every collection has a category; use a descriptive query and supported filters when they help.
-
-Search can already supply structured records. Choose Agent for research or enrichment that requires it, and Connect when a partner's particular fields, coverage or provenance are needed. There is no mandatory Search-first step when a specialist dataset is clearly required or explicitly requested. Library fields are not automatically equivalent to a named partner's data.
-
-| Exa vertical | Useful for | Invocation cue |
-| --- | --- | --- |
-| [**People Search**](https://exa.ai/docs/reference/verticals/people) | Professional profiles by role, skills, company, location, or seniority | Use `category:people` in regular Search, or the `people` category in Advanced Search when exposed |
-| [**Company Search**](https://exa.ai/docs/reference/verticals/company) | Company discovery by industry, funding stage, headcount, geography, or technology | Use `category:company` in regular Search, or the `company` category in Advanced Search when exposed |
-| [**Code Search**](https://exa.ai/docs/reference/verticals/code) | Working examples across GitHub, documentation, and developer discussions | Use a code-specific semantic query, optionally restricted to relevant repository or documentation domains; the `github` category is deprecated |
-| **Financial reports** | Filings and financial disclosures | Specify the company, form and disclosure; use `financial report` when exposed, or `sec.gov` for original SEC filings |
-| **Research papers** | Methods, findings and supporting literature | Describe the method or question; use `publication` when exposed and check whether full text is available |
-| [**News Search**](https://exa.ai/docs/reference/verticals/news) | Current news with semantic and date-aware filtering | Use a news-specific query with the `news` category and date controls when exposed |
-
-Inspect the strongest returned sources before making material claims. Excerpts or full text returned by search can suffice when they contain the relevant facts and qualifications. Retrieve more context when evidence is ambiguous, incomplete, conflicting, stale, or missing material qualifications. A search category helps discovery; it does not by itself prove that a profile, company, code example, or news report is current or authoritative.
-
-<a id="describe-the-evidence-you-want"></a>
-
-### Flight status through Search
-
-Use ordinary Exa Search for flight status or airport boards. Give the airline and flight number, local departure date, and airports or leg. A search for UA599 on 26 November 2026 returned two legs on one [Exa Library page](https://exa.ai/library/flights/flight/UA599?date=2026-11-26). Check the leg and time zone, and distinguish scheduled, estimated and actual times. For ticket prices, use a fare lookup that covers the itinerary when your connection exposes one. [Exa Flights](https://exa.ai/blog/flights)
-
-### Describe the evidence you want
-
-Add the details that distinguish a useful source; a longer query is not automatically better. Dates should fit the question, including historical or creative research.
-
-| Task | Useful query details |
-| --- | --- |
-| Creative interviews | Practitioner or creative challenge, and the interview format you want |
-| Earnings-call research | Company or ticker, fiscal quarter/year, and the issue management discussed |
-| Market quote or recent price history | Instrument or ticker, exchange or quote currency, and observation time or date range |
-| Company or buying-role research | What the company sells, whom it serves, location, and the person's relationship to it |
-| Personal learning through papers | Research question, method or finding; relevant publication period if needed |
-
-For example, ask for “[company] [quarter/year] earnings call transcript about [issue]”, rather than simply “[company] outlook”. For filings, describe the disclosure sought, not just “10-K”. [Financial search guidance](https://exa.ai/docs/search/data/financial) · [Company and people queries](https://exa.ai/docs/search/data/companies-people)
-
-Exa Search can return quotes and recent price history alongside filings and earnings-call passages. Check the source, timestamp, currency and units before comparing prices. Use Connect when the task requires a particular partner or the relevant fields are missing from the returned sources. [Financial Markets documentation](https://exa.ai/docs/search/data/financial)
-
-Domain filters are collection-specific. SEC guidance uses `sec.gov`; earnings-call guidance uses `exa.ai/library/markets/stocks`, not the collection's landing-page URL. A filter still does not establish the returned document's identity, type or reporting period. [SEC collection](https://exa.ai/library/sec-filing) · [Earnings-call collection](https://exa.ai/library/earnings-call)
-
-<a id="request-places-content-during-search"></a>
-
-### Request Places content during search
-
-[Exa Places](https://exa.ai/library/place) appears automatically for relevant Auto or Lite searches, with no extra Places parameter. Name the location and practical constraints. **Request the result text during search:** Exa says later Fetch is unreliable for these listings. The direct API uses `contents.text`; use the equivalent supported control in your integration, not an argument copied into an incompatible tool. A listing with up to ten places is not an exhaustive inventory.
-
-Lite's web-page fetching restrictions do not by themselves establish how every structured record is refreshed. Check the dates and provenance of returned data.
-
-### Check collection coverage and provenance
-
-[Paper full text](https://exa.ai/library/publication) is supplied where available; distinguish it from an abstract. [Product listing prices](https://exa.ai/library/product) are not live: check the merchant for current price and availability. Preserve dates and original sources for company roles, financial periods and other changing fields. Exa-hosted structured pages may aggregate public or licensed records; do not present them as independently verified primary sources.
-
-For traffic comparisons, choose according to the metric, period, provenance and comparability needed. A sufficient [Library company record](https://exa.ai/library/organization) can answer a bounded question; use Similarweb Connect when its specific data is needed or requested. Do not attribute Library fields to Similarweb without evidence.
-
-<a id="podcast-transcripts-through-search"></a>
-
-### Podcast transcripts through Search
-
-Exa’s ordinary search index now includes podcast episodes with full transcripts, speaker labels, and timestamps, with no additional data surcharge. Use Search and Fetch for episode discovery, transcript summaries, or quotations. To restrict discovery to this collection, use `includeDomains: ["exa.ai/library/podcast"]` where supported; this is a domain filter, not a new category.
-
-The [podcast collection](https://exa.ai/library/podcast) currently describes the 30 most recent episodes per show; do not assume a complete archive or treat a missing result as proof an interview does not exist. Check that a result is an interview if that is what you requested. Check the episode date, speaker, and surrounding transcript passage before quoting. Use Particle through Agent only when its additional analytics or structured fields are needed, or when explicitly requested. Ordinary transcript retrieval does not require an Agent run. [Podcast search and API example](https://exa.ai/library/podcast) · [29 October announcement](https://exa.ai/blog/podcast-search)
-
-Ready to try this? [Connect Exa in Claude Code](connecting-providers.md#claude-code-connect-directly-to-exa) or, if Exa is already connected, [try the podcast interview prompt](research-prompts.md#exa-podcast-passages-for-a-creative-project).
-
-### Agent and Connect
-
-Exa Agent is a different layer from ordinary search. Use it for multi-step research, enrichment, structured list-building, or repeatable output schemas.
-
-<a id="when-agent-ultra-is-worth-it"></a>
-
-### When Agent Ultra is worth it
-
-**Consider Ultra when finding more verified matches matters enough to justify a longer, metered research run.** It is Exa Agent's highest effort setting (`effort: "ultra"`), useful for large lists, deep multi-source research, and hard-to-verify criteria. For example, find papers and repositories implementing a defined technique, then verify which provide runnable evaluation code. A short factual lookup or reading one supplied page usually needs Search or Fetch instead.
-
-Ultra delegates research and inference to Exa's own workflow and models. It does not inherit the model selected in your application. It is an Agent effort, separate from the choice of Connect datasets.
-
-**Terms checked 26 September 2026:** Exa documents a default $20 per-run cap with actual usage billing; a run finishing early can cost less. It describes complex runs as typically about 30 minutes, potentially three hours. These are provider descriptions, not timings or quality results measured for this guide. Fixed Agent efforts offer predictable per-request prices when they meet the task. Check applicable Connect charges if adding a dataset. [Ultra documentation](https://exa.ai/docs/agent/agent-ultra.md) · [Current pricing](https://exa.ai/docs/reference/pricing.md)
-
-**Advanced reference for runs with a required budget.** Check which controls your assistant’s connection actually exposes.
-
-| Control in the direct API | What it means |
-| --- | --- |
-| `budget.maxCostDollars` | $1–$100; available for `auto` and `ultra`; Ultra defaults to $20 |
-| `budget.maxDurationSeconds` | 300–10,800 seconds; a soft duration ceiling for Ultra, not an exact finish-time guarantee |
-| Graceful stop | Ends an Ultra run while retaining findings and billing usage so far |
-
-An integration may expose Ultra without these controls. A spending limit written into a prompt is not an enforced API limit. Check the [connection guidance](connecting-providers.md#verify-ultra-controls-before-starting) before starting a run with a required budget.
-
-Check why the run ended as well as its status. A completed run may have hit its spending or time limit, or been stopped early. Report those findings with the remaining coverage gaps. Even `schema_satisfied` does not independently establish that every qualifying entity has been found. Define the scope, require evidence for each qualification, and allow unknown fields. [Run schema and stop reasons](https://exa.ai/docs/reference/agent-api/create-a-run.md)
-
-Exa's [launch benchmarks](https://exa.ai/blog/exa-agent-ultra) are vendor-reported comparisons. A [worked example of one Ultra run](https://goolamabbas.github.io/separate-intelligence-and-search/guide/exa-ultra-case-study/) shows the assignment, Exa’s findings, and the assistant’s assessment separately. That trial was not independently audited or compared against another research method; it does not establish that Ultra is better. Try the [comprehensive discovery](research-prompts.md#exa-agent-ultra-for-comprehensive-discovery) or [list expansion](research-prompts.md#exa-agent-ultra-to-expand-an-existing-list) pattern when the task and budget justify it.
-
-### Connect datasets within Agent
-
-Exa Connect can expose specialized data providers inside an Agent run. Select only the Connect providers needed for the output fields, even when the user has not named a provider. Inspect the current interface’s supported data sources and respect provider and synthesis restrictions. Name the provider-backed fields in the query and `outputSchema`, then inspect the completed run to confirm which provider contributed.
-
-On 3 September 2026, Exa’s self-serve Connect documentation and the live `dataSources` schema inspected for this guide exposed eight providers:
-
-| Self-serve Connect provider | Use it when you need | Useful fields to request |
-| --- | --- | --- |
-| [**Fiber.ai**](https://exa.ai/docs/reference/agent-api/connect/fiber) | B2B companies, public professional profiles, jobs, headcount, funding, or job-change signals | Company identity, domain, public professional role, employer, employee count, funding stage, dated signal |
-| [**Similarweb**](https://exa.ai/docs/reference/agent-api/connect/similarweb) | Website traffic, engagement, rankings, digital footprint, or competitor discovery | Domain, estimated visits, reporting period, rank, engagement measure, competitor domain |
-| [**Financial Datasets**](https://exa.ai/docs/reference/agent-api/connect/financialdatasets) | U.S. public-company prices, statements, earnings, ownership, SEC filings, or screening | Ticker, reporting date, price timestamp, financial metric, filing form, filing date, direct filing link |
-| [**Baselayer**](https://exa.ai/docs/reference/agent-api/connect/baselayer) | U.S. business verification, registrations, entity structure, officers, KYB, or risk checks | Legal name, jurisdiction, registration status, officers, verification status, risk result |
-| [**Affiliate.com**](https://exa.ai/docs/reference/agent-api/connect/affiliatecom) | Product discovery, merchant catalogs, prices, brands, or shopping comparisons | Product, brand, price, currency, merchant, offer URL, observation time |
-| [**Particle**](https://exa.ai/docs/reference/agent-api/connect/particle) | Podcasts, guests, hosts, spoken commentary, narrative, or sentiment monitoring | Show, episode, publication date, speaker, role, timestamp, transcript evidence, position expressed |
-| [**Jinko**](https://exa.ai/docs/reference/agent-api/connect/jinko) | Travel-destination discovery or airfare comparisons | Origin, destination, dates, cabin, fare, currency, itinerary, observation time |
-| [**Polymarket**](https://exa.ai/docs/reference/agent-api/connect/polymarket) | Prediction markets, market-implied probabilities, price history, order books, or public trader positions | Market and event, outcome, implied probability, observation time, volume or liquidity, price history, market URL |
-
-These providers are not interchangeable. A company-screening task might use Fiber for firmographics and Similarweb for traffic. A public-company investigation might use Financial Datasets for filed metrics. A prediction-market question might use Polymarket for current odds or their history. Choose according to the fields requested, not because a provider appears in the live schema. Reading one supplied official filing can be satisfied directly; comparable fields across many companies may warrant a specialized dataset.
-
-Exa also documents [additional Connect partners](https://exa.ai/docs/reference/agent-api/connect/additional-partners) that require account enablement through Exa. This guide does not assume access to those providers or make claims about their commercial terms.
-
-Requesting a Connect provider does not prove that it contributed. Check completed results for provider-backed fields, provenance, partial coverage, and errors. Keep provider-backed data separate from Agent inference and general web evidence.
-
-### What to avoid
-
-- Do not use Agent merely as a more elaborate version of ordinary Search.
-- Do not infer Connect availability from documentation alone.
-- Do not silently replace unavailable provider-backed fields with generic web inference.
-- Do not imply that Exa Agent output was generated by the model selected in your application.
-
-## Perplexity
-
-### Best fit
-
-Suppose two news stories give different earnings figures for the same company. Use **Ask** for “What number did the company report?”, **Reason** for “Why are both numbers being quoted?” or **Research** for “Trace both figures through the company’s releases and filings. What was known on announcement day?” Open the cited filing to check the explanation.
-
-If you want your own assistant to write the answer, **Search** finds the pages and **Context** reads them. [Connection options](connecting-providers.md#choose-an-access-route) · [Try Search and Context together](research-prompts.md#perplexity-search-and-context)
-
-| Desired output | Perplexity mode |
-| --- | --- |
-| Ranked sources, facts, or recent-news leads | **Search** |
-| Page content or focused passages from supplied or selected URLs | **Context** |
-| A quick, focused factual answer, summary, or concise explanation | **Ask** |
-| A comparison or decision analysis against explicit criteria using current web evidence | **Reason** |
-| A comprehensive, literature-style investigation | **Research** |
-
-Search is usually the right choice when the objective is source discovery. Ask, Reason, and Research generate synthesis and should not all receive the same subquestion by default.
-
-<a id="fast-or-standard-search"></a>
-
-### Fast or standard Search?
-
-Choose Perplexity for its fit to the task first, then select its search type. Both types return ranked sources without an AI-written answer; the application performs later synthesis.
-
-| Search type | Suggested use | Search API price per 1,000 requests |
-| --- | --- | --- |
-| `fast` | Routine lookups, repeated agent searches, high-volume or latency-sensitive retrieval | $1 |
-| `web` | Rare, difficult, or ambiguous questions | $5 |
-
-Prices checked on **27 September 2026**; consult the [official Fast Search documentation](https://docs.perplexity.ai/docs/search/fast-search) for current terms. These are published API prices, not measured charges from our connector test.
-
-**The API default remains `web` when `search_type` is omitted.** The multi-provider-research skill explicitly prefers `fast` for suitable routine Perplexity searches when the interface exposes it. That preference does not make Perplexity the default across providers, and an explicit user choice takes precedence.
-
-Choose standard search directly for a difficult question. If Fast Search leaves an important evidence gap, use standard search for that unresolved question rather than routinely running both types. Inspect your interface's schema and disclose when an explicitly requested type is unavailable.
-
-Fast Search (`search_type: "fast"`) is different from **Ask's Agent API `fast` preset**, which generates an answer. Use the [Perplexity Search prompt](research-prompts.md#perplexity-search) to let your assistant select the search type and follow up on important evidence gaps.
-
-<a id="read-known-urls-with-context"></a>
-
-### Read known URLs with Context
-
-Use [Perplexity Context](https://docs.perplexity.ai/docs/context/quickstart) to read supplied pages or fill a material gap in a Search excerpt when the task permits Context. It returns Markdown by default and can return source highlights focused on a question. Check each URL’s status and reuse successful reads. The default permits stored copies up to two days old. Set `max_age_seconds: 0` for a live fetch when freshness matters. Try the [Context prompt](research-prompts.md#perplexity-context).
-
-For a historical comparison, give Context a cutoff with `snapshot_as_of` on an interface that exposes it. On 26 November 2026, Context returned archived copies of two Perplexity documentation pages using a 20 November cutoff. If you also need discovery, use the same cutoff in Search where supported. The direct Search API documents the field. The Search MCP schema inspected on 26 November did not expose it. Report missing archived copies and preserve the cutoff if you use another permitted archive. Keenable’s `query_time` selects an earlier search index state. Context’s cutoff selects a stored page body. [Perplexity Time Machine](https://docs.perplexity.ai/docs/search/time-machine)
-
-### Model boundary
-
-The Perplexity MCP integration described here distinguishes retrieval from provider-side synthesis as follows. Other interfaces may expose different controls or configurations; inspect the selected operation before use:
-
-| Tool | What happens |
-| --- | --- |
-| **Search** | The Search API returns ranked results without an AI-written answer; the application performs any later synthesis |
-| **Context** | Returns page content or excerpts from known URLs. Leave optional `criteria` scoring off when the assistant must do all analysis |
-| **Ask** | The Agent API generates an answer using its `fast` preset |
-| **Reason** | The Agent API performs the comparison or reasoning using its `medium` preset |
-| **Research** | The Agent API produces the investigation using its `high` preset |
-
-Agent API presets contain their own model, instructions, search configuration, tools, and reasoning budget. Dynamic presets can change their underlying model.
-
-A direct Agent API request containing a `model`, `models`, or `preset` field selects a provider-side configuration; it does not inherit the model selected in the application.
-
-If the completed result exposes only the preset and not the exact underlying model, report that visibility gap rather than guessing.
-
-### Prompting the synthesis modes
-
-Perplexity’s [Agent API prompt guide](https://docs.perplexity.ai/docs/agent-api/prompt-guide) recommends several useful practices:
-
-- make the question specific and descriptive;
-- include the entity, scope, time period, and evidence required;
-- cap requested lists and comparisons;
-- allow the system to disclose insufficient or near-miss evidence rather than guess;
-- use request parameters for hard domain, date, country, freshness, or step-limit constraints when the live schema exposes them;
-- preserve structured source metadata and inspect sufficient underlying source content before final citation; reuse content already retrieved.
-
-An MCP wrapper may expose only a subset of direct Agent API controls. Inspect the live schema for the selected mode instead of assuming that Search, Ask, Reason, and Research accept identical parameters.
-
-### What to avoid
-
-- Do not call multiple Perplexity modes for the same subquestion without a material reason.
-- Do not treat generated prose as a primary source.
-- Do not copy citations from generated prose without inspecting the underlying source content supporting important claims. Reuse sufficient content already retrieved.
-- Do not imply that Ask, Reason, or Research used the model selected in the application.
+**Official docs:** [Exa MCP](https://exa.ai/docs/reference/exa-mcp) · [Exa Pricing](https://exa.ai/pricing) · [Exa Library](https://exa.ai/library) · [Exa Agent](https://exa.ai/docs/agent/quickstart) · [Exa Connect](https://exa.ai/docs/agent/connect/overview)
 
 ## Parallel
 
-### Best fit
+**Best for:** Objective-shaped web excerpts from primary financial, legal, and healthcare documents; clean Markdown extraction from PDFs and JavaScript-heavy pages; zero-account MCP testing; specialized registry/vertical lookups; and batch list building or enrichment.
 
-**Try this with Parallel.** What did [company] say about [issue] in its latest filing? Find the passage and link to it. If you later have a spreadsheet of companies, see the batch options below. [Connection options](connecting-providers.md#choose-an-access-route)
+**Free & easy start:** Official 1-click installs at [parallel.ai/mcp](https://parallel.ai/mcp) for **Claude**, **ChatGPT**, **Cursor**, **VS Code**, and **Grok Bot**. Keyless MCP (`https://mcp.parallel.ai/mcp`) requires **no account and no API key** for `web_search`, `web_fetch`, `web_decisions`, fast `image_search`, and vertical discovery. Organizations with a card on file receive **$5/month in free credits**.
 
-**Connection checks are dated in the [setup guide](connecting-providers.md#parallel-connection-readiness).**
+### Where Parallel stands out
 
-Use Parallel to find source evidence, query relevant specialized records, or commission provider-generated research when that suits the task. A user should be able to ask a question without knowing the dataset catalogue: the agent should consider the relevant accessible sources and choose the smallest useful combination.
+- **Objective + keyword search:** Parallel's `web_search` takes both a natural-language goal (`objective`) and short keyword queries, returning focused excerpts tuned for AI reasoning across finance, legal, and healthcare sources.
+- **Strong page & PDF extraction:** `web_fetch` reads up to 20 URLs per call and handles PDFs and JS-heavy sites reliably, returning either targeted excerpts or full Markdown.
+- **Specialized verticals & consumer tools:** Depending on the connection (ChatGPT app vs. direct hosted MCP), Parallel exposes dedicated tools such as `find_verticals` / `search_vertical` (for structured records like ClinicalTrials.gov), `image_search`, `web_decisions` (typed probability/choice judgments), and flight/product search in the ChatGPT app.
+- **Same-call research & batch workflows:** Authenticated connections unlock `web_research` (a cited answer in one call), while the Task API, Task MCP, and Parallel CLI add asynchronous Deep Research, **Task Group** (running the same structured enrichment across a list of rows), and **FindAll** (discovering entities matching explicit criteria).
 
-**Two distinct routes:** Parallel’s finance, legal and healthcare improvements help its existing web search find relevant source documents. Specialized dataset access is a separate route: discover an available operation, then query its records. Check the selected connection for a callable dataset operation.
+**Official docs:** [Parallel MCP Hub](https://parallel.ai/mcp) · [MCP Quickstart](https://docs.parallel.ai/integrations/mcp/quickstart) · [Parallel Pricing](https://docs.parallel.ai/getting-started/pricing) · [Parallel CLI](https://docs.parallel.ai/integrations/cli)
 
-The Parallel app in ChatGPT and the direct hosted MCP expose their own tool lists. The app connection we tested ran dedicated fare and product searches. The direct hosted connection exposed tools for discovering and querying supported datasets. Check the [setup guide and dated tests](connecting-providers.md#parallel-connection-readiness) for the route that fits your task, then try a [Parallel prompt](research-prompts.md#parallel-use-relevant-accessible-data).
+## Keenable
 
-| Research need | Route | Access and output |
-| --- | --- | --- |
-| Find public sources and supporting passages | `web_search`, then `web_fetch` when needed | Core MCP retrieval; returns source evidence for your assistant |
-| Find images for a brief or presentation | Images API or `image_search` on a connection that exposes it | Direct image and source-page links, with pixel dimensions when available |
-| Find flight fares or product offers | Dedicated tools on supporting app connections | Check the itinerary or product variant, market, currency, availability and observation time |
-| Retrieve records from a supported dataset | `find_verticals`, then `search_vertical`, when both are exposed | Check the matching operation, schema, price and returned evidence |
-| Get a cited answer to one research question | `web_research` | Authenticated MCP; provider-generated answer returned in the same call |
-| Benefit from included Index Partner evidence | An eligible Task or Responses research operation | Automatic relevance-based retrieval; partner and processor coverage varies |
-| Add selected free or paid connectors to research | Authenticated research configuration or a supported Task/Responses interface | Requires exposed configuration and account access; selection does not guarantee a call |
-| Research with an existing licensed/private source | Supported BYOL Task/Responses integration | Requires the source's license, credentials and supported interface |
-| Produce a substantial asynchronous report or enrich a list | Task MCP, Task API or Parallel CLI | Separate advanced workflow with its own lifecycle and processor costs |
+**Best for:** High-recall general web search, pulling exact relevant passages from long documents without blowing up your context window, date-controlled and point-in-time (`query_time`) search, and generous free monthly volume.
 
-These routes are alternatives and can complement one another when they fill distinct evidence gaps. A successful web search does not establish access to every dataset or research operation.
+**Free & easy start:** Listed in **Claude's Connectors Directory** (`Keenable Web Search`) and **ChatGPT's Plugins Directory**, with 1-click installs for **Cursor** and **VS Code**, plus keyless access (`1,000 requests/hour` per IP). Signing up for a free account (no credit card required) unlocks **100,000 free requests per month**.
 
-**Finding an image.** Parallel’s Images API has its own search operation, exposed as `image_search` on supporting MCP connections. Give it short keyword queries and describe what makes an image suitable. For example, search for “Python logo” and specify that you want an official logo for a presentation. In a fast-mode MCP check on 20 November 2026, the results included both third-party pages and the [Python Software Foundation’s logo page](https://www.python.org/community/logos/). Use the source page to check attribution and terms of use, and open the image before describing what it shows. [Parallel’s launch article](https://parallel.ai/blog/parallel-images-api) · [Images API quickstart](https://docs.parallel.ai/image-search/image-search-quickstart)
+### Where Keenable stands out
 
-### Search
+- **Dynamic snippets across long documents:** Instead of returning just the first paragraph of a page, Keenable selects the most relevant passages from across long documents, often answering policy or technical questions without needing a separate fetch.
+- **Precise date & point-in-time controls:** Supports `published_after` / `published_before`, index-date filters (`acquired_after` / `acquired_before`), and `query_time` to search the web index as it stood at a specific past date.
+- **Clean Fetch & Monitors:** `fetch_page_content` returns clean Markdown for up to 20 URLs (with `max_age_hours: 0` when you need a guaranteed live read, and automatic live fallback for unindexed pages). Authenticated connections also expose `get_billing` and web **Monitors** tools for tracking new pages over time.
+- **Privacy note to know up front:** Keenable documents that it uses search trajectories (queries, returned snippets, and fetched pages) to improve retrieval on standard tiers. Keep queries to public facts unless you are on a zero-data-retention plan.
 
-Give `web_search` one goal-style objective and short related keyword queries. The objective explains what evidence is needed; the queries supply retrieval terms. Reuse sufficient excerpts. Use `web_fetch` for a supplied URL, exact wording, full-document analysis or missing context; request full content only where necessary.
+**Official docs:** [Keenable MCP Server](https://docs.keenable.ai/mcp-server) · [Keenable Pricing](https://keenable.ai/pricing) · [Best Practices](https://docs.keenable.ai/best-practices) · [Search Trajectories](https://keenable.ai/blog/trajectories-in-improvements-out)
 
-Inspect supported freshness controls when currentness matters. A fetch can still return cached material. Keep publication, reporting-period, effective and retrieval dates distinct. Reuse session IDs only if the callable schema accepts them: they correlate calls and do not establish conversational memory or deduplication. Supply optional model metadata only when both the field and the exact model identity are known.
+## Octen
 
-<a id="financial-and-legal-sources"></a>
-<a id="parallel-financial-and-legal-web-search"></a>
+**Best for:** Multi-angle topic discovery (`Broad Search`), fast official-URL lookups (`Pulse`), current news, structured business and local place records, visual/reference-image search, and low pay-as-you-go search pricing.
 
-### Financial, legal and healthcare web search
+**Free & easy start:** New accounts receive **$5 in free balance** upon registration (no keyless tier). Standard Web Search starts at **$1 per 1,000 calls** with full content included for the first 10 results on pay-as-you-go.
 
-Parallel describes its [29 October 2026 Finance release](https://parallel.ai/blog/parallel-for-finance) and [6 November 2026 Legal release](https://parallel.ai/blog/parallel-for-legal) as index and ranking upgrades across its existing APIs, with no new plan or subscription. They are useful reasons to consider Parallel for filings, registers, company announcements, court opinions, legislation and regulatory material. They do not create new Finance or Legal tool names or guarantee complete coverage. Normal usage charges and access limits still apply.
+### Where Octen stands out
 
-For financial work, retain entity identifiers, reporting periods, currency and units, filing/publication dates, source tables and amendments or restatements. Distinguish a reported value from a calculation, forecast or market observation. Use a specialized dataset when comparable fields or coverage require it; do not assume a web filing supplies a licensed feed.
+- **Specialized operations in one MCP:** Rather than one generic search box, Octen separates **Pulse** (fast official destination URLs), **Search** (focused lookup), **Broad Search** (expands one self-contained question into multiple discovery angles), **News Search**, **Business Search** (company/person entity cards), **Place Search** (local venues, hours, ratings), **Image Search** (text or reverse reference-image lookup), **Extract** (standard or advanced page reading), and newer premier/design/video operations depending on your plan.
+- **Full content built into Search:** Requesting full page text alongside Search often avoids extra extraction calls (check your connection's live schema for the exact control).
+- **What to watch:** Broad Search can execute multiple billable sub-queries under the hood; News Search storylines and Business entity cards do not always inherit the domain/date filters applied to ranked links, so verify key claims against the underlying articles.
 
-For legal work, retain jurisdiction, court or issuer, document identifiers, decision/enactment/effective dates and supporting sections or pages. Check the proposition against the passage. Distinguish holdings from syllabuses, dissents and submissions, and enacted rules from proposals or guidance. Search metadata can differ from dates printed in the source. Older authority may remain applicable; finding a case does not establish that it remains good law or that a citator check occurred. Customer-specific private indexes are not a promise of the same coverage for every account.
+**Official docs:** [Octen MCP Server](https://docs.octen.ai/integrations/octen-mcp-server) · [Octen Pricing](https://docs.octen.ai/overview/pricing) · [Octen Skills](https://docs.octen.ai/integrations/octen-skills)
 
-[Parallel for Healthcare](https://parallel.ai/blog/parallel-for-healthcare) adds search index and ranking improvements for sources such as trial registrations and published papers. To trace a reported trial result, find the ClinicalTrials.gov entry and confirm the trial ID and whether the result is posted. For exact registry fields, use a matching structured lookup if exposed. The [registry check below](#discover-specialized-records) illustrates the second route.
+## Perplexity
 
-The announcements' benchmarks are dated vendor evaluations, not independent guarantees or routing rules. Their reported end-to-end costs include answer-model tokens and search/fetch usage. This guide has not reproduced those benchmarks.
+**Best for:** Pairing fast ranked web search (`Search`) and clean URL reading (`Context`, including historical archived snapshots) with optional provider-generated synthesis (`Ask`, `Reason`, and `Research`) inside one hosted MCP server.
 
-<a id="discover-specialized-records"></a>
+**Access & billing note:** Perplexity's hosted MCP (`https://api.perplexity.ai/mcp`) supports OAuth sign-in or an API key, but **requires an API organization with billing enabled** (there is no keyless free tier, and a consumer Perplexity Pro subscription does not cover API/MCP usage). Paid Search rates are low once funded: **$1/1,000** for Fast Search, **$5/1,000** for standard Web Search, and **$1/1,000 URLs** for Context.
 
-### Specialized dataset operations: discover, then query
+<span id="fast-or-standard-search"></span>
+<span id="read-known-urls-with-context"></span>
+### Where Perplexity stands out
 
-Start with Search or Fetch when public pages can answer the question. Look for a structured operation when the task needs exact record fields, such as looking up a trial registration by its ID. The hosted MCP quickstart lists the two dataset tools, with limited detail on individual operations. If your connection exposes both tools, use `find_verticals` to look for a match and inspect the returned ID, input schema and price. Refine discovery if the match lacks a schema. [Hosted MCP quickstart](https://docs.parallel.ai/integrations/mcp/quickstart#tools)
+- **Fast vs. standard Search (`search_type`):** Use `fast` ($1/1k) for routine lookups and `web` ($5/1k) for harder, ambiguous questions—both return ranked sources without a generated narrative so your own assistant does the writing.
+- **Context & Time Machine (`snapshot_as_of`):** `perplexity_context` reads known URLs as clean Markdown or focused highlights, with `max_age_seconds: 0` for a live read or `snapshot_as_of` to retrieve an archived copy as of a past cutoff date.
+- **Built-in synthesis tiers when you want them:** `perplexity_ask` (quick cited answer), `perplexity_reason` (structured comparison/trade-offs), and `perplexity_research` (deep literature-style investigation) run Perplexity's own Agent API presets rather than your assistant's model. Inspect cited sources before relying on generated prose.
 
-Inspect the selected operation's fields, coverage, output type and price, then call `search_vertical` with that returned ID and its accepted arguments. Some operations analyze records rather than simply retrieving them: assistant-only synthesis restrictions apply to the operation, even inside a retrieval-oriented tool. Preserve record identifiers and citations; report truncation, missing fields and coverage gaps. A catalogue entry proves discovery, not successful retrieval.
-
-A separate discovery check on 11 November 2026 requested financial filings and court rulings but returned no dedicated finance or legal operation. This describes that response, not proof that such datasets are unavailable through every connection or access route.
-
-**Executed hosted MCP check, 11 November 2026:** discovery returned `clinical_trials.get_trial_details` with a required `nct_id` and a $0 call price. One lookup of `NCT04280705` returned a trial identifier, title, completed status and an official ClinicalTrials.gov citation; the result reported `cost_usd: 0`. The returned record was truncated, so its last-update field was not verified. This checks one lookup, not every vertical or the completeness of the registry.
-
-**Hosted MCP discovery check, 26 November 2026.** The trial-details operation appeared again. The response included a full schema for a broader trial-search operation, while the exact-ID candidate had no input schema in that response. The check ended at discovery.
-
-### Included partners, selected connectors and licensed sources
-
-[Data Connectors](https://docs.parallel.ai/resources/data-connectors) describes three access models. Keep them distinct:
-
-- **Index Partners** are included on eligible research runs. When their data could help, describe the required records, entities, fields, dates and geography clearly. Parallel decides what to retrieve; do not put an Index Partner into `data_sources`, which rejects those names. Availability varies by partner and processor. The Responses API does not report Index Partner calls, so do not infer contribution from catalogue membership alone.
-- **Selected connectors** use `data_sources.free` or `data_sources.pay_per_use` through the appropriate research interface. Free connectors such as PubMed and ClinicalTrials.gov have no connector charge; the research operation may still be billed. Paid connector calls are additional charges, may occur more than once, and depend on organization access. Responses connector selection requires medium or high effort. Inspect returned call records and citations to distinguish enabled, invoked and contributing sources.
-- **Bring your own license (BYOL)** adds a licensed or private remote MCP source through a supported Task/Responses integration. A funded Parallel account does not itself grant that license. Sources in one research run may receive information obtained from another source, so preserve the user's data-sharing constraints. Keep credentials in secure client configuration, outside prompts and shared examples.
-
-The [connector directory](https://parallel.ai/data-connectors), checked 11 November 2026, describes Pensa Systems as retail shelf intelligence and Particle as news coverage across perspectives, but labels both “Coming soon.” These are evidence-matching examples, not verified access: a shelf-availability question could benefit from Pensa-type observations, while a news-coverage comparison could benefit from Particle-type records. Check current availability and returned evidence; do not assume a similarly named partner supplies the same dataset through another provider.
-
-Use relevant included evidence within an already-permitted research operation; do not launch provider-generated research merely to reach a partner when the user allows retrieval only. Direct vertical access and research connector access can reach related datasets, but their parameters and billing are different. See [current configuration guidance](connecting-providers.md#parallel-connection-readiness).
-
-### Provider-generated research
-
-`web_research` returns a cited answer in the same call. Check the returned status, answer and sources, retaining the response ID and exposed effort/usage. A supported `previous_response_id` continues earlier research; it is a new follow-up request, not polling. Treat the answer as provider synthesis and verify material claims against sufficient evidence. Do not apply an asynchronous creation-and-stop rule to a completed response.
-
-### Task
-
-Use Task workflows when asynchronous depth or repeated structured enrichment is the actual need. The [Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp), [Task API](https://docs.parallel.ai/task-api/task-quickstart) and [CLI](https://docs.parallel.ai/integrations/cli) are advanced access routes; the unified MCP's same-call research does not replace every batch workflow.
-
-| Task operation | Use it when |
-| --- | --- |
-| Deep Research | One topic requires a substantial provider-generated report |
-| Task Group | The same output contract must be applied independently to several inputs |
-
-Inspect the selected interface and follow its lifecycle. If it directs a progress-link handoff and the user has not requested monitoring, return the link with pending status. When continuation is permitted, use retained identifiers and the relevant result tools; do not duplicate active work. Test a small batch before scaling. Report exposed processor, cost and evidence gaps without attributing provider output to your assistant's selected model.
-
-### What to avoid
-
-Do not equate a configured connection with entitlement to all sources, put unsupported API settings into MCP arguments, or claim an enabled connector supplied evidence without a returned contribution. If a capability is missing, identify whether the gap is tool exposure, authentication, configuration, entitlement or interface support, and explain the appropriate next step.
-
-Parallel also exposes Decisions for typed judgments. It is outside this guide's search-and-retrieval workflows and must not be invoked under retrieval-only instructions.
+**Official docs:** [Perplexity MCP Server](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server) · [Perplexity Pricing](https://docs.perplexity.ai/docs/getting-started/pricing) · [Fast Search](https://docs.perplexity.ai/docs/search/fast-search) · [Context Quickstart](https://docs.perplexity.ai/docs/context/quickstart)
 
 ## Optional: authenticated X-native evidence
 
-**Try this with X.** Who posted the original announcement about [topic], and which reply clarified it? Show the author, time and link for each post. [Connection options](connecting-providers.md#choose-an-access-route)
+General web search cannot reliably read live X threads, exact timestamps, counts, or your own saved bookmarks. When a task depends on what people actually posted on X, connect an authenticated read-only X interface—either **[xurl](https://github.com/xdevplatform/xurl)** or X's official read-only MCP endpoint (`https://api.x.com/mcp?read_only=true`).
 
-Web search is not a substitute for authenticated X data. When a task requires posts, users, counts, geographic trends, bookmark folders, news search, or archive coverage, use an authenticated X-native interface.
-
-- Use one authenticated X-native read interface. In an environment where **xurl** is available and authenticated, it is a suitable default.
-- Use another authenticated X API interface when a dedicated structured operation better fits the task or xurl is unavailable.
-- Treat alternative X-native interfaces as routes to the same evidence. Do not routinely send the same X query through more than one.
-- When broader evidence is permitted, generic web or browser material may be labeled as non-X corroboration; it cannot replace unavailable X-native data.
-- Keep research read-only unless the user separately authorizes posting, replying, following, messaging, or bookmark changes.
-
-X is included here as an optional platform-native evidence role, not as a general web-research provider.
+Keep X research read-only unless you separately authorize posting, replying, or bookmark edits, and check which developer account is billed for X API usage.
 
 ## Combining providers without duplicating work
 
-A combined workflow should explain why each provider is present.
+Start with **one** provider. Add a second only when it fills a distinct job—for example:
 
-Examples of complementary roles include:
+- **Exa** for company/people discovery or podcast transcripts + **Parallel** for deep PDF extraction or batch list enrichment.
+- **Keenable** for high-volume general web passages + **Exa** for semantic company records.
+- **Octen** for broad multi-angle news or local places + **authenticated X** for direct reactions from primary voices.
 
-- Octen Broad Search for multi-angle discovery, then Exa Search for a semantic cross-check;
-- Exa Search for underlying sources, then Perplexity Reason once for a grounded comparison;
-- Parallel Search for objective-shaped excerpts, then Parallel Fetch only for selected results that need fuller evidence;
-- Parallel Task Group for a repeated enrichment contract across a small input set, without running duplicate searches for each input;
-- Exa Agent with Fiber for firmographics and Similarweb for traffic fields;
-- Exa Agent with Polymarket for prediction-market odds or price history;
-- web evidence through Exa or Octen and a separate authenticated X evidence role.
-
-Avoid sending the same query or URL through several providers unless independent verification would materially strengthen the result.
-
-If one evidence role is blocked, disclose the gap, follow the permitted fallback policy, and complete independent permitted work. Continue until the requested deliverable has sufficient inspected evidence or remaining gaps are blocked by access, explicit restrictions, budget, or the selected tool’s lifecycle. Ask for clarification only when an unresolved boundary materially affects scope, cost, or data handling. Report contributions and limitations proportionally.
-
-## Continue reading
-
-- [Choosing research tools for your AI assistant](README.md)
-- [Connecting and testing providers](connecting-providers.md)
-- [Research prompt examples](research-prompts.md)
-
-## Official documentation
-
-- [Keenable documentation](https://docs.keenable.ai/)
-- [Octen documentation](https://docs.octen.ai/)
-- [Exa MCP](https://exa.ai/docs/reference/exa-mcp)
-- [Exa Agent](https://exa.ai/docs/reference/agent-api-guide)
-- [Exa Connect](https://exa.ai/docs/reference/agent-api/connect/overview)
-- [Perplexity documentation](https://docs.perplexity.ai/docs/getting-started/overview)
-- [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
-- [Parallel unified MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
-- [Parallel Task MCP](https://docs.parallel.ai/integrations/mcp/task-mcp)
-- [xurl](https://github.com/xdevplatform/xurl)
-- [X API documentation](https://docs.x.com/x-api)
+Avoid sending the same query to three providers by default unless you explicitly want cross-coverage (as in a market map).
 
 ## Other tools to explore
 
-This guide focuses on a smaller selection of providers. These services offer additional approaches worth exploring; follow their official sites for current capabilities, access and pricing.
+This guide focuses on five core search providers to stay practical and maintainable. Two adjacent tools are also worth exploring depending on your workflow:
 
-<a id="firecrawl"></a>
+- **[Firecrawl](https://www.firecrawl.dev/):** Strong for crawling sites, structured web scraping, and specialist document extraction.
+- **[TinyFish](https://www.tinyfish.ai/):** Combines web search and page reading with interactive browser automation for sites that require clicking or navigation.
 
-**[Firecrawl](https://www.firecrawl.dev/)** helps AI assistants collect and extract information from websites. Its Alexandria catalogue also provides access to specialist data sources, including company filings and scientific literature. Explore it if your work involves collecting information across many pages or obtaining particular types of records.
+## Continue reading
 
-<a id="tinyfish"></a>
+- [Connecting and testing providers](connecting-providers.md)
+- [Research prompt cookbook](research-prompts.md)
+- [Plan your research budget](https://goolamabbas.github.io/separate-intelligence-and-search/guide/costs/)
 
-**[TinyFish](https://www.tinyfish.ai/)** offers web search, page reading and browser automation, alongside tools for producing research reports and building datasets from public webpages. Explore it if your task involves interacting with websites or assembling information across many sources.
+## Official documentation
+
+- [Exa MCP](https://exa.ai/docs/reference/exa-mcp)
+- [Parallel MCP](https://docs.parallel.ai/integrations/mcp/quickstart)
+- [Keenable MCP](https://docs.keenable.ai/mcp-server)
+- [Octen MCP](https://docs.octen.ai/integrations/octen-mcp-server)
+- [Perplexity MCP](https://docs.perplexity.ai/docs/getting-started/integrations/mcp-server)
+- [xurl (X CLI)](https://github.com/xdevplatform/xurl)
+- [X MCP](https://docs.x.com/tools/mcp)
+- [Choosing research tools (overview)](README.md)
